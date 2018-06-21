@@ -22,6 +22,7 @@ public class StockController {
 
 	@Autowired
 	StockService stockService;
+	
 	@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap(){
 		Map<String, String> conditionMap = new HashMap<String, String>();
@@ -35,8 +36,8 @@ public class StockController {
 	
 	//목록조회
 	@RequestMapping("/getStockList.do")
-	public String getStockList(StockDAO dao, Model model) {
-		model.addAttribute("stockList", dao.getStockList());
+	public String getStockList(Model model) {
+		model.addAttribute("stockList", stockService.getStockList());
 		return "stock/getStockList";
 	}
 
@@ -49,7 +50,7 @@ public class StockController {
 	
 	//수정 업데이트 처리 SessionAttribute 388p
 	@RequestMapping("/updateStock.do")
-	public String updateStock(@ModelAttribute("stock")StockVO vo, StockDAO stockDAO) {
+	public String updateStock(@ModelAttribute("stock")StockVO vo) {
 		
 		System.out.println("제품ID : " + vo.getProductId());
 		System.out.println("제품위치 : " + vo.getProductLocation());
@@ -57,7 +58,7 @@ public class StockController {
 		System.out.println("최소수량 : " + vo.getMinimumQuantity());
 		System.out.println("공급사ID : " + vo.getSupplierId());
 		
-		stockDAO.updateStock(vo);
+		stockService.updateStock(vo);
 		
 		return "getStockList.do";
 	}
@@ -73,7 +74,7 @@ public class StockController {
 	
 	//등록처리
 	@RequestMapping("/insertStock.do")
-	public String insertStock(@ModelAttribute("stock") StockVO vo, StockDAO stockDAO) {
+	public String insertStock(@ModelAttribute("stock") StockVO vo) {
 		
 		//System.out.println("제품ID : " + vo.getProductId());
 		System.out.println("제품위치 : " + vo.getProductLocation());
@@ -81,17 +82,17 @@ public class StockController {
 		System.out.println("최소수량 : " + vo.getMinimumQuantity());
 		System.out.println("공급사ID : " + vo.getSupplierId());
 		
-		stockDAO.insertStock(vo);
+		stockService.insertStock(vo);
 		return "getStockList.do";
 	}
 	
 	
 	//단건 삭제처리
 	@RequestMapping("/deleteStock.do")
-	public String deleteStock(@ModelAttribute("stock") StockVO vo, StockDAO stockDAO) {
+	public String deleteStock(@ModelAttribute("stock") StockVO vo) {
 		System.out.println("제품ID :" + vo.getProductId());
 		
-		stockDAO.deleteStock(vo.getProductId());
+		stockService.deleteStock(vo.getProductId());
 		return "getStockList.do";
 	}
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 
 <head>
 	<meta charset="utf-8">
@@ -7,10 +7,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link href="./resources/css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="./resources/css/style.css" rel="stylesheet">
-	<link href="./resources/color/default.css" rel="stylesheet">
-	<link rel="shortcut icon" href="./resources/img/favicon.ico">
+	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<link href="color/default.css" rel="stylesheet">
+	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- =======================================================
     Theme Name: Maxim
     Theme URL: https://bootstrapmade.com/maxim-free-onepage-bootstrap-theme/
@@ -20,13 +20,7 @@
 </head>
 
 <body>
-<div class="container">
-		<header>
-			
-		</header>
-		<nav>
-			<tiles:insertAttribute name="header" />
-			<!-- navbar -->
+	<!-- navbar -->
 	<div class="navbar-wrapper">
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="navbar-inner">
@@ -38,11 +32,11 @@
 					<!-- navigation -->
 					<nav class="pull-right nav-collapse collapse">
 						<ul id="menu-main" class="nav">
-							<li><a title="team" href="#about">ORDERS</a></li>
-							<li><a title="services" href="getStockList.do">STOCK</a></li>
-							<li><a title="works" href="#works">EMPLOYEES</a></li>
-							<li><a title="blog" href="#blog">Q&A</a></li>
-							<li><a title="contact" href="#contact">LOGIN</a></li>
+							<li><a title="team" href="#about">주문관리</a></li>
+							<li><a title="services" href="getStockList.do">재고관리</a></li>
+							<li><a title="works" href="#works">직원관리</a></li>
+							<li><a title="blog" href="#blog">문의사항</a></li>
+							<li><a title="contact" href="#contact">로그인</a></li>
 							
 						</ul>
 					</nav>
@@ -50,15 +44,43 @@
 			</div>
 		</div>
 	</div>
-		</nav>
-		<article>
-			<tiles:insertAttribute name="content" />
-			<!-- content area -->
-	
-		</article>
-		<footer>
-			<tiles:insertAttribute name="footer" />
+	Header area
+	<div id="header-wrapper" class="header-slider">
+		<header class="clearfix">
+			<div class="logo">
+				<img src="img/logo-image.png" alt="" />
+			</div>
 			<div class="container">
+				<div class="row">
+					<div class="span12">
+						<div id="main-flexslider" class="flexslider">
+							<ul class="slides">
+								<li>
+									<p class="home-slide-content">
+										<strong>MAKE TODAY PERFECT DAY</strong> 
+									</p>
+								</li>
+								<li>
+									<p class="home-slide-content">
+										<strong>EAT </strong> AND <strong> DRINK</strong>
+									</p>
+								</li>
+								<li>
+									<p class="home-slide-content">
+										NO DAY BUT <strong>TODAY</strong>
+									</p>
+								</li>
+							</ul>
+						</div>
+						end slider
+					</div>
+				</div>
+			</div>
+		</header>
+	</div>
+	
+	<footer>
+		<div class="container">
 			<div class="row">
 				<div class="span6 offset3">
 					<ul class="social-networks">
@@ -83,26 +105,20 @@
 			</div>
 		</div>
 		<!-- ./container -->
-		</footer>
-	</div>
-
-	
-	
-	
-	
+	</footer>
 	<a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bgdark icon-2x"></i></a>
-	<script src="./resources/js/jquery.js"></script>
-	<script src="./resources/js/jquery.scrollTo.js"></script>
-	<script src="./resources/js/jquery.nav.js"></script>
-	<script src="./resources/js/jquery.localScroll.js"></script>
-	<script src="./resources/js/bootstrap.js"></script>
-	<script src="./resources/js/jquery.prettyPhoto.js"></script>
-	<script src="./resources/js/isotope.js"></script>
-	<script src="./resources/js/jquery.flexslider.js"></script>
-	<script src="./resources/js/inview.js"></script>
-	<script src="./resources/js/animate.js"></script>
-	<script src="./resources/js/custom.js"></script>
-	<script src="./resources/contactform/contactform.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.scrollTo.js"></script>
+	<script src="js/jquery.nav.js"></script>
+	<script src="js/jquery.localScroll.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/jquery.prettyPhoto.js"></script>
+	<script src="js/isotope.js"></script>
+	<script src="js/jquery.flexslider.js"></script>
+	<script src="js/inview.js"></script>
+	<script src="js/animate.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="contactform/contactform.js"></script>
 
 </body>
 
