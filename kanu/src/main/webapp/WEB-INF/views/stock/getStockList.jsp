@@ -7,6 +7,8 @@
 </head>
 <body>
 	<h3> 재고 목록 </h3>
-	
+	<br>
+	<br>
+	<br><br><br><br><br><br>
 </body>
 </html>
