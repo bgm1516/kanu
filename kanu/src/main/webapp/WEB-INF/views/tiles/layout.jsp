@@ -55,7 +55,7 @@
 			<tiles:insertAttribute name="content" />
 			<!-- content area -->
 	<br><br><br><br><br><br>footer 원인 좀 찾아주라주<br><br><br><br><br>
-		</article>
+		</article> 
 		<footer>
 			<tiles:insertAttribute name="footer" />
 			<div class="container">
