@@ -12,13 +12,13 @@
   </resultMap>
   
   <!-- (다건)전체 조회 -->
-  <select id="getMenuList" resultType="map" parameterType="MenuVO">
+  <select id="getMenuList" resultType="map">
   
   <!--as = alias 로 key주기  -->
 		SELECT 
 		MENU_ID as "menu_id",
 		MENU_NAME as "menu_name",
-		PRICE as "price",
+		PRICE as "price"
 		FROM MENU
 	</select>
 	
@@ -57,7 +57,7 @@
   		<update id="updateMenu" parameterType="MenuVO">
   		
   		UPDATE MENU SET
-  		<!-- 		MENU_ID = #{menu_id}, -->
+  						<!-- 		MENU_ID = #{menu_id}, -->
   				MENU_NAME = #{menu_name},
   				PRICE = #{price}
   				

@@ -11,6 +11,7 @@
 
 	<typeAliases>
 		<typeAlias type="com.kanu.web.emp.EmpVO" alias="empVO"></typeAlias>
+		<typeAlias alias="stockVO" type="com.kanu.web.stock.StockVO"/>
 	</typeAliases>
 
 
