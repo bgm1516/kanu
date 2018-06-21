@@ -20,12 +20,9 @@
 </head>
 
 <body>
-<div class="container">
-		<header>
-			
-		</header>
-		<nav>
-			<tiles:insertAttribute name="header" />
+
+		
+		
 			<!-- navbar -->
 	<div class="navbar-wrapper">
 		<div class="navbar navbar-inverse navbar-fixed-top">
@@ -50,14 +47,15 @@
 			</div>
 		</div>
 	</div>
-		</nav>
-		<article>
-			<tiles:insertAttribute name="content" />
+		
+		
 			<!-- content area -->
-	<br><br><br><br><br><br>footer 원인 좀 찾아주라주<br><br><br><br><br>
-		</article> 
+	<br><br><br><br><br><br>11111111111111111<br><br><br><br><br>
+	<br><br><br><br><br><br>11111111111111111<br><br><br><br><br>
+	<br><br><br><br><br><br>11111111111111111<br><br><br><br><br>
+
 		<footer>
-			<tiles:insertAttribute name="footer" />
+		
 			<div class="container">
 			<div class="row">
 				<div class="span6 offset3">
@@ -78,7 +76,7 @@
               -->
 							Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
 						</div>
-					</p>
+					
 				</div>
 			</div>
 		</div>
