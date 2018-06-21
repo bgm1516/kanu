@@ -35,7 +35,8 @@ div, article, section, header, footer, nav, li {
 	visibility:hidden; /* For clearing */
 }
 body {
-	background:#fff;
+	
+	background-image: url("../img/bg/bg-1.jpg");
 	color: #444;
 	font-size: 16px;
 	font-weight:300;
@@ -991,10 +992,12 @@ div.cform-response-output {
 ============================================================ */
 
 footer {
+	display: block;
 	background: #2b2b2b;
 	text-align: center;
 	color: #ddd;
 	padding:50px 0 50px;
+	margin : 0px absolute;
 }
 
 footer a {
