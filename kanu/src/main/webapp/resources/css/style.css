@@ -36,10 +36,10 @@ div, article, section, header, footer, nav, li {
 }
 body {
 	
-	background-image: url("../img/bg/bg-1.jpg");
+	background-image: url("../img/bg/maxresdefault.jpg");
 	color: #444;
 	font-size: 16px;
-	font-weight:300;
+	font-weight:300; 
 	font-family:'Open Sans', Arial, sans-serif;
 }
 
