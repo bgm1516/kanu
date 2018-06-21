@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.kanu.web.orders.MenuDAO">
+  
+  <resultMap type="map" id="menuresult">
+	<id property="menu_id" column="MENU_ID"/> 
+	<result property="menu_name" column="MENU_NAME"/>
+	<result property="price" column="PRICE"/>
+  
+  </resultMap>
+  
+  <!-- (다건)전체 조회 -->
+  <select id="getMenuList" resultType="map" parameterType="MenuVO">
+  
+  <!--as = alias 로 key주기  -->
+		SELECT 
+		MENU_ID as "menu_id",
+		MENU_NAME as "menu_name",
+		PRICE as "price",
+		FROM MENU
+	</select>
+	
+	<!-- 단건 조회  -->
+	<select id="getMenu" resultType="MenuVO" parameterType="string">
+	SELECT 
+	MUNU_ID,
+	MENU_NAME,
+	PRICE
+	FROM MENU
+	WHERE MENU_ID = #{menu_id}
+	
+	</select>
+	
+	<!-- 입력 -->
+	<insert id="insertMenu" parameterType="MenuVO">
+	<selectKey keyProperty="menu_id" resultType="string" order="BEFORE">
+	
+			SELECT max(MENU_ID)+1 FROM MENU	
+	
+	</selectKey>
+		
+			INSERT INTO MENU(
+			MENU_ID,
+			MENU_NAME,
+			PRICE)
+			
+			VALUES(
+			#{menu_id},
+			#{menu_name},
+			#{price}
+			)
+			
+	</insert>
+  	
+  		<update id="updateMenu" parameterType="MenuVO">
+  		
+  		UPDATE MENU SET
+  		<!-- 		MENU_ID = #{menu_id}, -->
+  				MENU_NAME = #{menu_name},
+  				PRICE = #{price}
+  				
+  				WHERE MENU_ID= #{menu_id}
+  		
+  		</update>
+  
+  		<delete id="deleteMenu" parameterType="string">
+  		DELETE MENU
+  		WHERE MENU_ID = #{menu_id}
+  		
+  		</delete>
+  </mapper>
