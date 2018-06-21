@@ -24,7 +24,7 @@ public class MenuController {
 	
 	@Autowired
 	MenuService menuService;
-	
+	@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap(){
 		Map<String,String> conditionMap = new HashMap<String,String>();
 		conditionMap.put("메뉴번호", "menu_id");
@@ -32,16 +32,16 @@ public class MenuController {
 		conditionMap.put("가격", "price");
 		return conditionMap;
 	}
-	@RequestMapping("/getMenuList")
+	@RequestMapping("/getMenuList.do")
 	public String getMenuList(HttpServletRequest request, MenuVO vo) {
 		request.setAttribute("MenuList", menuService.getMenuList());
-		return "menu/getMenuList";
+		return "orders/getMenuList";
 	}
 	
 	//수정 폼 
 	@RequestMapping(value="/updateMenu", method=RequestMethod.GET)
 	public String updateMenuForm() {
-		return "menu/updateMenu";
+		return "orders/updateMenu";
 		
 	}
 	
@@ -49,24 +49,26 @@ public class MenuController {
 	@RequestMapping(value="/updateMenu", method=RequestMethod.POST)
 	public String updateMenu(@ModelAttribute("model")MenuVO vo) {
 		System.out.println(vo);
-		return "menu/getMenu";
+		return "orders/getMenu";
 	}
 	//등록폼
 	@RequestMapping(value="/insertMenu", method=RequestMethod.GET)
 	public String insertMenuForm() {
-		return "menu/insertMenu";
+		return "orders/insertMenu";
 	}	
 	//등록처리
 	@RequestMapping(value="/insertMenu", method=RequestMethod.POST)
 	public String insertMenu(MenuVO vo) {
 		System.out.println(vo);
 		menuService.insertMenu(vo);
-		return "menu/getMenu";
+		return "orders/getMenu";
 	}
 	@RequestMapping("/getMenu/{menu_id}")
 	public String getMenu(@PathVariable String menu_id,Model model) {
 		System.out.println("menu_id:"+menu_id);
 		model.addAttribute("menu",menuService.getMenu(menu_id));
-		return "menu/getMenu";
+		return "orders/getMenu";
 	}
 }
+
+

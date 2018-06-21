@@ -25,7 +25,7 @@
 	<!-- 단건 조회  -->
 	<select id="getMenu" resultType="MenuVO" parameterType="string">
 	SELECT 
-	MUNU_ID,
+	MENU_ID,
 	MENU_NAME,
 	PRICE
 	FROM MENU
@@ -37,7 +37,7 @@
 	<insert id="insertMenu" parameterType="MenuVO">
 	<selectKey keyProperty="menu_id" resultType="string" order="BEFORE">
 	
-			SELECT max(MENU_ID)+1 FROM MENU	
+			SELECT MAX(MENU_ID)+1 FROM MENU	
 	
 	</selectKey>
 		
@@ -57,7 +57,7 @@
   		<update id="updateMenu" parameterType="MenuVO">
   		
   		UPDATE MENU SET
-  						<!-- 		MENU_ID = #{menu_id}, -->
+  						MENU_ID = #{menu_id},
   				MENU_NAME = #{menu_name},
   				PRICE = #{price}
   				

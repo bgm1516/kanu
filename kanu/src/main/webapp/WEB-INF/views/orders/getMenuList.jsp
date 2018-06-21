@@ -9,7 +9,7 @@
 <body>
 	<h3>게시판목록(getMenuList)</h3>
 <table border="1">
-		<c:forEach items="${menuList}" var="me">
+		<c:forEach items="${MenuList}" var="me">
 			<tr>
 				<td>${me.MENU_ID}</td>
 				<td>${me.MENU_NAME}</td>
