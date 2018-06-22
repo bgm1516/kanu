@@ -4,50 +4,22 @@
 <head>
 	<meta charset="utf-8">
 	<title>KANU</title>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link href="./resources/css/bootstrap-responsive.css" rel="stylesheet">
+	<!-- <link href="./resources/css/bootstrap-responsive.css" rel="stylesheet"> -->
 	<link href="./resources/css/style.css" rel="stylesheet">
 	<link href="./resources/color/default.css" rel="stylesheet">
 	<link rel="shortcut icon" href="./resources/img/favicon.ico">
-	<!-- =======================================================
-    Theme Name: Maxim
-    Theme URL: https://bootstrapmade.com/maxim-free-onepage-bootstrap-theme/
-    Author: BootstrapMade.com
-    Author URL: https://bootstrapmade.com
-	======================================================= -->
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+
 </head>
 
 <body>
 
 		
-		
-			<!-- navbar -->
-	<div class="navbar-wrapper">
-		<div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<!-- Responsive navbar -->
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-				</a>
-					<h1 class="brand"><a href="index.html">KANU</a></h1>
-					<!-- navigation -->
-					<nav class="pull-right nav-collapse collapse">
-						<ul id="menu-main" class="nav">
-							<li><a title="team" href="#about">ORDERS</a></li>
-							<li><a title="services" href="getStockList.do">STOCK</a></li>
-							<li><a title="works" href="#works">EMPLOYEES</a></li>
-							<li><a title="blog" href="#blog">Q&A</a></li>
-							<li><a title="contact" href="#contact">LOGIN</a></li>
-							
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</div>
-	</div>
-		
+	
 		
 			<!-- content area -->
 	<br><br><br><br><br><br>11111111111111111<br><br><br><br><br>
