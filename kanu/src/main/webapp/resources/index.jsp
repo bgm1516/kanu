@@ -23,18 +23,29 @@ body{
  	min-width: 100%;
  	min-height: 100%; 
 	
-	color: #444;
+	color: #ffffff;
 	font-size: 16px;
 	font-weight:300; 
-	font-family:'Open Sans', Arial, sans-serif;
+	font-family:'Open Sans', Arial, sans-serif;     
  /*  background-color: black; */
 
-  background-image: url("./resources/img/bg/caca.png");
+  background-image: url("../resources/img/bg/caca.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-  
+  #footer {
+   position:fixed;
+   left:0px;
+   bottom:5px;
+   height:50px;
+   width:100%;
+   background:#343A40;
+   color: white;
+}
+#footer p {
+   text-align: center;
+}
   
   
   </style>
@@ -110,13 +121,15 @@ body{
     <main role="main" class="container">
 		<br><br><br>
       <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <h1></h1>
+        
       </div>
 
     </main><!-- /.container -->
 
-
+	<div id="footer">
+ 	 <p>footer</p>
+	</div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

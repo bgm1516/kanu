@@ -1,79 +1,141 @@
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE HTML>
-<html>
 
-<head>
-	<meta charset="utf-8">
-	<title>KANU</title>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- meta tags 필요 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <style>
+  div, article, section, header, footer, nav, li {
+	position:relative;
+}
+
+body{
+  
+  /* position: fixed;  */
+  	top: 0px; 
+  	left: 0; 
+    
+ 	 /* Preserve aspet ratio */
+ 	min-width: 100%;
+ 	min-height: 100%; 
 	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<!-- <link href="./resources/css/bootstrap-responsive.css" rel="stylesheet"> -->
-	<link href="./resources/css/style.css" rel="stylesheet">
-	<link href="./resources/color/default.css" rel="stylesheet">
-	<link rel="shortcut icon" href="./resources/img/favicon.ico">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+	color: #ffffff;
+	font-size: 16px;
+	font-weight:300; 
+	font-family:'Open Sans', Arial, sans-serif;     
+  background-color: #ffffff; 
 
-</head>
+  /* background-image: url("./resources/img/bg/caca.png"); */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-<body>
+  #footer {
+   position:fixed;
+   left:0px;
+   bottom:5px;
+   height:50px;
+   width:100%;
+   background:#343A40;
+   color: white;
+}
+#footer p {
+   text-align: center;
+}
+  
+  
+  </style>
+  
+  </head>
 
-		
+  <body>
 	
-		
-			<!-- content area -->
-<tiles:insertAttribute name="content"/>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="#">KANU</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-		<footer>
-		
-			<div class="container">
-			<div class="row">
-				<div class="span6 offset3">
-					<ul class="social-networks">
-						<li><a href="#"><i class="icon-circled icon-bgdark icon-instagram icon-2x"></i></a></li>
-						<li><a href="#"><i class="icon-circled icon-bgdark icon-twitter icon-2x"></i></a></li>
-						<li><a href="#"><i class="icon-circled icon-bgdark icon-dribbble icon-2x"></i></a></li>
-						<li><a href="#"><i class="icon-circled icon-bgdark icon-pinterest icon-2x"></i></a></li>
-					</ul>
-					<p class="copyright">
-						&copy;  All rights reserved.
-						<div class="credits">
-							<!--
-                All the links in the footer should remain intact.
-                You can delete the links only if you purchased the pro version.
-                Licensing information: https://bootstrapmade.com/license/
-                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Maxim
-              -->
-							Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-						</div>
-					
-				</div>
-			</div>
-		</div>
-		<!-- ./container -->
-		</footer>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          
+          
+          <!-- <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li> -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" 
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Order</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">주문관리</a>
+              <a class="dropdown-item" href="#">주문내역</a>
+              <a class="dropdown-item" href="#">메뉴관리</a>
+              <a class="dropdown-item" href="#">레시피관리</a>
+              <a class="dropdown-item" href="#">예약내역</a>
+              <a class="dropdown-item" href="#">취소관리</a>
+            </div>
+          </li>
+          
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" 
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Stock</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">입고내역</a>
+              <a class="dropdown-item" href="#">재고관리</a>
+              <a class="dropdown-item" href="#">공급사관리</a>
+            </div>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" 
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Employee</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">직원관리</a>
+              <a class="dropdown-item" href="#">급여관리</a>
+              <a class="dropdown-item" href="#">근무관리</a>
+            </div>
+          </li>
+          
+           <li class="nav-item">
+            <a class="nav-link" href="#">QnA</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="#">LogIn</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <main role="main" class="container">
+		<br><br><br>
+      <div class="starter-template">
+        <h1></h1>
+        
+      </div>
+
+    </main><!-- /.container -->
+
+	<div id="footer">
+ 	 <p>footer</p>
 	</div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
-	
-	
-	
-	
-	<a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bgdark icon-2x"></i></a>
-	<script src="./resources/js/jquery.js"></script>
-	<script src="./resources/js/jquery.scrollTo.js"></script>
-	<script src="./resources/js/jquery.nav.js"></script>
-	<script src="./resources/js/jquery.localScroll.js"></script>
-	<script src="./resources/js/bootstrap.js"></script>
-	<script src="./resources/js/jquery.prettyPhoto.js"></script>
-	<script src="./resources/js/isotope.js"></script>
-	<script src="./resources/js/jquery.flexslider.js"></script>
-	<script src="./resources/js/inview.js"></script>
-	<script src="./resources/js/animate.js"></script>
-	<script src="./resources/js/custom.js"></script>
-	<script src="./resources/contactform/contactform.js"></script>
-
-</body>
-
+  </body>
 </html>
