@@ -13,6 +13,13 @@ public class Emp_manageVO {
 	private String password;
 	
 	
+	@Override
+	public String toString() {
+		return "Emp_manageVO [employeeId=" + employeeId + ", employeeName=" + employeeName
+				+ ", certificatedExpiredDate=" + certificatedExpiredDate + ", employeeBirth=" + employeeBirth
+				+ ", employeeAddress=" + employeeAddress + ", hireDate=" + hireDate + ", retireDate=" + retireDate
+				+ ", empEmail=" + empEmail + ", password=" + password + "]";
+	}
 	public String getEmployeeId() {
 		return employeeId;
 	}

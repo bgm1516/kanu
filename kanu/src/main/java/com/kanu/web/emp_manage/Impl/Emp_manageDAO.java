@@ -17,7 +17,7 @@ public class Emp_manageDAO {
 	
 	//전체조회
 	public List<Emp_manageVO> getEmpList(){
-		return mybatis.selectList("com.yedam.web.emp_manage.Emp_manageDAO");
+		return mybatis.selectList("com.kanu.web.emp_manage.Emp_manageDAO.getEmpList");
 	}
 	
 	
