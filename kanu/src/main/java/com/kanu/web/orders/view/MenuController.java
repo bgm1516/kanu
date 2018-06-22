@@ -24,6 +24,7 @@ public class MenuController {
 	
 	@Autowired
 	MenuService menuService;
+	
 	@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap(){
 		Map<String,String> conditionMap = new HashMap<String,String>();
@@ -42,8 +43,8 @@ public class MenuController {
 	@RequestMapping(value="/updateMenu", method=RequestMethod.GET)
 	public String updateMenuForm() {
 		return "orders/updateMenu";
-		
 	}
+	
 	
 	//수정 업데이트 처리
 	@RequestMapping(value="/updateMenu", method=RequestMethod.POST)
