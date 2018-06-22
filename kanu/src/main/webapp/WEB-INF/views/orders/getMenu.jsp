@@ -20,6 +20,15 @@
 </script>
 </head>
 <body>
+ 등록후 확인
+	<br> ${vo}
+	<hr>
+	메뉴이름 : ${menu.menu_id }
+	<br> 작성자 : ${menu.menu_name }
+	<br> 내용 : ${menu.price }
+	<br>
+
+	<a href="../updateMenu">수정</a>
  
 </body>
 </html>
