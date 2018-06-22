@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kanu.web.emp_manage.Emp_manageService;
 import com.kanu.web.emp_manage.Emp_manageVO;
 
-@Service
+@Service("empManageService")
 public class Emp_manageServiceImpl implements Emp_manageService{
 
 	@Autowired Emp_manageDAO empManDAO; 
@@ -16,6 +16,36 @@ public class Emp_manageServiceImpl implements Emp_manageService{
 	@Override
 	public List<Emp_manageVO> getEmpList() {
 		return empManDAO.getEmpList();
+	}
+
+	@Override
+	public List<Emp_manageVO> getEmp(Emp_manageVO empManVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insertEmp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteEmp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateEmp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteEmpList(List<Emp_manageVO> list) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

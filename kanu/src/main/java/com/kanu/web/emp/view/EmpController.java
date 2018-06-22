@@ -22,7 +22,7 @@ public class EmpController {
 	@Autowired
 	EmpService empService;
 
-	@RequestMapping("/getEmpList")
+	@RequestMapping("/getEmpLists")
 	public String getEmpList(HttpServletRequest request, EmpVO vo) {
 		request.setAttribute("empList", empService.getEmpList(vo));
 		return "emp/getEmpList";
