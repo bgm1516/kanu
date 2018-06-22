@@ -27,9 +27,9 @@ body{
 	font-size: 16px;
 	font-weight:300; 
 	font-family:'Open Sans', Arial, sans-serif;     
-  background-color: #ffffff; 
+ /*  background-color: black; */
 
-  /* background-image: url("./resources/img/bg/caca.png"); */
+  background-image: url("../resources/img/bg/caca.png");
   background-repeat: no-repeat;
   background-size: cover;
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kanu.web.emp_manage.Emp_manageDAO">
+
+	<select id="getEmpList" resultType="empManVO">
+		SELECT EMPLOYEE_ID  				as "employeeId"
+		      ,EMPLOYEE_NAME   				as "employeeName"
+		      ,CERTIFICATED_EXPIRED_DATE    as "certificatedExpiredDate"
+		      ,EMPLOYEE_BIRTH       		as "employeeBirth"
+		      ,EMPLOYEE_ADDRESS 			as "employeeAddress"
+		      ,HIRE_DATE 					as "hireDate"
+		      ,RETIRE_DATE 				    as "retireDate"
+		      ,EMP_EMAIL					as "empEmail"
+			  ,PASSWORD 					as "password"
+		FROM EMP_MANAGE
+		ORDER BY EMPLOYEE_ID
+	</select>
+
+
+</mapper>
