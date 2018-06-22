@@ -14,13 +14,8 @@
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath:config/*Context.xml</param-value>
     </init-param>
-<<<<<<< HEAD
-    <load-on-startup>1</load-on-startup> 
-  </servlet>
-=======
     <load-on-startup>1</load-on-startup>
   </servlet> 
->>>>>>> branch 'master' of https://github.com/bgm1516/kanu
   <servlet-mapping>
     <servlet-name>appServlet</servlet-name>
     <url-pattern>/</url-pattern>
