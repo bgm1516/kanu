@@ -19,4 +19,42 @@
 	</select>
 
 
+<!-- 	<select id="getEmp" parameterType="empManVO" >
+		SELECT EMPLOYEE_ID  				as "employeeId"
+		      ,EMPLOYEE_NAME   				as "employeeName"
+		      ,CERTIFICATED_EXPIRED_DATE    as "certificatedExpiredDate"
+		      ,EMPLOYEE_BIRTH       		as "employeeBirth"
+		      ,EMPLOYEE_ADDRESS 			as "employeeAddress"
+		      ,HIRE_DATE 					as "hireDate"
+		      ,RETIRE_DATE 				    as "retireDate"
+		      ,EMP_EMAIL					as "empEmail"
+			  ,PASSWORD 					as "password"
+		FROM EMP_MANAGE
+		ORDER BY EMPLOYEE_ID
+		<where>
+		<if test=""></if>
+		
+		</where>
+	
+	</select>
+
+<insert id="insertEmp" parameterType="empManVO">
+<selectKey order="BEFORE" keyProperty="employeeId" resultType="string">
+	SELECT NVL(MAX(EMPLOYEE_ID),0)+1 FROM EMP_MANAGE
+</selectKey>
+		INSERT INTO EMP_MANAGE 
+		SET EMPLOYEE_ID = ${employeeId} ,
+			EMPLOYEE_NAME=${employeeName},
+			CERTIFICATED_EXPIRED_DATE=${certificated_expired_date},
+			EMPLOYEE_BIRTH=${employeeBirth},
+			EMPLOYEE_ADDRESS=${employeeAddress},
+			HIRE_DATE=${hireDate},
+			RETIRE_DATE=${retireDate},
+			EMP_EMAIL=${empEmail},
+			PASSWORD=${password} 
+			WHERE EMPLOYEE_ID=${employeeId}
+
+</insert>
+ -->
+
 </mapper>

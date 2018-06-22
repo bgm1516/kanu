@@ -7,15 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<form>
 <c:forEach items="${empMan}" var="emp">
 
-id :${emp.employeeId }
+id :${emp.employeeId } <br>
 
-name : ${emp.employeeName }
+name : ${emp.employeeName } <br>
+
+e-mail : ${emp.empEmail}
 
 </c:forEach>
-
+</form>
 
 
 </body>
