@@ -20,13 +20,12 @@
 body{
   
   /* position: fixed;  */
-  	top: 0px; 
-  	left: 0; 
- 
-    
+  	
+ 	/* width: 70%;
+    margin: auto; */
  	 /* Preserve aspet ratio */
- 	min-width: 100%;
- 	min-height: 100%; 
+ 
+ 	/* min-height: 100%;  */
 	
 	color: #ffffff;
 	font-size: 16px;
