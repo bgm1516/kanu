@@ -19,7 +19,7 @@
 		<input type="submit" value="검색"/>
 		
 		</form>
-	<a href="insertMenuForm">게시글등록하기</a>
+	<a href="insertMenu">게시글등록하기</a>
 	<c:forEach items="${menuList}" var="menu">
 		<div style="border: 1px solid blue;">
 			menu_id:<a href="getMenu/${menu.MENU_ID}">${menu.MENU_ID}</a><br>
