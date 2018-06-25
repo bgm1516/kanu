@@ -6,10 +6,7 @@
 <title></title>
 </head>
 <body>
-	<h3> 재고 목록 </h3>
-	<br>
-	<br>
-	<br><br><br><br><br><br>
-	<br><br><br><br><br><br>
+	<h3> 재고 현황 </h3>
+	
 </body>
 </html>

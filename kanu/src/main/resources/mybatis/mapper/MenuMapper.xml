@@ -12,20 +12,20 @@
   </resultMap>
   
   <!-- (다건)전체 조회 -->
-  <select id="getMenuList" resultType="map" parameterType="MenuVO">
+  <select id="getMenuList" resultType="map">
   
   <!--as = alias 로 key주기  -->
 		SELECT 
 		MENU_ID as "menu_id",
 		MENU_NAME as "menu_name",
-		PRICE as "price",
+		PRICE as "price"
 		FROM MENU
 	</select>
 	
 	<!-- 단건 조회  -->
 	<select id="getMenu" resultType="MenuVO" parameterType="string">
 	SELECT 
-	MUNU_ID,
+	MENU_ID,
 	MENU_NAME,
 	PRICE
 	FROM MENU
@@ -35,9 +35,10 @@
 	
 	<!-- 입력 -->
 	<insert id="insertMenu" parameterType="MenuVO">
+ 
 	<selectKey keyProperty="menu_id" resultType="string" order="BEFORE">
 	
-			SELECT max(MENU_ID)+1 FROM MENU	
+			SELECT MAX(MENU_ID)+1 FROM MENU	
 	
 	</selectKey>
 		
@@ -57,7 +58,7 @@
   		<update id="updateMenu" parameterType="MenuVO">
   		
   		UPDATE MENU SET
-  		<!-- 		MENU_ID = #{menu_id}, -->
+  						MENU_ID = #{menu_id},
   				MENU_NAME = #{menu_name},
   				PRICE = #{price}
   				
@@ -70,4 +71,5 @@
   		WHERE MENU_ID = #{menu_id}
   		
   		</delete>
+  		
   </mapper>
