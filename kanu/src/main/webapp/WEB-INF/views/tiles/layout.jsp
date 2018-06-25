@@ -11,7 +11,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-<<<<<<< HEAD
+
   <style>
   div, article, section, header, footer, nav, li {
 	position:relative;
@@ -54,9 +54,9 @@ body{
   
   </style>
   
-=======
+
 	<link rel="stylesheet" href="./resources/css/style.css">
->>>>>>> branch 'master' of https://github.com/bgm1516/kanu.git
+
   </head>
 
   <body>
