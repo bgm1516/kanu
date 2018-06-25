@@ -10,7 +10,7 @@
 		//ajax로 게시글 로딩
 		function getMenuList() {
 			var requestData = {
-				"menu_id" : "${menu.menu_id}"
+				"menuId" : "${menu.menuId}"
 		
 	 
 		
@@ -23,8 +23,8 @@
 <body>
  
 	<hr>
-	메뉴번호: ${menu.menu_id}<br>
-	  메뉴이름 : ${menu.menu_name}<br>
+	메뉴번호: ${menu.menuId}<br>
+	  메뉴이름 : ${menu.menuName}<br>
 	 가격 : ${menu.price}<br>
 	 
 
