@@ -19,25 +19,24 @@ public class Emp_manageServiceImpl implements Emp_manageService{
 	}
 
 	@Override
-	public List<Emp_manageVO> getEmp(Emp_manageVO empManVO) {
-		// TODO Auto-generated method stub
-		return null;
+	public Emp_manageVO getEmp(Emp_manageVO empManVO) {
+		return empManDAO.getEmp(empManVO);
 	}
 
 	@Override
-	public void insertEmp() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteEmp() {
+	public void insertEmp(Emp_manageVO empManVO) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateEmp() {
+	public void deleteEmp(Emp_manageVO empManVO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateEmp(Emp_manageVO empManVO) {
 		// TODO Auto-generated method stub
 		
 	}

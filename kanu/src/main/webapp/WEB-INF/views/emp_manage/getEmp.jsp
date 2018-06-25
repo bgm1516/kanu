@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,16 +8,17 @@
 </head>
 <body>
 
+<c:if test="${!empty empOne}">
 <form style="color: black;">
 
-id :${emp.employeeId } <br>
+id :${empOne.employeeId } <br>
 
-name : ${emp.employeeName } <br>
+name : ${empOne.employeeName } <br>
 
-e-mail : ${emp.empEmail}
+e-mail : ${empOne.empEmail}
 
 </form>
-
+</c:if>
 
 
 </body>

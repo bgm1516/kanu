@@ -14,7 +14,7 @@ id :${emp.employeeId } <br>
 
 name : ${emp.employeeName } <br>
 
-e-mail : ${emp.empEmail}
+e-mail : ${emp.empEmail}	<br>
 
 </c:forEach>
 </form>

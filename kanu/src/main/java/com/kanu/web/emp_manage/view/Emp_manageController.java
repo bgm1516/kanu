@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kanu.web.emp_manage.Emp_manageService;
@@ -23,8 +22,12 @@ public class Emp_manageController {
 	}
 	@RequestMapping("/getEmp")
 	public String getEmp(Emp_manageVO vo, Model model ) {
-		empManageService.getEmp(vo);
+		model.addAttribute("empOne", empManageService.getEmp(vo));         
 		return "emp_manage/getEmp";
+	}
+	@RequestMapping("/insertEmp")
+	public void insertEmp(Emp_manageVO vo) {
+		
 	}
 	
 }
