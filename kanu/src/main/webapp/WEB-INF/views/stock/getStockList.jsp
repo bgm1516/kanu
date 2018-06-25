@@ -9,7 +9,7 @@
 
   margin: auto;
     width: 40%;
-    border: 0.5px solid #000000;
+    /* border: 0.5px solid #000000; */
     padding: 10px;
     text-align : center; 
 }

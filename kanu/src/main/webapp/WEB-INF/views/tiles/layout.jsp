@@ -34,7 +34,7 @@ body{
 	font-family:'Open Sans', Arial, sans-serif;     
   background-color: #ffffff; 
 
-  background-image: url("./resources/img/bg/watermark.png"); 
+  background-image: url("./resources/img/bg/MIDBG.png"); 
   background-repeat: no-repeat;
   background-size: cover;
 }
