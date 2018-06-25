@@ -11,7 +11,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
   <style>
   div, article, section, header, footer, nav, li {
 	position:relative;
@@ -38,7 +38,7 @@ body{
   background-size: cover;
 }
 .container{
-	color: #000000;
+	
 }
   #footer {
    position:fixed;

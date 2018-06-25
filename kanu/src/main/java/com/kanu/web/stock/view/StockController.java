@@ -32,7 +32,11 @@ public class StockController {
 		return conditionMap;
 	}
 	
-	
+/*	//단건조회
+	@RequestMapping("/getStock.do")
+	public String getStock(Model model) {
+		
+	}*/
 	
 	//목록조회
 	@RequestMapping("/getStockList.do")
@@ -40,6 +44,22 @@ public class StockController {
 		model.addAttribute("stockList", stockService.getStockList());
 		return "stock/getStockList";
 	}
+	
+	//등록처리
+		@RequestMapping("/insertStock.do")
+		public String insertStock(@ModelAttribute("stock") StockVO vo) {
+			
+			//System.out.println("제품ID : " + vo.getProductId());
+			System.out.println("제품위치 : " + vo.getProductLocation());
+			System.out.println("제품수량 : " + vo.getStockQuantity());
+			System.out.println("최소수량 : " + vo.getMinimumQuantity());
+			System.out.println("공급사ID : " + vo.getSupplierId());
+			
+			stockService.insertStock(vo);
+			return "getStockList.do";
+		}
+		
+		
 
 	/*//수정폼
 	@RequestMapping("/updateStock.do")
@@ -71,20 +91,6 @@ public class StockController {
 	*/
 	
 	
-	
-	//등록처리
-	@RequestMapping("/insertStock.do")
-	public String insertStock(@ModelAttribute("stock") StockVO vo) {
-		
-		//System.out.println("제품ID : " + vo.getProductId());
-		System.out.println("제품위치 : " + vo.getProductLocation());
-		System.out.println("제품수량 : " + vo.getStockQuantity());
-		System.out.println("최소수량 : " + vo.getMinimumQuantity());
-		System.out.println("공급사ID : " + vo.getSupplierId());
-		
-		stockService.insertStock(vo);
-		return "getStockList.do";
-	}
 	
 	
 	//단건 삭제처리
