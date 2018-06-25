@@ -20,11 +20,14 @@ body{
 	font-family:'Open Sans', Arial, sans-serif;     
  /*  background-color: #ffffff; 
  */
- background-image: url("../resources/img/bg/watermark.png");
+ background-image: url("./resources/img/bg/watermark.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
-
+.background {
+	min-height :900px;
+ 
+ }
   #footer {
    position:fixed;
    left:0px;
