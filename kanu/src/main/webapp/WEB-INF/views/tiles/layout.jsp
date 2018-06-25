@@ -56,9 +56,6 @@ body{
   
   </style>
   
-
-	<link rel="stylesheet" href="./resources/css/style.css">
-
   </head>
 
   <body>
