@@ -19,7 +19,7 @@
 	</select>
 
 
-<!-- 	<select id="getEmp" parameterType="empManVO" >
+	<select id="getEmp" parameterType="empManVO" resultType="empManVO">
 		SELECT EMPLOYEE_ID  				as "employeeId"
 		      ,EMPLOYEE_NAME   				as "employeeName"
 		      ,CERTIFICATED_EXPIRED_DATE    as "certificatedExpiredDate"
@@ -30,15 +30,41 @@
 		      ,EMP_EMAIL					as "empEmail"
 			  ,PASSWORD 					as "password"
 		FROM EMP_MANAGE
-		ORDER BY EMPLOYEE_ID
-		<where>
-		<if test=""></if>
-		
-		</where>
 	
+		<where>
+		<if test="employeeId!=null and employeeId!=''">
+			EMPLOYEE_ID=${employeeId}
+		</if>
+		<if test="employeeName!=null and employeeName!=''">
+			EMPLOYEE_NAME=${employeeName}
+		</if>
+		<if test="certificatedExpiredDate!=null and certificatedExpiredDate!=''">
+			CERTIFICATED_EXPIRED_DATE=${certificatedExpiredDate}
+		</if>
+		<if test="employeeBirth!=null and employeeBirth!=''">
+			EMPLOYEE_BIRTH=${employeeBirth}
+		</if>
+		<if test="employeeAddress!=null and employeeAddress!=''">
+			EMPLOYEE_ADDRESS=${employeeAddress}
+		</if>
+		<if test="hireDate!=null and hireDate!=''">
+			HIRE_DATE=${hireDate}
+		</if>
+		<if test="retireDate!=null and retireDate!=''">
+			RETIRE_DATE=${retireDate}
+		</if>			
+		<if test="empEmail!=null and empEmail!=''">
+			EMP_EMAIL=${empEmail}
+		</if>
+		<if test="password!=null and password!=''">
+			PASSWORD=${password}
+		</if>
+	
+		</where>
+		ORDER BY EMPLOYEE_ID
 	</select>
 
-<insert id="insertEmp" parameterType="empManVO">
+<!-- <insert id="insertEmp" parameterType="empManVO">
 <selectKey order="BEFORE" keyProperty="employeeId" resultType="string">
 	SELECT NVL(MAX(EMPLOYEE_ID),0)+1 FROM EMP_MANAGE
 </selectKey>
@@ -55,6 +81,6 @@
 			WHERE EMPLOYEE_ID=${employeeId}
 
 </insert>
- -->
 
+ -->
 </mapper>
