@@ -37,7 +37,9 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
 }
-
+.container{
+	color: #000000;
+}
   #footer {
    position:fixed;
    left:0px;
