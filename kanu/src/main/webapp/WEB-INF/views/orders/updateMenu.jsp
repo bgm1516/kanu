@@ -8,8 +8,8 @@
 <h3>메뉴 수정</h3>
 
 <form action="./updateMenu" method="post">
-	<input type="text" name="menu_id" value="${menu.menu_id}">
-	<input type="text" name="menu_name" value="${menu.menu_name}">
+	<input type="text" name="menuId" value="${menu.menuId}">
+	<input type="text" name="menuName" value="${menu.menuName}">
 	<input type="text" name="price" value="${menu.price}">
 	<input type="submit" value="등록"/>
 </form>
