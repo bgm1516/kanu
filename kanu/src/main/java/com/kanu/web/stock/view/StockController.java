@@ -1,5 +1,7 @@
 package com.kanu.web.stock.view;
-
+/***
+ * 작성자 : 권혜진
+ */
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,25 +23,47 @@ import com.kanu.web.stock.impl.StockDAO;
 public class StockController {
 
 	@Autowired
-	StockService stockService;
+	private StockService stockService;
 	
-	@ModelAttribute("conditionMap")
+	/*@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap(){
 		Map<String, String> conditionMap = new HashMap<String, String>();
 		conditionMap.put("제품ID", "PRODUCT_ID");
 		conditionMap.put("제품명", "PRODUCT_NAME");
 		conditionMap.put("공급사ID", "SUPPLIER_ID");
 		return conditionMap;
+	}*/
+	
+	//단건조회
+	@RequestMapping("/getStock.do")
+	public String getStock(StockVO vo, Model model) {
+		model.addAttribute("stock", stockService.getStock());
+		return "stock/getStock";
 	}
-	
-	
 	
 	//목록조회
 	@RequestMapping("/getStockList.do")
 	public String getStockList(Model model) {
 		model.addAttribute("stockList", stockService.getStockList());
+		System.out.println(stockService.getStockList());
 		return "stock/getStockList";
 	}
+	
+	//등록처리
+		@RequestMapping("/insertStock.do")
+		public String insertStock(@ModelAttribute("stock") StockVO vo) {
+			
+			//System.out.println("제품ID : " + vo.getProductId());
+			System.out.println("제품위치 : " + vo.getProductLocation());
+			System.out.println("제품수량 : " + vo.getStockQuantity());
+			System.out.println("최소수량 : " + vo.getMinimumQuantity());
+			System.out.println("공급사ID : " + vo.getSupplierId());
+			
+			stockService.insertStock(vo);
+			return "getStockList.do";
+		}
+		
+		
 
 	/*//수정폼
 	@RequestMapping("/updateStock.do")
@@ -71,20 +95,6 @@ public class StockController {
 	*/
 	
 	
-	
-	//등록처리
-	@RequestMapping("/insertStock.do")
-	public String insertStock(@ModelAttribute("stock") StockVO vo) {
-		
-		//System.out.println("제품ID : " + vo.getProductId());
-		System.out.println("제품위치 : " + vo.getProductLocation());
-		System.out.println("제품수량 : " + vo.getStockQuantity());
-		System.out.println("최소수량 : " + vo.getMinimumQuantity());
-		System.out.println("공급사ID : " + vo.getSupplierId());
-		
-		stockService.insertStock(vo);
-		return "getStockList.do";
-	}
 	
 	
 	//단건 삭제처리

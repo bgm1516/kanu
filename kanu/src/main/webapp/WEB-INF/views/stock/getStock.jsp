@@ -4,21 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Insert title here</title>
 </head>
 <body>
-<form style="color: black;">
-<c:forEach items="${empMan}" var="emp">
-
-id :${emp.employeeId } <br>
-
-name : ${emp.employeeName } <br>
-
-e-mail : ${emp.empEmail}	<br>
-
-</c:forEach>
-</form>
-
 
 </body>
 </html>

@@ -15,6 +15,13 @@
 		WHERE A.MENU_ID=B.MENU_ID
 	</select>
 	
+	<!-- 단건조회 -->
+	<select id="getOrders" parameterType="String" resultType="string">
+		SELECT *
+		FROM ORDERS
+		WHERE ORDER_ID = #{order_id}
+	</select>
+	
 	<!-- 드롭다운1 -->
 	<select id="getMenuName" parameterType="String" resultType="string">
 		SELECT MENU_NAME
@@ -28,7 +35,7 @@
 	</select>
 	
 	<!-- 1)히스토리에 가짜 추가(primary key) <insert/insertR> -->
-	<insert id="insertOrderHistory">
+	<insert id="insertOrderHistory" parameterType="com.kanu.web.orders.OrdersVO">
 		<selectKey keyProperty="order_id" resultType="string" order="BEFORE">
 			SELECT MAX(ORDER_ID)+1
 			FROM ORDER_HISTORY
@@ -39,7 +46,7 @@
 	</insert>
 	
 	<!-- 2)orders에 insert <insert/insertR> -->
-	<insert id="insertOrders">
+	<insert id="insertOrders" parameterType="com.kanu.web.orders.OrdersVO">
 		<selectKey keyProperty="order_id" resultType="string" order="BEFORE">
 			SELECT MAX(ORDER_ID)
 			FROM ORDER_HISTORY
@@ -49,7 +56,7 @@
 	</insert>
 	
 	<!-- 3-N)히스토리 가짜값을 진짜로 update <insert> -->
-	<update id="updateOrderHistory1">
+	<update id="updateOrderHistory1" parameterType="com.kanu.web.orders.OrdersVO">
 		UPDATE ORDER_HISTORY
 		SET ORDER_TOTALSUM=(SELECT SUM(ORDER_QUANTITY*
 						   (SELECT PRICE
@@ -61,7 +68,7 @@
 	</update>
 	
 	<!-- 3-R)히스토리 가짜값을 진짜로 update <insertR> -->
-	<update id="updateOrderHistory2">
+	<update id="updateOrderHistory2" parameterType="com.kanu.web.orders.OrdersVO">
 		UPDATE ORDER_HISTORY
 		SET ORDER_TOTALSUM=(SELECT SUM(ORDER_QUANTITY*
 						   (SELECT PRICE
@@ -73,7 +80,7 @@
 	</update>
 	
 	<!-- 4)reserve_history에 insert <insertR> -->
-	<insert id="insertReserveHistory">
+	<insert id="insertReserveHistory" parameterType="com.kanu.web.orders.OrdersVO">
 		<selectKey keyProperty="order_id" resultType="string" order="BEFORE">
 			SELECT MAX(ORDER_ID)
 			FROM ORDER_HISTORY

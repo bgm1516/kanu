@@ -11,16 +11,18 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
   <style>
   div, article, section, header, footer, nav, li {
 	position:relative;
 }
 
 body{
-  
+   
   /* position: fixed;  */
   	top: 0px; 
   	left: 0; 
+ 
     
  	 /* Preserve aspet ratio */
  	min-width: 100%;
@@ -32,11 +34,13 @@ body{
 	font-family:'Open Sans', Arial, sans-serif;     
   background-color: #ffffff; 
 
-  /* background-image: url("./resources/img/bg/caca.png"); */
+  background-image: url("./resources/img/bg/watermark.png"); 
   background-repeat: no-repeat;
   background-size: cover;
 }
-
+.container{
+	
+}
   #footer {
    position:fixed;
    left:0px;
@@ -46,9 +50,7 @@ body{
    background:#343A40;
    color: white;
 }
-#footer p {
-   text-align: center;
-}
+
   
   
   </style>
@@ -120,20 +122,19 @@ body{
         </form>
       </div>
     </nav>
-
+	<div class="background">
     <main role="main" class="container">
 		<br><br><br>
       <div class="starter-template">
         <h1></h1>
-        
-      </div>
-
-    </main><!-- /.container -->
+   
+    </main>
     <tiles:insertAttribute name="content"/>
+	
+	
 
-	<div id="footer">
- 	 <p>footer</p>
 	</div>
+	
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

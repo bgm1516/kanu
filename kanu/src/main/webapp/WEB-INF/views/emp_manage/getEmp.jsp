@@ -1,23 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Insert title here</title>
 </head>
 <body>
+
+<c:if test="${!empty empOne}">
 <form style="color: black;">
-<c:forEach items="${empMan}" var="emp">
 
-id :${emp.employeeId } <br>
+id :${empOne.employeeId } <br>
 
-name : ${emp.employeeName } <br>
+name : ${empOne.employeeName } <br>
 
-e-mail : ${emp.empEmail}	<br>
+e-mail : ${empOne.empEmail}
 
-</c:forEach>
 </form>
+</c:if>
 
 
 </body>

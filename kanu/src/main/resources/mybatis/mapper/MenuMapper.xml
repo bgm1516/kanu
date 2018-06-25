@@ -5,8 +5,8 @@
   <mapper namespace="com.kanu.web.orders.MenuDAO">
   
   <resultMap type="map" id="menuresult">
-	<id property="menu_id" column="MENU_ID"/> 
-	<result property="menu_name" column="MENU_NAME"/>
+	<id property="menuId" column="MENUID"/> 
+	<result property="menuName" column="MENUNAME"/>
 	<result property="price" column="PRICE"/>
   
   </resultMap>
@@ -16,8 +16,8 @@
   
   <!--as = alias 로 key주기  -->
 		SELECT 
-		MENU_ID as "menu_id",
-		MENU_NAME as "menu_name",
+		MENU_ID as "menuId",
+		MENU_NAME as "menuName",
 		PRICE as "price"
 		FROM MENU
 	</select>
@@ -29,13 +29,14 @@
 	MENU_NAME,
 	PRICE
 	FROM MENU
-	WHERE MENU_ID = #{menu_id}
+	WHERE MENU_ID = #{menuId}
 	
 	</select>
 	
 	<!-- 입력 -->
 	<insert id="insertMenu" parameterType="MenuVO">
-	<selectKey keyProperty="menu_id" resultType="string" order="BEFORE">
+ 
+	<selectKey keyProperty="menuId" resultType="string" order="BEFORE">
 	
 			SELECT MAX(MENU_ID)+1 FROM MENU	
 	
@@ -47,8 +48,8 @@
 			PRICE)
 			
 			VALUES(
-			#{menu_id},
-			#{menu_name},
+			#{menuId},
+			#{menuName},
 			#{price}
 			)
 			
@@ -57,17 +58,18 @@
   		<update id="updateMenu" parameterType="MenuVO">
   		
   		UPDATE MENU SET
-  						MENU_ID = #{menu_id},
-  				MENU_NAME = #{menu_name},
+  						MENU_ID = #{menuId},
+  				MENU_NAME = #{menuName},
   				PRICE = #{price}
   				
-  				WHERE MENU_ID= #{menu_id}
+  				WHERE MENU_ID= #{menuId}
   		
   		</update>
   
   		<delete id="deleteMenu" parameterType="string">
   		DELETE MENU
-  		WHERE MENU_ID = #{menu_id}
+  		WHERE MENU_ID = #{menuId}
   		
   		</delete>
+  		
   </mapper>

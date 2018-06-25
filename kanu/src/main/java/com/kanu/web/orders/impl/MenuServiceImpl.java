@@ -18,19 +18,20 @@ public class MenuServiceImpl implements MenuService{
 	@Override
 	public List<Map<String, Object>> getMenuList() {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.getMenuList(null);
 	}
 
 
 	@Override
-	public MenuVO getMenu(String menu_id) {
+	public MenuVO getMenu(String menuId) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.getMenu(menuId);
 	}
 
 
 	@Override
 	public void insertMenu(MenuVO vo) {
+		dao.insertMenu(vo);
 		// TODO Auto-generated method stub
 		
 	}
@@ -39,14 +40,14 @@ public class MenuServiceImpl implements MenuService{
 	@Override
 	public void updateMenu(MenuVO vo) {
 		// TODO Auto-generated method stub
-		
+		dao.updateMenu(vo);
 	}
 
 
 	@Override
-	public void deleteMenu(String menu_id) {
+	public void deleteMenu(String menuId) {
 		// TODO Auto-generated method stub
-		
+		dao.deleteMenu(menuId);
 	}
 
 }
