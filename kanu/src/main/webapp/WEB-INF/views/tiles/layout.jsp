@@ -22,6 +22,7 @@ body{
   /* position: fixed;  */
   	top: 0px; 
   	left: 0; 
+ 
     
  	 /* Preserve aspet ratio */
  	min-width: 100%;
