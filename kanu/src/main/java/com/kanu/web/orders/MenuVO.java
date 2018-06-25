@@ -29,5 +29,6 @@ public class MenuVO {
 		return "MenuVO [menu_id=" + menu_id + ", menu_name=" + menu_name + ", price=" + price + "]";
 	}
 	
+
 	
 }

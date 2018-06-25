@@ -1,4 +1,4 @@
-package com.kanu.web.orders;
+package com.kanu.web.orders.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -16,8 +16,8 @@ public class MenuDAO {
 	
 	//전체조회
 	
-	public List<Map<String,Object>> getMenuList(MenuVO menuVO){
-		return mybatis.selectList("com.kanu.web.orders",menuVO);
+	public List<Map<String,Object>> getMenuList(MenuVO vo){
+		return mybatis.selectList("com.kanu.web.orders",vo);
 		
 	}
 	
@@ -26,11 +26,11 @@ public class MenuDAO {
 		return (MenuVO)mybatis.selectOne("com.kanu.web.orders",menu_id);
 	}
 	//insert는 리턴 타입이 없으므로 void로 한다
-		public void insertMenu(MenuVO menuVO) {
-			mybatis.insert("com.kanu.web.orders", menuVO);
+		public void insertMenu(MenuVO vo) {
+			mybatis.insert("com.kanu.web.orders", vo);
 		}
-		public void updateMenu(MenuVO menuVO) {
-			mybatis.update("com.kanu.web.orders", menuVO);
+		public void updateMenu(MenuVO vo) {
+			mybatis.update("com.kanu.web.orders", vo);
 		}
 		public void deleteMenu(String menu_id) {
 			mybatis.delete("com.kanu.web.orders", menu_id);//파라미터 값 id

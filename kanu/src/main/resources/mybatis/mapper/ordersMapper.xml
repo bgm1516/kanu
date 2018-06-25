@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kanu.web.orders.OrdersDAO">
+	<!-- 레코드 건수 조회 -->
+	<select id="count" parameterType="Int" resultType="com.kanu.web.orders.Orders_SearchVO">
+			
+	</select>
+	
+	<!-- 전체조회 -->
+	<select id="getOrdersList" parameterType="String" resultType="com.kanu.web.orders.OrdersVO">
+		SELECT A.ORDER_ID, B.MENU_NAME, B.PRICE, A.ORDER_QUANTITY
+		FROM ORDERS A, MENU B
+		WHERE A.MENU_ID=B.MENU_ID
+	</select>
+	
+	<!-- 드롭다운1 -->
+	<select id="getMenuName" parameterType="String" resultType="string">
+		SELECT MENU_NAME
+		FROM MENU
+	</select>
+	
+	<!-- 드롭다운2 -->
+	<select id="getMenuId" parameterType="String" resultType="string">
+		SELECT MENU_ID
+		FROM MENU
+	</select>
+	
+	<!-- 1)히스토리에 가짜 추가(primary key) <insert/insertR> -->
+	<insert id="insertOrderHistory">
+		<selectKey keyProperty="order_id" resultType="string" order="BEFORE">
+			SELECT MAX(ORDER_ID)+1
+			FROM ORDER_HISTORY
+		</selectKey>
+		INSERT INTO ORDER_HISTORY 
+		(ORDER_ID, ORDER_TOTALSUM, ORDER_DATE, RESERVATION, CANCELED_ORDER, EMPLOYEE_ID)
+		VALUES(#{order_id}, 1, SYSDATE, N, N, 1)
+	</insert>
+	
+	<!-- 2)orders에 insert <insert/insertR> -->
+	<insert id="insertOrders">
+		<selectKey keyProperty="order_id" resultType="string" order="BEFORE">
+			SELECT MAX(ORDER_ID)
+			FROM ORDER_HISTORY
+		</selectKey>
+		INSERT INTO ORDERS (ORDER_ID, MENU_ID, ORDER_QUANTITY)
+		VALUES(#{order_id}, #{menu_id}, #{order_quantity})
+	</insert>
+	
+	<!-- 3-N)히스토리 가짜값을 진짜로 update <insert> -->
+	<update id="updateOrderHistory1">
+		UPDATE ORDER_HISTORY
+		SET ORDER_TOTALSUM=(SELECT SUM(ORDER_QUANTITY*
+						   (SELECT PRICE
+							FROM MENU
+							WHERE MENU_ID = ORDERS.MENU_ID))
+							FROM ORDERS
+							WHERE ORDER_ID = ORDER_HISTORY.ORDER_ID), ORDER_DATE = SYSDATE
+							WHERE ORDER_ID = (SELECT MAX(ORDER_ID) FROM ORDER_HISTORY)
+	</update>
+	
+	<!-- 3-R)히스토리 가짜값을 진짜로 update <insertR> -->
+	<update id="updateOrderHistory2">
+		UPDATE ORDER_HISTORY
+		SET ORDER_TOTALSUM=(SELECT SUM(ORDER_QUANTITY*
+						   (SELECT PRICE
+							FROM MENU
+							WHERE MENU_ID = ORDERS.MENU_ID))
+							FROM ORDERS
+							WHERE ORDER_ID = ORDER_HISTORY.ORDER_ID), ORDER_DATE = SYSDATE, RESERVATION = 'Y'
+							WHERE ORDER_ID = (SELECT MAX(ORDER_ID) FROM ORDER_HISTORY)
+	</update>
+	
+	<!-- 4)reserve_history에 insert <insertR> -->
+	<insert id="insertReserveHistory">
+		<selectKey keyProperty="order_id" resultType="string" order="BEFORE">
+			SELECT MAX(ORDER_ID)
+			FROM ORDER_HISTORY
+			WHERE RESERVATION = 'Y'
+		</selectKey>
+		INSERT INTO RESERVE_HISTORY (ORDER_ID, RESERVER, RECEIPTER, RECEIPT_DATE)
+		VALUES (#{order_id}, #{reserver}, #{receipter}, #{receipt_date})
+	</insert>
+	
+	<!-- 1)orders에 delete <공통> -->
+	<delete id="deleteOrders" parameterType="com.kanu.web.orders.OrdersVO">
+		DELETE FROM ORDERS WHERE ORDER_ID = #{order_id}
+	</delete>
+	
+	<!-- 2)reserve_history에 delete <공통> -->
+	<delete id="deleteReserveHistory" parameterType="com.kanu.web.orders.OrdersVO">
+		DELETE FROM RESERVE_HISTORY WHERE ORDER_ID = #{order_id}
+	</delete>
+	
+	<!-- 3)order_history에 delete <공통> -->
+	<delete id="deleteOrderHistory" parameterType="com.kanu.web.orders.OrdersVO">
+		DELETE FROM ORDER_HISTORY WHERE ORDER_ID = #{order_id}
+	</delete>
+</mapper>
