@@ -1,4 +1,5 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -21,7 +22,7 @@ body{
     
  	 /* Preserve aspet ratio */
  	min-width: 100%;
- 	min-height: 100%; 
+ 	min-height: 100%;  
 	
 	color: #ffffff;
 	font-size: 16px;
@@ -29,7 +30,8 @@ body{
 	font-family:'Open Sans', Arial, sans-serif;     
  /*  background-color: black; */
 
-  background-image: url("../resources/img/bg/caca.png");
+/*   background-image: url("./resources/img/bg/caca.png"); */
+	background-image: url("./resources/img/bg/KANUBG.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
