@@ -23,7 +23,7 @@
 #tabcenter {
 margin: auto;
     width: 80%;
-    padding: 70px 0px 0px 0px;
+    padding: 120px 0px 0px 0px;
     text-align : center; 
 }
 </style>
