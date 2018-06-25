@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- meta tags 필요 -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
   <style>
   div, article, section, header, footer, nav, li {
 	position:relative;
@@ -19,12 +16,12 @@
 body{
   
   /* position: fixed;  */
-  	top: 0px; 
-  	left: 0; 
-    
+  	
+ 	/* width: 70%;
+    margin: auto; */
  	 /* Preserve aspet ratio */
- 	min-width: 100%;
- 	min-height: 100%; 
+ 
+ 	/* min-height: 100%;  */
 	
 	color: #ffffff;
 	font-size: 16px;
@@ -32,11 +29,13 @@ body{
 	font-family:'Open Sans', Arial, sans-serif;     
   background-color: #ffffff; 
 
-  /* background-image: url("./resources/img/bg/caca.png"); */
+  background-image: url("./resources/img/bg/watermark.png"); 
   background-repeat: no-repeat;
   background-size: cover;
 }
-
+.container{
+	
+}
   #footer {
    position:fixed;
    left:0px;
@@ -93,6 +92,7 @@ body{
               <a class="dropdown-item" href="#">입고내역</a>
               <a class="dropdown-item" href="#">재고관리</a>
               <a class="dropdown-item" href="#">공급사관리</a>
+              <a class="dropdown-item" href="#">커밋용</a>
             </div>
           </li>
           
@@ -120,17 +120,18 @@ body{
         </form>
       </div>
     </nav>
-
+	<div class="background">
     <main role="main" class="container">
 		<br><br><br>
       <div class="starter-template">
         <h1></h1>
-        
-      </div>
-
-    </main><!-- /.container -->
+   
+    </main>
     <tiles:insertAttribute name="content"/>
+	
+	
 
+	</div>
 	<div id="footer">
  	 <p>footer</p>
 	</div>
@@ -140,6 +141,6 @@ body{
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-
+	</div>
   </body>
 </html>

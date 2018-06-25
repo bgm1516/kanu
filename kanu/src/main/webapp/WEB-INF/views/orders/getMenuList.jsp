@@ -7,7 +7,8 @@
 <title>getMenuList.jsp</title>
 </head>
 <body>
-	<h3>게시판목록(getMenuList)</h3>
+	<a href="insertMenu">게시글등록하기</a>
+	<h3>메뉴 목록(getMenuList)</h3>
 	
 		<form>
 		<select>
@@ -19,12 +20,12 @@
 		<input type="submit" value="검색"/>
 		
 		</form>
-	<a href="insertMenuForm">게시글등록하기</a>
+	
 	<c:forEach items="${menuList}" var="menu">
 		<div style="border: 1px solid blue;">
 			menu_id:<a href="getMenu/${menu.MENU_ID}">${menu.MENU_ID}</a><br>
-			menu_name:${board.TITLE}<br>
-			price:${board.WRITER}<br>
+			menu_name:${menu.menu_name}<br>
+			price:${menu.price}<br>
 		</div>
 	</c:forEach>
 </body>

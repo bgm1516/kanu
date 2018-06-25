@@ -35,6 +35,7 @@
 	
 	<!-- 입력 -->
 	<insert id="insertMenu" parameterType="MenuVO">
+ 
 	<selectKey keyProperty="menu_id" resultType="string" order="BEFORE">
 	
 			SELECT MAX(MENU_ID)+1 FROM MENU	
@@ -70,4 +71,5 @@
   		WHERE MENU_ID = #{menu_id}
   		
   		</delete>
+  		
   </mapper>

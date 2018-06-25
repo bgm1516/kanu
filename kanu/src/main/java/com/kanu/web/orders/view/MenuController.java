@@ -48,7 +48,7 @@ public class MenuController {
 	
 	//수정 업데이트 처리
 	@RequestMapping(value="/updateMenu", method=RequestMethod.POST)
-	public String updateMenu(@ModelAttribute("model")MenuVO vo) {
+	public String updateMenu(@ModelAttribute("menu")MenuVO vo) {
 		System.out.println(vo);
 		return "orders/getMenu";
 	}
