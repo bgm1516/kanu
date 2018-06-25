@@ -18,11 +18,11 @@ body{
 	font-size: 16px;
 	font-weight:300; 
 	font-family:'Open Sans', Arial, sans-serif;     
-  background-color: #ffffff; 
-
- background-image: url("./resources/img/bg/MIDBG.png");
+ /*  background-color: #ffffff; 
+ */
+ background-image: url("../resources/img/bg/watermark.png");
   background-repeat: no-repeat;
-  /* background-size: cover; */
+  background-size: cover;
 }
 
   #footer {
@@ -32,7 +32,7 @@ body{
    height:70px;
    width:100%;
    background:#343A40;
-   color: white;
+   color: 000000;
 }
 #footer p {
    text-align: center;
