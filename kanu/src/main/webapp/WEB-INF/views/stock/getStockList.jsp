@@ -4,6 +4,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+#content1 {
+
+  margin: auto;
+    width: 40%;
+    border: 0.5px solid #000000;
+    padding: 10px;
+    text-align : center; 
+}
+#insertfrm{
+
+ margin: auto;
+    width: 80%;
+    padding: 10px;
+    text-align : center; 
+}
+#tabcenter {
+margin: auto;
+    width: 80%;
+    padding: 70px 0px 0px 0px;
+    text-align : center; 
+}
+</style>
 <title></title>
 <%--삭제 function 추가 --%>
 <script type="text/javascript">
@@ -23,9 +46,10 @@
 </script>
 </head>
 <body>
+	<div id="content1">
 	<h3> 재고 현황 </h3>
 	<hr>
-		<form name="stockForm" action="getStockList.do" method="get"><br> 
+		<form id="stockForm" action="getStockList.do" method="get"><br> 
 			<input type="hidden" name="p" value="1">
 			제품분류<input type="text" name="productId" /> 
 			<!-- 제품명<input type="text" name="product_name" /> 
@@ -37,6 +61,7 @@
 		
 		<hr>
 		<br><br><br><br>
+		<div id="tabcenter">
 		<table border="1">
 			<tr>
 				
@@ -65,7 +90,12 @@
 				
 			</tr>
 			</c:forEach>	
-		</table><br><br><br><br><br><br>
+			
+		</table>
+		</div><!-- tabcenter -->
+		<br><br><br><br><br><br>
+			</div> <!-- 중간정렬 -->
+			<div id="insertfrm">
 		<form action="insertStock.do">
 			
 			제품분류:<input type="text" name="productId">
@@ -75,6 +105,7 @@
 			공급사ID:<input type="text" name="supplierId">
 			<input type="submit" value="추가"> 
 		</form>
+	</div><!-- insertFrm -->
 	
 </body>
 </html>
