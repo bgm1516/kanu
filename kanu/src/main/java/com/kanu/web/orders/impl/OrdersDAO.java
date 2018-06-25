@@ -21,7 +21,12 @@ public class OrdersDAO {
 		return mybatis.selectOne("com.kanu.web.orders.OrdersDAO.count", searchOVO);
 	}
 	
-	//전체조회 및 페이징
+	//단건조회
+	public OrdersVO getOrders(String orders_id) {
+		return mybatis.selectOne("com.kanu.web.orders.OrdersDAO.getOrders", orders_id);
+	}
+	
+	//전체조회
 	public List<OrdersVO> getOrdersList(OrdersVO vo) {
 		return mybatis.selectList("com.kanu.web.orders.OrdersDAO.getOrdersList", vo);
 	}
