@@ -28,7 +28,7 @@ public class MenuController {
 	//목록조회
 	@RequestMapping("/getMenuList.do")
 	public String getMenuList(HttpServletRequest request, MenuVO vo) {
-		request.setAttribute("MenuList", menuService.getMenuList());
+		request.setAttribute("menuList", menuService.getMenuList());
 		return "orders/getMenuList";
 	}
 	

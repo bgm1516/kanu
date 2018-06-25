@@ -22,13 +22,11 @@
 </head>
 <body>
  
-	<hr>
 	메뉴번호: ${menu.menuId}<br>
 	  메뉴이름 : ${menu.menuName}<br>
 	 가격 : ${menu.price}<br>
 	 
 
 	 
-	<div id="commentsList"></div>
 </body>
 </html>
