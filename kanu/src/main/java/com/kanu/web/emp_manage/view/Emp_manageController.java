@@ -27,6 +27,7 @@ public class Emp_manageController {
 	}
 	@RequestMapping("/insertEmp")
 	public void insertEmp(Emp_manageVO vo) {
+		empManageService.insertEmp(vo);
 		
 	}
 	

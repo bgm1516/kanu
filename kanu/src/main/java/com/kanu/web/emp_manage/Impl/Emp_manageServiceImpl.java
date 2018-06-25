@@ -25,7 +25,6 @@ public class Emp_manageServiceImpl implements Emp_manageService{
 
 	@Override
 	public void insertEmp(Emp_manageVO empManVO) {
-		// TODO Auto-generated method stub
 		
 	}
 
