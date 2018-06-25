@@ -7,20 +7,17 @@
 <title>getMenuList.jsp</title>
 </head>
 <body>
-<form>
+<form style="color: black;">
 	<h3>메뉴 목록</h3>
 	<br>
 	<a href="insertMenu"><input type="button" value="메뉴 등록하기"></a>
 	
-	 <table border="1">
+
 		<c:forEach items="${menuList}" var="menu">
-		<tr>
-			<td>menuid:${menu.MENUID}</td>
-			<td>menuname:${menu.MENUNAME}</td>
-			<td>price:${menu.PRICE}</td>
-			</tr>
+			menuid:${menu.menuId}<br>
+			menuname:${menu.menuName}<br>
+			price:${menu.price}<br>
 		</c:forEach>
-		</table>
 		</form>
 </body>
 </html>

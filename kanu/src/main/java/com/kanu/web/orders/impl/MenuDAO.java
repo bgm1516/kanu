@@ -23,8 +23,8 @@ public class MenuDAO {
 	}
 
 	// mapper의 단건조회 보고 단건조회 만들기
-	public MenuVO getMenu(String menu_id) {
-		return (MenuVO) mybatis.selectOne("com.kanu.web.orders.MenuDAO.getMenu", menu_id);
+	public MenuVO getMenu(String menuId) {
+		return (MenuVO) mybatis.selectOne("com.kanu.web.orders.MenuDAO.getMenu", menuId);
 	}
 
 	// insert는 리턴 타입이 없으므로 void로 한다
@@ -36,8 +36,8 @@ public class MenuDAO {
 		mybatis.update("com.kanu.web.orders.MenuDAO.updateMenu", vo);
 	}
 
-	public void deleteMenu(String menu_id) {
-		mybatis.delete("com.kanu.web.orders.MenuDAO.deleteMenu", menu_id);// 파라미터 값 id
+	public void deleteMenu(String menuId) {
+		mybatis.delete("com.kanu.web.orders.MenuDAO.deleteMenu", menuId);// 파라미터 값 id
 
 	}
 }

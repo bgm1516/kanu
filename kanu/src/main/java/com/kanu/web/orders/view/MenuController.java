@@ -25,7 +25,7 @@ public class MenuController {
 	@Autowired
 	MenuService menuService;
 	
-
+	//목록조회
 	@RequestMapping("/getMenuList.do")
 	public String getMenuList(HttpServletRequest request, MenuVO vo) {
 		request.setAttribute("MenuList", menuService.getMenuList());
@@ -58,6 +58,7 @@ public class MenuController {
 		
 		return "redirect:/getMenu/"+vo.getMenuId() ;
 	}
+	//단건조회
 	@RequestMapping("/getMenu/{menuId}")
 	public String getMenu(@PathVariable String menuId,Model model) {
 		System.out.println("menuId:"+menuId);
