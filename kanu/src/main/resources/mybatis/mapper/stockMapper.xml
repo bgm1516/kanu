@@ -12,19 +12,19 @@
 				MINIMUM_QUANTITY	as "minimumQuantity",
 				SUPPLIER_ID			as "supplierId"
 		FROM STOCK
-		<!-- <where>
+		<where>
 			<if test="productId != null and productId != ''">
 				STOCK.PRODUCT_ID = #{productId}
-			</if>
-			<if test="supplierId != null and supplierId != ''">
+0			</if>
+			<!-- <if test="supplierId != null and supplierId != ''">
 				STOCK.SUPPLIER_ID = #{supplierId}
-			</if>
+			</if> -->
 		</where>
-		ORDER BY PRODUCT_ID -->
+		ORDER BY PRODUCT_ID
 	</select>	
 <!-- 단건 조회  -->
 	
-	<select id="getStock" resultType="stockVO" parameterType="string">
+	<!-- <select id="getStock" resultType="stockVO" parameterType="string">
 		<![CDATA[
 		SELECT 	PRODUCT_ID,
 				PRODUCT_LOCATION,
@@ -34,7 +34,7 @@
 		FROM	STOCK
 		WHERE	PRODUCT_ID = #{id}
 		]]>
-	</select>
+	</select> -->
 <!-- 등록 -->
 	<insert id="insertStock" parameterType="stockVO">
 	
@@ -45,14 +45,12 @@
 		INSERT INTO STOCK (
 							PRODUCT_ID,
 							PRODUCT_LOCATION,
-							STOCK_QUANTITY,
 							MINIMUM_QUANTITY,
 							SUPPLIER_ID
 							)
 		VALUES	(
 					#{productId},
 					#{productLocation},
-					#{stockQuantity},
 					#{minimumQuantity},
 					#{supplierId}
 				)

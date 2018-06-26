@@ -4,8 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- meta tags 필요 -->
+  <head>    
+    <!-- meta tags 필요 -->   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -34,7 +34,7 @@ body{
 	font-family:'Open Sans', Arial, sans-serif;     
   background-color: #ffffff; 
 
-  background-image: url("./resources/img/bg/watermark.png"); 
+  background-image: url("./resources/img/bg/MIDBG.png"); 
   background-repeat: no-repeat;
   background-size: cover;
 }
