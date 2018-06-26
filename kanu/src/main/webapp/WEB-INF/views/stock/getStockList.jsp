@@ -22,8 +22,8 @@
 }
 #tabcenter {
 margin: auto;
-    width: 80%;
-    padding: 120px 0px 0px 0px;
+    width: 60%;
+    padding: 30px 0px 0px 0px;
     text-align : center; 
 }
 </style>
@@ -96,6 +96,7 @@ margin: auto;
 		<br><br><br><br><br><br>
 			</div> <!-- 중간정렬 -->
 			<div id="insertfrm">
+			<br><br>
 		<form action="insertStock.do">
 			
 			제품분류:<input type="text" name="productId">
@@ -104,6 +105,7 @@ margin: auto;
 			최소수량:<input type="text" name="minimumQuantity">
 			공급사ID:<input type="text" name="supplierId">
 			<input type="submit" value="추가"> 
+			<br><br><br><br><br><br>
 		</form>
 	</div><!-- insertFrm -->
 	

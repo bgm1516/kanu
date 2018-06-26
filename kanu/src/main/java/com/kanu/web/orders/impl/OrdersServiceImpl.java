@@ -62,4 +62,8 @@ public class OrdersServiceImpl implements OrdersService{
 		return dao.count(searchOVO);
 	}
 
+	public OrdersVO getOrders(String orders_id) {
+		return dao.getOrders(orders_id);
+	}
+
 }
