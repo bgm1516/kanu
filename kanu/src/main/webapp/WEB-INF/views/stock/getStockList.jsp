@@ -50,7 +50,7 @@ margin: auto;
 	<div id="content1">
 	<h3> 재고 현황 </h3>
 	<hr>
-		<form id="stockForm" action="getStockList.do" method="get"><br> 
+		<form id="stockForm" action="getStock.do" method="get"><br> 
 			<input type="hidden" name="p" value="1">
 			제품분류<input type="text" name="productId" /> 
 			<!-- 제품명<input type="text" name="product_name" /> 
@@ -102,7 +102,6 @@ margin: auto;
 			
 			제품분류:<input type="text" name="productId">
 			보관위치:<input type="text" name="productLocation">
-			입고수량:<input type="text" name="stockQuantity">
 			최소수량:<input type="text" name="minimumQuantity">
 			공급사ID:<input type="text" name="supplierId">
 			<input type="submit" value="추가"> 
