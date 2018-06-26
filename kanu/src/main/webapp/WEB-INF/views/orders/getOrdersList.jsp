@@ -323,7 +323,7 @@
 	<label>수량 :</label><input type="text" class="form-control" name="orderQuantity"><br>
 	</form>
 	
-	<form align="left" name="reserve_form" id="reserve_form" style="border:1 solid gray" action="/insertR">
+	<form align="left" name="reserve_form" id="reserve_form" style="border:1 solid gray" action="/kanu/insertR">
 	<label>담당직원 :</label><input type="text" class="form-control" name="employeeId"><br>
 	<label>예약자 :</label><input type="text" class="form-control" name="reserver"><br>
 	<label>수령자 :</label><input type="text" class="form-control" name="receipter"><br>
@@ -386,8 +386,7 @@
 	<label>수량 :</label><input type="text" class="form-control" name="orderQuantity"><br>
 	</form>
 	
-	<form align="left" name="normal_form" id="normal_form" style="border:1 solid gray" action="orders_control.jsp">
-	<input type ="hidden" name="action" value="insert"/>
+	<form align="left" name="normal_form" id="normal_form" style="border:1 solid gray" action="/kanu/insert">
 	<label>담당직원 :</label><input type="text" class="form-control" name="employeeId"><br>
 	</form>
 	</div>

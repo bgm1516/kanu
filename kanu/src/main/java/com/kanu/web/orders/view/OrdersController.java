@@ -21,6 +21,11 @@ public class OrdersController {
 	@RequestMapping("/getOrdersList")
 	public String getOrdersList(HttpServletRequest request, OrdersVO vo) {
 		request.setAttribute("ordersList", ordersService.getOrdersList(vo));
+		String MenuName = "";
+		String menuId = "";
+		
+		request.setAttribute("column_List", ordersService.getMenuName(MenuName));
+		request.setAttribute("menuId", ordersService.getMenuId(menuId));
 		return "orders/getOrdersList";
 	}
 	
@@ -35,8 +40,6 @@ public class OrdersController {
 	//드롭다운메뉴1
 	@RequestMapping("/getMenuName")
 	public String getMenuName(HttpServletRequest request, String MenuName) {
-		System.out.println("출력은 되잖아 임마");
-		System.out.println(MenuName);
 		request.setAttribute("column_List", ordersService.getMenuName(MenuName));
 		return MenuName;
 	}
@@ -70,8 +73,8 @@ public class OrdersController {
 		ordersService.updateOrderHistory1();	//예약X로 history 업데이트<N>
 		
 	}
-		request.setAttribute("ordersList", ordersService.getOrdersList(vo));
-		return "orders/getOrdersList";
+	//	request.setAttribute("ordersList", ordersService.getOrdersList(vo));
+		return "redirect:" + "/getOrdersList";
 	}
 
 	//2)insertR
@@ -83,7 +86,6 @@ public class OrdersController {
 		String[] menuId = vo2.getMenuId();
 		String[] menuName = vo2.getMenuName();
 		String[] orderQuantity = vo2.getOrderQuantity();
-		
 		//예약하기 폼에서 받은 값을 반복해서 저장한다.
 	for(int i=0; i<menuId.length; i++){
 		vo.setMenuId(menuId[i]);
@@ -93,13 +95,12 @@ public class OrdersController {
 		vo.setReceipter(vo2.getReceipter());
 		vo.setReceiptDate(vo2.getReceiptDate());
 		vo.setReserver(vo2.getReserver());
-		
 		ordersService.insertOrders(vo);	//orders에 값 삽입 <R/N>
 		ordersService.updateOrderHistory2();	//예약O로 history 업데이트<R>
 		ordersService.insertReserveHistory(vo);	//reserve에 삽입 <R>
 	}
-		request.setAttribute("ordersList", ordersService.getOrdersList(vo));
-		return "orders/getOrdersList";
+	//	request.setAttribute("ordersList", ordersService.getOrdersList(vo));
+		return "redirect:" + "/getOrdersList";
 	}
 		
 	//delete <공통>.
