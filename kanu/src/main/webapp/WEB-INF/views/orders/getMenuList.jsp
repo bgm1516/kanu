@@ -4,20 +4,67 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+#c1 {
+	margin: auto;
+	width: 40%;
+	border: 0.5px solid #000000;
+	padding: 10px;
+	text-align: center;
+}
+</style>
 <title>getMenuList.jsp</title>
+<script type="text/javascript">
+
+	function delcheck(menuId) {
+		result = confirm("정말로 삭제하시겠습니까 ?");
+
+		if (result == true) {
+			location.href = "deleteMenu.do?menuId=" + menuId;
+
+		}
+
+	}
+</script>
 </head>
 <body>
-<form style="color: black;">
-	<h3>메뉴 목록</h3>
-	<br>
-	<a href="insertMenu"><input type="button" value="메뉴 등록하기"></a>
+
+
 	
 
-		<c:forEach items="${menuList}" var="menu">
-			menuid:${menu.menuId}<br>
-			menuname:${menu.menuName}<br>
-			price:${menu.price}<br>
-		</c:forEach>
+
+	<div align="center">
+		<H2>메뉴:목록화면</H2>
+		<HR>
+		<form>
+			<br> <a href="insertMenu"><input type="button"
+				value="메뉴 등록하기"></a> <br>
+			<P>
+			<div id="c1">
+				<table class="table table-striped">
+
+					<tr>
+						<th>메뉴번호</th>
+						<th>메뉴명</th>
+						<th>가격</th>
+						<th>삭제</th>
+
+					</tr>
+					<c:forEach items="${menuList}" var="menu">
+						<tr>
+							<td align="center">${menu.menuId}<br></td>
+							<th align="center">${menu.menuName}</th>
+							<th align="center">${menu.price}</th>
+							<th><input type="button" value="삭제"
+								onClick="delcheck('${menu.menuId}')"></th>
+						</tr>
+					</c:forEach>
+
+				</table>
+			</div>
 		</form>
+
+	</div>
+
 </body>
 </html>

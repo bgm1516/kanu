@@ -1,9 +1,12 @@
 package com.kanu.web.orders.view;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kanu.web.orders.MenuService;
 import com.kanu.web.orders.MenuVO;
+import com.kanu.web.stock.StockVO;
 
 @Controller
 @SessionAttributes("menu")
@@ -64,6 +68,16 @@ public class MenuController {
 		System.out.println("menuId:"+menuId);
 		model.addAttribute("menu",menuService.getMenu(menuId));
 		return "orders/getMenu";
+	}
+		//단건 삭제처리
+		@RequestMapping(value="/deleteMenu",method={RequestMethod.GET, RequestMethod.POST})
+		public String deleteMenu(@ModelAttribute("model") MenuVO vo ,HttpServletResponse response) throws IOException {
+			System.out.println("메뉴ID :" + vo.getMenuId());
+			 menuService.deleteMenu(vo.getMenuId());
+			  response.setContentType("text/html; charset=UTF-8");
+		      PrintWriter out = response.getWriter();
+		      out.println("<script> location.href='./getMenuList';</script>");
+			return "orders/getMenuList";
 	}
 }
 

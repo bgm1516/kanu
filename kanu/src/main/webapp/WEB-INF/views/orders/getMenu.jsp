@@ -11,9 +11,6 @@
 		function getMenuList() {
 			var requestData = {
 				"menuId" : "${menu.menuId}"
-		
-	 
-		
 	}
 		}
 	});
@@ -25,8 +22,6 @@
 	메뉴번호: ${menu.menuId}<br>
 	  메뉴이름 : ${menu.menuName}<br>
 	 가격 : ${menu.price}<br>
-	 
-
 	 
 </body>
 </html>
