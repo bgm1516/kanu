@@ -39,6 +39,14 @@
 		<form>
 			<br> <a href="insertMenu"><input type="button"
 				value="메뉴 등록하기"></a> <br>
+		<!-- 		<body>
+			<form action="./insertMenu" method="post" >
+			메뉴 이름<input type="text" name="menuName">
+			가격<input type="text" name="price">
+			<input type="submit" value="등록"/>
+			</form>
+
+				</body> -->
 			<P>
 			<div id="c1">
 				<table class="table table-striped">
@@ -61,7 +69,14 @@
 					</c:forEach>
 
 				</table>
+				<form action="./insertMenu" method="post" >
+					메뉴 이름<input type="text" name="menuName">
+					가격<input type="text" name="price">
+					<input type="submit" value="등록"/>
+				</form>
+				
 			</div>
+			
 		</form>
 
 	</div>
