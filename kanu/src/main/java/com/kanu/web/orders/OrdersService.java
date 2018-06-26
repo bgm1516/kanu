@@ -13,16 +13,16 @@ public interface OrdersService {
 	public int count(Orders_SearchVO searchOVO);
 	
 	//단건조회
-	public OrdersVO getOrders(String orders_id);
+	public OrdersVO getOrders(String orderId);
 	
 	//목록조회
 	public List<OrdersVO> getOrdersList(OrdersVO vo);
 	
 	//드롭다운메뉴1
-	public ArrayList<String> getMenuName(String menuName);
+	public List<Object> getMenuName(String MenuName);
 	
 	//드롭다운메뉴2
-	public ArrayList<String> getMenuId();
+	public ArrayList<String> getMenuId(String menuId);
 	
 	////////////등록//////////////////////////////////////////////////////////////////////
 	
