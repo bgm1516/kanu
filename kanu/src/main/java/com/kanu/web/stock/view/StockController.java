@@ -35,17 +35,17 @@ public class StockController {
 	}*/
 	
 	//단건조회
-	@RequestMapping("/getStock.do")
+	@RequestMapping("/getStock")
 	public String getStock(StockVO vo, Model model) {
-		model.addAttribute("stock", stockService.getStock());
+		model.addAttribute("stock", stockService.getStock()); //model.addAttribute는 ${} 안에 들어가는 이름이다.
 		return "stock/getStock";
 	}
 	
 	//목록조회
 	@RequestMapping("/getStockList.do")
-	public String getStockList(Model model) {
-		model.addAttribute("stockList", stockService.getStockList());
-		System.out.println(stockService.getStockList());
+	public String getStockList(Model model, StockVO vo) {
+		model.addAttribute("stockList", stockService.getStockList(vo));
+		System.out.println(stockService.getStockList(vo));
 		return "stock/getStockList";
 	}
 	
@@ -53,11 +53,11 @@ public class StockController {
 		@RequestMapping("/insertStock.do")
 		public String insertStock(@ModelAttribute("stock") StockVO vo) {
 			
-			//System.out.println("제품ID : " + vo.getProductId());
+			/*//System.out.println("제품ID : " + vo.getProductId());
 			System.out.println("제품위치 : " + vo.getProductLocation());
 			System.out.println("제품수량 : " + vo.getStockQuantity());
 			System.out.println("최소수량 : " + vo.getMinimumQuantity());
-			System.out.println("공급사ID : " + vo.getSupplierId());
+			System.out.println("공급사ID : " + vo.getSupplierId());*/
 			
 			stockService.insertStock(vo);
 			return "getStockList.do";

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kanu.web.stock.impl.InputDAO">
+
+<!-- 전체 조회  -->
+	<select id="getStockList" resultType="map">
+		SELECT	INPUT_NUMBER			as "inputNumber",
+				INPUT_NAME				as "inputName",
+				INPUT_QUANTITY			as "inputQuantity",
+				COST					as "cost",
+				EXPIRE_DATE				as "expireDate",
+				PRODUCT_ID				as "productId",
+				SUPPLIER_ID				as "supplierId",
+				INPUT_DATE				as "inputDate"
+		FROM INPUT
+		<!-- <where>
+			<if test="productId != null and productId != ''">
+				INPUT.PRODUCT_ID = #{productId}
+0			</if>
+			<if test="supplierId != null and supplierId != ''">
+				INPUT.SUPPLIER_ID = #{supplierId}
+			</if>
+		</where> -->
+		ORDER BY INPUT_DATE DESC;
+	</select>	
+<!-- 단건 조회  -->
+	
+	<select id="getStock" resultType="stockVO" parameterType="string">
+		<![CDATA[
+		SELECT 	INPUT_NUMBER,
+				INPUT_NAME,
+				INPUT_QUANTITY,
+				COST,
+				EXPIRE_DATE,
+				PRODUCT_ID,
+				SUPPLIER_ID,
+				INPUT_DATE
+		FROM	INPUT
+		WHERE	INPUT_NUMBER = #{id}
+		]]>
+	</select>
+<!-- 등록 -->
+	<insert id="insertStock" parameterType="stockVO">
+	
+		<selectKey keyProperty="INPUT_NUMBER" resultType="string" order="BEFORE">
+			SELECT MAX(PRODUCT_ID)+1 FROM INPUT
+		</selectKey>
+		
+		INSERT INTO INPUT (
+							INPUT_NUMBER,
+							INPUT_NAME,
+							INPUT_QUANTITY,
+							COST,
+							EXPIRE_DATE,
+							PRODUCT_ID,
+							SUPPLIER_ID,
+							INPUT_DATE
+							)
+		VALUES	(
+					#{inputNumber},
+					#{inputName},
+					#{inputQuantity},
+					#{cost},
+					#{expireDate},
+					#{productId},
+					#{supplierId},
+					#{inputDate}
+				)
+	</insert>
+<!-- 수정 -->
+	<update id="updateStock" parameterType="stockVO">
+		UPDATE INPUT SET
+					INPUT_NAME = #{inputName},
+					INPUT_QUANTITY = #{inputQuantity},
+					COST = #{cost},
+					EXPIRE_DATE = #{expireDate},
+					PRODUCT_ID = #{productId},
+					SUPPLIER_ID = #{supplierId},
+					INPUT_DATE = #{inputDate}  
+		WHERE INPUT_NUMBER = #{inputNumber}
+		
+	</update>
+<!-- 단건 삭제 -->
+	<delete id="deleteSomething" parameterType="int">
+		DELETE FROM INPUT
+		WHERE INPUT_NUMBER = #{id}
+	</delete>
+	
+	
+<!-- 다건 삭제 -->	
+	<delete id="deleteStockList">
+		DELETE FROM INPUT
+		WHERE INPUT_NUMBER IN
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+		#{item}
+		</foreach>
+	</delete>
+</mapper>

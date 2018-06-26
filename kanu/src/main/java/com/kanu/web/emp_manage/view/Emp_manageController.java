@@ -22,7 +22,7 @@ public class Emp_manageController {
 	}
 	@RequestMapping("/getEmp")
 	public String getEmp(Emp_manageVO vo, Model model ) {
-		model.addAttribute("empOne", empManageService.getEmp(vo));         
+		model.addAttribute("empOne", empManageService.getEmp(vo));     
 		return "emp_manage/getEmp";
 	}
 	@RequestMapping("/insertEmp")

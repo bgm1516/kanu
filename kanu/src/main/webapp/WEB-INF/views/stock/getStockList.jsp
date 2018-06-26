@@ -50,7 +50,7 @@ margin: auto;
 	<div id="content1">
 	<h3> 재고 현황 </h3>
 	<hr>
-		<form id="stockForm" action="getStock.do" method="get"><br> 
+		<form id="stockForm" action="getStockList.do" method="get"><br> 
 			<input type="hidden" name="p" value="1">
 			제품분류<input type="text" name="productId" /> 
 			<!-- 제품명<input type="text" name="product_name" /> 

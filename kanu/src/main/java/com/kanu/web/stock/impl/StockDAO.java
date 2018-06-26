@@ -15,21 +15,21 @@ public class StockDAO {
 	@Autowired SqlSessionTemplate mybatis;
 	
 	// 전체 조회
-	public List<Map<String, Object>> getStockList() {
+	public List<Map<String, Object>> getStockList(StockVO vo) {
 		
-		return mybatis.selectList("com.kanu.web.stock.impl.StockDAO.getStockList"); 
+		return mybatis.selectList("com.kanu.web.stock.impl.StockDAO.getStockList", vo); 
 	}
 	// 단건 조회
 	public StockVO getStock(String id) {
 		return (StockVO)mybatis.selectOne("com.kanu.web.stock.impl.StockDAO.getStock", id);			
 	}
 	//등록
-	public void insertStock(StockVO stockVO) {
-		mybatis.insert("com.kanu.web.stock.impl.StockDAO.insertStock", stockVO);
+	public void insertStock(StockVO vo) {
+		mybatis.insert("com.kanu.web.stock.impl.StockDAO.insertStock",vo );
 	}
 	//수정
-	public void updateStock(StockVO stockVO) {
-		mybatis.update("com.kanu.web.stock.impl.StockDAO.updateStock", stockVO);
+	public void updateStock(StockVO vo) {
+		mybatis.update("com.kanu.web.stock.impl.StockDAO.updateStock", vo);
 	}
 	//단건삭제
 	public void deleteStock(String id) {

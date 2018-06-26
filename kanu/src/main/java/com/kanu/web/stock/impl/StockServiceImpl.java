@@ -15,9 +15,9 @@ public class StockServiceImpl implements StockService{
 	@Autowired StockDAO dao;
 
 	@Override
-	public List<Map<String, Object>> getStockList() {
+	public List<Map<String, Object>> getStockList(StockVO vo) {
 		// TODO Auto-generated method stub
-		return dao.getStockList();
+		return dao.getStockList(vo);
 	}
 
 	@Override

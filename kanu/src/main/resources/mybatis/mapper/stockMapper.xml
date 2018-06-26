@@ -15,10 +15,10 @@
 		<where>
 			<if test="productId != null and productId != ''">
 				STOCK.PRODUCT_ID = #{productId}
-0			</if>
-			<!-- <if test="supplierId != null and supplierId != ''">
+			</if>
+			<if test="supplierId != null and supplierId != ''">
 				STOCK.SUPPLIER_ID = #{supplierId}
-			</if> -->
+			</if>
 		</where>
 		ORDER BY PRODUCT_ID
 	</select>	
@@ -38,9 +38,9 @@
 <!-- 등록 -->
 	<insert id="insertStock" parameterType="stockVO">
 	
-		<selectKey keyProperty="productId" resultType="string" order="BEFORE">
+		<!-- <selectKey keyProperty="productId" resultType="string" order="BEFORE">
 			SELECT MAX(PRODUCT_ID)+1 FROM STOCK
-		</selectKey>
+		</selectKey> -->
 		
 		INSERT INTO STOCK (
 							PRODUCT_ID,
