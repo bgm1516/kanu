@@ -10,6 +10,7 @@ public class OrdersVO {
 	private String reserver;
 	private String receipter;
 	private String receiptDate;
+	
 	public String getOrderId() {
 		return orderId;
 	}

@@ -18,12 +18,13 @@ public class OrdersServiceImpl implements OrdersService{
 		return dao.getOrdersList(vo);
 	}
 
-	public ArrayList<String> getMenuName(String menu_name) {
-		return dao.getMenuName(menu_name);
+	public List<Object> getMenuName(String MenuName) {
+		System.out.print(MenuName);
+		return dao.getMenuName(MenuName);
 	}
 
-	public ArrayList<String> getMenuId() {
-		return dao.getMenuId();
+	public ArrayList<String> getMenuId(String menuId) {
+		return dao.getMenuId(menuId);
 	}
 
 	public void insertOrderHistory() {
@@ -62,8 +63,8 @@ public class OrdersServiceImpl implements OrdersService{
 		return dao.count(searchOVO);
 	}
 
-	public OrdersVO getOrders(String orders_id) {
-		return dao.getOrders(orders_id);
+	public OrdersVO getOrders(String orderId) {
+		return dao.getOrders(orderId);
 	}
 
 }
