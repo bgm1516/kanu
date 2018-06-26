@@ -37,8 +37,8 @@
 		<H2>메뉴:목록화면</H2>
 		<HR>
 		<form>
-			<br> <a href="insertMenu"><input type="button"
-				value="메뉴 등록하기"></a> <br>
+			<!-- <br> <a href="insertMenu"><input type="button"
+				value="메뉴 등록하기"></a> <br> -->
 		<!-- 		<body>
 			<form action="./insertMenu" method="post" >
 			메뉴 이름<input type="text" name="menuName">
@@ -69,16 +69,17 @@
 					</c:forEach>
 
 				</table>
-				<form action="./insertMenu" method="post" >
+				
+	
+			</div>
+			
+		</form>
+			<form action="./insertMenu" method="post">
 					메뉴 이름<input type="text" name="menuName">
 					가격<input type="text" name="price">
 					<input type="submit" value="등록"/>
 				</form>
 				
-			</div>
-			
-		</form>
-
 	</div>
 
 </body>

@@ -53,10 +53,12 @@ public class MenuController {
 	//등록처리
 	@RequestMapping(value="/insertMenu", method=RequestMethod.POST)
 	public String insertMenu(MenuVO vo) {
+		System.out.println("aaaaaaa");
 		System.out.println(vo);
 		menuService.insertMenu(vo);
 		
-		return "redirect:/getMenu/"+vo.getMenuId() ;
+	/*	return "redirect:/getMenu/"+vo.getMenuId() ;*/
+		return "redirect:/getMenuList.do";
 	}
 	//단건조회
 	@RequestMapping("/getMenu/{menuId}")
@@ -64,13 +66,14 @@ public class MenuController {
 		System.out.println("menuId:"+menuId);
 		model.addAttribute("menu",menuService.getMenu(menuId));
 		return "orders/getMenu";
+		
 	}
 		//단건 삭제처리
 		@RequestMapping(value="/deleteMenu",method={RequestMethod.GET, RequestMethod.POST})
 		public String deleteMenu(@ModelAttribute("model") MenuVO vo) {
 			System.out.println("메뉴ID :" + vo.getMenuId());
 			menuService.deleteMenu(vo.getMenuId());
-			return "orders/getMenuList";
+			return "redirect:/getMenuList.do";
 	}
 }
 
