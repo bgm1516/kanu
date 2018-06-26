@@ -5,6 +5,7 @@ public class MenuVO {
 	private String menuId;
 	private String menuName;
 	private String price;
+	
 	public String getMenuId() {
 		return menuId;
 	}
