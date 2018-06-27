@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +10,9 @@
 <body>
 
 	<form action="./updateEmp" method="post">
+		<div>
+		<input type="hidden" name="employeeId" value="${empStore.employeeId}"/>
+		</div>
 		<div class="form-group">
 			<label for="empName">직원 이름 </label> 
 			<input type="text" class="form-control" name="employeeName" placeholder="성함을 입력하세요" value="${empStore.employeeName}">
@@ -29,26 +34,27 @@
  		</div>
 		
 		<div class="form-group">
-			<label for="empHire">채용일자</label> <input type="date" name="hireDate" value="${empStore.hireDate}"/> 
+			<label for="empHire">채용일자</label> <input type="date" name="hireDate" value="${fn:substring(empStore.hireDate,0,10)}"/> 
 			<small id="hireD" class="form-text text-muted">정확한 날짜를 입력하세요</small>
 		</div>
 	
 		
 		<div class="form-group">
-			<label for="empRetire">퇴직일자</label> <input type="date" name="retireDate" value="${empStore.retireDate}" /> 
+			<label for="empRetire">퇴직일자</label> <input type="date" name="retireDate" value="${fn:substring(empStore.retireDate,0,10)}" /> 
 			<small id="retireD" class="form-text text-muted">정확한 날짜를 입력하세요</small>
 		</div>
 		<div class="form-group">
-			<label for="empHire">생년월일</label> <input type="date" name="employeeBirth" value="${empStore.employeeBirth}" /> 
+			<label for="empHire">생년월일</label> <input type="date" name="employeeBirth" value="${fn:substring(empStore.employeeBirth,0,10)}" /> 
 			<small id="empB" class="form-text text-muted">정확한 날짜를 입력하세요</small>
 		</div>
 		<div class="form-group">
-			<label for="empHire">보건증 유효기간</label> <input type="date" name="certificatedExpiredDate" value="${empStore.certificatedExpiredDate}"/> 
+			<label for="empHire">보건증 유효기간</label> <input type="date" name="certificatedExpiredDate" value="${fn:substring(empStore.certificatedExpiredDate,0,10)}"/> 
 			<small id="empCED" class="form-text text-muted">정확한 날짜를 입력하세요</small>
 		</div>
 		<input type="submit" class="btn btn-primary" value="변경">
 		<input type="reset" class="btn btn-primary" value="초기화">
 	</form>
+
 
 
 
