@@ -15,7 +15,7 @@
 		<where>
 			<if test="productId != null and productId != ''">
 				STOCK.PRODUCT_ID = #{productId}
-0			</if>
+			</if>
 			<!-- <if test="supplierId != null and supplierId != ''">
 				STOCK.SUPPLIER_ID = #{supplierId}
 			</if> -->

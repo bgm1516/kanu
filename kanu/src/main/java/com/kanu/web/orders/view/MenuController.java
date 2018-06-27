@@ -1,7 +1,7 @@
 package com.kanu.web.orders.view;
 
-import java.util.HashMap;
-import java.util.Map;
+/*import java.util.HashMap;
+import java.util.Map;*/
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -53,7 +53,6 @@ public class MenuController {
 	//등록처리
 	@RequestMapping(value="/insertMenu", method=RequestMethod.POST)
 	public String insertMenu(MenuVO vo) {
-		System.out.println("aaaaaaa");
 		System.out.println(vo);
 		menuService.insertMenu(vo);
 		

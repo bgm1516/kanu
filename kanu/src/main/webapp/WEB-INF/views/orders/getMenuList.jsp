@@ -72,7 +72,7 @@
 				
 	
 			</div>
-			
+			<HR>
 		</form>
 			<form action="./insertMenu" method="post">
 					메뉴 이름<input type="text" name="menuName">
