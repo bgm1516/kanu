@@ -41,7 +41,7 @@
 			SELECT MAX(MENU_ID)+1 FROM MENU	
 	
 	</selectKey>
-		
+			
 			INSERT INTO MENU(
 			MENU_ID,
 			MENU_NAME,
@@ -58,7 +58,7 @@
   		<update id="updateMenu" parameterType="MenuVO">
   		
   		UPDATE MENU SET
-  						MENU_ID = #{menuId},
+  				MENU_ID = #{menuId},
   				MENU_NAME = #{menuName},
   				PRICE = #{price}
   				

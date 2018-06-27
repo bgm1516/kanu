@@ -6,7 +6,7 @@ import java.util.Map;
 import com.kanu.web.orders.MenuVO;
 
 public interface MenuService {
-	// 목록조회
+		// 목록조회
 		List<Map<String, Object>> getMenuList();
 		
 		// 단건조회
