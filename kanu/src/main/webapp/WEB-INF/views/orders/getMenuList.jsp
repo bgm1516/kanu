@@ -34,7 +34,7 @@
 
 
 	<div align="center">
-		<H2>메뉴:목록화면</H2>
+		<H2>메뉴:목록</H2>
 		<HR>
 		<form>
 			<!-- <br> <a href="insertMenu"><input type="button"

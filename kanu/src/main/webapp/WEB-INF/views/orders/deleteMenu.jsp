@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>메뉴 수정</h3>
+<h3>메뉴 삭제</h3>
 
 <form action="./deleteMenu" method="post">
 	<input type="text" name="menuId" value="${menu.menuId}">
