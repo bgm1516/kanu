@@ -25,19 +25,17 @@ public class Emp_manageServiceImpl implements Emp_manageService{
 
 	@Override
 	public void insertEmp(Emp_manageVO empManVO) {
-		
+		empManDAO.insertEmp(empManVO);
 	}
 
 	@Override
-	public void deleteEmp(Emp_manageVO empManVO) {
-		// TODO Auto-generated method stub
-		
+	public void deleteEmp(String employeeId) {
+		empManDAO.deleteEmp(employeeId);
 	}
 
 	@Override
 	public void updateEmp(Emp_manageVO empManVO) {
-		// TODO Auto-generated method stub
-		
+		empManDAO.updateEmp(empManVO);
 	}
 
 	@Override

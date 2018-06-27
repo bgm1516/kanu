@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface StockService {
-	List<Map<String, Object>> getStockList();
+	List<Map<String, Object>> getStockList(StockVO vo);
 	StockVO getStock();
 	void insertStock(StockVO vo);
 	void updateStock(StockVO vo);
