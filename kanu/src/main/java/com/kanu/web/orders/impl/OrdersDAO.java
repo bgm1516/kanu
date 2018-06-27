@@ -22,8 +22,8 @@ public class OrdersDAO {
 	}
 	
 	//단건조회
-	public OrdersVO getOrders(String orders_id) {
-		return mybatis.selectOne("com.kanu.web.orders.OrdersDAO.getOrders", orders_id);
+	public OrdersVO getOrders(String orderId) {
+		return mybatis.selectOne("com.kanu.web.orders.OrdersDAO.getOrders", orderId);
 	}
 	
 	//전체조회
@@ -32,13 +32,16 @@ public class OrdersDAO {
 	}
 
 	//메뉴id를 통한 메뉴 이름값 표시
-	public ArrayList<String> getMenuName(String menu_name) {
-		return mybatis.selectOne("com.kanu.web.orders.OrdersDAO.getMenuName", menu_name);
+	public List<String> getMenuName(String MenuName) {
+		List<String> list = mybatis.selectList("com.kanu.web.orders.OrdersDAO.getMenuName", MenuName);
+		System.out.println(list.get(0));
+		return list;
 	}
-
+	
 	//메뉴 이름값 표시를 위한 메뉴 id값 가져오기
-	public ArrayList<String> getMenuId() {
-		return mybatis.selectOne("com.kanu.web.orders.OrdersDAO.getMenuId");
+	public List<String> getMenuId(String menuId) {
+		List<String> list = mybatis.selectList("com.kanu.web.orders.OrdersDAO.getMenuId", menuId);
+		return list;
 	}
 
 	//order_history에 가짜 값 추가(primary_key)

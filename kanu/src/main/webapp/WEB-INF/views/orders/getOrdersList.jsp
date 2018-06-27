@@ -3,16 +3,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%--@ taglib tagdir="/WEB-INF/tags" prefix="my" --%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <title>Orders_List</title>
 
-<link rel="stylesheet" href="../scripts/jquery-ui.css">
-<script src="../scripts/jquery-3.2.1.min.js"></script>
-<script src="../scripts/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <!-- Latest compiled and minified JavaScript -->
@@ -98,11 +98,10 @@
 <hr>
 <text align="center"><H2>주문받은목록</H2></text>
 <div align="center">
-<form name="searchFrm" action="getOrders/${order_id}">
-<!-- <input type ="hidden" name="action" value="list"/>-->
+<form name="searchFrm" method="post" action="/getOrders/${getOrders.orderId}">
 <input type="hidden" name="p" value="1"/>
 
-주문번호<input type="text" name="order_id"/>
+주문번호<input type="text" name="orderId"/>
 	  <input type="submit" value="검색"/><br/>
 </form>
 </div>
@@ -190,7 +189,7 @@
 		order_item_tr.append( $("<td>"+order_item.menuName+" </td>"))	//order_item_tr 태그의 자식으로 td태그를 쓰고 그 사이에 order_item에 담은 menu_name의 값을 뱉어낸다
 		order_item_tr.append( $("<td>"+order_item.orderQuantity+" </td>"))	//order_quantity를 뱉어낸다.
 		order_item_tr.append( $("<td>"+order_item.receipter+" </td>"))	//receipter를 뱉어낸다.
-		order_item_tr.append( $("<td>"+order_item.receipt_date+" </td>"))	//recipt_date를 뱉어낸다.
+		order_item_tr.append( $("<td>"+order_item.receiptDate+" </td>"))	//recipt_date를 뱉어낸다.
 		order_item_tr.append( $("<td>"+"<button onclick='delect_reserve_item(this)' class='btn btn-danger reserve_item_delete'>x</button>"+" </td>"));
 		//삭제버튼인데 x 버튼을 만들고 그걸 클릭시 delect_reserve_item 펑션이 동작하고 reserve_item_delete를 주어서 클릭이 동작한 값만 삭제하도록 하였다.
 		order_item_table.append(order_item_tr);	//order_item_table의 자식으로 order_item_tr을 주었다.
@@ -324,8 +323,7 @@
 	<label>수량 :</label><input type="text" class="form-control" name="orderQuantity"><br>
 	</form>
 	
-	<form align="left" name="reserve_form" id="reserve_form" style="border:1 solid gray" action="orders_control.jsp">
-	<input type ="hidden" name="action" value="insertR"/>
+	<form align="left" name="reserve_form" id="reserve_form" style="border:1 solid gray" action="/kanu/insertR">
 	<label>담당직원 :</label><input type="text" class="form-control" name="employeeId"><br>
 	<label>예약자 :</label><input type="text" class="form-control" name="reserver"><br>
 	<label>수령자 :</label><input type="text" class="form-control" name="receipter"><br>
@@ -388,8 +386,7 @@
 	<label>수량 :</label><input type="text" class="form-control" name="orderQuantity"><br>
 	</form>
 	
-	<form align="left" name="normal_form" id="normal_form" style="border:1 solid gray" action="orders_control.jsp">
-	<input type ="hidden" name="action" value="insert"/>
+	<form align="left" name="normal_form" id="normal_form" style="border:1 solid gray" action="/kanu/insert">
 	<label>담당직원 :</label><input type="text" class="form-control" name="employeeId"><br>
 	</form>
 	</div>

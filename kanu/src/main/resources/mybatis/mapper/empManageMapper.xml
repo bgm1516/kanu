@@ -66,23 +66,60 @@
 		ORDER BY EMPLOYEE_ID
 	</select>
 
-<!-- <insert id="insertEmp" parameterType="empManVO">
-<selectKey order="BEFORE" keyProperty="employeeId" resultType="string">
+<insert id="insertEmp" parameterType="empManVO">
+<selectKey order="BEFORE" keyProperty="employeeId" resultType="string" >
 	SELECT NVL(MAX(EMPLOYEE_ID),0)+1 FROM EMP_MANAGE
 </selectKey>
-		INSERT INTO EMP_MANAGE 
-		SET EMPLOYEE_ID = ${employeeId} ,
-			EMPLOYEE_NAME=${employeeName},
-			CERTIFICATED_EXPIRED_DATE=${certificated_expired_date},
-			EMPLOYEE_BIRTH=${employeeBirth},
-			EMPLOYEE_ADDRESS=${employeeAddress},
-			HIRE_DATE=${hireDate},
-			RETIRE_DATE=${retireDate},
-			EMP_EMAIL=${empEmail},
-			PASSWORD=${password} 
-			WHERE EMPLOYEE_ID=${employeeId}
-
+		INSERT INTO EMP_MANAGE (EMPLOYEE_ID,
+								EMPLOYEE_NAME,
+								CERTIFICATED_EXPIRED_DATE,
+								EMPLOYEE_BIRTH,
+								EMPLOYEE_ADDRESS,
+								HIRE_DATE,
+								RETIRE_DATE,
+								EMP_EMAIL,
+								PASSWORD)
+		VALUES (#{employeeId} ,
+				#{employeeName},
+				#{certificatedExpiredDate},
+				#{employeeBirth},
+				#{employeeAddress},
+				#{hireDate},
+				#{retireDate},
+				#{empEmail},
+				#{password} )
+			
 </insert>
 
- -->
+<update id="updateEmp" parameterType="empManVO">
+
+		UPDATE EMP_MANAGE
+		SET EMPLOYEE_ID = #{employeeId},
+			EMPLOYEE_NAME = #{employeeName},
+			CERTIFICATED_EXPIRED_DATE =#{certificatedExpiredDate},
+			EMPLOYEE_BIRTH =#{employeeBirth},
+			EMPLOYEE_ADDRESS =#{employeeAddress},
+			HIRE_DATE =#{hireDate},
+			RETIRE_DATE =#{retireDate},
+			EMP_EMAIL =#{empEmail},
+			PASSWORD = #{password} 
+			WHERE EMPLOYEE_ID =#{employeeId}
+	
+	
+</update>
+
+<delete id="deleteEmp" parameterType="string">
+
+		DELETE EMP_MANAGE 
+		WHERE EMPLOYEE_ID=#{employeeId}
+
+</delete>
+
+<delete id="deleteEmpList" parameterType="list">
+
+		DELETE EMP_MANAGE 
+		WHERE EMPLOYEE_ID=#{employeeId}
+
+</delete>
+
 </mapper>

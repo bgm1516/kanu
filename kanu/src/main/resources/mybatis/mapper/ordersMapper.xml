@@ -33,28 +33,26 @@
 		SELECT MENU_ID
 		FROM MENU
 	</select>
-	
 	<!-- 1)히스토리에 가짜 추가(primary key) <insert/insertR> -->
-	<insert id="insertOrderHistory" parameterType="com.kanu.web.orders.OrdersVO">
-		<selectKey keyProperty="order_id" resultType="string" order="BEFORE">
+	<insert id="insertOrderHistory"  parameterType="com.kanu.web.orders.OrdersVO">
+		<selectKey keyProperty="orderId" resultType="string" order="BEFORE">
 			SELECT MAX(ORDER_ID)+1
 			FROM ORDER_HISTORY
 		</selectKey>
 		INSERT INTO ORDER_HISTORY 
 		(ORDER_ID, ORDER_TOTALSUM, ORDER_DATE, RESERVATION, CANCELED_ORDER, EMPLOYEE_ID)
-		VALUES(#{order_id}, 1, SYSDATE, N, N, 1)
+		VALUES(#{orderId},1,SYSDATE,'N','N', 1)
 	</insert>
 	
 	<!-- 2)orders에 insert <insert/insertR> -->
 	<insert id="insertOrders" parameterType="com.kanu.web.orders.OrdersVO">
-		<selectKey keyProperty="order_id" resultType="string" order="BEFORE">
+		<selectKey keyProperty="orderId" resultType="string" order="BEFORE">
 			SELECT MAX(ORDER_ID)
 			FROM ORDER_HISTORY
 		</selectKey>
 		INSERT INTO ORDERS (ORDER_ID, MENU_ID, ORDER_QUANTITY)
-		VALUES(#{order_id}, #{menu_id}, #{order_quantity})
+		VALUES(#{orderId}, #{menuId}, #{orderQuantity})
 	</insert>
-	
 	<!-- 3-N)히스토리 가짜값을 진짜로 update <insert> -->
 	<update id="updateOrderHistory1" parameterType="com.kanu.web.orders.OrdersVO">
 		UPDATE ORDER_HISTORY
@@ -87,21 +85,21 @@
 			WHERE RESERVATION = 'Y'
 		</selectKey>
 		INSERT INTO RESERVE_HISTORY (ORDER_ID, RESERVER, RECEIPTER, RECEIPT_DATE)
-		VALUES (#{order_id}, #{reserver}, #{receipter}, #{receipt_date})
+		VALUES (#{order_id}, #{reserver}, #{receipter}, #{receiptDate})
 	</insert>
 	
 	<!-- 1)orders에 delete <공통> -->
 	<delete id="deleteOrders" parameterType="com.kanu.web.orders.OrdersVO">
-		DELETE FROM ORDERS WHERE ORDER_ID = #{order_id}
+		DELETE FROM ORDERS WHERE ORDER_ID = #{orderId}
 	</delete>
 	
 	<!-- 2)reserve_history에 delete <공통> -->
 	<delete id="deleteReserveHistory" parameterType="com.kanu.web.orders.OrdersVO">
-		DELETE FROM RESERVE_HISTORY WHERE ORDER_ID = #{order_id}
+		DELETE FROM RESERVE_HISTORY WHERE ORDER_ID = #{orderId}
 	</delete>
 	
 	<!-- 3)order_history에 delete <공통> -->
 	<delete id="deleteOrderHistory" parameterType="com.kanu.web.orders.OrdersVO">
-		DELETE FROM ORDER_HISTORY WHERE ORDER_ID = #{order_id}
+		DELETE FROM ORDER_HISTORY WHERE ORDER_ID = #{orderId}
 	</delete>
 </mapper>

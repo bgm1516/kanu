@@ -25,6 +25,14 @@ public class Emp_manageDAO {
 	}
 	//직원등록
 	public void insertEmp(Emp_manageVO vo) {
-		//return mybatis.insert("com.kanu.web.emp_manage.Emp_manageDAO.insertEmp", vo);
+		mybatis.insert("com.kanu.web.emp_manage.Emp_manageDAO.insertEmp", vo);
 	}
+	//직원삭제
+	public void deleteEmp(String employeeId) {
+		mybatis.delete("com.kanu.web.emp_manage.Emp_manageDAO.deleteEmp", employeeId);
+	}
+	public void updateEmp(Emp_manageVO vo) {
+		mybatis.update("com.kanu.web.emp_manage.Emp_manageDAO.updateEmp", vo);
+	}
+	
 }
