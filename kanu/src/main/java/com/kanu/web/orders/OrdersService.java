@@ -19,10 +19,10 @@ public interface OrdersService {
 	public List<OrdersVO> getOrdersList(OrdersVO vo);
 	
 	//드롭다운메뉴1
-	public List<Object> getMenuName(String MenuName);
+	public List<String> getMenuName(String MenuName);
 	
 	//드롭다운메뉴2
-	public ArrayList<String> getMenuId(String menuId);
+	public List<String> getMenuId(String menuId);
 	
 	////////////등록//////////////////////////////////////////////////////////////////////
 	

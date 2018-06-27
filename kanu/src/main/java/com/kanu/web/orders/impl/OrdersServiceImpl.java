@@ -18,12 +18,12 @@ public class OrdersServiceImpl implements OrdersService{
 		return dao.getOrdersList(vo);
 	}
 
-	public List<Object> getMenuName(String MenuName) {
+	public List<String> getMenuName(String MenuName) {
 		System.out.print(MenuName);
 		return dao.getMenuName(MenuName);
 	}
 
-	public ArrayList<String> getMenuId(String menuId) {
+	public List<String> getMenuId(String menuId) {
 		return dao.getMenuId(menuId);
 	}
 

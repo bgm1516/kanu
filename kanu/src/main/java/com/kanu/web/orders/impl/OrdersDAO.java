@@ -32,15 +32,15 @@ public class OrdersDAO {
 	}
 
 	//메뉴id를 통한 메뉴 이름값 표시
-	public List<Object> getMenuName(String MenuName) {
-		List<Object> list = mybatis.selectList("com.kanu.web.orders.OrdersDAO.getMenuName", MenuName);
+	public List<String> getMenuName(String MenuName) {
+		List<String> list = mybatis.selectList("com.kanu.web.orders.OrdersDAO.getMenuName", MenuName);
 		System.out.println(list.get(0));
 		return list;
 	}
 	
 	//메뉴 이름값 표시를 위한 메뉴 id값 가져오기
-	public ArrayList<String> getMenuId(String menuId) {
-		ArrayList<String> list = mybatis.selectOne("com.kanu.web.orders.OrdersDAO.getMenuId", menuId);
+	public List<String> getMenuId(String menuId) {
+		List<String> list = mybatis.selectList("com.kanu.web.orders.OrdersDAO.getMenuId", menuId);
 		return list;
 	}
 
