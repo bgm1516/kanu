@@ -10,7 +10,7 @@ public interface MenuService {
 		List<Map<String, Object>> getMenuList();
 		
 		// 단건조회
-		public MenuVO getMenu(String menu_id);
+		public MenuVO getMenu(String menuId);
 
 		// 입력
 		public void insertMenu(MenuVO vo);
@@ -19,5 +19,5 @@ public interface MenuService {
 		public void updateMenu(MenuVO vo);
 
 		// 삭제
-		public void deleteMenu(String menu_id);
+		public void deleteMenu(String menuId);
 }

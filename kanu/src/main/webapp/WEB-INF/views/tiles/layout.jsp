@@ -4,8 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- meta tags 필요 -->
+  <head>    
+    <!-- meta tags 필요 -->   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -34,7 +34,7 @@ body{
 	font-family:'Open Sans', Arial, sans-serif;     
   background-color: #ffffff; 
 
-  background-image: url("./resources/img/bg/watermark.png"); 
+  background-image: url("./resources/img/bg/MIDBG.png"); 
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -50,9 +50,7 @@ body{
    background:#343A40;
    color: white;
 }
-#footer p {
-   text-align: center;
-}
+
   
   
   </style>
@@ -97,7 +95,6 @@ body{
               <a class="dropdown-item" href="#">입고내역</a>
               <a class="dropdown-item" href="#">재고관리</a>
               <a class="dropdown-item" href="#">공급사관리</a>
-              <a class="dropdown-item" href="#">커밋용</a>
             </div>
           </li>
           
@@ -137,15 +134,13 @@ body{
 	
 
 	</div>
-	<div id="footer">
- 	 <p>footer</p>
-	</div>
+	
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-	</div>
+
   </body>
 </html>

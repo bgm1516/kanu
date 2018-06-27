@@ -15,6 +15,13 @@
 		WHERE A.MENU_ID=B.MENU_ID
 	</select>
 	
+	<!-- 단건조회 -->
+	<select id="getOrders" parameterType="String" resultType="string">
+		SELECT *
+		FROM ORDERS
+		WHERE ORDER_ID = #{order_id}
+	</select>
+	
 	<!-- 드롭다운1 -->
 	<select id="getMenuName" parameterType="String" resultType="string">
 		SELECT MENU_NAME
@@ -26,30 +33,28 @@
 		SELECT MENU_ID
 		FROM MENU
 	</select>
-	
 	<!-- 1)히스토리에 가짜 추가(primary key) <insert/insertR> -->
-	<insert id="insertOrderHistory">
-		<selectKey keyProperty="order_id" resultType="string" order="BEFORE">
+	<insert id="insertOrderHistory"  parameterType="com.kanu.web.orders.OrdersVO">
+		<selectKey keyProperty="orderId" resultType="string" order="BEFORE">
 			SELECT MAX(ORDER_ID)+1
 			FROM ORDER_HISTORY
 		</selectKey>
 		INSERT INTO ORDER_HISTORY 
 		(ORDER_ID, ORDER_TOTALSUM, ORDER_DATE, RESERVATION, CANCELED_ORDER, EMPLOYEE_ID)
-		VALUES(#{order_id}, 1, SYSDATE, N, N, 1)
+		VALUES(#{orderId},1,SYSDATE,'N','N', 1)
 	</insert>
 	
 	<!-- 2)orders에 insert <insert/insertR> -->
-	<insert id="insertOrders">
-		<selectKey keyProperty="order_id" resultType="string" order="BEFORE">
+	<insert id="insertOrders" parameterType="com.kanu.web.orders.OrdersVO">
+		<selectKey keyProperty="orderId" resultType="string" order="BEFORE">
 			SELECT MAX(ORDER_ID)
 			FROM ORDER_HISTORY
 		</selectKey>
 		INSERT INTO ORDERS (ORDER_ID, MENU_ID, ORDER_QUANTITY)
-		VALUES(#{order_id}, #{menu_id}, #{order_quantity})
+		VALUES(#{orderId}, #{menuId}, #{orderQuantity})
 	</insert>
-	
 	<!-- 3-N)히스토리 가짜값을 진짜로 update <insert> -->
-	<update id="updateOrderHistory1">
+	<update id="updateOrderHistory1" parameterType="com.kanu.web.orders.OrdersVO">
 		UPDATE ORDER_HISTORY
 		SET ORDER_TOTALSUM=(SELECT SUM(ORDER_QUANTITY*
 						   (SELECT PRICE
@@ -61,7 +66,7 @@
 	</update>
 	
 	<!-- 3-R)히스토리 가짜값을 진짜로 update <insertR> -->
-	<update id="updateOrderHistory2">
+	<update id="updateOrderHistory2" parameterType="com.kanu.web.orders.OrdersVO">
 		UPDATE ORDER_HISTORY
 		SET ORDER_TOTALSUM=(SELECT SUM(ORDER_QUANTITY*
 						   (SELECT PRICE
@@ -73,28 +78,28 @@
 	</update>
 	
 	<!-- 4)reserve_history에 insert <insertR> -->
-	<insert id="insertReserveHistory">
+	<insert id="insertReserveHistory" parameterType="com.kanu.web.orders.OrdersVO">
 		<selectKey keyProperty="order_id" resultType="string" order="BEFORE">
 			SELECT MAX(ORDER_ID)
 			FROM ORDER_HISTORY
 			WHERE RESERVATION = 'Y'
 		</selectKey>
 		INSERT INTO RESERVE_HISTORY (ORDER_ID, RESERVER, RECEIPTER, RECEIPT_DATE)
-		VALUES (#{order_id}, #{reserver}, #{receipter}, #{receipt_date})
+		VALUES (#{order_id}, #{reserver}, #{receipter}, #{receiptDate})
 	</insert>
 	
 	<!-- 1)orders에 delete <공통> -->
 	<delete id="deleteOrders" parameterType="com.kanu.web.orders.OrdersVO">
-		DELETE FROM ORDERS WHERE ORDER_ID = #{order_id}
+		DELETE FROM ORDERS WHERE ORDER_ID = #{orderId}
 	</delete>
 	
 	<!-- 2)reserve_history에 delete <공통> -->
 	<delete id="deleteReserveHistory" parameterType="com.kanu.web.orders.OrdersVO">
-		DELETE FROM RESERVE_HISTORY WHERE ORDER_ID = #{order_id}
+		DELETE FROM RESERVE_HISTORY WHERE ORDER_ID = #{orderId}
 	</delete>
 	
 	<!-- 3)order_history에 delete <공통> -->
 	<delete id="deleteOrderHistory" parameterType="com.kanu.web.orders.OrdersVO">
-		DELETE FROM ORDER_HISTORY WHERE ORDER_ID = #{order_id}
+		DELETE FROM ORDER_HISTORY WHERE ORDER_ID = #{orderId}
 	</delete>
 </mapper>

@@ -28,7 +28,7 @@ public class MenuController {
 	//목록조회
 	@RequestMapping("/getMenuList.do")
 	public String getMenuList(HttpServletRequest request, MenuVO vo) {
-		request.setAttribute("MenuList", menuService.getMenuList());
+		request.setAttribute("menuList", menuService.getMenuList());
 		return "orders/getMenuList";
 	}
 	
@@ -64,6 +64,13 @@ public class MenuController {
 		System.out.println("menuId:"+menuId);
 		model.addAttribute("menu",menuService.getMenu(menuId));
 		return "orders/getMenu";
+	}
+		//단건 삭제처리
+		@RequestMapping(value="/deleteMenu",method={RequestMethod.GET, RequestMethod.POST})
+		public String deleteMenu(@ModelAttribute("model") MenuVO vo) {
+			System.out.println("메뉴ID :" + vo.getMenuId());
+			menuService.deleteMenu(vo.getMenuId());
+			return "orders/getMenuList";
 	}
 }
 

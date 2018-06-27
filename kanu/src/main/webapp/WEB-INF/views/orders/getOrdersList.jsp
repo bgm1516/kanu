@@ -3,16 +3,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib tagdir="/WEB-INF/views/tags" prefix="my" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <title>Orders_List</title>
 
-<link rel="stylesheet" href="../scripts/jquery-ui.css">
-<script src="../scripts/jquery-3.2.1.min.js"></script>
-<script src="../scripts/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <!-- Latest compiled and minified JavaScript -->
@@ -51,6 +51,18 @@
 #view th{
 	text-align: center;
 }
+#reserve-content{
+	top : 200px;
+}
+#normal-content{
+	top : 200px;
+}
+#reserve_modal select{
+	height : 35px;
+}
+#normal_modal select{
+	height : 35px;
+}
 </style>
 
 
@@ -59,8 +71,7 @@
 <div>
 <text align="center"><H2>주문 등록</H2></text>
 <HR>
-<form name="formo" id="order_form" method="post" action="orders_control.jsp">
-	<input type = "hidden" name="action" value="insert"/>
+<form name="formo" id="order_form">
 	<table border=1 cellspacing="1" cellpadding="5" align="center">
 	<tr>
 		<td>예약여부</td>
@@ -87,11 +98,10 @@
 <hr>
 <text align="center"><H2>주문받은목록</H2></text>
 <div align="center">
-<form name="searchFrm" action="orders_control.jsp">
-<input type ="hidden" name="action" value="list"/>
+<form name="searchFrm" method="post" action="/getOrders/${getOrders.orderId}">
 <input type="hidden" name="p" value="1"/>
 
-주문번호<input type="text" name="order_id"/>
+주문번호<input type="text" name="orderId"/>
 	  <input type="submit" value="검색"/><br/>
 </form>
 </div>
@@ -106,16 +116,16 @@
 	
 	<c:forEach items="${ordersList}" var="ordersList">
 		<tr>
-			<td>${ordersList.ORDER_ID()}</td>
-			<td>${ordersList.MENU_ID()}</td>
-			<td>${ordersList.ORDER_QUANTITY()}</td>
-			<td><a href="=${ordersList.ORDER_ID()}">삭제</a></td>
+			<td>${ordersList.orderId}</td>
+			<td>${ordersList.menuId}</td>
+			<td>${ordersList.orderQuantity}</td>
+			<td><a href="=${ordersList.orderId}">삭제</a></td>
 		</tr>
 	</c:forEach>
 </table>
 
 <!-- 페이징 -->
-<my:paging jsfunc="doList" paging="${paging}"/>
+<%-- <my:paging jsfunc="doList" paging="${paging}"/> --%>
 <script>
 	function doList(p) {
 		document.searchFrm.p.value = p;
@@ -126,9 +136,9 @@
 	//주문하기 버튼을 눌렀을 때 펑션
 	function order_form_submit(){
 	
-	//is_reserve는 라디오 박스 선택 여부 값으로 비교한다
-	var is_reserve = document.formo.order_reserve.value
-	//= 대입  == 비교  === 완전한 비교
+		//is_reserve는 라디오 박스 선택 여부 값으로 비교한다
+		var is_reserve = document.formo.order_reserve.value
+		//= 대입  == 비교  === 완전한 비교
 		
 		//일반주문이면 normal_modal 팝업을 연다
 		if(is_reserve==="true"){
@@ -147,39 +157,39 @@
 		//order_item에 select_item_form에서 선택된 menu_id의 text와 값을 담고, 수량도 담는다.
 		var select_item_form = $(document).find("#select_item_form");
 		var order_item = {};
-		order_item.menu_id = select_item_form.find("select[name='menu_id'] option:selected").val();
-		order_item.menu_name = select_item_form.find("select[name='menu_id'] option:selected").text();
-		order_item.order_quantity =select_item_form.find("input[name='order_quantity']").val();
+		order_item.menuId = select_item_form.find("select[name='menuId'] option:selected").val();
+		order_item.menuName = select_item_form.find("select[name='menuId'] option:selected").text();
+		order_item.orderQuantity =select_item_form.find("input[name='orderQuantity']").val();
 		
 		console.log(order_item)	//order_item의 콘솔 로그를 남긴다. 무엇이 담겼는지
 		
-		var order_item_menu_id = $("<input type='hidden' name='menu_id'>");
-		order_item_menu_id.val(order_item.menu_id)
+		var order_item_menuId = $("<input type='hidden' name='menuId'>");
+		order_item_menuId.val(order_item.menuId)
 		//order_item에 담긴 menu_id는 보이지 않게하고 이름은 menu_id이며 값은 menu_id가 담겼다.
 		
-		var order_item_menu_name = $("<input type='hidden' name='menu_name'>");
-		order_item_menu_name.val(order_item.menu_name)
+		var order_item_menuName = $("<input type='hidden' name='menuName'>");
+		order_item_menuName.val(order_item.menuName)
 		//order_item에 담긴 menu_name는 보이지 않게하고 이름은 menu_name이며 값은 menu_name가 담겼다.
 		
-		var order_item_order_quantity = $("<input type='hidden' name='order_quantity'>");
-		order_item_order_quantity.val(order_item.order_quantity)
+		var order_item_orderQuantity = $("<input type='hidden' name='orderQuantity'>");
+		order_item_orderQuantity.val(order_item.orderQuantity)
 		//order_item에 담긴 order_quantity는 보이지 않게하고 이름은  order_quantity이며 값은  order_quantity가 담겼다.
 		
 		var order_item_div= $("<div class='order_item_div'>");
 		//order_item_div는 class이름이 order_item_div이다
 		
 		
-		order_item_div.append(order_item_menu_id);	//order_item_div의 자식으로 order_item에 담은 menu_id 값을 담는다
-		order_item_div.append(order_item_menu_name); //order_item_div의 자식으로 order_item에 담은 menu_name 값을 담는다
-		order_item_div.append(order_item_order_quantity); //order_item_div의 자식으로 order_item에 담은 order_quantity 값을 담는다
+		order_item_div.append(order_item_menuId);	//order_item_div의 자식으로 order_item에 담은 menu_id 값을 담는다
+		order_item_div.append(order_item_menuName); //order_item_div의 자식으로 order_item에 담은 menu_name 값을 담는다
+		order_item_div.append(order_item_orderQuantity); //order_item_div의 자식으로 order_item에 담은 order_quantity 값을 담는다
 		order_item.receipter =$(document).find("#reserve_form").find("input[name='receipter']").val();	//order_item에 reserve_form에서 이름이 receipter인 input 박스의 값을 담는다
-		order_item.receipt_date =$(document).find("#reserve_form").find("input[name='receipt_date']").val(); //order_item에 reserve_form에서 이름이 receipt_date인 input 박스의 값을 담는다
+		order_item.receiptDate =$(document).find("#reserve_form").find("input[name='receiptDate']").val(); //order_item에 reserve_form에서 이름이 receipt_date인 input 박스의 값을 담는다
 		var order_item_table = $(document).find("table.order_item_table tbody");	//order_item_table은 table중 order_item_table의 tbody를 갖는다.
 		var order_item_tr = $("<tr>");	//위와 마찬가지로 order_item_tr은 tr태그를 담는다
-		order_item_tr.append( $("<td>"+order_item.menu_name+" </td>"))	//order_item_tr 태그의 자식으로 td태그를 쓰고 그 사이에 order_item에 담은 menu_name의 값을 뱉어낸다
-		order_item_tr.append( $("<td>"+order_item.order_quantity+" </td>"))	//order_quantity를 뱉어낸다.
+		order_item_tr.append( $("<td>"+order_item.menuName+" </td>"))	//order_item_tr 태그의 자식으로 td태그를 쓰고 그 사이에 order_item에 담은 menu_name의 값을 뱉어낸다
+		order_item_tr.append( $("<td>"+order_item.orderQuantity+" </td>"))	//order_quantity를 뱉어낸다.
 		order_item_tr.append( $("<td>"+order_item.receipter+" </td>"))	//receipter를 뱉어낸다.
-		order_item_tr.append( $("<td>"+order_item.receipt_date+" </td>"))	//recipt_date를 뱉어낸다.
+		order_item_tr.append( $("<td>"+order_item.receiptDate+" </td>"))	//recipt_date를 뱉어낸다.
 		order_item_tr.append( $("<td>"+"<button onclick='delect_reserve_item(this)' class='btn btn-danger reserve_item_delete'>x</button>"+" </td>"));
 		//삭제버튼인데 x 버튼을 만들고 그걸 클릭시 delect_reserve_item 펑션이 동작하고 reserve_item_delete를 주어서 클릭이 동작한 값만 삭제하도록 하였다.
 		order_item_table.append(order_item_tr);	//order_item_table의 자식으로 order_item_tr을 주었다.
@@ -224,36 +234,36 @@
 		//order_item에 select_item_form에서 선택된 menu_id의 text와 값을 담고, 수량도 담는다.
 		var select_item_formN = $(document).find("#select_item_formN");
 		var Norder_item = {};
-		Norder_item.menu_id = select_item_formN.find("select[name='menu_id'] option:selected").val();
-		Norder_item.menu_name = select_item_formN.find("select[name='menu_id'] option:selected").text();
-		Norder_item.order_quantity = select_item_formN.find("input[name='order_quantity']").val();
+		Norder_item.menuId = select_item_formN.find("select[name='menuId'] option:selected").val();
+		Norder_item.menuName = select_item_formN.find("select[name='menuId'] option:selected").text();
+		Norder_item.orderQuantity = select_item_formN.find("input[name='orderQuantity']").val();
 		
 		console.log(Norder_item)	//order_item의 콘솔 로그를 남긴다. 무엇이 담겼는지
 		
-		var Norder_item_menu_id = $("<input type='hidden' name='menu_id'>");
-		Norder_item_menu_id.val(Norder_item.menu_id)
+		var Norder_item_menuId = $("<input type='hidden' name='menuId'>");
+		Norder_item_menuId.val(Norder_item.menuId)
 		//order_item에 담긴 menu_id는 보이지 않게하고 이름은 menu_id이며 값은 menu_id가 담겼다.
 		
-		var Norder_item_menu_name = $("<input type='hidden' name='menu_name'>");
-		Norder_item_menu_name.val(Norder_item.menu_name)
+		var Norder_item_menuName = $("<input type='hidden' name='menuName'>");
+		Norder_item_menuName.val(Norder_item.menuName)
 		//order_item에 담긴 menu_name는 보이지 않게하고 이름은 menu_name이며 값은 menu_name가 담겼다.
 		
-		var Norder_item_order_quantity = $("<input type='hidden' name='order_quantity'>");
-		Norder_item_order_quantity.val(Norder_item.order_quantity)
+		var Norder_item_orderQuantity = $("<input type='hidden' name='orderQuantity'>");
+		Norder_item_orderQuantity.val(Norder_item.orderQuantity)
 		//order_item에 담긴 order_quantity는 보이지 않게하고 이름은  order_quantity이며 값은  order_quantity가 담겼다.
 		
 		var Norder_item_div= $("<div class='Norder_item_div'>");
 		//order_item_div는 class이름이 order_item_div이다
 		
 		
-		Norder_item_div.append(Norder_item_menu_id);	//order_item_div의 자식으로 order_item에 담은 menu_id 값을 담는다
-		Norder_item_div.append(Norder_item_menu_name); //order_item_div의 자식으로 order_item에 담은 menu_name 값을 담는다
-		Norder_item_div.append(Norder_item_order_quantity); //order_item_div의 자식으로 order_item에 담은 order_quantity 값을 담는다
+		Norder_item_div.append(Norder_item_menuId);	//order_item_div의 자식으로 order_item에 담은 menu_id 값을 담는다
+		Norder_item_div.append(Norder_item_menuName); //order_item_div의 자식으로 order_item에 담은 menu_name 값을 담는다
+		Norder_item_div.append(Norder_item_orderQuantity); //order_item_div의 자식으로 order_item에 담은 order_quantity 값을 담는다
 		
 		var Norder_item_table = $(document).find("table.Norder_item_table tbody");	//order_item_table은 table중 order_item_table의 tbody를 갖는다.
 		var Norder_item_tr = $("<tr>");	//위와 마찬가지로 order_item_tr은 tr태그를 담는다
-		Norder_item_tr.append( $("<td>"+Norder_item.menu_name+" </td>"))	//order_item_tr 태그의 자식으로 td태그를 쓰고 그 사이에 order_item에 담은 menu_name의 값을 뱉어낸다
-		Norder_item_tr.append( $("<td>"+Norder_item.order_quantity+" </td>"))	//order_quantity를 뱉어낸다.
+		Norder_item_tr.append( $("<td>"+Norder_item.menuName+" </td>"))	//order_item_tr 태그의 자식으로 td태그를 쓰고 그 사이에 order_item에 담은 menu_name의 값을 뱉어낸다
+		Norder_item_tr.append( $("<td>"+Norder_item.orderQuantity+" </td>"))	//order_quantity를 뱉어낸다.
 		Norder_item_tr.append( $("<td>"+"<button onclick='delect_normal_item(this)' class='btn btn-danger normal_item_delete'>x</button>"+" </td>"));
 		//삭제버튼인데 x 버튼을 만들고 그걸 클릭시 delect_reserve_item 펑션이 동작하고 reserve_item_delete를 주어서 클릭이 동작한 값만 삭제하도록 하였다.
 		Norder_item_table.append(Norder_item_tr);	//order_item_table의 자식으로 order_item_tr을 주었다.
@@ -294,7 +304,7 @@
 <div id="reserve_modal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
     <!-- Modal content-->
-    <div class="modal-content">
+    <div id="reserve-content" class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">예약 주문</h4>
@@ -304,21 +314,20 @@
 	<div class="col-xs-7">
 	<form align="left" action="" id="select_item_form">
 	<label>메뉴 :</label>
-	<select class="form-control" name="menu_id">
+	<select class="form-control" name="menuId">
 			<option value="">선택</option>
 		<c:forEach items="${column_List}" var="column" varStatus="status">
-   			<option value="${menu_id[status.index]}">${column}</option>
+   			<option value="${menuId[status.index]}">${column}</option>
 		</c:forEach>
 	</select><br>
-	<label>수량 :</label><input type="text" class="form-control" name="order_quantity"><br>
+	<label>수량 :</label><input type="text" class="form-control" name="orderQuantity"><br>
 	</form>
 	
-	<form align="left" name="reserve_form" id="reserve_form" style="border:1 solid gray" action="orders_control.jsp">
-	<input type ="hidden" name="action" value="insertR"/>
-	<label>담당직원 :</label><input type="text" class="form-control" name="employee_id"><br>
+	<form align="left" name="reserve_form" id="reserve_form" style="border:1 solid gray" action="/kanu/insertR">
+	<label>담당직원 :</label><input type="text" class="form-control" name="employeeId"><br>
 	<label>예약자 :</label><input type="text" class="form-control" name="reserver"><br>
 	<label>수령자 :</label><input type="text" class="form-control" name="receipter"><br>
-	<label>예약시간 :</label><input type="date" class="form-control" name="receipt_date"><br>
+	<label>예약시간 :</label><input type="date" class="form-control" name="receiptDate"><br>
 	</form>
 	</div>
 	<div class="col-xs-5 reserve_view">
@@ -358,7 +367,7 @@
   <div class="modal-dialog modal-lg">
   
     <!-- Modal content-->
-    <div class="modal-content">
+    <div id="normal-content" class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">일반 주문</h4>
@@ -368,18 +377,17 @@
 	<div class="col-xs-7">
 	<form align="left" action="" id="select_item_formN">
 	<label>메뉴 :</label>
-	<select class="form-control" name="menu_id">
+	<select class="form-control" name="menuId">
 			<option value="">선택</option>
 		<c:forEach items="${column_List}" var="column" varStatus="status">
-   			<option value="${menu_id[status.index]}">${column}</option>
+   			<option value="${menuId[status.index]}">${column}</option>
 		</c:forEach>
 	</select><br>
-	<label>수량 :</label><input type="text" class="form-control" name="order_quantity"><br>
+	<label>수량 :</label><input type="text" class="form-control" name="orderQuantity"><br>
 	</form>
 	
-	<form align="left" name="normal_form" id="normal_form" style="border:1 solid gray" action="orders_control.jsp">
-	<input type ="hidden" name="action" value="insert"/>
-	<label>담당직원 :</label><input type="text" class="form-control" name="employee_id"><br>
+	<form align="left" name="normal_form" id="normal_form" style="border:1 solid gray" action="/kanu/insert">
+	<label>담당직원 :</label><input type="text" class="form-control" name="employeeId"><br>
 	</form>
 	</div>
 	<div class="col-xs-5 reserve_view">
