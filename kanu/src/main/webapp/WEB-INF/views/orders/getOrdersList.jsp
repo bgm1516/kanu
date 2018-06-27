@@ -98,7 +98,8 @@
 <hr>
 <text align="center"><H2>주문받은목록</H2></text>
 <div align="center">
-<form name="searchFrm" method="post" action="/getOrders/${getOrders.orderId}">
+<form name="searchFrm" method="post" action="${pageContext.request.contextPath}/getOrdersList">
+<%-- ${pageContext.request.contextPath}는 어떤 경로던간에 상위폴더를 자동적으로 연결 --%>
 <input type="hidden" name="p" value="1"/>
 
 주문번호<input type="text" name="orderId"/>
@@ -106,20 +107,24 @@
 </form>
 </div>
 
-<table border='1' width='290' align='center' id='view'>
+<table border='1' width='350' height='100%' align='center' id='view'>
 	<tr align="center">
 		<th>주문번호</th>
-		<th>메뉴정보</th>
+		<th>메뉴이름</th>
+		<th>개당가격</th>
 		<th>주문수량</th>
+		<th>총 가격</th>
 		<th>삭제</th>
 	</tr>
 	
 	<c:forEach items="${ordersList}" var="ordersList">
 		<tr>
 			<td>${ordersList.orderId}</td>
-			<td>${ordersList.menuId}</td>
+			<td>${ordersList.menuName}</td>
+			<td>${ordersList.price}</td>
 			<td>${ordersList.orderQuantity}</td>
-			<td><a href="=${ordersList.orderId}">삭제</a></td>
+			<td>${ordersList.orderTotalsum}</td>
+			<td><a href="${pageContext.request.contextPath}/delete/${ordersList.orderId}">삭제</a></td>
 		</tr>
 	</c:forEach>
 </table>
@@ -323,7 +328,7 @@
 	<label>수량 :</label><input type="text" class="form-control" name="orderQuantity"><br>
 	</form>
 	
-	<form align="left" name="reserve_form" id="reserve_form" style="border:1 solid gray" action="/kanu/insertR">
+	<form align="left" name="reserve_form" id="reserve_form" style="border:1 solid gray" action="${pageContext.request.contextPath}/insertR">
 	<label>담당직원 :</label><input type="text" class="form-control" name="employeeId"><br>
 	<label>예약자 :</label><input type="text" class="form-control" name="reserver"><br>
 	<label>수령자 :</label><input type="text" class="form-control" name="receipter"><br>
@@ -386,7 +391,7 @@
 	<label>수량 :</label><input type="text" class="form-control" name="orderQuantity"><br>
 	</form>
 	
-	<form align="left" name="normal_form" id="normal_form" style="border:1 solid gray" action="/kanu/insert">
+	<form align="left" name="normal_form" id="normal_form" style="border:1 solid gray" action="${pageContext.request.contextPath}/insertN">
 	<label>담당직원 :</label><input type="text" class="form-control" name="employeeId"><br>
 	</form>
 	</div>
