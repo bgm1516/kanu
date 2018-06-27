@@ -98,12 +98,14 @@ margin: auto;
 			</div> <!-- 중간정렬 -->
 			<div id="insertfrm">
 			<br><br>
-		<form action="insertStock.do">
+		<form action="insertStock.do" method="get">
 			
 			제품분류:<input type="text" name="productId">
 			보관위치:<input type="text" name="productLocation">
+			입고수량:<input type="text" name="stockQuantity" value="0" readonly>
 			최소수량:<input type="text" name="minimumQuantity">
 			공급사ID:<input type="text" name="supplierId">
+			
 			<input type="submit" value="추가"> 
 			<br><br><br><br><br><br>
 		</form>

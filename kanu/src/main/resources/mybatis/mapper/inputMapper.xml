@@ -5,7 +5,7 @@
 <mapper namespace="com.kanu.web.stock.impl.InputDAO">
 
 <!-- 전체 조회  -->
-	<select id="getStockList" resultType="map">
+	<select id="getInputList" resultType="map">
 		SELECT	INPUT_NUMBER			as "inputNumber",
 				INPUT_NAME				as "inputName",
 				INPUT_QUANTITY			as "inputQuantity",
@@ -15,19 +15,19 @@
 				SUPPLIER_ID				as "supplierId",
 				INPUT_DATE				as "inputDate"
 		FROM INPUT
-		<!-- <where>
+		<where>
 			<if test="productId != null and productId != ''">
 				INPUT.PRODUCT_ID = #{productId}
-0			</if>
+			</if>
 			<if test="supplierId != null and supplierId != ''">
 				INPUT.SUPPLIER_ID = #{supplierId}
 			</if>
-		</where> -->
+		</where>
 		ORDER BY INPUT_DATE DESC;
 	</select>	
 <!-- 단건 조회  -->
 	
-	<select id="getStock" resultType="stockVO" parameterType="string">
+	<!-- <select id="getInput" resultType="inputVO" parameterType="string">
 		<![CDATA[
 		SELECT 	INPUT_NUMBER,
 				INPUT_NAME,
@@ -40,9 +40,9 @@
 		FROM	INPUT
 		WHERE	INPUT_NUMBER = #{id}
 		]]>
-	</select>
+	</select> -->
 <!-- 등록 -->
-	<insert id="insertStock" parameterType="stockVO">
+	<insert id="insertStock" parameterType="inputVO">
 	
 		<selectKey keyProperty="INPUT_NUMBER" resultType="string" order="BEFORE">
 			SELECT MAX(PRODUCT_ID)+1 FROM INPUT
@@ -70,7 +70,7 @@
 				)
 	</insert>
 <!-- 수정 -->
-	<update id="updateStock" parameterType="stockVO">
+	<update id="updateInput" parameterType="inputVO">
 		UPDATE INPUT SET
 					INPUT_NAME = #{inputName},
 					INPUT_QUANTITY = #{inputQuantity},
@@ -83,14 +83,14 @@
 		
 	</update>
 <!-- 단건 삭제 -->
-	<delete id="deleteSomething" parameterType="int">
+	<delete id="deleteInput" parameterType="string">
 		DELETE FROM INPUT
-		WHERE INPUT_NUMBER = #{id}
+		WHERE INPUT_NUMBER = #{value}
 	</delete>
 	
 	
 <!-- 다건 삭제 -->	
-	<delete id="deleteStockList">
+	<delete id="deleteInputList">
 		DELETE FROM INPUT
 		WHERE INPUT_NUMBER IN
 		<foreach collection="list" item="item" open="(" close=")" separator=",">

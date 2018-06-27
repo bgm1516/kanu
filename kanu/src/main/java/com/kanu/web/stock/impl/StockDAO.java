@@ -32,8 +32,8 @@ public class StockDAO {
 		mybatis.update("com.kanu.web.stock.impl.StockDAO.updateStock", vo);
 	}
 	//단건삭제
-	public void deleteStock(String id) {
-		mybatis.delete("com.kanu.web.stock.impl.StockDAO.deleteStock", id);
+	public void deleteStock(String value) {
+		mybatis.delete("com.kanu.web.stock.impl.StockDAO.deleteStock", value);
 	}
 	//다건삭제
 	public void deleteStockList(List<String> list) {

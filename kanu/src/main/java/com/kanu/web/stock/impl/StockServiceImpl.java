@@ -41,7 +41,7 @@ public class StockServiceImpl implements StockService{
 	@Override
 	public void deleteStock(String id) {
 		// TODO Auto-generated method stub
-		dao.deleteStock("id");
+		dao.deleteStock(id);
 	}
 
 	@Override

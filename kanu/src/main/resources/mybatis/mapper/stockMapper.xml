@@ -45,12 +45,14 @@
 		INSERT INTO STOCK (
 							PRODUCT_ID,
 							PRODUCT_LOCATION,
+							STOCK_QUANTITY,
 							MINIMUM_QUANTITY,
 							SUPPLIER_ID
 							)
 		VALUES	(
 					#{productId},
 					#{productLocation},
+					#{stockQuantity},
 					#{minimumQuantity},
 					#{supplierId}
 				)
@@ -67,9 +69,9 @@
 		
 	</update>
 <!-- 단건 삭제 -->
-	<delete id="deleteSomething" parameterType="int">
+	<delete id="deleteStock" parameterType="string">
 		DELETE FROM STOCK
-		WHERE PRODUCT_ID = #{id}
+		WHERE PRODUCT_ID = #{value}
 	</delete>
 	
 	

@@ -1,10 +1,14 @@
 package com.kanu.web.stock.view;
+import java.io.IOException;
+import java.io.PrintWriter;
 /***
  * 작성자 : 권혜진
  */
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +23,6 @@ import com.kanu.web.stock.StockVO;
 import com.kanu.web.stock.impl.StockDAO;
 
 @Controller
-@SessionAttributes("stock")
 public class StockController {
 
 	@Autowired
@@ -50,19 +53,19 @@ public class StockController {
 	}
 	
 	//등록처리
-		@RequestMapping("/insertStock.do")
-		public String insertStock(@ModelAttribute("stock") StockVO vo) {
-			
-			/*//System.out.println("제품ID : " + vo.getProductId());
-			System.out.println("제품위치 : " + vo.getProductLocation());
-			System.out.println("제품수량 : " + vo.getStockQuantity());
-			System.out.println("최소수량 : " + vo.getMinimumQuantity());
-			System.out.println("공급사ID : " + vo.getSupplierId());*/
-			
+
+		@RequestMapping(value="/insertStock", method = {RequestMethod.GET, RequestMethod.POST})
+		public String insertStock(StockVO vo) {
 			stockService.insertStock(vo);
-			return "getStockList.do";
+			 
+		return "redirect:/getStockList.do";
 		}
-		
+
+		/*//System.out.println("제품ID : " + vo.getProductId());
+		System.out.println("제품위치 : " + vo.getProductLocation());
+		System.out.println("제품수량 : " + vo.getStockQuantity());
+		System.out.println("최소수량 : " + vo.getMinimumQuantity());
+		System.out.println("공급사ID : " + vo.getSupplierId());*/
 		
 
 	/*//수정폼
@@ -84,7 +87,7 @@ public class StockController {
 		
 		stockService.updateStock(vo);
 		
-		return "getStockList.do";
+		return "redirect:getStockList.do";
 	}
 	
 	/*//등록폼
@@ -98,11 +101,12 @@ public class StockController {
 	
 	
 	//단건 삭제처리
-	@RequestMapping("/deleteStock.do")
+	/*@RequestMapping("/deleteStock.do")*/
+	@RequestMapping(value="/deleteStock")
 	public String deleteStock(@ModelAttribute("stock") StockVO vo) {
 		System.out.println("제품ID :" + vo.getProductId());
 		
 		stockService.deleteStock(vo.getProductId());
-		return "getStockList.do";
+		return "redirect:/getStockList.do";
 	}
 }
