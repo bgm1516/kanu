@@ -54,7 +54,7 @@ function cal(employeeId) {//아이디빼야하나?
 							<th align="center">${salary.monthWork}</th>
 							
 							<th><input type="button" value="급여계산"
-								onClick="cal('${salary.}')"></th>
+								onClick="cal('${salary.employeeId}')"></th>
 						</tr>
 						
 					</c:forEach>
