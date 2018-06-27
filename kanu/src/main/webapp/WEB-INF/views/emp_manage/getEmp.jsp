@@ -10,13 +10,15 @@
 
 <c:if test="${!empty empOne}">
 <form style="color: black;">
-
-id :${empOne.employeeId } <br>
-
-name : ${empOne.employeeName } <br>
-
-e-mail : ${empOne.empEmail}
-
+<table class="table table-striped">
+<tr>
+<th>ID</th><th>NAME</th><th>E-MAIL</th></tr>
+<tr>
+<td>${empOne.employeeId}</td> 
+<td>${empOne.employeeName}</td> 
+<td>${empOne.empEmail}</td>	
+</tr>
+</table>
 </form>
 </c:if>
 

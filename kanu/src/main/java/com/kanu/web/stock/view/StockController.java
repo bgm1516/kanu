@@ -1,5 +1,7 @@
 package com.kanu.web.stock.view;
-
+/***
+ * 작성자 : 권혜진
+ */
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,27 +23,29 @@ import com.kanu.web.stock.impl.StockDAO;
 public class StockController {
 
 	@Autowired
-	StockService stockService;
+	private StockService stockService;
 	
-	@ModelAttribute("conditionMap")
+	/*@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap(){
 		Map<String, String> conditionMap = new HashMap<String, String>();
 		conditionMap.put("제품ID", "PRODUCT_ID");
 		conditionMap.put("제품명", "PRODUCT_NAME");
 		conditionMap.put("공급사ID", "SUPPLIER_ID");
 		return conditionMap;
-	}
-	
-/*	//단건조회
-	@RequestMapping("/getStock.do")
-	public String getStock(Model model) {
-		
 	}*/
+	
+	//단건조회
+	@RequestMapping("/getStock.do")
+	public String getStock(StockVO vo, Model model) {
+		model.addAttribute("stock", stockService.getStock());
+		return "stock/getStock";
+	}
 	
 	//목록조회
 	@RequestMapping("/getStockList.do")
 	public String getStockList(Model model) {
 		model.addAttribute("stockList", stockService.getStockList());
+		System.out.println(stockService.getStockList());
 		return "stock/getStockList";
 	}
 	
