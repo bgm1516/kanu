@@ -67,10 +67,10 @@ public class SalaryController {
 		
 	}
 		//단건 삭제처리
-		@RequestMapping(value="/deleteSalary",method={RequestMethod.GET, RequestMethod.POST})
+		@RequestMapping(value="/deleteSalary",method=RequestMethod.GET)
 		public String deleteSalary(@ModelAttribute("model") SalaryVO vo) {
 			System.out.println("사용자ID :" + vo.getEmployeeId());
-			salaryService.deleteSalary(vo.getEmployeeId());
+			salaryService.deleteSalary(vo);
 			return "redirect:/getSalaryList.do";
 	}
 }

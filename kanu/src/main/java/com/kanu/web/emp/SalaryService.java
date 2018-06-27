@@ -19,5 +19,5 @@ public interface SalaryService {
 			public void updateSalary(SalaryVO vo);
 
 			// 삭제
-			public void deleteSalary(String employeeId);
+			public void deleteSalary(SalaryVO vo);
 }

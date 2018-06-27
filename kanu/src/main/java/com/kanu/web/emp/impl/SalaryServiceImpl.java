@@ -40,9 +40,9 @@ public class SalaryServiceImpl implements SalaryService{
 	}
 
 	@Override
-	public void deleteSalary(String employeeId) {
+	public void deleteSalary(SalaryVO vo) {
 		// TODO Auto-generated method stub
-		dao.deleteSalary(employeeId);
+		dao.deleteSalary(vo);
 	}
 
 }
