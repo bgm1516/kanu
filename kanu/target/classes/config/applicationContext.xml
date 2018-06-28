@@ -15,7 +15,7 @@
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-
+	<mvc:resources mapping="/ckeditor_4/**" location="/ckeditor_4/" />
 	<bean
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver"
 		p:order="1"
