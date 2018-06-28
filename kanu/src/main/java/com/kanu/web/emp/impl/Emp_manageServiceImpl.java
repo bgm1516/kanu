@@ -1,12 +1,12 @@
-package com.kanu.web.emp_manage.Impl;
+package com.kanu.web.emp.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kanu.web.emp_manage.Emp_manageService;
-import com.kanu.web.emp_manage.Emp_manageVO;
+import com.kanu.web.emp.Emp_manageService;
+import com.kanu.web.emp.Emp_manageVO;
 
 @Service("empManageService")
 public class Emp_manageServiceImpl implements Emp_manageService{

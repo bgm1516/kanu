@@ -10,7 +10,15 @@ public class OrdersVO {
 	private String reserver;
 	private String receipter;
 	private String receiptDate;
+	private String price;
+	private String orderTotalsum;
 	
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
 	public String getOrderId() {
 		return orderId;
 	}
@@ -59,12 +67,21 @@ public class OrdersVO {
 	public void setReceiptDate(String receiptDate) {
 		this.receiptDate = receiptDate;
 	}
+	public String getOrderTotalsum() {
+		return orderTotalsum;
+	}
+	public void setOrderTotalsum(String orderTotalsum) {
+		this.orderTotalsum = orderTotalsum;
+	}
 	@Override
 	public String toString() {
 		return "OrdersVO [orderId=" + orderId + ", menuId=" + menuId + ", orderQuantity=" + orderQuantity
 				+ ", menuName=" + menuName + ", employeeId=" + employeeId + ", reserver=" + reserver + ", receipter="
-				+ receipter + ", receiptDate=" + receiptDate + "]";
+				+ receipter + ", receiptDate=" + receiptDate + ", price=" + price + ", orderTotalsum=" + orderTotalsum
+				+ "]";
 	}
+	
+	
 	
 	
 	

@@ -1,4 +1,4 @@
-package com.kanu.web.emp_manage;
+package com.kanu.web.emp;
 
 public class Emp_manageVO {
 

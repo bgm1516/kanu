@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kanu.web.work_manage.work_manageDAO">
+
+	<select id="getWorkList" resultType="workManVO">
+	
+		SELECT EMPLOYEE_ID as "employeeId", 
+		 	   WORK_START as "workStart",
+			   WORK_END as "workEnd",
+			   DAY_WORKTIME as "dayWorktime"
+			   FROM WORK_MANAGE
+			   ORDER BY WORK_START
+	</select>
+
+
+	<select id="getWork" parameterType="workManVO" resultType="workManVO">
+		EMPLOYEE_ID as "employeeId", 
+		 	   WORK_START as "workStart",
+			   WORK_END as "workEnd",
+			   DAY_WORKTIME as "dayWorktime"
+			   FROM WORK_MANAGE
+	
+		<where>
+		<if test="employeeId!=null and employeeId!=''">
+			EMPLOYEE_ID=#{employeeId}
+		</if>
+		<if test="workStart!=null and workStart!=''">
+			WORK_START=#{workStart}
+		</if>
+	 	<if test="WorkEnd!=null and workEnd!=''">
+			WORK_END=#{workEnd} 
+		</if>
+		<if test="dayWorktime!=null and dayWorktime!=''">
+			DAY_WORKTIME=#{dayWorktime}
+		</if>
+	
+		</where>
+		 ORDER BY WORK_START
+	</select>
+
+<insert id="insertWork" parameterType="workManVO">
+		
+		INSERT INTO WORK_MANAGE( EMPLOYEE_ID,
+								 WORK_START
+								)
+		VALUES (#{employeeId},
+				SYSDATE
+			   )
+</insert>
+
+<update id="updateWorkEnd" parameterType="workManVO">
+
+		UPDATE WORK_MANAGE
+		SET	WORK_END=SYSDATE
+		WHERE EMPLOYEE_ID = #{employeeId}
+		
+		
+	
+</update>
+
+<update id="updateDayWork" parameterType="workManVO">
+
+		UPDATE WORK_MANAGE
+		SET	DAY_WORKTIME=(SELECT (SUBSTR(WORK_END,10,2)*60-SUBSTR(WORK_START,10,2)*60)+ (SUBSTR(WORK_END,13,2)-SUBSTR(WORK_START,13,2)) FROM WORK_MANAGE 
+						WHERE EMPLOYEE_ID=#{employeeId} AND DAY_WORKTIME IS NULL)
+		WHERE EMPLOYEE_ID = #{employeeId} 
+		AND DAY_WORKTIME IS NULL
+		
+</update>
+
+
+<delete id="deleteWork" parameterType="string">
+
+		DELETE WORK_MANAGE 
+		WHERE EMPLOYEE_ID=#{employeeId}
+
+</delete>
+
+<delete id="deleteWorkList" parameterType="list">
+
+		DELETE WORK_MANAGE 
+		WHERE EMPLOYEE_ID=#{employeeId}
+
+</delete>
+
+</mapper>

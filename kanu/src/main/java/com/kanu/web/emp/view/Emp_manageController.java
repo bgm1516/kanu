@@ -1,4 +1,4 @@
-package com.kanu.web.emp_manage.view;
+package com.kanu.web.emp.view;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.kanu.web.emp_manage.Emp_manageService;
-import com.kanu.web.emp_manage.Emp_manageVO;
+import com.kanu.web.emp.Emp_manageService;
+import com.kanu.web.emp.Emp_manageVO;
 @SessionAttributes("empStore")
 @Controller
 public class Emp_manageController {
@@ -24,7 +24,7 @@ public class Emp_manageController {
 	}
 	@RequestMapping("/getEmp")
 	public String getEmp(Emp_manageVO vo, Model model ) {
-		model.addAttribute("empOne", empManageService.getEmp(vo));     
+		model.addAttribute("empOne", empManageService.getEmp(vo));         
 		return "emp_manage/getEmp";
 	}
 	@RequestMapping(value="/insertEmp", method=RequestMethod.GET )

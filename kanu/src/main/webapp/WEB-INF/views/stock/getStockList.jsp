@@ -40,14 +40,9 @@ margin: auto;
 			location.href = "deleteStock.do?productId=" + productId;
 
 		}
-	function savecheck(){
-		
-		location.href = "insertStock.do";
 	}
 	
-	/* function stockcheck(e){
-		 */
-	}
+	
 </script>
 
 </head>
@@ -139,16 +134,31 @@ margin: auto;
 	$("#supplierId").val(supId)
 	
 	
-    str +=    " * 클릭된 Row의 td값 = pId. : <font color='red'>" + pId + "</font>" +
+    /* str +=    " * 클릭된 Row의 td값 = pId. : <font color='red'>" + pId + "</font>" +
     ", pLocation : <font color='red'>" + pLocation + "</font>" +
     ", pQuantity : <font color='red'>" + pQuantity + "</font>" +
     ", pMQuantity : <font color='red'>" + pMQuantity + "</font>" +
-    ", supId : <font color='red'>" + supId + "</font>";        
+    ", supId : <font color='red'>" + supId + "</font>";         */
     
 
 /* $("#ex1_Result1").html(" * 클릭한 Row의 모든 데이터 = " + tr.text());       */ 
 /* $("#ex1_Result2").html(str); */
-});			
+});	
+	
+	//sendWhere함수 (insert || update)
+	$("#sendWhere").click(function(){
+		var requestValue = $("#form1").serialize();
+		$.ajax({
+			type:"post",
+			url:"./stock/getStocklist.do",
+			data:requestValue,
+			success:function(requestValue){
+				if ($("#"))
+			}
+			
+		})
+		
+	})
 		});
 </script>
 					</form>
@@ -157,10 +167,10 @@ margin: auto;
 				<div class="col"></div>
 				<!-- 중간정렬 -->
 
-				<form action="insertStock.do" method="get">
-					<input type="reset" value="추가"> <input type="button"
-						onclick="delcheck('${vo.productId}')" value="삭제"> <input
-						type="button" value="저장">
+				<form action="insertStock.do" id="form1" method="get">
+					<input type="reset" value="추가"> 
+					<input type="button" onclick="delcheck('${vo.productId}')" value="삭제"> 
+					<input type="button" id="sendWhere" value="저장">
 					<table border="1">
 						<tr>
 							<td>제품분류 :</td>

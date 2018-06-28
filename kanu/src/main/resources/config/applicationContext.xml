@@ -11,11 +11,20 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
 	<mvc:annotation-driven></mvc:annotation-driven>
+
 	
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:resources mapping="/ckeditor_4/**" location="/ckeditor_4/" />
+
+
+	
+
+	<context:component-scan
+		base-package="com.kanu.web"></context:component-scan>
+	
+
 	<bean
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver"
 		p:order="1"
@@ -36,29 +45,42 @@
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-
-	<context:component-scan base-package="com.kanu.web"></context:component-scan>
-
-	<context:property-placeholder location="classpath:database.properties" />
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	
+	<context:property-placeholder
+		location="classpath:database.properties" />
+	<bean id="dataSourceSpied"
+		class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${jdbc.driver}"></property>
 		<property name="url" value="${jdbc.url}"></property>
 		<property name="username" value="${jdbc.username}"></property>
 		<property name="password" value="${jdbc.password}"></property>
 	</bean>
 
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
+		<property name="configLocation"
+			value="classpath:mybatis/mybatis-config.xml" />
 		<property name="mapperLocations">
 			<list>
 				<value>classpath*:mybatis/mapper/*Mapper.xml</value>
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+
+	<bean id="dataSource"
+		class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSourceSpied" />
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE" />
+				<property name="sqlPrefix" value="SQL:::" />
+			</bean>
+		</property>
 	</bean>
 
 </beans>
