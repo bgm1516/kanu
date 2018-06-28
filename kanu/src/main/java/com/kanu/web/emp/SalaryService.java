@@ -21,3 +21,4 @@ public interface SalaryService {
 			// 삭제
 			public void deleteSalary(SalaryVO vo);
 }
+ 

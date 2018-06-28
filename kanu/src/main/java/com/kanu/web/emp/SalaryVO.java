@@ -8,7 +8,7 @@ public class SalaryVO {
 	private String duringTime;
 	private String monthSalary;
 	private String monthWork;
-	private String employeeName;
+	private String employeeName; 
 	
 	public String getEmployeeName() {
 		return employeeName;

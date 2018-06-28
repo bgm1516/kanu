@@ -70,7 +70,7 @@
 			#{salaryDate},
 			#{duringTime},
 			#{monthSalary},
-			#{monthWork}
+			#{monthWork} 
 			)
 			
 	</insert>

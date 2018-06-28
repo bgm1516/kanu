@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kanu.web.emp.SalaryService;
 import com.kanu.web.emp.SalaryVO;
 import com.kanu.web.emp.impl.SalaryDAO;
-
+ 
 @Service("SalaryService")
 
 public class SalaryServiceImpl implements SalaryService{

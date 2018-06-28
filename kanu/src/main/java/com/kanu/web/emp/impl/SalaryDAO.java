@@ -15,7 +15,7 @@ public class SalaryDAO {
 	@Autowired
 	SqlSessionTemplate mybatis;
 	
-	//전체 조회
+	//전체 조회 
 	
 	public List<Map<String,Object>> getSalaryList(SalaryVO vo){
 	return mybatis.selectList("com.kanu.web.emp.SalaryDAO.getSalaryList", vo);

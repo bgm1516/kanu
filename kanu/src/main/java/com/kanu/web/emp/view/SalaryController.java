@@ -72,7 +72,7 @@ public class SalaryController {
 			System.out.println("사용자ID :" + vo.getEmployeeId());
 			salaryService.deleteSalary(vo);
 			return "redirect:/getSalaryList.do";
-	}
+	} 
 }
 
 

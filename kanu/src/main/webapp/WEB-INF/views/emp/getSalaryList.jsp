@@ -84,7 +84,7 @@ function SelectDel() {
 		
 		<c:forEach items="${employee_nameList}" var="emp" varStatus="i">
 		<option value="${emp.EMPLOYEE_NAME}">${emp.EMPLOYEE_NAME}</option>
-		</c:forEach>
+		</c:forEach> 
 		
 			</select>
 			
