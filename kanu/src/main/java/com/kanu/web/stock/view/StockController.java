@@ -1,10 +1,14 @@
 package com.kanu.web.stock.view;
+import java.io.IOException;
+import java.io.PrintWriter;
 /***
  * 작성자 : 권혜진
  */
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +23,6 @@ import com.kanu.web.stock.StockVO;
 import com.kanu.web.stock.impl.StockDAO;
 
 @Controller
-@SessionAttributes("stock")
 public class StockController {
 
 	@Autowired
@@ -35,38 +38,38 @@ public class StockController {
 	}*/
 	
 	//단건조회
-	@RequestMapping("/getStock.do")
+	@RequestMapping("/getStock")
 	public String getStock(StockVO vo, Model model) {
-		model.addAttribute("stock", stockService.getStock());
+		model.addAttribute("stock", stockService.getStock()); //model.addAttribute는 ${} 안에 들어가는 이름이다.
 		return "stock/getStock";
 	}
 	
 	//목록조회
 	@RequestMapping("/getStockList.do")
-	public String getStockList(Model model) {
-		model.addAttribute("stockList", stockService.getStockList());
-		System.out.println(stockService.getStockList());
+	public String getStockList(Model model, StockVO vo) {
+		model.addAttribute("stockList", stockService.getStockList(vo));
+		System.out.println(stockService.getStockList(vo));
 		return "stock/getStockList";
 	}
 	
 	//등록처리
-		@RequestMapping("/insertStock.do")
-		public String insertStock(@ModelAttribute("stock") StockVO vo) {
-			
-			//System.out.println("제품ID : " + vo.getProductId());
-			System.out.println("제품위치 : " + vo.getProductLocation());
-			System.out.println("제품수량 : " + vo.getStockQuantity());
-			System.out.println("최소수량 : " + vo.getMinimumQuantity());
-			System.out.println("공급사ID : " + vo.getSupplierId());
-			
+
+		@RequestMapping(value="/insertStock", method = {RequestMethod.GET, RequestMethod.POST})
+		public String insertStock(StockVO vo) {
 			stockService.insertStock(vo);
-			return "getStockList.do";
+			 
+		return "redirect:/getStockList.do";
 		}
-		
+
+		/*//System.out.println("제품ID : " + vo.getProductId());
+		System.out.println("제품위치 : " + vo.getProductLocation());
+		System.out.println("제품수량 : " + vo.getStockQuantity());
+		System.out.println("최소수량 : " + vo.getMinimumQuantity());
+		System.out.println("공급사ID : " + vo.getSupplierId());*/
 		
 
-	/*//수정폼
-	@RequestMapping("/updateStock.do")
+	//수정폼
+	/*@RequestMapping("/updateStock.do")
 	public String updateStockForm(StockVO vo, StockDAO stockDAO) {
 		System.out.println("제품ID : ");
 		return "stock/updateStock";
@@ -76,33 +79,34 @@ public class StockController {
 	@RequestMapping("/updateStock.do")
 	public String updateStock(@ModelAttribute("stock")StockVO vo) {
 		
-		System.out.println("제품ID : " + vo.getProductId());
+		/*System.out.println("제품ID : " + vo.getProductId());
 		System.out.println("제품위치 : " + vo.getProductLocation());
 		System.out.println("제품수량 : " + vo.getStockQuantity());
 		System.out.println("최소수량 : " + vo.getMinimumQuantity());
-		System.out.println("공급사ID : " + vo.getSupplierId());
+		System.out.println("공급사ID : " + vo.getSupplierId());*/
 		
 		stockService.updateStock(vo);
 		
-		return "getStockList.do";
+		return "redirect:getStockList.do";
 	}
 	
-	/*//등록폼
+	//등록폼
 	@RequestMapping(value="insertStock", method=RequestMethod.GET)
 	public String insertStockForm() {
-		return "stock/insertStock";
+		return "redirect:getStockList.do";
 	}
-	*/
+	
 	
 	
 	
 	
 	//단건 삭제처리
-	@RequestMapping("/deleteStock.do")
+	/*@RequestMapping("/deleteStock.do")*/
+	@RequestMapping(value="/deleteStock")
 	public String deleteStock(@ModelAttribute("stock") StockVO vo) {
 		System.out.println("제품ID :" + vo.getProductId());
 		
 		stockService.deleteStock(vo.getProductId());
-		return "getStockList.do";
+		return "redirect:/getStockList.do";
 	}
 }

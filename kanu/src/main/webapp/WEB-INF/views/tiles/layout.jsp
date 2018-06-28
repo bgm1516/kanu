@@ -8,7 +8,7 @@
     <!-- meta tags 필요 -->   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	<script type="text/javascript" src="./resources/scripts/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
@@ -17,7 +17,6 @@
 	position:relative;
 }
 
-body{
    
   /* position: fixed;  */
   	top: 0px; 
@@ -127,7 +126,7 @@ body{
 		<br><br><br>
       <div class="starter-template">
         <h1></h1>
-   
+    </div>
     </main>
     <tiles:insertAttribute name="content"/>
 	
