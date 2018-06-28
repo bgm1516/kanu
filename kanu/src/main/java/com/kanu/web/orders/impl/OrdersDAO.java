@@ -45,8 +45,8 @@ public class OrdersDAO {
 	}
 
 	//order_history에 가짜 값 추가(primary_key)
-	public void insertOrderHistory() {
-		mybatis.insert("com.kanu.web.orders.OrdersDAO.insertOrderHistory");
+	public void insertOrderHistory(OrdersVO vo) {
+		mybatis.insert("com.kanu.web.orders.OrdersDAO.insertOrderHistory", vo);
 	}
 
 	//history의 order_id를 통한 orders에 값 추가
@@ -55,13 +55,13 @@ public class OrdersDAO {
 	}
 
 	//order_history에 업데이트 (예약x)
-	public void updateOrderHistory1() {
-		mybatis.update("com.kanu.web.orders.OrdersDAO.updateOrderHistory1");
+	public void updateOrderHistory1(OrdersVO vo) {
+		mybatis.update("com.kanu.web.orders.OrdersDAO.updateOrderHistory1", vo);
 	}
 
 	//order_history에 업데이트 (예약o)
-	public void updateOrderHistory2() {
-		mybatis.update("com.kanu.web.orders.OrdersDAO.updateOrderHistory2");
+	public void updateOrderHistory2(OrdersVO vo) {
+		mybatis.update("com.kanu.web.orders.OrdersDAO.updateOrderHistory2", vo);
 	}
 	
 	//reserve_history에 추가
