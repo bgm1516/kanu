@@ -13,7 +13,8 @@
 		<typeAlias alias="stockVO" type="com.kanu.web.stock.StockVO"/>
 		<typeAlias type="com.kanu.web.orders.MenuVO" alias="MenuVO"/>
 		<typeAlias type="com.kanu.web.emp.SalaryVO" alias="SalaryVO"/>
-		<typeAlias alias="empManVO" type="com.kanu.web.emp_manage.Emp_manageVO"/>
+		<typeAlias alias="empManVO" type="com.kanu.web.emp.Emp_manageVO"/>
+		<typeAlias alias="workManVO" type="com.kanu.web.work_manage.Work_manageVO"/>
 	</typeAliases>
 
 
