@@ -13,6 +13,7 @@
 	근무월<input type="text" name="monthWork">
 	월근무시간<input type="text" name="duringTime">
 	월급<input type="text" name="monthSalary">
+	직원이름<input type="text" name="employeeName">
 	<input type="submit" value="등록"/>
 	</form>
 

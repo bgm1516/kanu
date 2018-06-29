@@ -15,6 +15,7 @@
 	<input type="text" name="monthWork" value="${salary.monthWork}">
 	<input type="text" name="duringTime" value="${salary.duringTime}">
 	<input type="text" name="monthSalary" value="${salary.monthSalary}">
+	<input type="text" name="employeeName" value="${salary.employeeName}">
 	<input type="submit" value="삭제"/>
 </form>
 </body>
