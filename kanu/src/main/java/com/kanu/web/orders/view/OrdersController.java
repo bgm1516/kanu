@@ -1,6 +1,5 @@
 package com.kanu.web.orders.view;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,8 +57,8 @@ public class OrdersController {
 		
 	//delete <공통>.
 	@RequestMapping("/delete")
-	public String deleteOrders(Model model, OrdersVO vo) {
-		ordersService.deleteOrders(vo);
+	public String deleteOrdersN(Model model, OrdersVO vo) {
+		ordersService.deleteOrdersN(vo);
 		return "redirect:" + "/getOrdersList";
 	}
 }

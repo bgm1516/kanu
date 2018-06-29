@@ -76,27 +76,28 @@
 	
 	<!-- 4)reserve_history에 insert <insertR> -->
 	<insert id="insertReserveHistory" parameterType="com.kanu.web.orders.OrdersVO">
-		<selectKey keyProperty="orderId" resultType="string" order="BEFORE">
-			SELECT MAX(ORDER_ID)
-			FROM ORDER_HISTORY
-			WHERE RESERVATION = 'Y'
-		</selectKey>
 		INSERT INTO RESERVE_HISTORY (ORDER_ID, RESERVER, RECEIPTER, RECEIPT_DATE)
 		VALUES (#{orderId}, #{reserver}, #{receipter}, #{receiptDate})
 	</insert>
 	
 	<!-- 1)orders에 delete <공통> -->
 	<delete id="deleteOrders" parameterType="com.kanu.web.orders.OrdersVO">
-		DELETE FROM ORDERS WHERE ORDER_ID = #{orderId}
+		DELETE
+		FROM ORDERS
+		WHERE ORDER_ID = #{orderId}
 	</delete>
 	
 	<!-- 2)reserve_history에 delete <공통> -->
 	<delete id="deleteReserveHistory" parameterType="com.kanu.web.orders.OrdersVO">
-		DELETE FROM RESERVE_HISTORY WHERE ORDER_ID = #{orderId}
+		DELETE 
+		FROM RESERVE_HISTORY 
+		WHERE ORDER_ID = #{orderId}
 	</delete>
 	
 	<!-- 3)order_history에 delete <공통> -->
 	<delete id="deleteOrderHistory" parameterType="com.kanu.web.orders.OrdersVO">
-		DELETE FROM ORDER_HISTORY WHERE ORDER_ID = #{orderId}
+		DELETE 
+		FROM ORDER_HISTORY 
+		WHERE ORDER_ID = #{orderId}
 	</delete>
 </mapper>

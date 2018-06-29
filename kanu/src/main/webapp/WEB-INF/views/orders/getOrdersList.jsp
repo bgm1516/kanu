@@ -63,6 +63,9 @@
 #normal_modal select{
 	height : 35px;
 }
+#formd label{
+	margin-left: 1085px;
+}
 </style>
 
 
@@ -106,29 +109,30 @@
 	  <input type="submit" value="검색"/><br/>
 </form>
 </div>
-
-<table border='1' width='350' height='100%' align='center' id='view'>
-	<tr align="center">
-		<th>주문번호</th>
-		<th>메뉴이름</th>
-		<th>개당가격</th>
-		<th>주문수량</th>
-		<th>총 가격</th>
-		<th>삭제</th>
-	</tr>
-	
-	<c:forEach items="${ordersList}" var="ordersList">
-		<tr>
-			<td>${ordersList.orderId}</td>
-			<td>${ordersList.menuName}</td>
-			<td>${ordersList.price}</td>
-			<td>${ordersList.orderQuantity}</td>
-			<td>${ordersList.orderTotalsum}</td>
-			<td><a href="${pageContext.request.contextPath}/delete/${ordersList.orderId}">삭제</a></td>
+<form name="formd" id="formd" action="${pageContext.request.contextPath}/delete">
+	<table border='1' width='350' height='100%' align='center' id='view'>
+		<tr align="center">
+			<th>주문번호</th>
+			<th>메뉴이름</th>
+			<th>개당가격</th>
+			<th>주문수량</th>
+			<th>총 가격</th>
+			<th>삭제</th>
 		</tr>
-	</c:forEach>
-</table>
-
+		
+		<c:forEach items="${ordersList}" var="ordersList">
+			<tr>
+				<td>${ordersList.orderId}</td>
+				<td>${ordersList.menuName}</td>
+				<td>${ordersList.price}</td>
+				<td>${ordersList.orderQuantity}</td>
+				<td>${ordersList.orderTotalsum}</td>
+				<td><input type="checkbox" name="delete_order" value="true"/></td>
+			</tr>
+		</c:forEach>
+	</table>
+	<label><input type="button" value="삭제" onclick="del_submit()" name="del"></label>
+</form>
 <!-- 페이징 -->
 <%-- <my:paging jsfunc="doList" paging="${paging}"/> --%>
 <script>
@@ -137,6 +141,21 @@
 		document.searchFrm.submit();
 	}
 	
+	//삭제하기 function
+	function del_submit() {
+		var is_del = document.formd.delete_order.value	//is_del은 formd의 체크박스의 값
+		var formd = $(document).find("#formd");
+		
+		if(is_del==="true"){
+			$("input[name=delete_order]:checked").each(function() {
+				var chdel = $(this).val();
+				
+				console.log(chdel);
+			}
+		} else {
+			alert("삭제할 주문을 선택해주세요");
+		}
+	}
 	//예약 팝업
 	//주문하기 버튼을 눌렀을 때 펑션
 	function order_form_submit(){
