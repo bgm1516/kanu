@@ -11,6 +11,8 @@
 	<result property="duringTime" column="DURINGTIME"/>
 	<result property="monthSalary" column="MONTHSALARY"/>
 	<result property="monthWork" column="MONTHWORK"/>
+	<result property="employeeName" column="EMPLOYEENAME"/>
+  
   
   </resultMap>
   
@@ -20,8 +22,9 @@
   <!--as = alias 로 key주기  -->
 		SELECT 
 		EMPLOYEE_ID as "employeeId",
+	<!-- 	EMPLOYEE_NAME as "employeeName", -->
 		HIRE_TYPE as "hireType",
-		SALARY_DATE as "salaryDate",
+		TO_CHAR(SALARY_DATE,'YYYY-MM-DD') as "salaryDate",
 		DURING_TIME as "duringTime",
 		MONTH_SALARY as "monthSalary",
 		MONTH_WORK as "monthWork"
@@ -32,7 +35,7 @@
 	<!-- 단건 조회  -->
 	<select id="getSalary" resultType="SalaryVO" parameterType="string">
 	SELECT 
-	EMPLOYEE_ID,
+	EMPLOYEE_ID,<!-- GET_EMPLOYEE_NAME(EMPLOYEE_ID) EMPLOYEE_NAME, -->
 	HIRE_TYPE,
 	SALARY_DATE,
 	DURING_TIME,
@@ -67,7 +70,7 @@
 			#{salaryDate},
 			#{duringTime},
 			#{monthSalary},
-			#{monthWork}
+			#{monthWork} 
 			)
 			
 	</insert>
@@ -86,10 +89,11 @@
   		
   		</update>
   
-  		<delete id="deleteSalary" parameterType="string">
+  		<delete id="deleteSalary" parameterType="SalaryVO">
   		DELETE SALARY
   		WHERE EMPLOYEE_ID = #{employeeId}
-  		
+  		AND SALARY_DATE = TO_DATE(#{salaryDate},'YYYY-MM-DD')
+  		<!-- AND MONTH_WORK = #{monthWork} -->
   		</delete>
   		
   </mapper>

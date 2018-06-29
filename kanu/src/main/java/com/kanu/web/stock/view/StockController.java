@@ -68,8 +68,8 @@ public class StockController {
 		System.out.println("공급사ID : " + vo.getSupplierId());*/
 		
 
-	/*//수정폼
-	@RequestMapping("/updateStock.do")
+	//수정폼
+	/*@RequestMapping("/updateStock.do")
 	public String updateStockForm(StockVO vo, StockDAO stockDAO) {
 		System.out.println("제품ID : ");
 		return "stock/updateStock";
@@ -79,23 +79,23 @@ public class StockController {
 	@RequestMapping("/updateStock.do")
 	public String updateStock(@ModelAttribute("stock")StockVO vo) {
 		
-		System.out.println("제품ID : " + vo.getProductId());
+		/*System.out.println("제품ID : " + vo.getProductId());
 		System.out.println("제품위치 : " + vo.getProductLocation());
 		System.out.println("제품수량 : " + vo.getStockQuantity());
 		System.out.println("최소수량 : " + vo.getMinimumQuantity());
-		System.out.println("공급사ID : " + vo.getSupplierId());
+		System.out.println("공급사ID : " + vo.getSupplierId());*/
 		
 		stockService.updateStock(vo);
 		
 		return "redirect:getStockList.do";
 	}
 	
-	/*//등록폼
+	//등록폼
 	@RequestMapping(value="insertStock", method=RequestMethod.GET)
 	public String insertStockForm() {
-		return "stock/insertStock";
+		return "redirect:getStockList.do";
 	}
-	*/
+	
 	
 	
 	
