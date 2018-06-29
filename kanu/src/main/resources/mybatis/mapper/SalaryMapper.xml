@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.kanu.web.emp.SalaryDAO">
+  
+  <resultMap type="map" id="salaryresult">
+	<id property="employeeId" column="EMPLOYEEID"/> 
+	<result property="hireType" column="HIRETYPE"/>
+	<result property="salaryDate" column="SALARYDATE"/>
+	<result property="duringTime" column="DURINGTIME"/>
+	<result property="monthSalary" column="MONTHSALARY"/>
+	<result property="monthWork" column="MONTHWORK"/>
+	<result property="employeeName" column="EMPLOYEENAME"/>
+  
+  
+  </resultMap>
+  
+  <!-- (다건)전체 조회 -->
+  <select id="getSalaryList" resultType="map">
+  
+  <!--as = alias 로 key주기  -->
+		SELECT 
+		EMPLOYEE_ID as "employeeId",
+	<!-- 	EMPLOYEE_NAME as "employeeName", -->
+		HIRE_TYPE as "hireType",
+		TO_CHAR(SALARY_DATE,'YYYY-MM-DD') as "salaryDate",
+		DURING_TIME as "duringTime",
+		MONTH_SALARY as "monthSalary",
+		MONTH_WORK as "monthWork"
+	
+		FROM SALARY
+	</select>
+	
+	<!-- 단건 조회  -->
+	<select id="getSalary" resultType="SalaryVO" parameterType="string">
+	SELECT 
+	EMPLOYEE_ID,<!-- GET_EMPLOYEE_NAME(EMPLOYEE_ID) EMPLOYEE_NAME, -->
+	HIRE_TYPE,
+	SALARY_DATE,
+	DURING_TIME,
+	MONTH_SALARY,
+	MONTH_WORK
+	FROM SALARY
+	WHERE EMPLOYEE_ID = #{employeeId}
+	
+	</select>
+	
+	<!-- 입력 -->
+	<insert id="insertSalary" parameterType="SalaryVO">
+ 
+	<selectKey keyProperty="employeeId" resultType="string" order="BEFORE">
+	
+			SELECT MAX(EMPLOYEE_ID)+1 FROM SALARY	
+	
+	</selectKey>
+			
+			INSERT INTO SALARY(
+			EMPLOYEE_ID,
+			HIRE_TYPE,
+			SALARY_DATE,
+			DURING_TIME,
+			MONTH_SALARY,
+			MONTH_WORK
+			)
+			
+			VALUES(
+			#{employeeId},
+			#{hireType},
+			#{salaryDate},
+			#{duringTime},
+			#{monthSalary},
+			#{monthWork} 
+			)
+			
+	</insert>
+  	
+  		<update id="updateSalary" parameterType="SalaryVO">
+  		
+  		UPDATE SALARY SET
+  				EMPLOYEE_ID = #{employeeId},
+  				HIRE_TYPE = #{hireType},
+  				SALARY_DATE = #{salaryDate},
+  				DURING_TIME = #{duringTime},
+  				MONTH_SALARY = #{monthSalary},
+  				MONTH_WORK = #{monthWork}
+  				
+  				WHERE EMPLOYEE_ID= #{employeeId}
+  		
+  		</update>
+  
+  		<delete id="deleteSalary" parameterType="SalaryVO">
+  		DELETE SALARY
+  		WHERE EMPLOYEE_ID = #{employeeId}
+  		AND SALARY_DATE = TO_DATE(#{salaryDate},'YYYY-MM-DD')
+  		<!-- AND MONTH_WORK = #{monthWork} -->
+  		</delete>
+  		
+  </mapper>

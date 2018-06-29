@@ -5,7 +5,15 @@ public class MenuVO {
 	private String menuId;
 	private String menuName;
 	private String price;
+	private String productId;
 	
+	
+	public String getProductId() {
+		return productId;
+	}
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
 	public String getMenuId() {
 		return menuId;
 	}
