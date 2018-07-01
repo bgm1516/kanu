@@ -63,9 +63,6 @@
 #normal_modal select{
 	height : 35px;
 }
-#formd label{
-	margin-left: 1085px;
-}
 </style>
 
 
@@ -121,17 +118,32 @@
 		</tr>
 		
 		<c:forEach items="${ordersList}" var="ordersList">
+		
 			<tr>
 				<td>${ordersList.orderId}</td>
 				<td>${ordersList.menuName}</td>
+				
 				<td>${ordersList.price}</td>
+				
+				<%-- <c:if test="N">
+				
+				<td background="bleck">${ordersList.price}</td>
+				
+				</c:if>
+						
+				<c:if test="Y">
+				
+				<td background="white">${ordersList.price}</td>
+				
+				</c:if>  --%>	<!-- 백그라운드 컬러 입히는법 (history) -->
+				 
 				<td>${ordersList.orderQuantity}</td>
 				<td>${ordersList.orderTotalsum}</td>
-				<td><input type="checkbox" name="delete_order" value="true"/></td>
+				<td><input type="checkbox" name="delete_order" value="${ordersList.orderId}"/></td>
 			</tr>
 		</c:forEach>
 	</table>
-	<label><input type="button" value="삭제" onclick="del_submit()" name="del"></label>
+	<input type="button" value="삭제" onclick="del_submit()" name="del">
 </form>
 <!-- 페이징 -->
 <%-- <my:paging jsfunc="doList" paging="${paging}"/> --%>
@@ -140,21 +152,31 @@
 		document.searchFrm.p.value = p;
 		document.searchFrm.submit();
 	}
-	
 	//삭제하기 function
 	function del_submit() {
-		var is_del = document.formd.delete_order.value	//is_del은 formd의 체크박스의 값
-		var formd = $(document).find("#formd");
 		
-		if(is_del==="true"){
-			$("input[name=delete_order]:checked").each(function() {
-				var chdel = $(this).val();
+	//	var is_del = $(document).find("#formd input[name='delete_order']").val();
+		//var is_del = document.formd.delete_order.value	//is_del은 formd의 체크박스의 값
+		var formd = $(document).find("#formd");
+		var del_submit_form =  $('<form>');
+		del_submit_form.attr('action',"/kanu/delete");
+		del_submit_form.attr('method','post');
+			if($("input[name=delete_order]:checked").length === 0){
 				
-				console.log(chdel);
+				alert("삭제할 주문을 선택해주세요.")
+			}else{
+				$("input[name=delete_order]:checked").each(function() {
+					var chdel = $(this).val();
+					console.log(chdel);
+					var input_del_order_id  = $('<input name="order_id">');
+					input_del_order_id.val(chdel)
+					del_submit_form.append(input_del_order_id);
+				
+				})
+				$(document).find("body").append(del_submit_form)
+				del_submit_form.submit();
+				
 			}
-		} else {
-			alert("삭제할 주문을 선택해주세요");
-		}
 	}
 	//예약 팝업
 	//주문하기 버튼을 눌렀을 때 펑션
