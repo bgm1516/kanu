@@ -19,6 +19,10 @@ public class Emp_manageDAO {
 	public List<Emp_manageVO> getEmpList(){
 		return mybatis.selectList("com.kanu.web.emp.Emp_manageDAO.getEmpList");
 	}
+	//전체조회(급여)
+		public List<Emp_manageVO> getEmpList2(){
+			return mybatis.selectList("com.kanu.web.emp.Emp_manageDAO.getEmpList2");
+		}
 	//단건조회
 	public Emp_manageVO getEmp(Emp_manageVO vo){
 		return mybatis.selectOne("com.kanu.web.emp.Emp_manageDAO.getEmp",vo);

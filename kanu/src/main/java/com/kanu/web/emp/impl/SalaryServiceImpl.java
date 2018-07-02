@@ -45,4 +45,10 @@ public class SalaryServiceImpl implements SalaryService{
 		dao.deleteSalary(vo);
 	}
 
+	@Override
+	public List<Map<String, Object>> getSalaryList2() {
+		// TODO Auto-generated method stub
+		return dao.getSalaryList2(null);
+	}
+
 }
