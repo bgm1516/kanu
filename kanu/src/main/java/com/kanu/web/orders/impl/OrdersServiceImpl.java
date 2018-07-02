@@ -1,6 +1,5 @@
 package com.kanu.web.orders.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,7 +79,7 @@ public class OrdersServiceImpl implements OrdersService{
 	}
 	
 	//삭제
-	public void deleteOrders(OrdersVO vo) {
+	public void deleteOrdersN(OrdersVO vo) {
 		dao.deleteOrders(vo);
 		dao.deleteReserveHistory(vo);
 		dao.deleteOrderHistory(vo);

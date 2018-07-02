@@ -23,6 +23,10 @@
 	                  expression="execution(* com.kanu.web..*Impl.*(..))"/>
 	    <aop:advisor pointcut-ref="allPointcut" advice-ref="txAdvice"/>
 	</aop:config>
+<<<<<<< HEAD
+	</beans>
+=======
 </beans>
 
   
+>>>>>>> refs/remotes/origin/master

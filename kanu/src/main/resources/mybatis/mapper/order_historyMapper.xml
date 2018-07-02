@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kanu.web.orders.Order_historyDAO">
+	<!-- 레코드 건수 조회 -->
+	<select id="count" parameterType="Int" resultType="com.kanu.web.orders.Orders_SearchVO">
+			
+	</select>
+	
+	<!-- 전체 및 단건 조회 -->
+	<select id="getOrderhistoryList" parameterType="String" resultType="com.kanu.web.orders.Order_historyVO">
+		SELECT *
+		FROM ORDER_HISTORY
+		<if test="orderId != null and orderId !='' ">	<!-- if문을 사용하면 단건조회시 조건도 추가할 수 있다. -->
+			WHERE ORDER_ID = #{orderId}
+		</if>
+		ORDER BY ORDER_ID
+	</select>
+	
+	<!-- 갱신 -->
+	<update id="updateOrderhistory" parameterType="com.kanu.web.orders.Order_historyVO">
+		UPDATE ORDER_HISTORY 
+			SET CANCELED_ORDER=#{canceledOrder},
+				RESERVATION=#{reservation},
+				ORDER_DATE=SYSDATE
+		WHERE ORDER_ID=#{orderId}
+	</update>
+	
+	<!-- 예약여부를 Y로 바꿀 경우 팝업창이뜨게하고 reserve_history에 insert-->
+	<insert id="insertOrderhistory" parameterType="com.kanu.web.orders.Order_historyVO">
+		INSERT INTO RESERVE_HISTORY (ORDER_ID, RESERVER, RECEIPTER, RECEIPT_DATE)
+		VALUES (#{orderId}, #{reserver}, #{receipter}, SYSDATE)
+	</insert>
+	
+	<!-- 예약여부를 N으로 바꿀 경우 확인 팝업창이뜨게하고 reserve_history에서 2번을 써서 delete-->
+	
+	<!-- 1)orders에 delete <공통> -->
+	<delete id="deleteOrders" parameterType="com.kanu.web.orders.OrdersVO">
+		DELETE
+		FROM ORDERS
+		WHERE ORDER_ID = #{orderId}
+	</delete>
+	
+	<!-- 2)reserve_history에 delete <공통> -->		<!-- 예약여부를 N으로 변경시에도 사용 -->
+	<delete id="deleteReserveHistory" parameterType="com.kanu.web.orders.OrdersVO">
+		DELETE 
+		FROM RESERVE_HISTORY 
+		WHERE ORDER_ID = #{orderId}
+	</delete>
+	
+	<!-- 3)order_history에 delete <공통> -->
+	<delete id="deleteOrderHistory" parameterType="com.kanu.web.orders.OrdersVO">
+		DELETE 
+		FROM ORDER_HISTORY 
+		WHERE ORDER_ID = #{orderId}
+	</delete>
+</mapper>
