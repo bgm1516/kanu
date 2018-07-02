@@ -30,7 +30,12 @@ public class SalaryServiceImpl implements SalaryService{
 	@Override
 	public void insertSalary(SalaryVO vo) {
 		// TODO Auto-generated method stub
-		dao.insertSalary(vo);
+		for (int employeeIds=0 ; employeeIds<vo.getEmployeeIds().length ; employeeIds++) {
+			System.out.println(vo.getEmployeeIds()[employeeIds]+"d=======");
+			vo.setEmployeeId(vo.getEmployeeIds()[employeeIds]);
+			dao.insertSalary(vo);
+		}	
+		
 	}
 
 	@Override

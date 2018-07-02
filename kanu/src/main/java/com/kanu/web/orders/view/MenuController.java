@@ -26,7 +26,7 @@ public class MenuController {
 	MenuService menuService;
 	
 	//목록조회
-	@RequestMapping("/getMenuList.do")
+	@RequestMapping("/getMenuList")
 	public String getMenuList(HttpServletRequest request, MenuVO vo) {
 		request.setAttribute("menuList", menuService.getMenuList());
 		return "orders/getMenuList";
@@ -57,7 +57,7 @@ public class MenuController {
 		menuService.insertMenu(vo);
 		
 	/*	return "redirect:/getMenu/"+vo.getMenuId() ;*/
-		return "redirect:/getMenuList.do";
+		return "redirect:/getMenuList";
 	}
 	//단건조회
 	@RequestMapping("/getMenu/{menuId}")
@@ -72,7 +72,7 @@ public class MenuController {
 		public String deleteMenu(@ModelAttribute("model") MenuVO vo) {
 			System.out.println("메뉴ID :" + vo.getMenuId());
 			menuService.deleteMenu(vo.getMenuId());
-			return "redirect:/getMenuList.do";
+			return "redirect:/getMenuList";
 	}
 }
 

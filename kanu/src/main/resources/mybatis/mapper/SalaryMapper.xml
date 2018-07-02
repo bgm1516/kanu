@@ -80,9 +80,7 @@
 	
 		<insert id="insertSalary" parameterType="SalaryVO">
  
-	<selectKey keyProperty="employeeId" resultType="string" order="BEFORE">
-			SELECT MAX(EMPLOYEE_ID)+1 FROM SALARY	
-	</selectKey>
+	
 	
 	INSERT INTO SALARY(
 			EMPLOYEE_ID,
@@ -95,15 +93,14 @@
 	VALUES(
 			#{employeeId},
 			'REGULAR',
-			#{salaryDate},
-			null,<!--월근무시간  -->
-			null,<!-- 월급 -->
-			to_char(add_months(#{monthWork},-1),'yyyymm') 
+			TO_DATE(#{salaryDate},'YYYY-MM-DD'),
+			null,
+			null,
+			to_char(add_months(#{salaryDate},-1),'YYYYMM') 
 			)
 	
 			
-	 <!-- insert into salary
-        values(?,'REGULAR',?,null,null,to_char(add_months(?,-1),'yyyymm')); -->
+	 
   	</insert>
   	
   	

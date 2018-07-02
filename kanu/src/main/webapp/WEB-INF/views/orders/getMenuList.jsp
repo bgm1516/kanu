@@ -20,7 +20,7 @@
 		result = confirm("정말로 삭제하시겠습니까 ?");
 
 		if (result == true) {
-			location.href = "deleteMenu.do?menuId=" + menuId;
+			location.href = "deleteMenu?menuId=" + menuId;
 
 		}
 
