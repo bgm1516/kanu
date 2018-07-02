@@ -67,8 +67,7 @@
 					<c:forEach items="${salaryList2}" var="salary">
 
 						<tr>
-							<td align="center"><input type="checkbox" name="checkRow"  
-							value="${salary.employeeId}"/> ${salary.employeeId}<br></td>
+							<td align="center">${salary.employeeId}</td>
 							<th align="center">${salary.hireType}</th>
 							<th align="center">${salary.salaryDate}</th>
 							<th align="center">${salary.monthWork}</th>

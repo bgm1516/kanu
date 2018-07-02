@@ -106,7 +106,7 @@ window.open(popUrl,"",popOption);
 
 					<c:forEach items="${salaryList}" var="salary">
 
-						<tr>
+						<tr><%-- <td align="center">${salary.employeeId}</td> --%>
 							<td align="center"><input type="checkbox" name="checkRow"  
 							value="${salary.employeeId}"/> ${salary.employeeId}<br></td>
 							<th align="center">${salary.hireType}</th>
