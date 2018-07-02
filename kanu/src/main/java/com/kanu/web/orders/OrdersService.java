@@ -1,6 +1,5 @@
 package com.kanu.web.orders;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.kanu.web.orders.Orders_SearchVO;
@@ -36,7 +35,7 @@ public interface OrdersService {
 	////////////삭제//////////////////////////////////////////////////////////////////////
 	
 	//1)delete <공통>
-	public void deleteOrders(OrdersVO vo);
+	public void deleteOrdersN(OrdersVO vo);
 	
 	
 	
