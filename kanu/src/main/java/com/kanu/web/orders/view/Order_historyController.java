@@ -16,32 +16,32 @@ public class Order_historyController {
 	
 	@Autowired Order_historyService order_historyService;
 	
-	//전체조회
-	@RequestMapping("/getOrderhistoryList")
-	public String getOrderhistoryList(Model model, Order_historyVO vo) {
-		model.addAttribute("order_historyList", order_historyService.getOrderhistoryList(vo));
-		return "orders/getOrderhistoryList";
+	//전체조회/단건조회
+	@RequestMapping("/getOrder_historyList")
+	public String getOrder_historyList(Model model, Order_historyVO vo) {
+		model.addAttribute("order_historyList", order_historyService.getOrder_historyList(vo));
+		return "orders/getOrder_historyList";
 	}
 	
-	//1)예약여부를 Y로 바꿀 경우 팝업창이뜨게하고 reserve_history에 insert
-	@RequestMapping("/insertOrderhistory")
-	public String insertOrderhistory(Model model, Order_historyVO vo) {
-		order_historyService.insertOrderhistory(vo);
-		return "redirect:" + "/getOrderhistoryList";
+	//1)예약여부를 Y로 바꿀 경우 팝업창이뜨게하고 reserve_history에 insert 및 order_history에 update
+	@RequestMapping("/hinsert")
+	public String insertOrder_history(Model model, Order_historyVO vo) {
+		order_historyService.insertOrder_history(vo);
+		return "redirect:" + "/getOrder_historyList";
+	}
+	
+	//2)예약여부를 N로 바꿀 경우 팝업창이뜨게하고 reserve_history에 delete 및 order_history에 update
+	@RequestMapping("/hupdate")
+	public String updateOrder_history(Model model, Order_historyVO vo) {
+		order_historyService.updateOrder_history(vo);
+		return "redirect:" + "/getOrder_historyList";
 	}
 
 	
 	//delete <공통>.
-	@RequestMapping("/deleteOrderhistory")
-	public String deleteOrderhistory(Model model, Order_historyVO vo) {
-		order_historyService.deleteOrderhistory(vo);
-		return "redirect:" + "/getOrderhistoryList";
-	}
-	
-	//delete <reserve만>.
-	@RequestMapping("/deleteOrderhistoryR")
-	public String deleteOrderhistoryR(Model model, Order_historyVO vo) {
-		order_historyService.deleteOrderhistoryR(vo);
-		return "redirect:" + "/getOrderhistoryList";
+	@RequestMapping("/hdelete")
+	public String deleteOrder_history(Model model, Order_historyVO vo) {
+		order_historyService.deleteOrder_history(vo);
+		return "redirect:" + "/getOrder_historyList";
 	}
 }
