@@ -23,6 +23,13 @@
 	                  expression="execution(* com.kanu.web..*Impl.*(..))"/>
 	    <aop:advisor pointcut-ref="allPointcut" advice-ref="txAdvice"/>
 	</aop:config>
+<<<<<<< HEAD
 	</beans>
+=======
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
 
+<<<<<<< HEAD
   
+=======
+	</beans>
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu

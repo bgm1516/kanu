@@ -21,6 +21,12 @@ public class SalaryDAO {
 	return mybatis.selectList("com.kanu.web.emp.SalaryDAO.getSalaryList", vo);
 	}
 	
+	//전체 이력 조회 
+	
+	public List<Map<String,Object>> getSalaryList2(SalaryVO vo){
+	return mybatis.selectList("com.kanu.web.emp.SalaryDAO.getSalaryList2", vo);
+	}
+	
 	// mapper의 단건조회 보고 단건조회 만들기
 	public SalaryVO getSalary(String employeeId) {
 		return (SalaryVO) mybatis.selectOne("com.kanu.web.emp.SalaryDAO.getSalary", employeeId);

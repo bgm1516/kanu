@@ -47,13 +47,13 @@
 	</select>
 	
 	<!-- 입력 -->
-	<insert id="insertSalary" parameterType="SalaryVO">
+<!-- 	<insert id="insertSalary" parameterType="SalaryVO">
  
 	<selectKey keyProperty="employeeId" resultType="string" order="BEFORE">
 	
-			SELECT MAX(EMPLOYEE_ID)+1 FROM SALARY	
+			SELECT MAX(EMPLOYEE_ID)+1 FROM SALARY	 -->
 	
-	</selectKey>
+<!-- 	</selectKey>
 			
 			INSERT INTO SALARY(
 			EMPLOYEE_ID,
@@ -73,7 +73,41 @@
 			#{monthWork} 
 			)
 			
-	</insert>
+	</insert> -->
+	
+	
+	
+	
+		<insert id="insertSalary" parameterType="SalaryVO">
+ 
+	<selectKey keyProperty="employeeId" resultType="string" order="BEFORE">
+			SELECT MAX(EMPLOYEE_ID)+1 FROM SALARY	
+	</selectKey>
+	
+	INSERT INTO SALARY(
+			EMPLOYEE_ID,
+			HIRE_TYPE,
+			SALARY_DATE,
+			DURING_TIME,
+			MONTH_SALARY,
+			MONTH_WORK
+			)
+	VALUES(
+			#{employeeId},
+			'REGULAR',
+			#{salaryDate},
+			null,<!--월근무시간  -->
+			null,<!-- 월급 -->
+			to_char(add_months(#{monthWork},-1),'yyyymm') 
+			)
+	
+			
+	 <!-- insert into salary
+        values(?,'REGULAR',?,null,null,to_char(add_months(?,-1),'yyyymm')); -->
+  	</insert>
+  	
+  	
+  	
   	
   		<update id="updateSalary" parameterType="SalaryVO">
   		
@@ -95,5 +129,23 @@
   		AND SALARY_DATE = TO_DATE(#{salaryDate},'YYYY-MM-DD')
   		<!-- AND MONTH_WORK = #{monthWork} -->
   		</delete>
+  	
+  	 
+  <!-- (다건)전체 조회 '이력' -->
+  <select id="getSalaryList2" resultType="map">
+  
+  <!--as = alias 로 key주기  -->
+		SELECT 
+		EMPLOYEE_ID as "employeeId",
+	<!-- 	EMPLOYEE_NAME as "employeeName", -->
+		HIRE_TYPE as "hireType",
+		TO_CHAR(SALARY_DATE,'YYYY-MM-DD') as "salaryDate",
+		DURING_TIME as "duringTime",
+		MONTH_SALARY as "monthSalary",
+		MONTH_WORK as "monthWork"
+	
+		FROM SALARY
+	</select>
+  	
   		
   </mapper>
