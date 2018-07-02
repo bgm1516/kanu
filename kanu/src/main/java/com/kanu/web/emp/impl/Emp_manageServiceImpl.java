@@ -44,4 +44,10 @@ public class Emp_manageServiceImpl implements Emp_manageService{
 		
 	}
 
+	@Override
+	public List<Emp_manageVO> getEmpList2() {
+		// TODO Auto-generated method stub
+		return empManDAO.getEmpList2();
+	}
+
 }

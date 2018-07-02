@@ -26,46 +26,54 @@
 </script>
 </head>
 <body>
-<h3 align="center">검색기능</h3>
+<H2 align="center">상세 주문 내역</H2>
+<hr color="black">
+<h5>Tip!</h5>
+<strong><span style="color:#ff99ff">취소된 주문 예시</span></strong><br>
+<strong><span style="color:#99ccff">정상적인 주문 예시</span></strong>
 <div style="border: 1px solid gray" align="center">
 	<form name="searchFrm" method="post" action="${pageContext.request.contextPath}/getOrder_historyList">
 			  <input type="hidden" name="p" value="1"/>
-		주문번호  <input type="text" name="order_id"/>
-		담당직원    <input type="text" name="employee_id"/>
+		주문번호  <input type="text" name="orderId"/>
 			  <input type="submit" value="검색"/><br/>
 	</form>
 </div>
 
-<h3 align="center">주문내역목록</h3>
-<table border='1' align="center">
-	<tr>
-		<th>주문번호</th>
-		<th>주문상품</th>
-		<th>상품가격</th>
-		<th>주문수량</th>
-		<th>총 주문금액</th>
-		<th>주문일시</th>
-		<th>예약여부</th>
-		<th>취소여부</th>
-		<th>담당직원</th>
-		<th>취소</th>
-	</tr>
-<c:forEach items="${order_historyList}" var="vo" >
-	<tr>
-		<td><a href="javascript:check(${vo.orderId})">${vo.orderId}</a></td>
-		<td>${vo.menuName}</td>
-		<td>${vo.price}</td>
-		<td>${vo.orderQuantity}</td>
-		<td>${vo.orderTotalsum}</td>
-		<td>${vo.orderDate}</td>
-		<td><a href="javascript:reserve(${vo.orderId})">${vo.reservation}</a></td>
-		<td><a href="javascript:canceled(${vo.orderId})">${vo.canceledOrder}</a></td>
-		<td>${vo.employeeId}</td>
-		<td><a href="order_history_control.jsp?action=delete&order_id=${vo.orderId}">삭제</a></td>
-	</tr>
-</c:forEach>
-</table>
-
+<form name="formh" id="formd" action="${pageContext.request.contextPath}/delete">
+	<table border='1' align='center' id='view' >
+		<tr>
+			<th>주문번호</th>
+			<th>메뉴</th>
+			<th>가격</th>
+			<th>수량</th>
+			<th>총 주문금액</th>
+			<th>주문일시</th>
+			<th>예약</th>
+			<th>취소</th>
+			<th>담당직원</th>
+			<th>삭제</th>
+		</tr>
+		<c:forEach items="${order_historyList}" var="vo" >
+			<c:if test="${vo.canceledOrder == 'Y'}">
+            	<tr bgcolor="#ff99ff">
+         	</c:if>
+         	<c:if test="${vo.canceledOrder == 'N'}">
+            	<tr bgcolor="#99ccff">
+         	</c:if>
+					<td><a href="javascript:check(${vo.orderId})">${vo.orderId}</a></td>
+					<td>${vo.menuName}</td>
+					<td>${vo.price}</td>
+					<td>${vo.orderQuantity}</td>
+					<td>${vo.orderTotalsum}</td>
+					<td>${vo.orderDate}</td>
+					<td><a href="javascript:reserve(${vo.orderId})">${vo.reservation}</a></td>
+					<td><a href="javascript:canceled(${vo.orderId})">${vo.canceledOrder}</a></td>
+					<td>${vo.employeeId}</td>
+					<td><a href="order_history_control.jsp?action=delete&order_id=${vo.orderId}">삭제</a></td>
+				</tr>
+		</c:forEach>
+	</table>
+</form>
 <!-- 페이징 -->
 <%-- <my:paging jsfunc="doList" paging="${paging}"/> --%>
 <script>

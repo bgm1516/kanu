@@ -16,8 +16,21 @@
 			  ,PASSWORD 					as "password"
 		FROM EMP_MANAGE
 		ORDER BY EMPLOYEE_ID
+		
 	</select>
-
+<select id="getEmpList2" resultType="empManVO">
+		SELECT EMPLOYEE_ID  				as "employeeId"
+		      ,EMPLOYEE_NAME   				as "employeeName"
+		      ,CERTIFICATED_EXPIRED_DATE    as "certificatedExpiredDate"
+		      ,EMPLOYEE_BIRTH       		as "employeeBirth"
+		      ,EMPLOYEE_ADDRESS 			as "employeeAddress"
+		      ,HIRE_DATE 					as "hireDate"
+		      ,RETIRE_DATE 				    as "retireDate"
+		      ,EMP_EMAIL					as "empEmail"
+			  ,PASSWORD 					as "password"
+		FROM EMP_MANAGE
+		ORDER BY EMPLOYEE_ID
+	</select>
 
 	<select id="getEmp" parameterType="empManVO" resultType="empManVO">
 		SELECT EMPLOYEE_ID  				as "employeeId"

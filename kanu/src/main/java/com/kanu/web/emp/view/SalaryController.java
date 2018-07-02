@@ -26,12 +26,17 @@ public class SalaryController {
 	SalaryService salaryService;
 	
 	//목록조회
-	@RequestMapping("/getSalaryList.do")
+	@RequestMapping("/getSalaryList")
 	public String getSalaryList(HttpServletRequest request, SalaryVO vo) {
 		request.setAttribute("salaryList", salaryService.getSalaryList());
 		return "emp/getSalaryList";
 	}
-	
+	//목록 이력 조회
+		@RequestMapping("/getSalaryList2")
+		public String getSalaryList2(HttpServletRequest request, SalaryVO vo) {
+			request.setAttribute("salaryList2", salaryService.getSalaryList2());
+			return "emp/getSalaryList2";
+		}
 	//수정 폼 
 	@RequestMapping(value="/updateSalary", method=RequestMethod.GET)
 	public String updateSalaryForm() {
