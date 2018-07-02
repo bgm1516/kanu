@@ -107,7 +107,7 @@
 </div>
 
 <form name="formd" id="formd" action="${pageContext.request.contextPath}/delete">
-	<table border='1' width='350' height='100%' align='center' id='view'>
+	<table border='1' align='center' id='view'>
 		<tr align="center">
 			<th>주문번호</th>
 			<th>메뉴이름</th>
