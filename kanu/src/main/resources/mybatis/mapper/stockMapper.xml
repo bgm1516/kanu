@@ -24,7 +24,7 @@
    </select>   
 <!-- 단건 조회  -->
    
-   <!-- <select id="getStock" resultType="stockVO" parameterType="string">
+   <select id="getStock" resultType="stockVO" parameterType="string">
       <![CDATA[
       SELECT    PRODUCT_ID,
             PRODUCT_LOCATION,
@@ -32,25 +32,27 @@
             MINIMUM_QUANTITY,
             SUPPLIER_ID
       FROM   STOCK
-      WHERE   PRODUCT_ID = #{id}
+      WHERE   PRODUCT_ID = #{value}
       ]]>
-   </select> -->
+   </select>
 <!-- 등록 -->
    <insert id="insertStock" parameterType="stockVO">
    
-      <selectKey keyProperty="productId" resultType="string" order="BEFORE">
+      <!-- <selectKey keyProperty="productId" resultType="string" order="BEFORE">
          SELECT MAX(PRODUCT_ID)+1 FROM STOCK
-      </selectKey>
+      </selectKey> -->
       
       INSERT INTO STOCK (
                      PRODUCT_ID,
                      PRODUCT_LOCATION,
+                     STOCK_QUANTITY,
                      MINIMUM_QUANTITY,
                      SUPPLIER_ID
                      )
       VALUES   (
                #{productId},
                #{productLocation},
+               #{stockQuantity},
                #{minimumQuantity},
                #{supplierId}
             )
@@ -60,16 +62,16 @@
       UPDATE STOCK SET
                PRODUCT_ID = #{productId},
                PRODUCT_LOCATION = #{productLocation},
-               STOCK_QUANTITY = #{stockQuantity},
+               STOCK_QUANTITY = NVL(#{stockQuantity},0),
                MINIMUM_QUANTITY = #{minimumQuantity},
                SUPPLIER_ID = #{supplierId}
       WHERE PRODUCT_ID = #{productId}
       
    </update>
 <!-- 단건 삭제 -->
-   <delete id="deleteSomething" parameterType="int">
+   <delete id="deleteStock" parameterType="string">
       DELETE FROM STOCK
-      WHERE PRODUCT_ID = #{id}
+      WHERE PRODUCT_ID = #{productId}
    </delete>
    
    

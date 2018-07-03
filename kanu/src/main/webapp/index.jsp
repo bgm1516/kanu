@@ -31,7 +31,7 @@ body{
  /*  background-color: black; */
 
 /*   background-image: url("./resources/img/bg/caca.png"); */
-	background-image: url("./resources/img/bg/KANUBG.png");
+	background-image: url("./resources/img/bg/CACANU1.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -129,9 +129,9 @@ body{
 
     </main><!-- /.container -->
 
-	<div id="footer">
+<!-- 	<div id="footer">
  	 <p>footer</p>
-	</div>
+	</div> -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
