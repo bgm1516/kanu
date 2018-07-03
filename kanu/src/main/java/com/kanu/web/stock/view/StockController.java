@@ -16,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kanu.web.stock.StockService;
@@ -40,12 +42,12 @@ public class StockController {
 	//단건조회
 	@RequestMapping("/getStock")
 	public String getStock(StockVO vo, Model model) {
-		model.addAttribute("stock", stockService.getStock()); //model.addAttribute는 ${} 안에 들어가는 이름이다.
+		model.addAttribute("stock", stockService.getStock(vo)); //model.addAttribute는 ${} 안에 들어가는 이름이다.
 		return "stock/getStock";
 	}
 	
 	//목록조회
-	@RequestMapping("/getStockList.do")
+	@RequestMapping("/getStockList")
 	public String getStockList(Model model, StockVO vo) {
 		model.addAttribute("stockList", stockService.getStockList(vo));
 		System.out.println(stockService.getStockList(vo));
@@ -54,11 +56,16 @@ public class StockController {
 	
 	//등록처리
 
-		@RequestMapping(value="/insertStock", method = {RequestMethod.GET, RequestMethod.POST})
-		public String insertStock(StockVO vo) {
-			stockService.insertStock(vo);
-			 
-		return "redirect:/getStockList.do";
+		@RequestMapping(value="/insertStock")
+		@ResponseBody
+		public StockVO insertStock(StockVO vo, @RequestParam String mode) {
+			if(mode.equals("insert")) {
+				stockService.insertStock(vo);
+			}
+			else {
+				stockService.updateStock(vo);
+			}
+			return stockService.getStock(vo);
 		}
 
 		/*//System.out.println("제품ID : " + vo.getProductId());
@@ -76,8 +83,8 @@ public class StockController {
 	}*/
 	
 	//수정 업데이트 처리 SessionAttribute 388p
-	@RequestMapping("/updateStock.do")
-	public String updateStock(@ModelAttribute("stock")StockVO vo) {
+	@RequestMapping(value="/updateStock", method = {RequestMethod.GET, RequestMethod.POST})
+	public String updateStock(StockVO vo) {
 		
 		/*System.out.println("제품ID : " + vo.getProductId());
 		System.out.println("제품위치 : " + vo.getProductLocation());
@@ -87,13 +94,13 @@ public class StockController {
 		
 		stockService.updateStock(vo);
 		
-		return "redirect:getStockList.do";
+		return "redirect:getStockList";
 	}
 	
 	//등록폼
 	@RequestMapping(value="insertStock", method=RequestMethod.GET)
 	public String insertStockForm() {
-		return "redirect:getStockList.do";
+		return "redirect:getStockList";
 	}
 	
 	
@@ -103,10 +110,27 @@ public class StockController {
 	//단건 삭제처리
 	/*@RequestMapping("/deleteStock.do")*/
 	@RequestMapping(value="/deleteStock")
-	public String deleteStock(@ModelAttribute("stock") StockVO vo) {
-		System.out.println("제품ID :" + vo.getProductId());
+	public String deleteStock(StockVO vo, StockDAO dao ,HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
-		stockService.deleteStock(vo.getProductId());
-		return "redirect:/getStockList.do";
+		String value =  vo.getProductId();
+		int r = stockService.deleteStock(value);
+		//System.out.println(value);
+
+		if(r==0) {
+			
+			out.print("<script>");
+			out.print("alert('입고 이력이 존재하므로 삭제할 수 없습니다.');");
+			out.println("location.href='getStockList';");
+			out.print("</script>");
+		} else if (r==1) {
+			out.print("<script>");
+			out.print("alert('삭제되었습니다.');");
+			out.println("location.href='getStockList';");
+			out.print("</script>");
+		}
+		return null;
+		
 	}
 }

@@ -7,12 +7,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kanu.web.stock.InputVO;
 import com.kanu.web.stock.StockService;
 import com.kanu.web.stock.StockVO;
 
 @Service("stockService")
 public class StockServiceImpl implements StockService{
 	@Autowired StockDAO dao;
+	@Autowired InputDAO inputdao;
 
 	@Override
 	public List<Map<String, Object>> getStockList(StockVO vo) {
@@ -21,9 +23,9 @@ public class StockServiceImpl implements StockService{
 	}
 
 	@Override
-	public StockVO getStock() {
+	public StockVO getStock(StockVO vo) {
 		// TODO Auto-generated method stub
-		return dao.getStock("id");
+		return dao.getStock(vo.getProductId());
 	}
 
 	@Override
@@ -39,9 +41,17 @@ public class StockServiceImpl implements StockService{
 	}
 
 	@Override
-	public void deleteStock(String id) {
+	public int deleteStock(String value) {
 		// TODO Auto-generated method stub
-		dao.deleteStock(id);
+		int r = 0;
+		InputVO vo = new InputVO();
+		vo.setProductId(value);
+		List<Map<String, Object>> list = inputdao.getInputList(vo);
+		if(list == null || list.size() == 0)
+			r = dao.deleteStock(value);
+		
+		return r;
+
 	}
 
 	@Override
