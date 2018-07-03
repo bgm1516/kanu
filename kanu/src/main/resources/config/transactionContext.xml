@@ -24,6 +24,3 @@
 	    <aop:advisor pointcut-ref="allPointcut" advice-ref="txAdvice"/>
 	</aop:config>
 </beans>
-
-
-

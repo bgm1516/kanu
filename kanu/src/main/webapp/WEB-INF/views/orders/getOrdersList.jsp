@@ -98,37 +98,38 @@
 <hr>
 <text align="center"><H2>주문받은목록</H2></text>
 <div align="center">
-<form name="searchFrm" method="post" action="${pageContext.request.contextPath}/getOrdersList">
-<%-- ${pageContext.request.contextPath}는 어떤 경로던간에 상위폴더를 자동적으로 연결 --%>
-<input type="hidden" name="p" value="1"/>
-
-주문번호<input type="text" name="orderId"/>
-	  <input type="submit" value="검색"/><br/>
-</form>
+	<form name="searchFrm" method="post" action="${pageContext.request.contextPath}/getOrdersList">
+	<%-- ${pageContext.request.contextPath}는 어떤 경로던간에 상위폴더를 자동적으로 연결 --%>
+			<input type="hidden" name="p" value="1"/>
+		주문번호<input type="text" name="orderId"/>
+			  <input type="submit" value="검색"/><br/>
+	</form>
 </div>
 
-<table border='1' width='350' height='100%' align='center' id='view'>
-	<tr align="center">
-		<th>주문번호</th>
-		<th>메뉴이름</th>
-		<th>개당가격</th>
-		<th>주문수량</th>
-		<th>총 가격</th>
-		<th>삭제</th>
-	</tr>
-	
-	<c:forEach items="${ordersList}" var="ordersList">
-		<tr>
-			<td>${ordersList.orderId}</td>
-			<td>${ordersList.menuName}</td>
-			<td>${ordersList.price}</td>
-			<td>${ordersList.orderQuantity}</td>
-			<td>${ordersList.orderTotalsum}</td>
-			<td><a href="${pageContext.request.contextPath}/delete/${ordersList.orderId}">삭제</a></td>
+<form name="formd" id="formd" action="${pageContext.request.contextPath}/delete">
+	<table border='1' align='center' id='view'>
+		<tr align="center">
+			<th>주문번호</th>
+			<th>메뉴이름</th>
+			<th>개당가격</th>
+			<th>주문수량</th>
+			<th>총 가격</th>
+			<th><button onclick="del_submit()" type="button" class="btn btn-danger">삭제</button></th>
 		</tr>
-	</c:forEach>
-</table>
-
+		
+		<c:forEach items="${ordersList}" var="ordersList">
+		
+			<tr align="center">
+				<td>${ordersList.orderId}</td>
+				<td>${ordersList.menuName}</td>
+				<td>${ordersList.price}</td>
+				<td>${ordersList.orderQuantity}</td>
+				<td>${ordersList.orderTotalsum}</td>
+				<td><input type="checkbox" name="delete_order" value="${ordersList.orderId}"/></td>
+			</tr>
+		</c:forEach>
+	</table>
+</form>
 <!-- 페이징 -->
 <%-- <my:paging jsfunc="doList" paging="${paging}"/> --%>
 <script>
@@ -136,7 +137,31 @@
 		document.searchFrm.p.value = p;
 		document.searchFrm.submit();
 	}
-	
+	//삭제하기 function
+	function del_submit() {
+		
+		var formd = $(document).find("#formd");
+		var del_submit_form =  $('<form>');
+		del_submit_form.attr('action',"/kanu/delete");	//delete 실행
+		del_submit_form.attr('method','post');	//전송방법 post
+			if($("input[name=delete_order]:checked").length === 0){	//체크된박스의 여부를 문자열길이를 체크해서 0이라면 경고창
+				
+				alert("삭제할 주문을 선택해주세요.")
+			}else{
+				$("input[name=delete_order]:checked").each(function() {
+					var chdel = $(this).val();	//체크박스여부를 체크해서 체크된 값을 chdel에 담는다.
+					console.log(chdel);	//단순 확인용 출력 (test)
+					alert("주문번호 "+chdel+"을 삭제하였습니다.")
+					var input_del_order_id  = $('<input name="order_id">');	//선언
+					input_del_order_id.val(chdel)	//선언한 함수에 chdel을 담는다
+					del_submit_form.append(input_del_order_id);	//del_submit_form에 자식으로 추가한다.
+				
+				})
+				$(document).find("body").append(del_submit_form)
+				del_submit_form.submit();
+				
+			}
+	}
 	//예약 팝업
 	//주문하기 버튼을 눌렀을 때 펑션
 	function order_form_submit(){

@@ -1,8 +1,12 @@
 package com.kanu.web.orders.view;
 
+
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,8 +62,22 @@ public class OrdersController {
 		
 	//delete <공통>.
 	@RequestMapping("/delete")
-	public String deleteOrders(Model model, OrdersVO vo) {
-		ordersService.deleteOrders(vo);
+	public String deleteOrdersN(Model model, OrdersVO vo, HttpServletRequest request ,String [] order_id) {
+		
+		Enumeration params = request.getParameterNames();
+		System.out.println("----------------------------");
+		while (params.hasMoreElements()){
+		    String name = (String)params.nextElement();
+		    System.out.println(name + " : " +request.getParameter(name));
+		}
+		
+		System.out.println("----------------------------");
+		for (int i=0; i<order_id.length;i++) {
+			OrdersVO del_order_vo = new OrdersVO();
+			del_order_vo.setOrderId(order_id[i]);
+			ordersService.deleteOrdersN(del_order_vo);
+		}
+	//	ordersService.deleteOrdersN(vo);
 		return "redirect:" + "/getOrdersList";
 	}
 }

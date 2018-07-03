@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kanu.web.orders.recipeDAO">
+
+	<select id="getRecipe" parameterType="MenuVO" resultType="recipeVO">
+			SELECT R.MENU_ID  				
+			      ,M.MENU_NAME
+			      ,R.PRODUCT_ID   				
+			      ,R.MATERIAL_AMOUNT
+			      
+		      FROM RECIPE R , MENU M 
+		      WHERE R.MENU_ID = M.MENU_ID
+		      AND M.MENU_ID = #{menuId}    
+
+	<if test="productId!=null and productId!=''">
+			AND R.PRODUCT_ID=#{productId}
+	</if>
+	
+
+	</select>
+
+	<select id="getRecipe2" parameterType="recipeVO" resultType="recipeVO">
+			
+			SELECT R.MENU_ID  				
+			      ,M.MENU_NAME
+			      ,R.PRODUCT_ID   				
+			      ,R.MATERIAL_AMOUNT
+			      
+		      FROM RECIPE R , MENU M 
+		      WHERE R.MENU_ID = M.MENU_ID
+		      AND M.MENU_ID = #{menuId}    
+			AND R.PRODUCT_ID=#{productId}
+
+	</select>
+
+
+
+	<select id="getRecipeList" resultType="recipeVO">
+		SELECT R.MENU_ID  				
+		      ,M.MENU_NAME
+		      ,R.PRODUCT_ID   				
+		      ,R.MATERIAL_AMOUNT  
+		FROM RECIPE R, MENU M 
+		WHERE R.MENU_ID = M.MENU_ID 
+	</select>
+	
+	
+<insert id="insertRecipe" parameterType="recipeVO">
+
+		INSERT INTO RECIPE 	   (MENU_ID,
+								PRODUCT_ID,
+								MATERIAL_AMOUNT)
+		VALUES (#{menuId} ,
+				#{productId},
+				#{materialAmount} )
+			
+</insert>
+
+<update id="updateRecipe" parameterType="recipeVO">
+
+		UPDATE RECIPE
+		SET MENU_ID = #{menuId},
+			PRODUCT_ID =  #{productId},
+			MATERIAL_AMOUNT = #{materialAmount},
+			WHERE MENU_ID = #{menuId}
+			AND PRODUCT_ID=#{productId}
+	
+	
+</update>
+
+<delete id="deleteRecipe" parameterType="recipeVO">
+
+		DELETE RECIPE
+		WHERE MENU_ID = #{menuId}
+		AND PRODUCT_ID = #{productId}
+
+</delete>
+
+
+</mapper>

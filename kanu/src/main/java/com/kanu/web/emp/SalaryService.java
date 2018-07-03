@@ -8,7 +8,8 @@ import com.kanu.web.emp.SalaryVO;
 public interface SalaryService {
 			// 목록조회
 			List<Map<String, Object>> getSalaryList();
-			
+			// 이력조회
+			List<Map<String, Object>> getSalaryList2();
 			// 단건조회
 			public SalaryVO getSalary(String employeeId);
 
@@ -19,5 +20,6 @@ public interface SalaryService {
 			public void updateSalary(SalaryVO vo);
 
 			// 삭제
-			public void deleteSalary(String employeeId);
+			public void deleteSalary(SalaryVO vo);
 }
+ 

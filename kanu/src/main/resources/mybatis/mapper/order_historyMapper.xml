@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kanu.web.orders.Order_historyDAO">
+	<!-- 레코드 건수 조회 -->
+	<select id="count" parameterType="Int" resultType="com.kanu.web.orders.Orders_SearchVO">
+			
+	</select>
+	
+	<!-- 전체 및 단건 조회 -->
+	<select id="getOrder_historyList" parameterType="String" resultType="com.kanu.web.orders.Order_historyVO">
+		SELECT A.ORDER_ID, B.MENU_NAME, B.PRICE, C.ORDER_QUANTITY, A.ORDER_TOTALSUM, A.ORDER_DATE, A.RESERVATION, A.CANCELED_ORDER, A.EMPLOYEE_ID
+		FROM ORDER_HISTORY A, MENU B, ORDERS C
+		WHERE B.MENU_ID = C.MENU_ID AND A.ORDER_ID = C.ORDER_ID
+		<if test="orderId != null and orderId !='' ">	<!-- if문을 사용하면 단건조회시 조건도 추가할 수 있다. -->
+			AND A.ORDER_ID = #{orderId}
+		</if>
+		ORDER BY A.ORDER_ID
+	</select>
+	
+	<!-- 갱신(예약여부/취소여부) -->
+	<update id="updateOrder_history" parameterType="com.kanu.web.orders.Order_historyVO">
+		UPDATE ORDER_HISTORY 
+			SET CANCELED_ORDER=#{canceledOrder},
+				RESERVATION=#{reservation}
+		WHERE ORDER_ID=#{orderId}
+	</update>
+	
+	<!-- 예약여부에 a태그를 걸고 modal 팝업을 띄우고 예약여부 select 값이 Y/N중에 Y라면 input 칸이 등장토록 하고, 이 구문을 동작시킨다. -->
+	<insert id="insertOrder_history" parameterType="com.kanu.web.orders.Order_historyVO">
+		INSERT INTO RESERVE_HISTORY (ORDER_ID, RESERVER, RECEIPTER, RECEIPT_DATE)
+		VALUES (#{orderId}, #{reserver}, #{receipter}, SYSDATE)
+	</insert>
+	<!-- 위와 연계되어 select 값이 N이라면 reserve_history에서 삭제토록 DELETE 2번째 구문(RESERVE 대상)을 동작토록하자 -->
+	
+	
+	<!-- 취소여부에 a 태그를 걸고 modal 팝업을 띄워서 select 값이 Y/N중에 Y라면 input 칸이 등장토록 하고, 이 구문을 동작시킨다.  -->
+	<!-- orderDate는 기존 history의 orderDate값을 그대로 가지고 간다, canceleReason은 드롭박스로 설정한다-->
+	<insert id="insertCanceled_order" parameterType="com.kanu.web.orders.Order_historyVO">
+		INSERT INTO CANCELED_ORDER (ORDER_ID, ORDER_DATE, CANCEL_TIME, CANCEL_REASON)
+		VALUES (#{orderId}, #{orderDate}, SYSDATE, #{cancelReason})
+	</insert>
+	
+	
+	
+	<!-- 1)orders에 delete <공통> -->
+	<delete id="deleteOrders" parameterType="com.kanu.web.orders.OrdersVO">
+		DELETE
+		FROM ORDERS
+		WHERE ORDER_ID = #{orderId}
+	</delete>
+	
+	<!-- 2)reserve_history에 delete <공통> -->		<!-- 예약여부를 N으로 변경시에도 사용 -->
+	<delete id="deleteReserveHistory" parameterType="com.kanu.web.orders.OrdersVO">
+		DELETE 
+		FROM RESERVE_HISTORY 
+		WHERE ORDER_ID = #{orderId}
+	</delete>
+	
+	<!-- 3)order_history에 delete <공통> -->
+	<delete id="deleteOrderHistory" parameterType="com.kanu.web.orders.OrdersVO">
+		DELETE 
+		FROM ORDER_HISTORY 
+		WHERE ORDER_ID = #{orderId}
+	</delete>
+</mapper>

@@ -8,7 +8,14 @@ public class SalaryVO {
 	private String duringTime;
 	private String monthSalary;
 	private String monthWork;
+	private String employeeName; 
 	
+	public String getEmployeeName() {
+		return employeeName;
+	}
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
 	public String getEmployeeId() {
 		return employeeId;
 	}
@@ -48,8 +55,10 @@ public class SalaryVO {
 	@Override
 	public String toString() {
 		return "SalaryVO [employeeId=" + employeeId + ", hireType=" + hireType + ", salaryDate=" + salaryDate
-				+ ", duringTime=" + duringTime + ", monthSalary=" + monthSalary + ", monthWork=" + monthWork + "]";
+				+ ", duringTime=" + duringTime + ", monthSalary=" + monthSalary + ", monthWork=" + monthWork
+				+ ", employeeName=" + employeeName + "]";
 	}
+	 
 	
 	
 }

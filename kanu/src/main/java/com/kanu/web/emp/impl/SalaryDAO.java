@@ -15,10 +15,16 @@ public class SalaryDAO {
 	@Autowired
 	SqlSessionTemplate mybatis;
 	
-	//전체 조회
+	//전체 조회 
 	
 	public List<Map<String,Object>> getSalaryList(SalaryVO vo){
 	return mybatis.selectList("com.kanu.web.emp.SalaryDAO.getSalaryList", vo);
+	}
+	
+	//전체 이력 조회 
+	
+	public List<Map<String,Object>> getSalaryList2(SalaryVO vo){
+	return mybatis.selectList("com.kanu.web.emp.SalaryDAO.getSalaryList2", vo);
 	}
 	
 	// mapper의 단건조회 보고 단건조회 만들기
@@ -36,8 +42,8 @@ public class SalaryDAO {
 		mybatis.update("com.kanu.web.emp.SalaryDAO.updateSalary", vo);
 	}
 
-	public void deleteSalary(String employeeId) {
-		mybatis.delete("com.kanu.web.emp.SalaryDAO.deleteSalary", employeeId);// 파라미터 값 id
+	public void deleteSalary(SalaryVO vo) {
+		mybatis.delete("com.kanu.web.emp.SalaryDAO.deleteSalary", vo);// 파라미터 값 id
 
 	}
 	
