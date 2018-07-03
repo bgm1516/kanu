@@ -28,8 +28,10 @@
 		DURING_TIME as "duringTime",
 		MONTH_SALARY as "monthSalary",
 		MONTH_WORK as "monthWork"
-	
+		
 		FROM SALARY
+		
+		ORDER BY SALARY_DATE ASC
 	</select>
 	
 	<!-- 단건 조회  -->
@@ -105,6 +107,15 @@
   	
   	
   	
+  	<!--프로시저 호출  -->
+  	<insert id="month_time" statementType="CALLABLE" parameterType="SalaryVO">
+		{ call month_time(
+		#{monthWork}
+		)
+		}
+	</insert>
+  	
+  	
   	
   		<update id="updateSalary" parameterType="SalaryVO">
   		
@@ -142,6 +153,8 @@
 		MONTH_WORK as "monthWork"
 	
 		FROM SALARY
+		
+		ORDER BY SALARY_DATE ASC
 	</select>
   	
   		

@@ -47,14 +47,25 @@ public class SalaryController {
 		return "emp/updateSalary";
 	}
 	
-	
-	//수정 업데이트 처리
-	@RequestMapping(value="/updateSalary", method=RequestMethod.POST)
-	public String updateSalary(@ModelAttribute("salary")SalaryVO vo) {
+/*	기존 업데이트*/
+   @RequestMapping(value="/updateSalary", method=RequestMethod.POST)
+	public String updateSalary(SalaryVO vo) {
+		salaryService.month_time(vo);	//서비스해서 불러오는것
 		System.out.println(vo);
-		return "emp/getSalary";
+		return "redirect:/getSalaryList";
 	}
- 
+	
+/*	
+	//수정 업데이트 처리 , 컨트롤에서 프로시저 설정?ajax로
+	@RequestMapping(value = "/updateSalary",method=RequestMethod.POST)
+	public String updateSalary(SalaryVO vo,Model model) throws Exception {
+	    salaryService.updateSalary(vo);
+	    model.addAttribute("P_YYYYMM", vo.getDuringTime());
+	    return "redirect:/getSalaryList";
+	}*/
+	
+	
+
 	//등록처리
 	@RequestMapping(value="/insertSalary", method=RequestMethod.POST)
 	public String insertSalary(SalaryVO vo,HttpServletResponse response) throws IOException {
