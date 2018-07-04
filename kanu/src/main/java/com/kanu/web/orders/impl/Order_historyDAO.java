@@ -21,25 +21,29 @@ public class Order_historyDAO {
 	}
 	
 	//단건조회
-	public Order_historyVO getOrderhistory(String orderId) {
-		return mybatis.selectOne("com.kanu.web.orders.Order_historyDAO.getOrderhistory", orderId);
+	public Order_historyVO getOrder_history(String orderId) {
+		return mybatis.selectOne("com.kanu.web.orders.Order_historyDAO.getOrder_history", orderId);
 	}
 	
 	//전체조회
-	public List<Order_historyVO> getOrderhistoryList(Order_historyVO vo) {
-		return mybatis.selectList("com.kanu.web.orders.Order_historyDAO.getOrderhistoryList", vo);
+	public List<Order_historyVO> getOrder_historyList(Order_historyVO vo) {
+		return mybatis.selectList("com.kanu.web.orders.Order_historyDAO.getOrder_historyList", vo);
 	}
 
-	//업데이트
-	public void updateOrderhistory(Order_historyVO vo) {
-		mybatis.update("com.kanu.web.orders.Order_historyDAO.updateOrderhistory", vo);
+	//취소여부가 Y인경우
+	public void insertCanceled_orderY(Order_historyVO vo) {
+		mybatis.insert("com.kanu.web.orders.Order_historyDAO.insertCanceled_orderY", vo);
 	}
 	
-	//추가
-	public void insertOrderhistory(Order_historyVO vo) {
-		mybatis.insert("com.kanu.web.orders.Order_historyDAO.insertOrderhistory", vo);
+	public void updateOrder_historyY(Order_historyVO vo) {
+		mybatis.update("com.kanu.web.orders.Order_historyDAO.updateOrder_historyY", vo);
 	}
-
+	
+	//취소여부가 N인경우
+	public void updateOrder_historyN(Order_historyVO vo) {
+		mybatis.update("com.kanu.web.orders.Order_historyDAO.updateOrder_historyN", vo);
+	}
+	
 	//primary_key 제약, 전체 삭제
 	//orders 삭제
 	public void deleteOrders(Order_historyVO vo) {
@@ -53,6 +57,11 @@ public class Order_historyDAO {
 
 	//order_history(primary_key) 삭제
 	public void deleteOrderHistory(Order_historyVO vo) {
+		mybatis.delete("com.kanu.web.orders.Order_historyDAO.deleteOrderHistory", vo);
+	}
+	
+	//canceled_order 삭제
+	public void deleteCanceled_order(Order_historyVO vo) {
 		mybatis.delete("com.kanu.web.orders.Order_historyDAO.deleteOrderHistory", vo);
 	}
 

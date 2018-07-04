@@ -5,6 +5,8 @@ import java.util.List;
 public interface Emp_manageService {
 	//전체조회
 	public List<Emp_manageVO> getEmpList();
+	//전체 조회 (급여)
+	public List<Emp_manageVO> getEmpList2();
 	//조건조회 
 	public Emp_manageVO getEmp(Emp_manageVO empManVO);
 	//삽입

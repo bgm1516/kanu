@@ -7,42 +7,38 @@ import org.springframework.stereotype.Service;
 
 import com.kanu.web.orders.Order_historyService;
 import com.kanu.web.orders.Order_historyVO;
+import com.kanu.web.orders.Order_history_SearchVO;
 @Service("order_historyService")
 public class Order_historyServiceImpl implements Order_historyService{
 
 	
 	@Autowired Order_historyDAO dao;
-	//단건
-	public Order_historyVO getOrderhistory(String orderId) {
-		return dao.getOrderhistory(orderId);
-	}
-
 	//전체
-	public List<Order_historyVO> getOrderhistoryList(Order_historyVO vo) {
-		return dao.getOrderhistoryList(vo);
+	public List<Order_historyVO> getOrder_historyList(Order_historyVO vo) {
+		return dao.getOrder_historyList(vo);
 	}
-
-	//취소시에 canceled_order테이블에 추가
-	public void insertOrderhistory(Order_historyVO vo) {
-		dao.insertOrderhistory(vo);
+	//취소여부가 Y인 경우
+	public void insertCanceled_orderY(Order_historyVO vo) {
+		dao.insertCanceled_orderY(vo);
+		dao.updateOrder_historyY(vo);
 	}
 	
-	//갱신
-	public void updateOrderhistory(Order_historyVO vo) {
-		dao.updateOrderhistory(vo);
+	//취소여부가 N인 경우
+	public void updateOrder_historyN(Order_historyVO vo) {
+		dao.updateOrder_historyN(vo);
+		dao.deleteCanceled_order(vo);
 	}
-
+	
 	//삭제(전체)
-	public void deleteOrderhistory(Order_historyVO vo) {
+	public void deleteOrder_history(Order_historyVO vo) {
 		dao.deleteReserveHistory(vo);
 		dao.deleteOrders(vo);
+		dao.deleteCanceled_order(vo);
 		dao.deleteOrderHistory(vo);
 	}
-	
-	//삭제(예약여부 N으로 변경시 reserve에서만)
-	public void deleteOrderhistoryR(Order_historyVO vo) {
-		dao.deleteReserveHistory(vo);
+
+	@Override
+	public int count(Order_history_SearchVO searchVO) {
+		return dao.count(searchVO);
 	}
-		
-	
 }

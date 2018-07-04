@@ -62,7 +62,7 @@ public class OrdersController {
 		
 	//delete <공통>.
 	@RequestMapping("/delete")
-	public String deleteOrdersN(Model model, OrdersVO vo,HttpServletRequest request ,String [] order_id) {
+	public String deleteOrdersN(Model model, OrdersVO vo, HttpServletRequest request ,String [] order_id) {
 		
 		Enumeration params = request.getParameterNames();
 		System.out.println("----------------------------");

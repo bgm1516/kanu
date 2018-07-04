@@ -9,6 +9,10 @@
 	</definition>
 
 
+	<definition name="popup/*/*" template="/WEB-INF/views/tiles/blanklayout.jsp">
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+	
 	<definition name="*/*" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
