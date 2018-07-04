@@ -1,9 +1,13 @@
 package com.kanu.web.emp.view;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 /*import java.util.HashMap;
 import java.util.Map;*/
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,25 +47,38 @@ public class SalaryController {
 		return "emp/updateSalary";
 	}
 	
-	
-	//수정 업데이트 처리
-	@RequestMapping(value="/updateSalary", method=RequestMethod.POST)
-	public String updateSalary(@ModelAttribute("salary")SalaryVO vo) {
+/*	기존 업데이트*/
+   @RequestMapping(value="/updateSalary", method=RequestMethod.POST)
+	public String updateSalary(SalaryVO vo) {
+		salaryService.month_time(vo);	//서비스해서 불러오는것
 		System.out.println(vo);
-		return "emp/getSalary";
+		return "redirect:/getSalaryList";
 	}
-	//등록폼
-	@RequestMapping(value="/insertSalary", method=RequestMethod.GET)
-	public String insertSalaryForm() {
-		return "emp/insertSalary";
-	}	
+	
+/*	
+	//수정 업데이트 처리 , 컨트롤에서 프로시저 설정?ajax로
+	@RequestMapping(value = "/updateSalary",method=RequestMethod.POST)
+	public String updateSalary(SalaryVO vo,Model model) throws Exception {
+	    salaryService.updateSalary(vo);
+	    model.addAttribute("P_YYYYMM", vo.getDuringTime());
+	    return "redirect:/getSalaryList";
+	}*/
+	
+	
+
 	//등록처리
 	@RequestMapping(value="/insertSalary", method=RequestMethod.POST)
-	public String insertSalary(SalaryVO vo) {
+	public String insertSalary(SalaryVO vo,HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		 PrintWriter out = response.getWriter();
 		System.out.println(vo);
 		salaryService.insertSalary(vo);
-		
-		return "redirect:/getSalaryList.do";
+		out.print("<script>"); 
+		out.println("alert('등록완료');");
+		out.print("opener.location.reload();");
+		out.print("window.close();");
+		out.print("</script>");
+		return null;
 	}
 	//단건조회
 	@RequestMapping("/getSalary/{employeeId}")
@@ -76,7 +93,7 @@ public class SalaryController {
 		public String deleteSalary(@ModelAttribute("model") SalaryVO vo) {
 			System.out.println("사용자ID :" + vo.getEmployeeId());
 			salaryService.deleteSalary(vo);
-			return "redirect:/getSalaryList.do";
+			return "redirect:/getSalaryList";
 	} 
 }
 

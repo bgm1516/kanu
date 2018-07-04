@@ -28,22 +28,25 @@ public class Order_historyController {
 		return "orders/getOrder_historyList";
 	}
 	
-	//1)예약여부를 Y로 바꿀 경우 팝업창이뜨게하고 reserve_history에 insert 및 order_history에 update
-	@RequestMapping("/hinsert")
-	public String insertOrder_history(Model model, Order_historyVO vo) {
-		order_historyService.insertOrder_history(vo);
+	//취소여부가 Y인경우
+	@RequestMapping("/cinsert")
+	public String insertCanceled_orderY(Model model, Order_historyVO vo) {
+		order_historyService.insertCanceled_orderY(vo);
 		return "redirect:" + "/getOrder_historyList";
 	}
 	
-	//2)예약여부를 N로 바꿀 경우 팝업창이뜨게하고 reserve_history에 delete 및 order_history에 update
-	@RequestMapping("/hupdate")
-	public String updateOrder_history(Model model, Order_historyVO vo) {
-		order_historyService.updateOrder_history(vo);
+	//취소여부가 N인경우
+	@RequestMapping("/cupdate")
+	public String updateOrder_historyN(Model model, Order_historyVO vo) {
+		order_historyService.updateOrder_historyN(vo);
 		return "redirect:" + "/getOrder_historyList";
 	}
+<<<<<<< HEAD
 	
 	//3)취소여부를 Y로 바꿀 경우 팝업창이 뜨게하고 canceled_order에 insert 및 order_history에 update <단 Y로 변경된 값을 되돌릴순 없다>
 
+=======
+>>>>>>> refs/remotes/origin/master
 	
 	//delete <공통>.
 	@RequestMapping("/hdelete")

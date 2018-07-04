@@ -5,10 +5,10 @@ import java.util.Map;
 
 public interface StockService {
 	List<Map<String, Object>> getStockList(StockVO vo);
-	StockVO getStock();
+	StockVO getStock(StockVO vo);
 	void insertStock(StockVO vo);
 	void updateStock(StockVO vo);
-	void deleteStock(String id);
+	int deleteStock(String value);
 	void deleteStockList(List<String> list);
 	
 	

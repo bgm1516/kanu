@@ -8,15 +8,12 @@
 </head>
  
 <body>
-<form>
+<form action="./insertSalary" method="post">
 <div align="right">
 <br>
-월급수령월<input type="date" name="salary_date" />
-<a href="./insertEmp" class="btn btn-primary" role="button" aria-pressed="true">월급등록</a>
-
-
-<!-- <a href="./updateEmp" class="btn btn-secondary" role="button" aria-pressed="true">월급계산</a> -->
-<!-- <a href="./deleteEmp" class="btn btn-success" role="button" aria-pressed="true">직원정보삭제</a> -->
+월급수령월<input type="date" name="salaryDate" />
+<button class="btn btn-primary" role="button" aria-pressed="true">월급등록</button>
+ 
 </div>
 <br>
 <br>
@@ -26,7 +23,7 @@
 <th>CHK</th><th>ID</th><th>NAME</th><th>E-MAIL</th></tr>
 <c:forEach items="${empMan}" var="emp">
 <tr>
-<td width="5"><input type="checkbox" name="employeeId" value="${emp.employeeId}"/></td> 
+<td width="5"><input type="checkbox" name="employeeIds" value="${emp.employeeId}"/></td> 
 <td>${emp.employeeId}</td> 
 <td>${emp.employeeName}</td> 
 <td>${emp.empEmail}</td>	

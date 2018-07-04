@@ -9,7 +9,15 @@ public class SalaryVO {
 	private String monthSalary;
 	private String monthWork;
 	private String employeeName; 
+	private String [] employeeIds;
 	
+	
+	public String[] getEmployeeIds() {
+		return employeeIds;
+	}
+	public void setEmployeeIds(String[] employeeIds) {
+		this.employeeIds = employeeIds;
+	}
 	public String getEmployeeName() {
 		return employeeName;
 	}

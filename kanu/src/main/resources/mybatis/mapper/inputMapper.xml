@@ -23,7 +23,7 @@
 				INPUT.SUPPLIER_ID = #{supplierId}
 			</if>
 		</where>
-		ORDER BY INPUT_DATE DESC;
+		ORDER BY INPUT_DATE DESC
 	</select>	
 <!-- 단건 조회  -->
 	
