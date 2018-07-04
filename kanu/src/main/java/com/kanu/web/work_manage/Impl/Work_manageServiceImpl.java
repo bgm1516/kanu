@@ -38,5 +38,10 @@ public class Work_manageServiceImpl implements work_manageService {
 		dao.deleteWork(employeeId);
 	}
 
+	@Override
+	public List<Work_manageVO> getWorker(Work_manageVO vo) {
+		return dao.getWorker(vo);
+	}
+
 
 }

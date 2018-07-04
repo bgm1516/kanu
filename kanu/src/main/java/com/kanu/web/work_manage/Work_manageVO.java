@@ -7,7 +7,22 @@ public class Work_manageVO {
 	private String workStart;
 	private String workEnd;
 	private String dayWorktime;
+	private String selector;
+	private String employeeName;
 	
+	
+	public String getEmployeeName() {
+		return employeeName;
+	}
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+	public String getSelector() {
+		return selector;
+	}
+	public void setSelector(String selector) {
+		this.selector = selector;
+	}
 	public String getEmployeeId() {
 		return employeeId;
 	}

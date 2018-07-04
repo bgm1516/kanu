@@ -25,12 +25,16 @@ public class LoginController {
 	
 	@RequestMapping(value="/getlogin" , method=RequestMethod.POST)
 	public String getlogin(Emp_manageVO vo, HttpSession session) {
-		Emp_manageVO vo1=new Emp_manageVO();
-		vo1=sessionService.getlogin(vo);
+		Emp_manageVO staff=new Emp_manageVO();
+		Emp_manageVO master=new Emp_manageVO();
+		master.setEmployeeId("1");
+		master=sessionService.getlogin(master);
+		staff=sessionService.getlogin(vo);
 		
-		if(!vo1.getEmployeeId().equals("") && vo1.getEmployeeId()!=null) {
-			session.setAttribute("empId", vo1.getEmployeeId());
-			session.setAttribute("empName", vo1.getEmployeeName());
+		session.setAttribute("master", master.getEmployeeName());
+		if(!staff.getEmployeeId().equals("") && staff.getEmployeeId()!=null) {
+			session.setAttribute("empId", staff.getEmployeeId());
+			session.setAttribute("empName", staff.getEmployeeName());
 			return "redirect:/";
 		}else {
 			
