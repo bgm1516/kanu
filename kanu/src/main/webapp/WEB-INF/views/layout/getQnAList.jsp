@@ -37,10 +37,10 @@
                map: map,
                icon: image, // 마커로 사용할 이미지(변수)
 //             info: '말풍선 안에 들어갈 내용',
-               title: 'Yedam cafe(예담 카페)' // 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
+               title: 'kanu cafe' // 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
         });
          
-        var content = "Yedam cafe"; // 말풍선 안에 들어갈 내용
+        var content = "★kanu cafe★"; // 말풍선 안에 들어갈 내용
          
         // 마커를 클릭했을 때의 이벤트. 말풍선 뿅~
         var infowindow = new google.maps.InfoWindow({ content: content});
