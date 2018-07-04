@@ -14,6 +14,16 @@
 			   ORDER BY WORK_START
 	</select>
 
+	<select id="getWorker" resultType="workManVO">
+	
+		SELECT EMPLOYEE_ID as "employeeId", 
+		 	   WORK_START as "workStart",
+			   WORK_END as "workEnd",
+			   DAY_WORKTIME as "dayWorktime"
+			   FROM WORK_MANAGE
+			   WHERE EMPLOYEE_ID = #{employeeId}
+			   ORDER BY WORK_START
+	</select>
 
 	<select id="getWork" parameterType="workManVO" resultType="workManVO">
 		EMPLOYEE_ID as "employeeId", 
