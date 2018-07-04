@@ -41,15 +41,7 @@ public class Order_historyController {
 		order_historyService.updateOrder_historyN(vo);
 		return "redirect:" + "/getOrder_historyList";
 	}
-<<<<<<< HEAD
 	
-=======
->>>>>>> branch 'master' of https://github.com/bgm1516/kanu
-
-<<<<<<< HEAD
-	
-=======
->>>>>>> branch 'master' of https://github.com/bgm1516/kanu
 	//delete <공통>.
 	@RequestMapping("/hdelete")
 	public String deleteOrder_history(Model model, Order_historyVO vo, HttpServletRequest request ,String [] order_id) {
