@@ -47,7 +47,7 @@
 		<H2>급여:급여계산</H2>
 		<hr>
 		<form action="./updateSalary" method="post">
-			 월급여계산<input type="text" id="month_work" name="monthWork" placeholder='계산 희망하는 yyyymm입력' />
+			 급여계산<input type="text" id="month_work" name="monthWork" size="37" placeholder=' 계산 희망하는 근무한날  yyyymm형식으로 입력' />
 			
 			
 			<!-- 컨트롤로 이동하는 경로 설정해주기 -->
