@@ -104,7 +104,7 @@
 
 			<script>
 				var orderId = [];
-				var orderCancel = [];
+				var canceledOrder = [];
 				var orderDate = [];
 			</script>
 
@@ -179,7 +179,7 @@
 				$("input[name=canceled_ohistory]:checked").each(function() {
 					var ohcan = $(this).val(); //체크박스여부를 체크해서 체크된 값을 ohcan에 담는다.
 					var o_id = orderId[ohcan]; //o_id에는 위에서 생성한 배열인 orderId[]에 ohcan을 담는다.
-					var o_cancel = orderCancel[ohcan] //o_cancel에도 동일하다
+					var o_cancel = canceledOrder[ohcan] //o_cancel에도 동일하다
 					var o_date = orderDate[ohcan]
 
 					//이건 order_id를 담기위함이다.
@@ -208,7 +208,7 @@
 						ohcan_submit_formh.attr('method', 'post'); //전송방법은 post이며 공통이므로 밖으로 빼내었다
 				})
 				$(document).find("body").append(ohcan_submit_formh)
-				//ohcan_submit_formh.submit();
+				ohcan_submit_formh.submit();
 			}
 		}
 

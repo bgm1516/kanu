@@ -23,6 +23,11 @@ public class Order_historyServiceImpl implements Order_historyService{
 		dao.updateOrder_historyY(vo);
 	}
 	
+	//취소여부 Modal 폼
+	public void updateCanceled_orderY(Order_historyVO vo) {
+		dao.updateCanceled_orderY(vo);
+	}
+	
 	//취소여부가 N인 경우
 	public void updateOrder_historyN(Order_historyVO vo) {
 		dao.updateOrder_historyN(vo);
