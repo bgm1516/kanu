@@ -11,8 +11,14 @@ public class Emp_manageVO {
 	private String retireDate;
 	private String empEmail;
 	private String password;
+	private String selector;
 	
-	
+	public String getSelector() {
+		return selector;
+	}
+	public void setSelector(String selector) {
+		this.selector = selector;
+	}
 	@Override
 	public String toString() {
 		return "Emp_manageVO [employeeId=" + employeeId + ", employeeName=" + employeeName
