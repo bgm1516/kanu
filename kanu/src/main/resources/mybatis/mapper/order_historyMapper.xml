@@ -31,15 +31,32 @@
 		SET CANCELED_ORDER='N'
 		WHERE ORDER_ID=#{orderId}
 	</update>
+<<<<<<< HEAD
 	
 	<!-- 취소여부가 N인 경우(N으로 바뀌는경우) order_history에 update -->
+=======
+
+	<!-- 예약여부에 a태그를 걸고 modal 팝업을 띄우고 예약여부 select 값이 Y/N중에 Y라면 input 칸이 등장토록 하고, 이 구문을 동작시킨다. -->
+	<insert id="insertOrder_history" parameterType="com.kanu.web.orders.Order_historyVO">
+		INSERT INTO RESERVE_HISTORY (ORDER_ID, RESERVER, RECEIPTER, RECEIPT_DATE)
+		VALUES (#{orderId}, #{reserver}, #{receipter}, #{receiptDate})
+	</insert>
+	<!-- 위와 연계되어 select 값이 N이라면 reserve_history에서 삭제토록 DELETE 2번째 구문(RESERVE 대상)을 동작토록하자 -->
+
+	<!-- 취소여부가 N인 경우 order_history에 update -->
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
 	<update id="updateOrder_historyN" parameterType="com.kanu.web.orders.Order_historyVO">
 		UPDATE ORDER_HISTORY
 		SET CANCELED_ORDER='Y'
 		WHERE ORDER_ID=#{orderId}
 	</update>
+<<<<<<< HEAD
 	
 	<!-- 취소여부가 N인경우(N으로 바뀌는경우) canceled_order에 delete (전체삭제에도 포함하도록한다)-->
+=======
+
+	<!-- 취소여부가 N인경우 canceled_order에 delete (전체삭제에도 포함하도록한다)-->
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
 	<delete id="deleteCanceled_order" parameterType="com.kanu.web.orders.Order_historyVO">
 		DELETE 
 		FROM CANCELED_ORDER
