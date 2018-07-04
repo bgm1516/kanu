@@ -53,9 +53,9 @@
 			<th>총 주문금액</th>
 			<th>주문일시</th>
 			<th>담당직원</th>
-			<th><button onclick="ohres_submit()" type="button" class="btn btn-secondary">예약변경</button></th>
-			<th><button onclick="ohcan_submit()" type="button" class="btn btn-warning">취소하기</button></th>
-			<th><button onclick="ohdel_submit()" type="button" class="btn btn-danger">삭제</button></th>
+			<th><button onclick="res_submit()" type="button" class="btn btn-secondary">예약변경</button></th>
+			<th><button onclick="can_submit()" type="button" class="btn btn-warning">취소하기</button></th>
+			<th><button onclick="del_submit()" type="button" class="btn btn-danger">삭제</button></th>
 		</tr>
 		<c:forEach items="${order_historyList}" var="vo" varStatus="status" >
 			<c:if test="${vo.canceledOrder == 'Y'}">
@@ -86,15 +86,15 @@
 		document.searchFrm.submit();
 	}
 	
-	//삭제하기 function
-	function ohdel_submit() {
-		
+	//삭제
+	function del_submit() {
 		var formh = $(document).find("#formh");
 		var ohdel_submit_formh =  $('<form>');
+			
 		ohdel_submit_formh.attr('action',"/kanu/hdelete");	//delete 실행
 		ohdel_submit_formh.attr('method','post');	//전송방법 post
+			
 			if($("input[name=delete_ohistory]:checked").length === 0){	//체크된박스의 여부를 문자열길이를 체크해서 0이라면 경고창
-				
 				alert("삭제할 주문을 선택해주세요.")
 			}else{
 				$("input[name=delete_ohistory]:checked").each(function() {
@@ -104,66 +104,42 @@
 					var input_ohdel_order_id  = $('<input name="order_id">');	//선언
 					input_ohdel_order_id.val(ohdel)	//선언한 함수에 chdel을 담는다
 					ohdel_submit_formh.append(input_ohdel_order_id);	//del_submit_form에 자식으로 추가한다.
-				})
-				$(document).find("body").append(ohdel_submit_formh)
-				ohdel_submit_formh.submit();
-			}
-	}
-	
-	//예약변경 function
-	function ohres_submit() {
-		
-		var formh = $(document).find("#formh");
-		var ohres_submit_formh =  $('<form>');
-		
-		//값을 Y로 변경하느냐 N으로 변경하느냐에 따라 처리 action이 다르므로 분별한다.
-		if(document.formh.reserve_ohistory.value == 'Y') {	//예약여부를 N으로 바꿀경우
-			ohres_submit_formh.attr('action',"/kanu/hupdate");	//update,delete 실행
-			ohres_submit_formh.attr('method','post');	//전송방법 post
-		} else if (document.formh.reserve_ohistory.value == 'N') {	//예약여부를 Y로 바꿀경우
-			ohres_submit_formh.attr('action',"/kanu/hinsert");	//update,insert 실행
-			ohres_submit_formh.attr('method','post');	//전송방법 post
+			})
+					
+					$(document).find("body").append(ohdel_submit_formh)
+					ohdel_submit_formh.submit();
 		}
-			if($("input[name=delete_ohistory]:checked").length === 0){	//체크된박스의 여부를 문자열길이를 체크해서 0이라면 경고창
-				
-				alert("삭제할 주문을 선택해주세요.")
-			}else{
-				$("input[name=delete_ohistory]:checked").each(function() {
-					var ohdel = $(this).val();	//체크박스여부를 체크해서 체크된 값을 chdel에 담는다.
-					console.log(ohdel);	//단순 확인용 출력 (test)
-					alert("주문번호 "+ohdel+"을 삭제하였습니다.")
-					var input_ohdel_order_id  = $('<input name="order_id">');	//선언
-					input_ohdel_order_id.val(ohdel)	//선언한 함수에 chdel을 담는다
-					ohdel_submit_formh.append(input_ohdel_order_id);	//del_submit_form에 자식으로 추가한다.
-				})
-				$(document).find("body").append(ohdel_submit_formh)
-				ohdel_submit_formh.submit();
-			}
-	}
-	
-	//취소하기 function
-	function ohcan_submit() {
-		
-		var formh = $(document).find("#formh");
-		var ohcan_submit_formh =  $('<form>');
-		ohcan_submit_formh.attr('action',"/kanu/hdelete");	//delete 실행
-		ohcan_submit_formh.attr('method','post');	//전송방법 post
-			if($("input[name=delete_ohistory]:checked").length === 0){	//체크된박스의 여부를 문자열길이를 체크해서 0이라면 경고창
-				
-				alert("삭제할 주문을 선택해주세요.")
-			}else{
-				$("input[name=delete_ohistory]:checked").each(function() {
-					var ohdel = $(this).val();	//체크박스여부를 체크해서 체크된 값을 chdel에 담는다.
-					console.log(ohdel);	//단순 확인용 출력 (test)
-					alert("주문번호 "+ohdel+"을 삭제하였습니다.")
-					var input_ohdel_order_id  = $('<input name="order_id">');	//선언
-					input_ohdel_order_id.val(ohdel)	//선언한 함수에 chdel을 담는다
-					ohdel_submit_formh.append(input_ohdel_order_id);	//del_submit_form에 자식으로 추가한다.
-				})
-				$(document).find("body").append(ohdel_submit_formh)
-				ohdel_submit_formh.submit();
-			}
 	}
 </script>
+
+<!-- hinsert 팝업 -->
+<div id="hinsert_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+  
+    <!-- Modal content-->
+    <div id="hinsert-content" class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">예약 상세 정보</h4>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+	<div class="col-xs-7">
+	<form align="left" name="hinsert_form" id="hinsert_form" style="border:1 solid gray" action="${pageContext.request.contextPath}/hinsert">
+		<label>예약자 :</label><input type="text" class="formh-control" name="reserver"><br>
+		<label>수령자 :</label><input type="text" class="formh-control" name="receipter"><br>
+		<label>담당직원 :</label><input type="text" class="formh-control" name="employeeId"><br>
+		<label>예약시간 :</label><input type="date" class="formh-control" name="receiptDate"><br>
+	</form>
+	</div>
+	</div>
+      </div>
+      <div class="modal-footer">
+      	<button onclick="hinsert_form_submit()" type="button" class="btn btn-danger" >등록</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

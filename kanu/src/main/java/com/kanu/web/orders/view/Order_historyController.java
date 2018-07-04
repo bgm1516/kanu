@@ -41,6 +41,8 @@ public class Order_historyController {
 		order_historyService.updateOrder_history(vo);
 		return "redirect:" + "/getOrder_historyList";
 	}
+	
+	//3)취소여부를 Y로 바꿀 경우 팝업창이 뜨게하고 canceled_order에 insert 및 order_history에 update <단 Y로 변경된 값을 되돌릴순 없다>
 
 	
 	//delete <공통>.
