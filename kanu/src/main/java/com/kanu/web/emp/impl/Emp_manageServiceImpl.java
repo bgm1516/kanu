@@ -46,8 +46,12 @@ public class Emp_manageServiceImpl implements Emp_manageService{
 
 	@Override
 	public List<Emp_manageVO> getEmpList2() {
-		// TODO Auto-generated method stub
 		return empManDAO.getEmpList2();
+	}
+
+	@Override
+	public Emp_manageVO getlogin(Emp_manageVO vo) {
+		return empManDAO.getlogin(vo);
 	}
 
 }

@@ -45,10 +45,10 @@
 		FROM EMP_MANAGE
 	
 		<where>
-		<if test="employeeId!=null and employeeId!=''">
-			EMPLOYEE_ID=#{employeeId}
+		<if test=" selector!=null and selector=='employeeId'">
+			EMPLOYEE_ID=#{empEmail}
 		</if>
-		<if test="empEmail!=null and empEmail!=''">
+		<if test=" selector!=null and selector=='empEmail'">
 			EMP_EMAIL=#{empEmail}
 		</if>
 	
@@ -76,7 +76,21 @@
 		</if>-->
 	
 		</where>
-		ORDER BY EMPLOYEE_ID
+	</select>
+
+	<select id="getlogin" parameterType="empManVO" resultType="empManVO">
+		SELECT EMPLOYEE_ID  				
+		      ,EMPLOYEE_NAME   				
+		FROM EMP_MANAGE
+	
+		<where>
+		<if test="employeeId!=null and employeeId!=''">
+			EMPLOYEE_ID=#{employeeId}
+		</if>
+		<if test="password!=null and password!=''">
+			AND PASSWORD=#{password}
+		</if>
+		</where>
 	</select>
 
 <insert id="insertEmp" parameterType="empManVO">
@@ -123,14 +137,17 @@
 
 <delete id="deleteEmp" parameterType="string">
 
-		DELETE EMP_MANAGE 
-		WHERE EMPLOYEE_ID=#{employeeId}
-
+		DELETE FROM EMP_MANAGE 
+		<where>
+		<if test=" selector!=null and selector=='employeeId'">
+			EMPLOYEE_ID=#{empEmail}
+		</if>
+		</where>
 </delete>
 
 <delete id="deleteEmpList" parameterType="list">
 
-		DELETE EMP_MANAGE 
+		DELETE FROM EMP_MANAGE 
 		WHERE EMPLOYEE_ID=#{employeeId}
 
 </delete>
