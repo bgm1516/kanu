@@ -78,6 +78,21 @@
 		</where>
 	</select>
 
+	<select id="getlogin" parameterType="empManVO" resultType="empManVO">
+		SELECT EMPLOYEE_ID  				
+		      ,EMPLOYEE_NAME   				
+		FROM EMP_MANAGE
+	
+		<where>
+		<if test="employeeId!=null and employeeId!=''">
+			EMPLOYEE_ID=#{employeeId}
+		</if>
+		<if test="password!=null and password!=''">
+			AND PASSWORD=#{password}
+		</if>
+		</where>
+	</select>
+
 <insert id="insertEmp" parameterType="empManVO">
 <selectKey order="BEFORE" keyProperty="employeeId" resultType="string" >
 	SELECT NVL(MAX(EMPLOYEE_ID),0)+1 FROM EMP_MANAGE

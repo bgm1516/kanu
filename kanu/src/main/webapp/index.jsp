@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!doctype html>
 <html lang="en">
   <head>
@@ -109,10 +110,18 @@ body{
             <a class="nav-link" href="#">QnA</a>
           </li>
           
+   		<c:if test="${empty empName}">
           <li class="nav-item">
             <a class="nav-link" href="#">LogIn</a>
-          </li>
+          </li></c:if>
+               <c:if test="${!empty empName}">
+          <li class="nav-item">
+            <a class="nav-link" href="./getlogout">LogOut</a>
+          </li></c:if>
         </ul>
+         <c:if test="${!empty empName}"><span> 
+          <li>${empName}님 환영합니다</li></span></c:if>
+        
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

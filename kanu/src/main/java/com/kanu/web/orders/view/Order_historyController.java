@@ -41,7 +41,7 @@ public class Order_historyController {
 		order_historyService.updateOrder_historyN(vo);
 		return "redirect:" + "/getOrder_historyList";
 	}
-
+	
 	//delete <공통>.
 	@RequestMapping("/hdelete")
 	public String deleteOrder_history(Model model, Order_historyVO vo, HttpServletRequest request ,String [] order_id) {
