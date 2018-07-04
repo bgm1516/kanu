@@ -42,6 +42,13 @@ public class Order_historyController {
 		return "redirect:" + "/getOrder_historyList";
 	}
 	
+	//취소여부 Modal 폼
+	@RequestMapping("/updateA")
+	public String updateCanceled_orderY(Model model, Order_historyVO vo) {
+		order_historyService.updateCanceled_orderY(vo);
+		return "redirect:" + "/getOrder_historyList";
+	}
+	
 	//delete <공통>.
 	@RequestMapping("/hdelete")
 	public String deleteOrder_history(Model model, Order_historyVO vo, HttpServletRequest request ,String [] order_id) {

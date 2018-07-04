@@ -19,6 +19,13 @@
 		ORDER BY A.ORDER_ID
 	</select>
 	
+	<!-- 취소여부 Modal 폼 -->
+	<update id="updateCanceled_orderY" parameterType="com.kanu.web.orders.Order_historyVO">
+		UPDATE CANCELED_ORDER
+		SET CANCEL_REASON = #{cancelReason}
+		WHERE ORDER_ID = #{orderId}
+	</update>
+	
 	<!-- 취소여부가 Y인 경우(Y로 바뀌는경우) canceled_order에 insert(가짜값) -->
 	<insert id="insertCanceled_orderY" parameterType="com.kanu.web.orders.Order_historyVO">
 		INSERT INTO CANCELED_ORDER (ORDER_ID, ORDER_DATE, CANCEL_TIME, CANCEL_REASON)
