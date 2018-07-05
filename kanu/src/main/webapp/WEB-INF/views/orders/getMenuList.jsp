@@ -5,17 +5,49 @@
 <html>
 <head>
 <style>
-#c1 {
+.c1 {
 	margin: auto;
 	width: 40%;
 	border: 0.5px solid #000000;
 	padding: 10px;
 	text-align: center;
 }
+.c2 {
+	margin: auto;
+	width: 40%;
+	border: 0.5px solid #000000;
+	padding: 10px;
+	text-align: center;
+}
+
+.label {
+	display:block; 
+	width:x; 
+	height:y; 
+	text-align:center;
+	}
+	
 </style>
 <title>getMenuList.jsp</title>
 <script type="text/javascript">
 
+ //중복 함수
+ 
+ function overlapcheck(){
+	 /* var menuName  */
+	 $( 'p:contains(document.menuForm.menuName.value)' )
+	 if (result == true){
+	return false;
+	 }
+	else{
+		return true;
+	}
+	 
+ }
+ 
+ 
+ 
+ //삭제 함수
 	function delcheck(menuId) {
 		result = confirm("정말로 삭제하시겠습니까 ?");
 
@@ -25,30 +57,28 @@
 		}
 
 	}
+	
+// 숫자 값만 받는 함수	
+	function onlyNumber(obj) {
+	    $(obj).keyup(function(){
+	         $(this).val($(this).val().replace(/[^0-9]/g,""));
+	    }); 
+	}
 </script>
 </head>
 <body>
 
 
 	
-
-
-	<div align="center">
-		<H2>메뉴:목록</H2>
+<div class="row">
+<div class="col">
+		<H2 align="center">메뉴</H2>
 		<HR>
+		
 		<form>
-			<!-- <br> <a href="insertMenu"><input type="button"
-				value="메뉴 등록하기"></a> <br> -->
-		<!-- 		<body>
-			<form action="./insertMenu" method="post" >
-			메뉴 이름<input type="text" name="menuName">
-			가격<input type="text" name="price">
-			<input type="submit" value="등록"/>
-			</form>
-
-				</body> -->
+		 
 			<P>
-			<div id="c1">
+			<div class="c1">
 				<table class="table table-striped">
 
 					<tr>
@@ -74,13 +104,22 @@
 			</div>
 			<HR>
 		</form>
-			<form action="./insertMenu" method="post">
-					메뉴 이름<input type="text" name="menuName">
-					가격<input type="text" name="price">
-					<input type="submit" value="등록"/>
+		<div class=c2>
+			<form action="./insertMenu" method="post" onsubmit="return overlapcheck()" name="menuForm">
+					<label>메뉴명</label><input type="text" name="menuName"><br>
+					<!-- <label>가격</label><input type="text" name="price"> -->
+					<label>가격</label><input onkeydown="onlyNumber(this)" name="price" placeholder='숫자만 입력하세요'>
+					<label><input type="submit" value="등록"/></label>
+					<!-- <input onkeydown="onlyNumber(this)"/> -->
 				</form>
-				
+				   
+				</div>
 	</div>
-
+	<div class="col">
+	
+	<H2 align="center">레시피</H2>
+	<hr>  
+</div> 
+</div>
 </body>
 </html>

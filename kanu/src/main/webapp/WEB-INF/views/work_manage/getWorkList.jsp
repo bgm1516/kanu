@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:if test="${sessionScope.master==sessionScope.staff}">
+<c:if test="${sessionScope.masterId==sessionScope.empId}">
 <form class="form-inline" action="./getWorker">
   
   <div class="form-group mx-sm-3" align="right">
@@ -26,23 +26,23 @@
   <a href="./getWorkList" class="btn btn-secondary" role="button" aria-pressed="true">전체조회</a>
 </form>
 </c:if>
-<c:if test="${sessionScope.master!=sessionScope.staff}">
+<c:if test="${sessionScope.masterId!=sessionScope.empId}">
 <div align="right">
 
-<a href="./insertEmp" class="btn btn-primary" role="button" aria-pressed="true">근무조회</a>
-<a href="./updateEmp" class="btn btn-secondary" role="button" aria-pressed="true">출근확인</a>
-<a href="./deleteEmp" class="btn btn-success" role="button" aria-pressed="true">퇴근확인</a>
+<a href="./getWorker?employeeId=${empId}" class="btn btn-primary" role="button" aria-pressed="true">근무조회</a>
+<a href="./InsertWork?employeeId=${empId}" class="btn btn-secondary" role="button" aria-pressed="true">출근확인</a>
+<a href="./updateWork?employeeId=${empId}" class="btn btn-success" role="button" aria-pressed="true">퇴근확인</a>
 
 </div>
 </c:if>
 <br>
 <br>
-<c:if test="${sessionScope.master==sessionScope.staff}">
+
 <form>
 
 <table class="table table-striped">
 <tr>
-<th>CHK</th><th>직원번호</th><th>직원이름</th><th>출근시간</th><th>퇴근시간</th><th>일일근무시간</th></tr>
+<th>CHK</th><th>직원번호</th><th>직원이름</th><th>출근시간</th><th>퇴근시간</th><th>일일근무시간(분)</th></tr>
 <c:forEach items="${workManC}" var="workC">
 <tr>
 <td width="5"><input type="checkbox" name="employeeId" value="${workC.employeeId}"/></td> 
@@ -56,7 +56,10 @@
 </c:forEach>
 </table>
 </form>
-</c:if>
+
+
+
+
 
 </body>
 </html>

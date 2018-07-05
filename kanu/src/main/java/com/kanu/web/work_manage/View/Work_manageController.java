@@ -31,12 +31,12 @@ public class Work_manageController {
 	@RequestMapping("/InsertWork")
 	public String InsertWork(Work_manageVO vo) {
 		work_service.insertWork(vo);
-		return "redirect:/getWorkList";
+		return "redirect:/getWorker";
 	}
 	//퇴근시간 (수정)
 	@RequestMapping("/updateWork")
 	public String updateWork(Work_manageVO vo) {
 		work_service.updateWork(vo);
-		return "redirect:/getWorkList";
+		return "redirect:/getWorker";
 	}
 }

@@ -21,10 +21,10 @@
 			AND A.EMPLOYEE_ID=#{employeeId}
 		</if>
 		<if test="workStart!=null and workStart!=''">
-			AND to_char(A.WORK_START,'hh:mi')=#{workStart}
+			AND SUBSTR(to_char(A.WORK_START,'hh24:mi'),1,2)=SUBSTR(#{workStart},1,2)
 		</if>
 		<if test="workEnd!=null and workEnd!=''">
-			AND to_char(A.WORK_END,'hh:mi')=#{workEnd}
+			AND SUBSTR(to_char(A.WORK_END,'hh24:mi'),1,2)=SUBSTR(#{workEnd},1,2)
 		</if>
 		<if test="dayWorktime!=null and dayWorktime!=''">
 			AND A.DAY_WORKTIME=#{dayWorktime}
