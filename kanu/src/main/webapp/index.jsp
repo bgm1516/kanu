@@ -101,6 +101,7 @@ body{
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Employee</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="#">직원관리</a>
+             <a class="dropdown-item" href="#">급여내역</a>
               <a class="dropdown-item" href="#">급여관리</a>
               <a class="dropdown-item" href="#">근무관리</a>
             </div>
