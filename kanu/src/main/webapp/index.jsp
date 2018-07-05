@@ -58,7 +58,7 @@ body{
   <body>
 	
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="#">KANU</a>
+      <a class="navbar-brand" href="/kanu">KANU</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -66,7 +66,7 @@ body{
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/kanu">Home <span class="sr-only">(current)</span></a>
           </li>
           
           
@@ -90,9 +90,9 @@ body{
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" 
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Stock</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">입고내역</a>
-              <a class="dropdown-item" href="#">재고관리</a>
-              <a class="dropdown-item" href="#">공급사관리</a>
+              <a class="dropdown-item" href="/kanu/getInputList">입고내역</a>
+              <a class="dropdown-item" href="/kanu/getStockList">재고관리</a>
+              <a class="dropdown-item" href="/kanu/getSupplierList">공급사관리</a>
             </div>
           </li>
           
@@ -107,7 +107,7 @@ body{
           </li>
           
            <li class="nav-item">
-            <a class="nav-link" href="#">QnA</a>
+            <a class="nav-link" href="/kanu/getQnAList">QnA</a>
           </li>
           
    		<c:if test="${empty empName}">
