@@ -112,7 +112,7 @@
 					<label><input type="submit" value="등록"/></label>
 					<!-- <input onkeydown="onlyNumber(this)"/> -->
 				</form>
-				
+				  
 				</div>
 	</div>
 	<div class="col">
