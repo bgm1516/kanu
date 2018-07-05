@@ -28,46 +28,10 @@
 	text-align: center;
 	align: center;
 }
-
-#cancel_form input{
-	width: 80%;
-	display: inline-block;
-}
-#cancel_form label{
-	width: 20%;
-	text-align: right;
-	padding-right: 20px;
-	margin-bottom: 30px;
-}
-#cancel_form select{
-	width: 80%;
-	display: inline-block;
+#Modal .modal-header button.close {
+    visibility: hidden;
 }
 
-#select_item_formh input{
-	width: 80%;
-	display: inline-block;
-}
-#select_item_formh label{
-	width: 20%;
-	text-align: right;
-	padding-right: 20px;
-	margin-bottom: 20px;
-}
-#select_item_formh select{
-	width: 78%;
-	display: inline-block;
-	margin-bottom: 10px;
-}
-#view th{
-	text-align: center;
-}
-#cancel-content{
-	top : 200px;
-}
-#cancel_modal select{
-	height : 35px;
-}
 </style>
 </head>
 <body>
@@ -79,6 +43,8 @@
 	<strong><span style="color: #99ccff">정상적인 주문 예시</span></strong>
 	<br>
 	<strong>(주의사항) - "예약여부 변경"과 "취소여부 변경"은 단일 선택만 가능합니다</strong>
+	<br>
+	<strong>(사용법) - "취소하기" 후에 "취소사유" 버튼을 눌러 사유를 작성해주세요</strong>
 	<div style="border: 1px solid gray" align="center">
 		<form name="searchFrm" method="post"
 			action="${pageContext.request.contextPath}/getOrder_historyList">
@@ -98,7 +64,9 @@
 				<th>주문일시</th>
 				<th>담당직원</th>
 				<th><button onclick="ohres_submit()" type="button" class="btn btn-secondary">예약변경</button></th>
-				<th><button onclick="ohcan_submit();modal_popup()" type="button" class="btn btn-warning">취소하기</button></th>
+				<th><button onclick="ohcan_submit()" type="button" class="btn btn-warning">취소하기</button>
+					<button onclick="modal_popup()" type="button" class="btn btn-warning">취소사유</button>			
+				</th>
 				<th><button onclick="ohdel_submit()" type="button" class="btn btn-danger">삭제</button></th>
 			</tr>
 
@@ -205,12 +173,11 @@
 					//2)조건=취소여부가 N인 경우(현재 Y값인 경우) (넘어가는 맵핑값이 다르므로)
 					} else { 
 					ohcan_submit_formh.attr('action', "/kanu/cupdate"); //취소여부를 Y로 바꾸고 canceled_order에서 insert문 실행
-						
 					}
 						ohcan_submit_formh.attr('method', 'post'); //전송방법은 post이며 공통이므로 밖으로 빼내었다
 				})
-				$(document).find("body").append(ohcan_submit_formh)
-				ohcan_submit_formh.submit();
+					$(document).find("body").append(ohcan_submit_formh)
+					ohcan_submit_formh.submit();
 			}
 		}
 
@@ -219,12 +186,12 @@
 			$("input[name=canceled_ohistory]:checked").each(function() {
 				var pop = $(this).val();	//체크된 값을 pop에 담고
 				var pop_cancel = canceledOrder[pop];	//pop_cancel에 체크된 취소여부 값을 담는다
-			
-				if (pop_cancel === "N") {
+				
+				if (pop_cancel === "N") {					
 						alert("취소 사유를 입력해주세요");
-						$("#cancel_modal").modal("show");
+						$("#cancel_modal").modal("show");	//shown은 액션의 완료 후에 이루어진다
 				} else {
-					alert("취소처리가 취소되었습니다")
+					alert("취소내역에서 정상적으로 복구되었습니다")
 				}
 				})
 		}
@@ -236,25 +203,25 @@
 			var select_item_formh = $(document).find("#select_item_formh");
 			var horder_item = {};
 			horder_item.cancelReason = select_item_formh.find("select[name='cancelReason'] option:selected").val();
-			horder_item.orderDate = select_item_formh.find("input[name='orderDate']").val();
+			horder_item.orderId = select_item_formh.find("input[name='orderId']").val();
 
 			console.log(horder_item)
 
 			var horder_item_cancelReason = $("<input type='hidden' name='cancelReason'>");
 			horder_item_cancelReason.val(horder_item.cancelReason)
 
-			var horder_item_orderDate = $("<input type='hidden' name='orderDate'>");
-			horder_item_orderDate.val(horder_item.orderDate)
+			var horder_item_orderId = $("<input type='hidden' name='orderId'>");
+			horder_item_orderId.val(horder_item.orderId)
 
 			var horder_item_div = $("<div class='horder_item_div'>");
 
 			horder_item_div.append(horder_item_cancelReason);
-			horder_item_div.append(horder_item_orderDate);
+			horder_item_div.append(horder_item_orderId);
 
 			var horder_item_table = $(document).find("table.horder_item_table tbody");
 			var horder_item_tr = $("<tr>");
 			horder_item_tr.append($("<td>" + horder_item.cancelReason+ " </td>"))
-			horder_item_tr.append($("<td>" + horder_item.orderDate + " </td>"))
+			horder_item_tr.append($("<td>" + horder_item.orderId + " </td>"))
 			horder_item_tr.append($("<td>"+ "<button onclick='delect_cancel_item(this)' class='btn btn-danger cancel_item_delete'>x</button>"+ " </td>"));
 			horder_item_table.append(horder_item_tr);
 			$(document).find('#cancel_form').append(horder_item_div);
@@ -290,7 +257,7 @@
 	</script>
 
 <!-- 취소 Modal -->
-<div id="cancel_modal" class="modal fade" role="dialog">
+<div id="cancel_modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog modal-lg">
 	
 	<!-- Modal content-->
@@ -304,7 +271,6 @@
 	<div class="col-xs-7">
 	<form align="center" name="cancel_form" id="cancel_form" style="border: 1 solid gray" action="${pageContext.request.contextPath}/updateA">
 		<label>주문번호 :</label><input type="text" class="formh-control" name="orderId" value="${vo.orderId}"><br>
-		<label>주문시간 :</label><input type="text" class="formh-control" name="orderDate" value="${vo.orderDate}"><br>
 	</form>
 	
 	<form align="center" action="" id="select_item_formh">
@@ -323,9 +289,7 @@
 	<table class="table order_item_table">
   	<thead>
   	<tr>
-		
 		<th>주문번호</th>
-		<th>주문시간</th>
 		<th>취소사유</th>
 		<th>삭제</th>
 	</tr>
