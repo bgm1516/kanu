@@ -118,7 +118,7 @@
 	<div class="col">
 	
 	<H2 align="center">레시피</H2>
-	<hr>
+	<hr>  
 </div>
 </div>
 </body>
