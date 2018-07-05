@@ -29,21 +29,21 @@
 	<!-- 취소여부가 Y인 경우(Y로 바뀌는경우) canceled_order에 insert(가짜값) -->
 	<insert id="insertCanceled_orderY" parameterType="com.kanu.web.orders.Order_historyVO">
 		INSERT INTO CANCELED_ORDER (ORDER_ID, ORDER_DATE, CANCEL_TIME, CANCEL_REASON)
-		VALUES (#{orderId}, #{orderDate}, 'SYSDATE', 'Not Yet')
+		VALUES (#{orderId}, TO_TIMESTAMP(#{orderDate}, 'YYYY-MM-DD HH24:MI:SS'), SYSTIMESTAMP, 'Not Yet')
 	</insert>
 	
 	<!-- 취소여부가 Y인 경우(Y로 바뀌는경우) order_history에 update -->
 	<update id="updateOrder_historyY" parameterType="com.kanu.web.orders.Order_historyVO">
 		UPDATE ORDER_HISTORY
-		SET CANCELED_ORDER='N'
-		WHERE ORDER_ID=#{orderId}
+		SET CANCELED_ORDER='Y'
+		WHERE ORDER_ID = #{orderId}
 	</update>
 	
 	<!-- 취소여부가 N인 경우(N으로 바뀌는경우) order_history에 update -->
 	<update id="updateOrder_historyN" parameterType="com.kanu.web.orders.Order_historyVO">
 		UPDATE ORDER_HISTORY
-		SET CANCELED_ORDER='Y'
-		WHERE ORDER_ID=#{orderId}
+		SET CANCELED_ORDER='N'
+		WHERE ORDER_ID = #{orderId}
 	</update>
 	
 	<!-- 취소여부가 N인경우(N으로 바뀌는경우) canceled_order에 delete (전체삭제에도 포함하도록한다)-->

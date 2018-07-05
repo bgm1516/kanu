@@ -82,8 +82,8 @@
 	<div style="border: 1px solid gray" align="center">
 		<form name="searchFrm" method="post"
 			action="${pageContext.request.contextPath}/getOrder_historyList">
-			<input type="hidden" name="p" value="1" /> 주문번호 <input type="text"
-				name="orderId" /> <input type="submit" value="검색" /><br />
+			<input type="hidden" name="p" value="1" /> 주문번호 <input type="text" name="orderId" />
+			<input type="submit" value="검색" /><br />
 		</form>
 	</div>
 
@@ -98,7 +98,7 @@
 				<th>주문일시</th>
 				<th>담당직원</th>
 				<th><button onclick="ohres_submit()" type="button" class="btn btn-secondary">예약변경</button></th>
-				<th><button onclick="ohcan_submit()" type="button" class="btn btn-warning">취소하기</button></th>
+				<th><button onclick="ohcan_submit();modal_popup()" type="button" class="btn btn-warning">취소하기</button></th>
 				<th><button onclick="ohdel_submit()" type="button" class="btn btn-danger">삭제</button></th>
 			</tr>
 
@@ -118,8 +118,10 @@
 
 				<script>
 					orderId.push('${vo.orderId}');
-					orderCancel.push('${vo.canceledOrder}');
+					canceledOrder.push('${vo.canceledOrder}');
+					orderDate.push('${vo.orderDate}');
 				</script>
+				
 				<td class="order_id_class">${vo.orderId}</td>
 				<td>${vo.menuName}</td>
 				<td>${vo.price}</td>
@@ -158,9 +160,9 @@
 					var ohdel = $(this).val(); //체크박스여부를 체크해서 체크된 값을 chdel에 담는다.
 					console.log(ohdel); //단순 확인용 출력 (test)
 					alert("주문번호 " + ohdel + "을 삭제하였습니다.")
-					var input_ohdel_order_id = $('<input name="order_id">'); //선언
-					input_ohdel_order_id.val(ohdel) //선언한 함수에 chdel을 담는다
-					ohdel_submit_formh.append(input_ohdel_order_id); //del_submit_form에 자식으로 추가한다.
+					var input_ohdel_orderId = $('<input name="orderId">'); //선언
+					input_ohdel_orderId.val(ohdel) //선언한 함수에 chdel을 담는다
+					ohdel_submit_formh.append(input_ohdel_orderId); //del_submit_form에 자식으로 추가한다.
 				})
 				$(document).find("body").append(ohdel_submit_formh)
 				ohdel_submit_formh.submit();
@@ -169,7 +171,7 @@
 		
 		//취소하기 function
 		function ohcan_submit() {
-			var formh = $(document).find("#formh"); //없어도 됨
+			var formh = $(document).find("#formh");
 			var ohcan_submit_formh = $('<form>'); //동적 폼 생성(이 폼은 전송 완료 후 사라집니다)
 			
 			if ($("input[name=canceled_ohistory]:checked").length === 0) { //체크된박스의 여부를 문자열길이를 체크해서 0이라면 경고창
@@ -183,27 +185,27 @@
 					var o_date = orderDate[ohcan]
 
 					//이건 order_id를 담기위함이다.
-					var input_ohcan_order_id = $('<input name="order_id">'); //변수 선언
-					input_ohcan_order_id.val(o_id) //선언한 변수의값으로 o_id를 담는다.
-					ohcan_submit_formh.append(input_ohcan_order_id); //동적으로 생성된 폼에 자식으로 o_id를 담은 변수를 더한다.
+					var input_ohcan_orderId = $('<input name="orderId">'); //변수 선언
+					input_ohcan_orderId.val(o_id) //선언한 변수의값으로 o_id를 담는다.
+					ohcan_submit_formh.append(input_ohcan_orderId); //동적으로 생성된 폼에 자식으로 o_id를 담은 변수를 더한다.
 
 					//이건 위와 동일하지만 canceled_order의 값을 담고있다.
-					var input_ohcan_canceled_order = $('<input name="canceled_order">'); //변수 선언
-					input_ohcan_canceled_order.val(o_cancel) //선언한 변수에 o_cancel을 담는다
-					ohcan_submit_formh.append(input_ohcan_canceled_order); //동적으로 생성된 폼에 자식으로 o_cancel을 담은 변수를 더한다.
+					var input_ohcan_canceledOrder = $('<input name="canceledOrder">'); //변수 선언
+					input_ohcan_canceledOrder.val(o_cancel) //선언한 변수에 o_cancel을 담는다
+					ohcan_submit_formh.append(input_ohcan_canceledOrder); //동적으로 생성된 폼에 자식으로 o_cancel을 담은 변수를 더한다.
 
-					var input_ohcan_order_date = $('<input name="order_date">');
-					input_ohcan_order_date.val(o_date)
-					ohcan_submit_formh.append(input_ohcan_order_date);
+					var input_ohcan_orderDate = $('<input name="orderDate">');
+					input_ohcan_orderDate.val(o_date)
+					ohcan_submit_formh.append(input_ohcan_orderDate);
 
-					//1)조건=취소여부가 Y인 경우 (넘어가는 맵핑값이 다르므로)
+					//1)조건=취소여부가 Y인 경우(현재 N값인 경우) (넘어가는 맵핑값이 다르므로)
 					if (o_cancel === "N") {
 					ohcan_submit_formh.attr('action', "/kanu/cinsert"); //취소여부를 N으로 바꾸고 canceled_order에서 delete문 실행
-
-					//2)조건=취소여부가 N인 경우 (넘어가는 맵핑값이 다르므로)
-					} else {
-						$("#cancel_modal").modal("show"); //임의의 값을 먼저 insert후 modal에서 update하는 식으로 할 것이다.
-						ohcan_submit_formh.attr('action', "/kanu/cupdate"); //취소여부를 Y로 바꾸고 canceled_order에서 insert문 실행
+					
+					//2)조건=취소여부가 N인 경우(현재 Y값인 경우) (넘어가는 맵핑값이 다르므로)
+					} else { 
+					ohcan_submit_formh.attr('action', "/kanu/cupdate"); //취소여부를 Y로 바꾸고 canceled_order에서 insert문 실행
+						
 					}
 						ohcan_submit_formh.attr('method', 'post'); //전송방법은 post이며 공통이므로 밖으로 빼내었다
 				})
@@ -212,6 +214,22 @@
 			}
 		}
 
+		//취소여부 N인 값을 Y로 바꾸려고 할때 뜰 Modal 팝업
+		function modal_popup() {
+			$("input[name=canceled_ohistory]:checked").each(function() {
+				var pop = $(this).val();	//체크된 값을 pop에 담고
+				var pop_cancel = canceledOrder[pop];	//pop_cancel에 체크된 취소여부 값을 담는다
+			
+				if (pop_cancel === "N") {
+						alert("취소 사유를 입력해주세요");
+						$("#cancel_modal").modal("show");
+				} else {
+					alert("취소처리가 취소되었습니다")
+				}
+				})
+		}
+		
+		
 		//취소하기 전에 확인칸 추가
 		function cancel_item_add() {
 
