@@ -5,50 +5,33 @@
 <mapper namespace="com.kanu.web.work_manage.work_manageDAO">
 
 	<select id="getWorkList" resultType="workManVO">
-	
-		SELECT EMPLOYEE_ID as "employeeId", 
-		 	   WORK_START as "workStart",
-			   WORK_END as "workEnd",
-			   DAY_WORKTIME as "dayWorktime"
-			   FROM WORK_MANAGE
-			   ORDER BY WORK_START
+		SELECT A.*, B.EMPLOYEE_NAME 
+		FROM WORK_MANAGE A , EMP_MANAGE B 
+		WHERE A.EMPLOYEE_ID=B.EMPLOYEE_ID
 	</select>
 
 	<select id="getWorker" resultType="workManVO">
 	
-		SELECT EMPLOYEE_ID as "employeeId", 
-		 	   WORK_START as "workStart",
-			   WORK_END as "workEnd",
-			   DAY_WORKTIME as "dayWorktime"
-			   FROM WORK_MANAGE
-			   WHERE EMPLOYEE_ID = #{employeeId}
-			   ORDER BY WORK_START
-	</select>
+		SELECT A.*, B.EMPLOYEE_NAME 
+		FROM WORK_MANAGE A , EMP_MANAGE B 
+		WHERE A.EMPLOYEE_ID=B.EMPLOYEE_ID
 
-	<select id="getWork" parameterType="workManVO" resultType="workManVO">
-		EMPLOYEE_ID as "employeeId", 
-		 	   WORK_START as "workStart",
-			   WORK_END as "workEnd",
-			   DAY_WORKTIME as "dayWorktime"
-			   FROM WORK_MANAGE
-	
-		<where>
 		<if test="employeeId!=null and employeeId!=''">
-			EMPLOYEE_ID=#{employeeId}
+		
+			AND A.EMPLOYEE_ID=#{employeeId}
 		</if>
 		<if test="workStart!=null and workStart!=''">
-			WORK_START=#{workStart}
+			AND SUBSTR(to_char(A.WORK_START,'hh24:mi'),1,2)=SUBSTR(#{workStart},1,2)
 		</if>
-	 	<if test="WorkEnd!=null and workEnd!=''">
-			WORK_END=#{workEnd} 
+		<if test="workEnd!=null and workEnd!=''">
+			AND SUBSTR(to_char(A.WORK_END,'hh24:mi'),1,2)=SUBSTR(#{workEnd},1,2)
 		</if>
 		<if test="dayWorktime!=null and dayWorktime!=''">
-			DAY_WORKTIME=#{dayWorktime}
+			AND A.DAY_WORKTIME=#{dayWorktime}
 		</if>
-	
-		</where>
-		 ORDER BY WORK_START
+			
 	</select>
+
 
 <insert id="insertWork" parameterType="workManVO">
 		

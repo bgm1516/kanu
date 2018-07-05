@@ -17,16 +17,22 @@ public class Order_historyServiceImpl implements Order_historyService{
 	public List<Order_historyVO> getOrder_historyList(Order_historyVO vo) {
 		return dao.getOrder_historyList(vo);
 	}
-	//취소여부가 Y인 경우
+	//취소여부가 Y인 경우 (현재 N인 경우)
 	public void insertCanceled_orderY(Order_historyVO vo) {
 		dao.insertCanceled_orderY(vo);
 		dao.updateOrder_historyY(vo);
 	}
 	
-	//취소여부가 N인 경우
+	//취소여부 Modal 폼
+	public void updateCanceled_orderY(Order_historyVO vo) {
+		dao.updateCanceled_orderY(vo);
+	}
+	
+	//취소여부가 N인 경우  (현재 Y인 경우)
 	public void updateOrder_historyN(Order_historyVO vo) {
-		dao.updateOrder_historyN(vo);
 		dao.deleteCanceled_order(vo);
+		dao.updateOrder_historyN(vo);
+		
 	}
 	
 	//삭제(전체)

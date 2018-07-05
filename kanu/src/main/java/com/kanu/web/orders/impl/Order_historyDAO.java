@@ -44,6 +44,11 @@ public class Order_historyDAO {
 		mybatis.update("com.kanu.web.orders.Order_historyDAO.updateOrder_historyN", vo);
 	}
 	
+	//취소여부 Modal 폼
+	public void updateCanceled_orderY(Order_historyVO vo) {
+		mybatis.update("com.kanu.web.orders.Order_historyDAO.updateCanceled_orderY", vo);
+	}
+	
 	//primary_key 제약, 전체 삭제
 	//orders 삭제
 	public void deleteOrders(Order_historyVO vo) {
@@ -62,7 +67,7 @@ public class Order_historyDAO {
 	
 	//canceled_order 삭제
 	public void deleteCanceled_order(Order_historyVO vo) {
-		mybatis.delete("com.kanu.web.orders.Order_historyDAO.deleteOrderHistory", vo);
+		mybatis.delete("com.kanu.web.orders.Order_historyDAO.deleteCanceled_order", vo);
 	}
 
 

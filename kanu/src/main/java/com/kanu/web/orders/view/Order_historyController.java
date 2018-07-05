@@ -28,17 +28,24 @@ public class Order_historyController {
 		return "orders/getOrder_historyList";
 	}
 	
-	//취소여부가 Y인경우
+	//취소여부가 Y인경우(현재 N인 경우)
 	@RequestMapping("/cinsert")
 	public String insertCanceled_orderY(Model model, Order_historyVO vo) {
 		order_historyService.insertCanceled_orderY(vo);
 		return "redirect:" + "/getOrder_historyList";
 	}
 	
-	//취소여부가 N인경우
+	//취소여부가 N인경우(현재 Y인 경우)
 	@RequestMapping("/cupdate")
 	public String updateOrder_historyN(Model model, Order_historyVO vo) {
 		order_historyService.updateOrder_historyN(vo);
+		return "redirect:" + "/getOrder_historyList";
+	}
+	
+	//취소여부 Modal 폼
+	@RequestMapping("/updateA")
+	public String updateCanceled_orderY(Model model, Order_historyVO vo) {
+		order_historyService.updateCanceled_orderY(vo);
 		return "redirect:" + "/getOrder_historyList";
 	}
 	
