@@ -2,83 +2,63 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.kanu.web.stock.impl.StockDAO">
+<mapper namespace="com.kanu.web.stock.impl.SupplierDAO">
 
 <!-- 전체 조회  -->
-   <select id="getStockList" resultType="map">
-      SELECT   PRODUCT_ID         as "productId",
-            PRODUCT_LOCATION   as "productLocation",
-            STOCK_QUANTITY      as "stockQuantity",
-            MINIMUM_QUANTITY   as "minimumQuantity",
-            SUPPLIER_ID         as "supplierId"
-      FROM STOCK
-      <where>
-         <if test="productId != null and productId != ''">
-            STOCK.PRODUCT_ID = #{productId}
-         </if>
-         <!-- <if test="supplierId != null and supplierId != ''">
-            STOCK.SUPPLIER_ID = #{supplierId}
-         </if> -->
-      </where>
-      ORDER BY PRODUCT_ID
+   <select id="getSupplierList" resultType="map">
+      SELECT  	SUPPLIER_ID         	as "supplierId",
+	            SUPPLIER_NAME  			as "supplierName",
+	            PHONE_NUMBER    	 	as "phoneNumber",
+	            MANAGER_NAME   			as "managerName",
+	            MANAGER_PHONE         	as "managerPhone"
+      FROM SUPPLIER
+      
    </select>   
-<!-- 단건 조회  -->
-   
-   <select id="getStock" resultType="stockVO" parameterType="string">
-      <![CDATA[
-      SELECT    PRODUCT_ID,
-            PRODUCT_LOCATION,
-            STOCK_QUANTITY,
-            MINIMUM_QUANTITY,
-            SUPPLIER_ID
-      FROM   STOCK
-      WHERE   PRODUCT_ID = #{value}
-      ]]>
-   </select>
+
 <!-- 등록 -->
-   <insert id="insertStock" parameterType="stockVO">
+   <insert id="insertSupplier" parameterType="SupplierVO">
    
       <!-- <selectKey keyProperty="productId" resultType="string" order="BEFORE">
          SELECT MAX(PRODUCT_ID)+1 FROM STOCK
       </selectKey> -->
       
-      INSERT INTO STOCK (
-                     PRODUCT_ID,
-                     PRODUCT_LOCATION,
-                     STOCK_QUANTITY,
-                     MINIMUM_QUANTITY,
-                     SUPPLIER_ID
+      INSERT INTO SUPPLIER (
+                     SUPPLIER_ID,
+                     SUPPLIER_NAME,
+                     PHONE_NUMBER,
+                     MANAGER_NAME,
+                     MANAGER_PHONE
                      )
       VALUES   (
-               #{productId},
-               #{productLocation},
-               #{stockQuantity},
-               #{minimumQuantity},
-               #{supplierId}
+               #{supplierId},
+               #{supplierName},
+               #{phoneNumber},
+               #{managerName},
+               #{managerPhone}
             )
    </insert>
 <!-- 수정 -->
-   <update id="updateStock" parameterType="stockVO">
-      UPDATE STOCK SET
-               PRODUCT_ID = #{productId},
-               PRODUCT_LOCATION = #{productLocation},
-               STOCK_QUANTITY = NVL(#{stockQuantity},0),
-               MINIMUM_QUANTITY = #{minimumQuantity},
-               SUPPLIER_ID = #{supplierId}
-      WHERE PRODUCT_ID = #{productId}
+   <update id="updateSupplier" parameterType="SupplierVO">
+      UPDATE SUPPLIER SET
+               SUPPLIER_ID = #{supplierId},
+               SUPPLIER_NAME = #{supplierName},
+               PHONE_NUMBER = NVL(#{phoneNumber},0),
+               PHONE_NUMBER = #{managerName},
+               MANAGER_PHONE = #{managerPhone}
+      WHERE SUPPLIER_ID = #{supplierId}
       
    </update>
 <!-- 단건 삭제 -->
-   <delete id="deleteStock" parameterType="string">
-      DELETE FROM STOCK
-      WHERE PRODUCT_ID = #{productId}
+   <delete id="deleteSupplier" parameterType="string">
+      DELETE FROM SUPPLIER
+      WHERE SUPPLIER_ID = #{supplierId}
    </delete>
    
    
 <!-- 다건 삭제 -->   
-   <delete id="deleteStockList">
-      DELETE FROM STOCK
-      WHERE PRODUCT_ID IN
+   <delete id="deleteSupplierList">
+      DELETE FROM SUPPLIER
+      WHERE SUPPLIER_ID IN
       <foreach collection="list" item="item" open="(" close=")" separator=",">
       #{item}
       </foreach>

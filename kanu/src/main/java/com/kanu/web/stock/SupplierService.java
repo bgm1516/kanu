@@ -5,9 +5,9 @@ import java.util.Map;
 
 public interface SupplierService {
 	List<Map<String, Object>> getSupplierList(SupplierVO vo);
-	SupplierVO getSupplier();
+	SupplierVO getSupplier(SupplierVO vo);
 	void insertSupplier(SupplierVO vo);
 	void updateSupplier(SupplierVO vo);
-	void deleteSupplier(String id);
+	void deleteSupplier(int id);
 	
 }

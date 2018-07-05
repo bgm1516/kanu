@@ -91,9 +91,9 @@
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" 
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Stock</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">입고내역</a>
-              <a class="dropdown-item" href="#">재고관리</a>
-              <a class="dropdown-item" href="#">공급사관리</a>
+              <a class="dropdown-item" href="/kanu/getInputList">입고내역</a>
+              <a class="dropdown-item" href="/kanu/getStockList">재고관리</a>
+              <a class="dropdown-item" href="/kanu/getSupplierList">공급사관리</a>
             </div>
           </li>
           

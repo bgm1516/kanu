@@ -7,7 +7,7 @@
 <head>
 
 <style>
-#content1 {
+#content1 {\\
 	margin: auto;
 	text-align: center;
 }
