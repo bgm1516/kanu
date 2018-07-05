@@ -67,7 +67,7 @@ public class Order_historyDAO {
 	
 	//canceled_order 삭제
 	public void deleteCanceled_order(Order_historyVO vo) {
-		mybatis.delete("com.kanu.web.orders.Order_historyDAO.deleteOrderHistory", vo);
+		mybatis.delete("com.kanu.web.orders.Order_historyDAO.deleteCanceled_order", vo);
 	}
 
 
