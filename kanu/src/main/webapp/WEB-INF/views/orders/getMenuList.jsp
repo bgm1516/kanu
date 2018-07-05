@@ -119,7 +119,7 @@
 	
 	<H2 align="center">레시피</H2>
 	<hr>  
-</div>
+</div> 
 </div>
 </body>
 </html>
