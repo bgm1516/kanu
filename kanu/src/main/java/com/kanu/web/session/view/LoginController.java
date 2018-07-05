@@ -31,6 +31,10 @@ public class LoginController {
 		master=sessionService.getlogin(master);
 		staff=sessionService.getlogin(vo);
 		
+		
+		session.setAttribute("masterId", master.getEmployeeId());
+		session.setAttribute("masterName", master.getEmployeeName());
+		
 		session.setAttribute("master", master.getEmployeeName());
 		if(!staff.getEmployeeId().equals("") && staff.getEmployeeId()!=null) {
 			session.setAttribute("empId", staff.getEmployeeId());
