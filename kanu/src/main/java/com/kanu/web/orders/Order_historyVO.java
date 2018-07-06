@@ -8,6 +8,7 @@ public class Order_historyVO {
 	private String orderDate;
 	private String reservation;
 	private String canceledOrder;
+	private String cancelReason;
 	private String employeeId;
 	private String menuName;
 	private String orderQuantity;
@@ -17,6 +18,12 @@ public class Order_historyVO {
 	private String receiptDate;
 	
 	
+	public String getCancelReason() {
+		return cancelReason;
+	}
+	public void setCancelReason(String cancelReason) {
+		this.cancelReason = cancelReason;
+	}
 	public String getReserver() {
 		return reserver;
 	}
@@ -92,10 +99,13 @@ public class Order_historyVO {
 	@Override
 	public String toString() {
 		return "Order_historyVO [orderId=" + orderId + ", orderTotalsum=" + orderTotalsum + ", orderDate=" + orderDate
-				+ ", reservation=" + reservation + ", canceledOrder=" + canceledOrder + ", employeeId=" + employeeId
-				+ ", menuName=" + menuName + ", orderQuantity=" + orderQuantity + ", price=" + price + ", reserver="
-				+ reserver + ", receipter=" + receipter + ", receiptDate=" + receiptDate + "]";
+				+ ", reservation=" + reservation + ", canceledOrder=" + canceledOrder + ", cancelReason=" + cancelReason
+				+ ", employeeId=" + employeeId + ", menuName=" + menuName + ", orderQuantity=" + orderQuantity
+				+ ", price=" + price + ", reserver=" + reserver + ", receipter=" + receipter + ", receiptDate="
+				+ receiptDate + "]";
 	}
+	
+	
 	
 	
 	

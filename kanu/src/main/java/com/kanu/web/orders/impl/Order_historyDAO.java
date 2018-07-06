@@ -29,7 +29,20 @@ public class Order_historyDAO {
 	public List<Order_historyVO> getOrder_historyList(Order_historyVO vo) {
 		return mybatis.selectList("com.kanu.web.orders.Order_historyDAO.getOrder_historyList", vo);
 	}
-
+	
+	//예약여부가 Y인경우
+	public void insertReserve_historyY(Order_historyVO vo) {
+		mybatis.insert("com.kanu.web.orders.Order_historyDAO.insertReserve_historyY", vo);
+	}
+	
+	public void updateOrder_historyRY(Order_historyVO vo) {
+		mybatis.update("com.kanu.web.orders.Order_historyDAO.updateOrder_historyRY", vo);
+	}
+	//예약여부가 N인경우
+	public void updateOrder_historyRN(Order_historyVO vo) {
+		mybatis.update("com.kanu.web.orders.Order_historyDAO.updateOrder_historyRN", vo);
+	}
+	
 	//취소여부가 Y인경우
 	public void insertCanceled_orderY(Order_historyVO vo) {
 		mybatis.insert("com.kanu.web.orders.Order_historyDAO.insertCanceled_orderY", vo);
@@ -42,11 +55,6 @@ public class Order_historyDAO {
 	//취소여부가 N인경우
 	public void updateOrder_historyN(Order_historyVO vo) {
 		mybatis.update("com.kanu.web.orders.Order_historyDAO.updateOrder_historyN", vo);
-	}
-	
-	//취소여부 Modal 폼
-	public void updateCanceled_orderY(Order_historyVO vo) {
-		mybatis.update("com.kanu.web.orders.Order_historyDAO.updateCanceled_orderY", vo);
 	}
 	
 	//primary_key 제약, 전체 삭제

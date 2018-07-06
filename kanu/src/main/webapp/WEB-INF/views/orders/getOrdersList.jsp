@@ -214,6 +214,7 @@
 		order_item_div.append(order_item_orderQuantity); //order_item_div의 자식으로 order_item에 담은 order_quantity 값을 담는다
 		order_item.receipter =$(document).find("#reserve_form").find("input[name='receipter']").val();	//order_item에 reserve_form에서 이름이 receipter인 input 박스의 값을 담는다
 		order_item.receiptDate =$(document).find("#reserve_form").find("input[name='receiptDate']").val(); //order_item에 reserve_form에서 이름이 receipt_date인 input 박스의 값을 담는다
+		
 		var order_item_table = $(document).find("table.order_item_table tbody");	//order_item_table은 table중 order_item_table의 tbody를 갖는다.
 		var order_item_tr = $("<tr>");	//위와 마찬가지로 order_item_tr은 tr태그를 담는다
 		order_item_tr.append( $("<td>"+order_item.menuName+" </td>"))	//order_item_tr 태그의 자식으로 td태그를 쓰고 그 사이에 order_item에 담은 menu_name의 값을 뱉어낸다
