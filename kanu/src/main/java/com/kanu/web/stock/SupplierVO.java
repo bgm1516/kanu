@@ -1,15 +1,15 @@
 package com.kanu.web.stock;
 
 public class SupplierVO {
-	private Integer supplierId;
+	private int supplierId;
 	private String supplierName;
 	private String phoneNumber;
 	private String managerName;
-	private String managerPhone;
-	public Integer getSupplierId() {
+	private int managerPhone;
+	public int getSupplierId() {
 		return supplierId;
 	}
-	public void setSupplierId(Integer supplierId) {
+	public void setSupplierId(int supplierId) {
 		this.supplierId = supplierId;
 	}
 	public String getSupplierName() {
@@ -30,11 +30,10 @@ public class SupplierVO {
 	public void setManagerName(String managerName) {
 		this.managerName = managerName;
 	}
-	
-	public String getManagerPhone() {
+	public int getManagerPhone() {
 		return managerPhone;
 	}
-	public void setManagerPhone(String managerPhone) {
+	public void setManagerPhone(int managerPhone) {
 		this.managerPhone = managerPhone;
 	}
 	@Override

@@ -35,8 +35,8 @@ public class SupplierController {
 	//등록처리
 	@RequestMapping(value="/insertSupplier")
 	@ResponseBody
-	public SupplierVO insertSupplier(SupplierVO vo) {
-		if(vo.getSupplierId() == null || vo.getSupplierId() == 0) {
+	public SupplierVO insertSupplier(SupplierVO vo, @RequestParam String mode) {
+		if(mode.equals("insert")) {
 			supplierService.insertSupplier(vo);
 		}
 		else {
@@ -44,7 +44,6 @@ public class SupplierController {
 		}
 		return supplierService.getSupplier(vo);
 	}
-	
 	//수정 업데이트 처리
 	@RequestMapping(value="/updateSupplier", method = {RequestMethod.GET})
 	public String updateSupplier(SupplierVO vo) {
@@ -60,28 +59,11 @@ public class SupplierController {
 	
 	//단건삭제처리
 	@RequestMapping(value="/deleteSupplier")
-	public String deleteSupplier(SupplierVO vo, SupplierDAO dao, HttpServletResponse response) throws IOException {
-		//supplierService.deleteSupplier(vo.getSupplierId());                                                                                           
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
+	public String deleteSupplier(@ModelAttribute("supplier") SupplierVO vo) {
+		supplierService.deleteSupplier(vo.getSupplierId());
+		return "redirect:/getSupplierList";
 		
-		int value =  vo.getSupplierId();
-		int r = supplierService.deleteSupplier(value);
-		//System.out.println(value);
 
-		if(r==0) {
-			
-			out.print("<script>");
-			out.print("alert('입고 이력이 존재하므로 삭제할 수 없습니다.');");
-			out.println("location.href='getSupplierList';");
-			out.print("</script>");
-		} else if (r==1) {
-			out.print("<script>");
-			out.print("alert('삭제되었습니다.');");
-			out.println("location.href='getSupplierList';");
-			out.print("</script>");
-		}
-		return null;
 	}
 	
 }

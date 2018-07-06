@@ -12,25 +12,15 @@
 	            MANAGER_NAME   			as "managerName",
 	            MANAGER_PHONE         	as "managerPhone"
       FROM SUPPLIER
-      ORDER BY SUPPLIER_ID DESC
-   </select>   
-<!-- 단건 조회  -->
-   <select id="getSupplier" resultType="supplierVO">
-      SELECT  	SUPPLIER_ID         	as "supplierId",
-	            SUPPLIER_NAME  			as "supplierName",
-	            PHONE_NUMBER    	 	as "phoneNumber",
-	            MANAGER_NAME   			as "managerName",
-	            MANAGER_PHONE         	as "managerPhone"
-      FROM SUPPLIER
-      WHERE SUPPLIER_ID = #{supplierId}
       
    </select>   
+
 <!-- 등록 -->
    <insert id="insertSupplier" parameterType="SupplierVO">
    
-      <selectKey keyProperty="supplierId" resultType="int" order="BEFORE">
-         SELECT MAX(SUPPLIER_ID)+1 FROM Supplier
-      </selectKey> 
+      <!-- <selectKey keyProperty="productId" resultType="string" order="BEFORE">
+         SELECT MAX(PRODUCT_ID)+1 FROM STOCK
+      </selectKey> -->
       
       INSERT INTO SUPPLIER (
                      SUPPLIER_ID,
@@ -50,18 +40,18 @@
 <!-- 수정 -->
    <update id="updateSupplier" parameterType="SupplierVO">
       UPDATE SUPPLIER SET
-               SUPPLIER_ID 		= 	#{supplierId},
-               SUPPLIER_NAME	= 	#{supplierName},
-               PHONE_NUMBER 	= 	#{phoneNumber},
-               MANAGER_NAME 	= 	#{managerName},
-               MANAGER_PHONE 	=	#{managerPhone}
+               SUPPLIER_ID = #{supplierId},
+               SUPPLIER_NAME = #{supplierName},
+               PHONE_NUMBER = NVL(#{phoneNumber},0),
+               PHONE_NUMBER = #{managerName},
+               MANAGER_PHONE = #{managerPhone}
       WHERE SUPPLIER_ID = #{supplierId}
       
    </update>
 <!-- 단건 삭제 -->
-   <delete id="deleteSupplier" parameterType="int">
+   <delete id="deleteSupplier" parameterType="string">
       DELETE FROM SUPPLIER
-      WHERE SUPPLIER_ID = #{value}
+      WHERE SUPPLIER_ID = #{supplierId}
    </delete>
    
    
