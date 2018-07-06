@@ -8,7 +8,7 @@
 .c1 {
 	margin: auto;
 	width: 40%;
-	border: 0.5px solid #000000;
+	
 	padding: 10px;
 	text-align: center;
 }
@@ -79,7 +79,8 @@
 		 
 			<P>
 			<div class="c1">
-				<table class="table table-striped">
+			<br>
+				<table class="table table-striped" border="1">
 
 					<tr>
 						<th>메뉴번호</th>
@@ -119,6 +120,8 @@
 	
 	<H2 align="center">레시피</H2>
 	<hr>  
+	
+	
 </div> 
 </div>
 </body>
