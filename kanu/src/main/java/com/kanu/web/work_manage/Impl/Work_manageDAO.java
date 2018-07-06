@@ -32,10 +32,7 @@ public class Work_manageDAO {
 	
 	public void deleteWork(String employeeId) {
 		mybatis.delete("com.kanu.web.work_manage.work_manageDAO.deleteWork", employeeId);
-	}
+	};
 	
-	public List<Work_manageVO> getWorker(Work_manageVO vo){
-		return mybatis.selectList("com.kanu.web.work_manage.work_manageDAO.getWorker", vo);
-	}
 	
 }

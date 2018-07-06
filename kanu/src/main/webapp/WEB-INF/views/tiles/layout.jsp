@@ -59,7 +59,7 @@
   <body>
 	
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="#">KANU</a>
+      <a class="navbar-brand" href="/kanu">KANU</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -67,7 +67,7 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/kanu">Home <span class="sr-only">(current)</span></a>
           </li>
           
           
@@ -81,7 +81,7 @@
               <a class="dropdown-item" href="#">주문관리</a>
               <a class="dropdown-item" href="#">주문내역</a>
               <a class="dropdown-item" href="#">메뉴관리</a>
-              <a class="dropdown-item" href="#">레시피관리</a>
+              <a class="dropdown-item" href="	#">레시피관리</a>
               <a class="dropdown-item" href="#">예약내역</a>
               <a class="dropdown-item" href="#">취소관리</a>
             </div>
@@ -91,9 +91,13 @@
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" 
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Stock</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">입고내역</a>
-              <a class="dropdown-item" href="#">재고관리</a>
-              <a class="dropdown-item" href="#">공급사관리</a>
+<<<<<<< HEAD
+              <a class="dropdown-item" href="/kanu/getInputList">입고내역</a>
+=======
+               <a class="dropdown-item" href="/kanu/getInputList">입고내역</a>
+>>>>>>> branch 'master' of http://github.com/bgm1516/kanu
+              <a class="dropdown-item" href="/kanu/getStockList">재고관리</a>
+              <a class="dropdown-item" href="/kanu/getSupplierList">공급사관리</a>
             </div>
           </li>
           
@@ -102,13 +106,14 @@
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Employee</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="#">직원관리</a>
+              <a class="dropdown-item" href="#">급여내역</a>
               <a class="dropdown-item" href="#">급여관리</a>
               <a class="dropdown-item" href="#">근무관리</a>
             </div>
           </li>
           
            <li class="nav-item">
-            <a class="nav-link" href="#">QnA</a>
+            <a class="nav-link" href="/kanu/getQnAList">QnA</a>
           </li>
           <c:if test="${empty empName}">
           <li class="nav-item">

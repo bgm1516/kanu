@@ -5,8 +5,9 @@
 <mapper namespace="com.kanu.web.stock.impl.InputDAO">
 
 <!-- 전체 조회  -->
+	
 	<select id="getInputList" resultType="map">
-		SELECT	INPUT_NUMBER			as "inputNumber",
+		SELECT DISTINCT	INPUT_NUMBER			as "inputNumber",
 				INPUT_NAME				as "inputName",
 				INPUT_QUANTITY			as "inputQuantity",
 				COST					as "cost",
@@ -20,14 +21,15 @@
 				INPUT.PRODUCT_ID = #{productId}
 			</if>
 			<if test="supplierId != null and supplierId != ''">
-				INPUT.SUPPLIER_ID = #{supplierId}
+				AND INPUT.SUPPLIER_ID = #{supplierId}
 			</if>
+			
 		</where>
 		ORDER BY INPUT_DATE DESC
 	</select>	
 <!-- 단건 조회  -->
 	
-	<!-- <select id="getInput" resultType="inputVO" parameterType="string">
+<!-- 	<select id="getInput" resultType="inputVO" parameterType="string">
 		<![CDATA[
 		SELECT 	INPUT_NUMBER,
 				INPUT_NAME,

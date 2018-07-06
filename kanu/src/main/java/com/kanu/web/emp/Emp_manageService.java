@@ -17,6 +17,5 @@ public interface Emp_manageService {
 	public void updateEmp(Emp_manageVO empManVO);
 	//다중삭제
 	public void deleteEmpList(List<Emp_manageVO> list);
-	//로그인처리를 위한 id와 pw조회
-	public Emp_manageVO getlogin(Emp_manageVO vo);
+	
 }

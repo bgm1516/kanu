@@ -28,10 +28,8 @@
 		DURING_TIME as "duringTime",
 		MONTH_SALARY as "monthSalary",
 		MONTH_WORK as "monthWork"
-		
+	
 		FROM SALARY
-		
-		ORDER BY SALARY_DATE ASC
 	</select>
 	
 	<!-- 단건 조회  -->
@@ -82,7 +80,9 @@
 	
 		<insert id="insertSalary" parameterType="SalaryVO">
  
-	
+	<selectKey keyProperty="employeeId" resultType="string" order="BEFORE">
+			SELECT MAX(EMPLOYEE_ID)+1 FROM SALARY	
+	</selectKey>
 	
 	INSERT INTO SALARY(
 			EMPLOYEE_ID,
@@ -95,25 +95,17 @@
 	VALUES(
 			#{employeeId},
 			'REGULAR',
-			TO_DATE(#{salaryDate},'YYYY-MM-DD'),
-			null,
-			null,
-			to_char(add_months(#{salaryDate},-1),'YYYYMM') 
+			#{salaryDate},
+			null,<!--월근무시간  -->
+			null,<!-- 월급 -->
+			to_char(add_months(#{monthWork},-1),'yyyymm') 
 			)
 	
 			
-	 
+	 <!-- insert into salary
+        values(?,'REGULAR',?,null,null,to_char(add_months(?,-1),'yyyymm')); -->
   	</insert>
   	
-  	
-  	
-  	<!--프로시저 호출  -->
-  	<insert id="month_time" statementType="CALLABLE" parameterType="SalaryVO">
-		{ call month_time(
-		#{monthWork}
-		)
-		}
-	</insert>
   	
   	
   	
@@ -153,8 +145,6 @@
 		MONTH_WORK as "monthWork"
 	
 		FROM SALARY
-		
-		ORDER BY SALARY_DATE ASC
 	</select>
   	
   		

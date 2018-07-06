@@ -15,13 +15,6 @@ public class SalaryDAO {
 	@Autowired
 	SqlSessionTemplate mybatis;
 	
-
-	//프로시저 
-	public void month_time(SalaryVO vo) {
-			mybatis.insert("com.kanu.web.emp.SalaryDAO.month_time", vo);
-		}
-	
-	
 	//전체 조회 
 	
 	public List<Map<String,Object>> getSalaryList(SalaryVO vo){

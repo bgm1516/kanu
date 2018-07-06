@@ -15,6 +15,4 @@ public interface work_manageService {
 	
 	public void deleteWork(String employeeId);
 	
-	public List<Work_manageVO> getWorker(Work_manageVO vo);
-	
 }

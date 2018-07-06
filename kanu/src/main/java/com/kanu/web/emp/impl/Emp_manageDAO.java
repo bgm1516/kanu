@@ -38,7 +38,5 @@ public class Emp_manageDAO {
 	public void updateEmp(Emp_manageVO vo) {
 		mybatis.update("com.kanu.web.emp.Emp_manageDAO.updateEmp", vo);
 	}
-	public Emp_manageVO getlogin(Emp_manageVO vo) {
-		return mybatis.selectOne("com.kanu.web.emp.Emp_manageDAO.getlogin", vo);
-	}
+	
 }

@@ -8,15 +8,20 @@ public class Order_historyVO {
 	private String orderDate;
 	private String reservation;
 	private String canceledOrder;
+	private String cancelReason;
 	private String employeeId;
 	private String menuName;
 	private String orderQuantity;
 	private String price;
-	private String reserver;
-	private String receipter;
-	private String receiptDate;
 	
+<<<<<<< HEAD
 	
+	public String getCancelReason() {
+		return cancelReason;
+	}
+	public void setCancelReason(String cancelReason) {
+		this.cancelReason = cancelReason;
+	}
 	public String getReserver() {
 		return reserver;
 	}
@@ -35,6 +40,8 @@ public class Order_historyVO {
 	public void setReceiptDate(String receiptDate) {
 		this.receiptDate = receiptDate;
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
 	public String getOrderId() {
 		return orderId;
 	}
@@ -89,15 +96,27 @@ public class Order_historyVO {
 	public void setPrice(String price) {
 		this.price = price;
 	}
+	
 	@Override
 	public String toString() {
 		return "Order_historyVO [orderId=" + orderId + ", orderTotalsum=" + orderTotalsum + ", orderDate=" + orderDate
+<<<<<<< HEAD
+				+ ", reservation=" + reservation + ", canceledOrder=" + canceledOrder + ", cancelReason=" + cancelReason
+				+ ", employeeId=" + employeeId + ", menuName=" + menuName + ", orderQuantity=" + orderQuantity
+				+ ", price=" + price + ", reserver=" + reserver + ", receipter=" + receipter + ", receiptDate="
+				+ receiptDate + "]";
+=======
 				+ ", reservation=" + reservation + ", canceledOrder=" + canceledOrder + ", employeeId=" + employeeId
-				+ ", menuName=" + menuName + ", orderQuantity=" + orderQuantity + ", price=" + price + ", reserver="
-				+ reserver + ", receipter=" + receipter + ", receiptDate=" + receiptDate + "]";
+				+ ", menuName=" + menuName + ", orderQuantity=" + orderQuantity + ", price=" + price + "]";
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
 	}
 	
 	
+<<<<<<< HEAD
 	
 	
+	
+	
+=======
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
 }

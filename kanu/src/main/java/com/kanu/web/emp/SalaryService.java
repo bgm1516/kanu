@@ -6,10 +6,6 @@ import java.util.Map;
 import com.kanu.web.emp.SalaryVO;
 
 public interface SalaryService {
-	
-			public void month_time(SalaryVO vo);
-			
-	
 			// 목록조회
 			List<Map<String, Object>> getSalaryList();
 			// 이력조회
