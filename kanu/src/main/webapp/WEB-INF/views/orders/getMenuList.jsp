@@ -44,7 +44,7 @@ $(document).ready(function(){
 
 //메뉴 수정
 function update_menu(a) {
-    var check = confirm('메뉴 정보를 수정하시겠습니까?');
+    var check = confirm("메뉴 정보를 수정하시겠습니까?");
     if (check == true) {
        window.location.href = "./updateMenu?menuId="+a 
     }
@@ -170,8 +170,10 @@ function update_menu(a) {
  
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      
+        <button type="button" class="btn btn-primary">수정 완료</button>
+        
+          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
       </div>
     </div>
   </div>
