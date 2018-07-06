@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kanu.web.orders.Reserve_historyService;
 import com.kanu.web.orders.Reserve_historyVO;
-@Service("order_historyService")
+@Service("reserve_historyService")
 public class Reserve_historyServiceImpl implements Reserve_historyService{
 
 	

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kanu.web.orders.Canceled_orderService;
 import com.kanu.web.orders.Canceled_orderVO;
-@Service("order_historyService")
+@Service("canceled_orderService")
 public class Canceled_orderServiceImpl implements Canceled_orderService{
 
 	

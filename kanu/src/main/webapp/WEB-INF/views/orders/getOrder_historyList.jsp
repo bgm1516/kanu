@@ -73,6 +73,18 @@
 #cancelN_modal select{
 	height : 35px;
 }
+#cancelRY-content{
+	top : 200px;
+}
+#cancelRN-content{
+	top : 200px;
+}
+#cancelRY_modal select{
+	height : 35px;
+}
+#cancelRN_modal select{
+	height : 35px;
+}
 </style>
 </head>
 <body>
@@ -206,13 +218,13 @@
 					if (o_reser === "N") {
 						$('#orderIdRN').val(o_id)
 						alert("취소 사유를 작성해주십시오")
-						$("#reserN_modal").modal("show");
+						$("#cancelRN_modal").modal("show");
 						
 					//2)조건=예약여부가 N인 경우(현재 Y값인 경우) (넘어가는 맵핑값이 다르므로)
 					} else { 
 						$('#orderIdRY').val(o_id)
 						alert("정말 취소한 주문을 되돌리시겠습니까?")
-						$("#reserY_modal").modal("show");
+						$("#cancelRY_modal").modal("show");
 					}
 				})
 			}
@@ -223,7 +235,7 @@
 
 			var RNselect_item_formh = $(document).find("#RNselect_item_formh");
 			var RNhorder_item = {};
-			RNhorder_item.reservation = Nselect_item_formh.find("select[name='reservation'] option:selected").val();
+			RNhorder_item.reservation = RNselect_item_formh.find("select[name='reservation'] option:selected").val();
 
 			console.log(RNhorder_item)
 
@@ -640,7 +652,7 @@
 	<div class="row">
 	<div class="col-xs-7">
 	<form align="center" name="cancelRN_form" id="cancelRN_form" style="border: 1 solid gray" action="${pageContext.request.contextPath}/rinsert">
-		<label>주문번호 :</label><input type="text" class="RNformh-control" id="orderIdRY" name="orderId" value=""><br>
+		<label>주문번호 :</label><input type="text" class="RNformh-control" id="orderIdRN" name="orderId" value=""><br>
 		<label>예약자 명 :</label><input type="text" class="RNformh-control" id="reserver" name="reserver" value=""><br>
 		<label>수령인 명 :</label><input type="text" class="RNformh-control" id="receipter" name="receipter" value=""><br>
 		<label>예약일자 :</label><input type="date" class="RNformh-control" id="receiptDate" name="receiptDate" value=""><br>
@@ -699,7 +711,7 @@
 	<div class="row">
 	<div class="col-xs-7">
 	<form align="center" name="cancelRY_form" id="cancelRY_form" style="border: 1 solid gray" action="${pageContext.request.contextPath}/rupdate">
-		<label>주문번호 :</label><input type="text" class="RYformh-control" id="orderIdRN" name="orderId" value=""><br>
+		<label>주문번호 :</label><input type="text" class="RYformh-control" id="orderIdRY" name="orderId" value=""><br>
 	</form>
 	
 	<form align="center" action="" id="RYselect_item_formh">
