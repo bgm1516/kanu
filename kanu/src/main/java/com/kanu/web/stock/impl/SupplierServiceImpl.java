@@ -6,13 +6,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kanu.web.stock.InputVO;
 import com.kanu.web.stock.SupplierService;
 import com.kanu.web.stock.SupplierVO;
 
 @Service("supplierService")
 public class SupplierServiceImpl implements SupplierService {
 	@Autowired SupplierDAO dao;
-
+	@Autowired InputDAO inputdao;
 	@Override
 	public List<Map<String, Object>> getSupplierList(SupplierVO vo) {
 		// TODO Auto-generated method stub
@@ -34,9 +35,16 @@ public class SupplierServiceImpl implements SupplierService {
 	}
 
 	@Override
-	public void deleteSupplier(int id) {
+	public int deleteSupplier(int id) {
 		// TODO Auto-generated method stub
-		dao.deleteSupplier(id);
+		//dao.deleteSupplier(id);
+		int r = 0;
+		InputVO vo = new InputVO();
+		vo.setSupplierId(id);
+		List<Map<String, Object>> list = inputdao.getInputList(vo);
+		if(list == null || list.size() == 0)
+			r = dao.deleteSupplier(id);
+		return r;
 	}
 
 

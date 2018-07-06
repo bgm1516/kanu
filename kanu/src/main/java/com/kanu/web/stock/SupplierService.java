@@ -8,6 +8,6 @@ public interface SupplierService {
 	SupplierVO getSupplier(SupplierVO vo);
 	void insertSupplier(SupplierVO vo);
 	void updateSupplier(SupplierVO vo);
-	void deleteSupplier(int id);
+	int deleteSupplier(int id);
 	
 }
