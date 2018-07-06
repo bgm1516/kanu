@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 
 <style>
-#content1 {
+#content1 {\\
 	margin: auto;
 	text-align: center;
 }
@@ -25,7 +26,7 @@ margin: auto;
     text-align : center; 
 }  */
 </style>
-<title></title>
+<title>재고현황</title>
 <%--삭제 function 추가 --%>
 <script type="text/javascript">
 	function delcheck() {

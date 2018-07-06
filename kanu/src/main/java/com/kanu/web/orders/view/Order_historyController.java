@@ -28,6 +28,7 @@ public class Order_historyController {
 		return "orders/getOrder_historyList";
 	}
 	
+<<<<<<< HEAD
 	//예약여부가 Y인경우(현재 N인경우)
 	@RequestMapping("/rinsert")
 	public String insertReserve_historyY(Model model, Order_historyVO vo) {
@@ -46,19 +47,29 @@ public class Order_historyController {
 	@RequestMapping("/cinsert")
 	public String insertCanceled_orderY(Model model, Order_historyVO vo) {
 		order_historyService.insertCanceled_orderY(vo);
+=======
+	//1)예약여부를 Y로 바꿀 경우 팝업창이뜨게하고 reserve_history에 insert 및 order_history에 update
+	@RequestMapping("/hinsert")
+	public String insertOrder_history(Model model, Order_historyVO vo) {
+		order_historyService.insertOrder_history(vo);
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
 		return "redirect:" + "/getOrder_historyList";
 	}
 	
-	//취소여부가 N인경우(현재 Y인 경우)
-	@RequestMapping("/cupdate")
-	public String updateOrder_historyN(Model model, Order_historyVO vo) {
-		order_historyService.updateOrder_historyN(vo);
+	//2)예약여부를 N로 바꿀 경우 팝업창이뜨게하고 reserve_history에 delete 및 order_history에 update
+	@RequestMapping("/hupdate")
+	public String updateOrder_history(Model model, Order_historyVO vo) {
+		order_historyService.updateOrder_history(vo);
 		return "redirect:" + "/getOrder_historyList";
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
 	
 	//delete <공통>.
 	@RequestMapping("/hdelete")
-	public String deleteOrder_history(Model model, Order_historyVO vo, HttpServletRequest request ,String [] orderId) {
+	public String deleteOrder_history(Model model, Order_historyVO vo, HttpServletRequest request ,String [] order_id) {
 		Enumeration params = request.getParameterNames();
 		System.out.println("----------------------------");
 		while (params.hasMoreElements()){
@@ -67,11 +78,12 @@ public class Order_historyController {
 		}
 		
 		System.out.println("----------------------------");
-		for (int i=0; i<orderId.length; i++) {
+		for (int i=0; i<order_id.length;i++) {
 			Order_historyVO del_order_vo = new Order_historyVO();
-			del_order_vo.setOrderId(orderId[i]);
+			del_order_vo.setOrderId(order_id[i]);
 			order_historyService.deleteOrder_history(del_order_vo);
 		}
+		//order_historyService.deleteOrder_history(vo);
 		return "redirect:" + "/getOrder_historyList";
 	}
 }

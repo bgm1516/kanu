@@ -83,11 +83,6 @@ public class OrdersDAO {
 	public void deleteOrderHistory(OrdersVO vo) {
 		mybatis.delete("com.kanu.web.orders.OrdersDAO.deleteOrderHistory", vo);
 	}
-	
-	//canceled_order 삭제
-	public void deleteCanceledorder(OrdersVO vo) {
-		mybatis.delete("com.kanu.web.orders.OrdersDAO.deleteCanceledorder", vo);
-	}
 
 
 }

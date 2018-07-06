@@ -100,11 +100,4 @@
 		FROM ORDER_HISTORY 
 		WHERE ORDER_ID = #{orderId}
 	</delete>
-	
-	<!-- 3)canceled_order에 delete <공통> -->
-	<delete id="deleteCanceledorder" parameterType="com.kanu.web.orders.OrdersVO">
-		DELETE 
-		FROM CANCELED_ORDER
-		WHERE ORDER_ID = #{orderId}
-	</delete>
 </mapper>

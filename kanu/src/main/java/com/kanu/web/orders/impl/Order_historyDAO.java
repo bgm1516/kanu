@@ -29,6 +29,7 @@ public class Order_historyDAO {
 	public List<Order_historyVO> getOrder_historyList(Order_historyVO vo) {
 		return mybatis.selectList("com.kanu.web.orders.Order_historyDAO.getOrder_historyList", vo);
 	}
+<<<<<<< HEAD
 	
 	//예약여부가 Y인경우
 	public void insertReserve_historyY(Order_historyVO vo) {
@@ -46,17 +47,28 @@ public class Order_historyDAO {
 	//취소여부가 Y인경우
 	public void insertCanceled_orderY(Order_historyVO vo) {
 		mybatis.insert("com.kanu.web.orders.Order_historyDAO.insertCanceled_orderY", vo);
+=======
+
+	//업데이트
+	public void updateOrder_history(Order_historyVO vo) {
+		mybatis.update("com.kanu.web.orders.Order_historyDAO.updateOrder_history", vo);
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
 	}
 	
-	public void updateOrder_historyY(Order_historyVO vo) {
-		mybatis.update("com.kanu.web.orders.Order_historyDAO.updateOrder_historyY", vo);
+	//추가
+	public void insertOrder_history(Order_historyVO vo) {
+		mybatis.insert("com.kanu.web.orders.Order_historyDAO.insertOrder_history", vo);
 	}
+<<<<<<< HEAD
 	
 	//취소여부가 N인경우
 	public void updateOrder_historyN(Order_historyVO vo) {
 		mybatis.update("com.kanu.web.orders.Order_historyDAO.updateOrder_historyN", vo);
 	}
 	
+=======
+
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
 	//primary_key 제약, 전체 삭제
 	//orders 삭제
 	public void deleteOrders(Order_historyVO vo) {
@@ -71,11 +83,6 @@ public class Order_historyDAO {
 	//order_history(primary_key) 삭제
 	public void deleteOrderHistory(Order_historyVO vo) {
 		mybatis.delete("com.kanu.web.orders.Order_historyDAO.deleteOrderHistory", vo);
-	}
-	
-	//canceled_order 삭제
-	public void deleteCanceled_order(Order_historyVO vo) {
-		mybatis.delete("com.kanu.web.orders.Order_historyDAO.deleteCanceled_order", vo);
 	}
 
 

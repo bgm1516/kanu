@@ -8,14 +8,18 @@
 .c1 {
 	margin: auto;
 	width: 40%;
-	border: 0.5px solid #000000;
+<<<<<<< HEAD
+	
+=======
+	/* border: 0.5px solid #000000; */
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
 	padding: 10px;
 	text-align: center;
 }
 .c2 {
 	margin: auto;
 	width: 40%;
-	border: 0.5px solid #000000;
+ 	border: 0.5px solid #000000; 
 	padding: 10px;
 	text-align: center;
 }
@@ -31,43 +35,59 @@
 <title>getMenuList.jsp</title>
 <script type="text/javascript">
 
- //중복 함수
+//모달
+
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+
+
+
+
+//메뉴 수정
+function update_menu(a) {
+    var check = confirm('메뉴 정보를 수정하시겠습니까?');
+    if (check == true) {
+       window.location.href = "./updateMenu?menuId="+a 
+    }
+ } 
+
+ //중복 함수 
  
- function overlapcheck(){
-	 /* var menuName  */
-	 $( 'p:contains(document.menuForm.menuName.value)' )
-	 if (result == true){
-	return false;
-	 }
-	else{
-		return true;
+	function overlapcheck() {
+		var menuName=document.menuForm.menuName.value;
+		result=$('td:contains('+menuName+')')/* td태그 안의 메뉴 이름 과 동일한 값 */
+		if (result.length>0) {//0보다 크면 중복 된 것
+			alert("이미 존재 하는 메뉴입니다 .");
+			return false;
+		} else {
+			return true;
+		}
 	}
-	 
- }
- 
- 
- 
- //삭제 함수
+
+	//삭제 함수
 	function delcheck(menuId) {
 		result = confirm("정말로 삭제하시겠습니까 ?");
-
 		if (result == true) {
 			location.href = "deleteMenu?menuId=" + menuId;
-
 		}
+	}
 
+	// 숫자 값만 받는 함수	
+	function onlyNumber(obj) {
+		$(obj).keyup(function() {
+			$(this).val($(this).val().replace(/[^0-9]/g, ""));
+		});
 	}
 	
-// 숫자 값만 받는 함수	
-	function onlyNumber(obj) {
-	    $(obj).keyup(function(){
-	         $(this).val($(this).val().replace(/[^0-9]/g,""));
-	    }); 
-	}
+	
+	
+	
 </script>
 </head>
 <body>
-
 
 	
 <div class="row">
@@ -76,10 +96,31 @@
 		<HR>
 		
 		<form>
-		 
+<<<<<<< HEAD
+			<!-- <br> <a href="insertMenu"><input type="button"
+				value="메뉴 등록하기"></a> <br> -->
+		<!-- 		<body>
+			<form action="./insertMenu" method="post" >
+			메뉴 이름<input type="text" name="menuName">
+			가격<input type="text" name="price">
+			<input type="submit" value="등록"/>
+			</form>
+
+				</body> -->
 			<P>
+<<<<<<< HEAD
 			<div class="c1">
+			<br>
+				<table class="table table-striped" border="1">
+=======
+			<div id="c1">
 				<table class="table table-striped">
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
+=======
+		 
+			<div class="c1">
+				<table class="table table-striped" >
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
 
 					<tr>
 						<th>메뉴번호</th>
@@ -90,11 +131,18 @@
 					</tr>
 					<c:forEach items="${menuList}" var="menu">
 						<tr>
-							<td align="center">${menu.menuId}<br></td>
-							<th align="center">${menu.menuName}</th>
-							<th align="center">${menu.price}</th>
-							<th><input type="button" value="삭제"
-								onClick="delcheck('${menu.menuId}')"></th>
+						<%--  <td><button type="button" class="btn btn-primary"
+						 onclick="update_menu('${menu.menuId}')">${menu.menuId}</button></td> --%>
+						 
+							<%-- <td align="center">${menu.menuId}<br></td> --%>
+							
+							
+						<!-- 모달 버튼 --><td><button type="button" class="btn btn-primary btn-lg" 
+						data-toggle="modal" data-target="#myModal" > ${menu.menuId}</button></td>
+							<td align="center">${menu.menuName}</td>
+							<td align="center">${menu.price}</td>
+							<td><input type="button" value="삭제"
+								onClick="delcheck('${menu.menuId}')"></td>
 						</tr>
 					</c:forEach>
 
@@ -110,16 +158,75 @@
 					<!-- <label>가격</label><input type="text" name="price"> -->
 					<label>가격</label><input onkeydown="onlyNumber(this)" name="price" placeholder='숫자만 입력하세요'>
 					<label><input type="submit" value="등록"/></label>
-					<!-- <input onkeydown="onlyNumber(this)"/> -->
 				</form>
-				   
+				
+
 				</div>
 	</div>
+<<<<<<< HEAD
+<<<<<<< HEAD
+	<div class="col">
+	
+	<H2 align="center">레시피</H2>
+	<hr>  
+	
+	
+</div> 
+</div>
+=======
+=======
 	<div class="col">
 	
 	<H2 align="center">레시피</H2>
 	<hr>  
 </div> 
 </div>
+
+ 
+<!-- Modal 내용 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">메뉴 수정</h4>
+      </div>
+      <div class="modal-body">
+     <%--      <div class="form-group" id="title" name="title">
+                     ${no.TITLE}
+                  </div>
+                  <div class="form-group" id="content" name="content">
+                     ${no.CONTENT}
+                  </div>
+ --%>
+ <table class="table table-striped">
+			
+			<c:forEach items="${menuList}" var="menu">
+				<tr>
+					<td>${menu.menuId}</td>
+					<td>${menu.menuName}</td>
+					<td>${menu.price}</td>
+				</tr>
+ 
+			</c:forEach>
+		</table>
+ 
+ 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+ 
+
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
+
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
 </body>
 </html>
