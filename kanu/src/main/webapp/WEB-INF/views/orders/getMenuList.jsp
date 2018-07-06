@@ -143,7 +143,7 @@ function update_menu(a) {
 	<hr>  
 </div> 
 </div>
-
+   
  
 <!-- Modal 내용 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -154,13 +154,7 @@ function update_menu(a) {
         <h4 class="modal-title" id="myModalLabel">메뉴 수정</h4>
       </div>
       <div class="modal-body">
-     <%--      <div class="form-group" id="title" name="title">
-                     ${no.TITLE}
-                  </div>
-                  <div class="form-group" id="content" name="content">
-                     ${no.CONTENT}
-                  </div>
- --%>
+    
  <table class="table table-striped">
 			
 			<c:forEach items="${menuList}" var="menu">
