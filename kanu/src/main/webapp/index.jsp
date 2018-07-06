@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!doctype html>
 <html lang="en">
   <head>
@@ -57,7 +58,7 @@ body{
   <body>
 	
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="#">KANU</a>
+      <a class="navbar-brand" href="/kanu">KANU</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -65,7 +66,7 @@ body{
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/kanu">Home <span class="sr-only">(current)</span></a>
           </li>
           
           
@@ -100,19 +101,28 @@ body{
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Employee</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="#">직원관리</a>
+             <a class="dropdown-item" href="#">급여내역</a>
               <a class="dropdown-item" href="#">급여관리</a>
               <a class="dropdown-item" href="#">근무관리</a>
             </div>
           </li>
           
            <li class="nav-item">
-            <a class="nav-link" href="#">QnA</a>
+            <a class="nav-link" href="/kanu/getQnAList">QnA</a>
           </li>
           
+   		<c:if test="${empty empName}">
           <li class="nav-item">
             <a class="nav-link" href="#">LogIn</a>
-          </li>
+          </li></c:if>
+               <c:if test="${!empty empName}">
+          <li class="nav-item">
+            <a class="nav-link" href="./getlogout">LogOut</a>
+          </li></c:if>
         </ul>
+         <c:if test="${!empty empName}"><span> 
+          <li>${empName}님 환영합니다</li></span></c:if>
+        
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
