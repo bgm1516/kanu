@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>order_history_List</title>
+<title>주문 내역 페이지</title>
 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
