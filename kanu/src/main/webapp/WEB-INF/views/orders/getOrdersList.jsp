@@ -331,12 +331,11 @@
 </script>
 
 <!-- 예약 Modal -->
-<div id="reserve_modal" class="modal fade" role="dialog">
+<div id="reserve_modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-lg">
     <!-- Modal content-->
     <div id="reserve-content" class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">예약 주문</h4>
       </div>
       <div class="modal-body">
@@ -393,13 +392,12 @@
 </div>
 
 <!-- 일반 Modal -->
-<div id="normal_modal" class="modal fade" role="dialog">
+<div id="normal_modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-lg">
   
     <!-- Modal content-->
     <div id="normal-content" class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">일반 주문</h4>
       </div>
       <div class="modal-body">

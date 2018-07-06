@@ -51,7 +51,7 @@ public class Order_historyController {
 	
 	//delete <공통>.
 	@RequestMapping("/hdelete")
-	public String deleteOrder_history(Model model, Order_historyVO vo, HttpServletRequest request ,String [] order_id) {
+	public String deleteOrder_history(Model model, Order_historyVO vo, HttpServletRequest request ,String [] orderId) {
 		Enumeration params = request.getParameterNames();
 		System.out.println("----------------------------");
 		while (params.hasMoreElements()){
@@ -60,12 +60,11 @@ public class Order_historyController {
 		}
 		
 		System.out.println("----------------------------");
-		for (int i=0; i<order_id.length;i++) {
+		for (int i=0; i<orderId.length; i++) {
 			Order_historyVO del_order_vo = new Order_historyVO();
-			del_order_vo.setOrderId(order_id[i]);
+			del_order_vo.setOrderId(orderId[i]);
 			order_historyService.deleteOrder_history(del_order_vo);
 		}
-		//order_historyService.deleteOrder_history(vo);
 		return "redirect:" + "/getOrder_historyList";
 	}
 }
