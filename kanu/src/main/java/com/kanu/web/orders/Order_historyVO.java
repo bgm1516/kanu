@@ -12,29 +12,7 @@ public class Order_historyVO {
 	private String menuName;
 	private String orderQuantity;
 	private String price;
-	private String reserver;
-	private String receipter;
-	private String receiptDate;
 	
-	
-	public String getReserver() {
-		return reserver;
-	}
-	public void setReserver(String reserver) {
-		this.reserver = reserver;
-	}
-	public String getReceipter() {
-		return receipter;
-	}
-	public void setReceipter(String receipter) {
-		this.receipter = receipter;
-	}
-	public String getReceiptDate() {
-		return receiptDate;
-	}
-	public void setReceiptDate(String receiptDate) {
-		this.receiptDate = receiptDate;
-	}
 	public String getOrderId() {
 		return orderId;
 	}
@@ -89,15 +67,13 @@ public class Order_historyVO {
 	public void setPrice(String price) {
 		this.price = price;
 	}
+	
 	@Override
 	public String toString() {
 		return "Order_historyVO [orderId=" + orderId + ", orderTotalsum=" + orderTotalsum + ", orderDate=" + orderDate
 				+ ", reservation=" + reservation + ", canceledOrder=" + canceledOrder + ", employeeId=" + employeeId
-				+ ", menuName=" + menuName + ", orderQuantity=" + orderQuantity + ", price=" + price + ", reserver="
-				+ reserver + ", receipter=" + receipter + ", receiptDate=" + receiptDate + "]";
+				+ ", menuName=" + menuName + ", orderQuantity=" + orderQuantity + ", price=" + price + "]";
 	}
-	
-	
 	
 	
 }

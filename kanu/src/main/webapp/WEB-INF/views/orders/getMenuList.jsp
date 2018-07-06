@@ -5,64 +5,25 @@
 <html>
 <head>
 <style>
-.c1 {
+#c1 {
 	margin: auto;
 	width: 40%;
 	
 	padding: 10px;
 	text-align: center;
 }
-.c2 {
-	margin: auto;
-	width: 40%;
-	border: 0.5px solid #000000;
-	padding: 10px;
-	text-align: center;
-}
-
-.label {
-	display:block; 
-	width:x; 
-	height:y; 
-	text-align:center;
-	}
-	
 </style>
 <title>getMenuList.jsp</title>
 <script type="text/javascript">
 
- //중복 함수
- 
- function overlapcheck(){
-	 /* var menuName  */
-	 $( 'p:contains(document.menuForm.menuName.value)' )
-	 if (result == true){
-	return false;
-	 }
-	else{
-		return true;
-	}
-	 
- }
- 
- 
- 
- //삭제 함수
 	function delcheck(menuId) {
 		result = confirm("정말로 삭제하시겠습니까 ?");
 
 		if (result == true) {
-			location.href = "deleteMenu?menuId=" + menuId;
+			location.href = "deleteMenu.do?menuId=" + menuId;
 
 		}
 
-	}
-	
-// 숫자 값만 받는 함수	
-	function onlyNumber(obj) {
-	    $(obj).keyup(function(){
-	         $(this).val($(this).val().replace(/[^0-9]/g,""));
-	    }); 
 	}
 </script>
 </head>
@@ -70,17 +31,31 @@
 
 
 	
-<div class="row">
-<div class="col">
-		<H2 align="center">메뉴</H2>
+
+
+	<div align="center">
+		<H2>메뉴:목록</H2>
 		<HR>
-		
 		<form>
-		 
+			<!-- <br> <a href="insertMenu"><input type="button"
+				value="메뉴 등록하기"></a> <br> -->
+		<!-- 		<body>
+			<form action="./insertMenu" method="post" >
+			메뉴 이름<input type="text" name="menuName">
+			가격<input type="text" name="price">
+			<input type="submit" value="등록"/>
+			</form>
+
+				</body> -->
 			<P>
+<<<<<<< HEAD
 			<div class="c1">
 			<br>
 				<table class="table table-striped" border="1">
+=======
+			<div id="c1">
+				<table class="table table-striped">
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
 
 					<tr>
 						<th>메뉴번호</th>
@@ -105,17 +80,14 @@
 			</div>
 			<HR>
 		</form>
-		<div class=c2>
-			<form action="./insertMenu" method="post" onsubmit="return overlapcheck()" name="menuForm">
-					<label>메뉴명</label><input type="text" name="menuName"><br>
-					<!-- <label>가격</label><input type="text" name="price"> -->
-					<label>가격</label><input onkeydown="onlyNumber(this)" name="price" placeholder='숫자만 입력하세요'>
-					<label><input type="submit" value="등록"/></label>
-					<!-- <input onkeydown="onlyNumber(this)"/> -->
+			<form action="./insertMenu" method="post">
+					메뉴 이름<input type="text" name="menuName">
+					가격<input type="text" name="price">
+					<input type="submit" value="등록"/>
 				</form>
-				   
-				</div>
+				
 	</div>
+<<<<<<< HEAD
 	<div class="col">
 	
 	<H2 align="center">레시피</H2>
@@ -124,5 +96,8 @@
 	
 </div> 
 </div>
+=======
+
+>>>>>>> branch 'master' of https://github.com/bgm1516/kanu
 </body>
 </html>
