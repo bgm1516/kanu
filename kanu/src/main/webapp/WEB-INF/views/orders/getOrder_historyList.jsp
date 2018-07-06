@@ -44,7 +44,7 @@
 	<br>
 	<strong>(주의사항) - "예약여부 변경"과 "취소여부 변경"은 단일 선택만 가능합니다</strong>
 	<br>
-	<strong>(사용법) - "취소하기" 후에 "취소사유" 버튼을 눌러 사유를 작성해주세요</strong>
+	<strong>(사용법) - "취소하기" 후에 "취소사유" 버튼을 눌러 사유를 작성해주세요!</strong>
 	<div style="border: 1px solid gray" align="center">
 		<form name="searchFrm" method="post"
 			action="${pageContext.request.contextPath}/getOrder_historyList">
