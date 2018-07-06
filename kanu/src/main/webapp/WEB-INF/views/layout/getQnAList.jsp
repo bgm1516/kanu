@@ -42,7 +42,7 @@
          
         var content = "★kanu cafe★"; // 말풍선 안에 들어갈 내용
          
-        // 마커를 클릭했을 때의 이벤트. 말풍선 뿅~
+        // 마커를 클릭했을 때의 이벤트. 말풍선
         var infowindow = new google.maps.InfoWindow({ content: content});
  
         google.maps.event.addListener(marker, "click", function() {
