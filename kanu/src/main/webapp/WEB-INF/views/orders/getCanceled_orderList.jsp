@@ -1,5 +1,5 @@
-<%@page import="com.kanu.web.orders.Reserve_historyVO"%>
-<%@page import="com.kanu.web.orders.impl.Reserve_historyDAO"%>
+<%@page import="com.kanu.web.orders.Canceled_orderVO"%>
+<%@page import="com.kanu.web.orders.impl.Canceled_orderDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -68,17 +68,17 @@
 
 </head>
 <body>
-<hr>
-<text align="center"><H2>예약 목록</H2></text>
+<HR>
+<text align="center"><H2>취소된 주문 목록</H2></text>
 <div align="center">
-	<form name="searchFrm" method="post" action="${pageContext.request.contextPath}/getReserve_historyList">
+	<form name="searchFrm" method="post" action="${pageContext.request.contextPath}/getCanceled_orderList">
 	<%-- ${pageContext.request.contextPath}는 어떤 경로던간에 상위폴더를 자동적으로 연결 --%>
 		주문번호<input type="text" name="orderId"/>
 			  <input type="submit" value="검색"/><br/>
 	</form>
 </div>
 
-<form name="formr" id="formr" action="">
+<form name="formc" id="formc" action="">
 	<table border='1' align='center' id='view'>
 		<tr align="center">
 			<th>주문번호</th>
@@ -87,21 +87,21 @@
 			<th>주문수량</th>
 			<th>총 가격</th>
 			<th>주문시간</th>
-			<th>예약여부</th>
+			<th>취소여부</th>
 			<th>담당직원</th>
 		</tr>
 		
-		<c:forEach items="${reserve_historyList}" var="reserve_historyList">
+		<c:forEach items="${canceled_orderList}" var="canceled_orderList">
 		
 			<tr align="center">
-				<td>${reserve_historyList.orderId}</td>
-				<td>${reserve_historyList.menuName}</td>
-				<td>${reserve_historyList.price}</td>
-				<td>${reserve_historyList.orderQuantity}</td>
-				<td>${reserve_historyList.orderTotalsum}</td>
-				<td>${reserve_historyList.orderDate}</td>
-				<td>${reserve_historyList.reservation}</td>
-				<td>${reserve_historyList.employeeId}</td>
+				<td>${canceled_orderList.orderId}</td>
+				<td>${canceled_orderList.menuName}</td>
+				<td>${canceled_orderList.price}</td>
+				<td>${canceled_orderList.orderQuantity}</td>
+				<td>${canceled_orderList.orderTotalsum}</td>
+				<td>${canceled_orderList.orderDate}</td>
+				<td>${canceled_orderList.canceledOrder}</td>
+				<td>${canceled_orderList.employeeId}</td>
 			</tr>
 		</c:forEach>
 	</table>
