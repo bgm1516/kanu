@@ -31,7 +31,48 @@
 #Modal .modal-header button.close {
     visibility: hidden;
 }
+#cancelY_form input{
+	width: 80%;
+	display: inline-block;
+}
+#cancelY_form label{
+	width: 20%;
+	text-align: right;
+	padding-right: 20px;
+	margin-bottom: 30px;
+}
+#cancelY_form select{
+	width: 80%;
+	display: inline-block;
+}
 
+#Yselect_item_form input{
+	width: 80%;
+	display: inline-block;
+}
+#Yselect_item_form label{
+	width: 20%;
+	text-align: right;
+	padding-right: 20px;
+	margin-bottom: 20px;
+}
+#Yselect_item_form select{
+	width: 78%;
+	display: inline-block;
+	margin-bottom: 10px;
+}
+#cancelY-content{
+	top : 200px;
+}
+#cancelN-content{
+	top : 200px;
+}
+#cancelY_modal select{
+	height : 35px;
+}
+#cancelN_modal select{
+	height : 35px;
+}
 </style>
 </head>
 <body>
@@ -64,14 +105,13 @@
 				<th>주문일시</th>
 				<th>담당직원</th>
 				<th><button onclick="ohres_submit()" type="button" class="btn btn-secondary">예약변경</button></th>
-				<th><button onclick="ohcan_submit()" type="button" class="btn btn-warning">취소하기</button>
-					<button onclick="modal_popup()" type="button" class="btn btn-warning">취소사유</button>			
-				</th>
+				<th><button onclick="ohcan_submit()" type="button" class="btn btn-warning">취소하기</button></th>
 				<th><button onclick="ohdel_submit()" type="button" class="btn btn-danger">삭제</button></th>
 			</tr>
 
 			<script>
 				var orderId = [];
+				var reservation = [];
 				var canceledOrder = [];
 				var orderDate = [];
 			</script>
@@ -88,6 +128,7 @@
 					orderId.push('${vo.orderId}');
 					canceledOrder.push('${vo.canceledOrder}');
 					orderDate.push('${vo.orderDate}');
+					reservation.push('${vo.reservation}');
 				</script>
 				
 				<td class="order_id_class">${vo.orderId}</td>
@@ -97,7 +138,7 @@
 				<td>${vo.orderTotalsum}</td>
 				<td>${vo.orderDate}</td>
 				<td>${vo.employeeId}</td>
-				<td>${vo.reservation}<input type="radio" name="reserve_ohistory" value="${vo.orderId}" /></td>
+				<td>${vo.reservation}<input type="radio" name="reserve_ohistory" value="${status.index}" /></td>
 				<td>${vo.canceledOrder}<input type="radio" name="canceled_ohistory" value="${status.index}" /></td>
 				<td><input type="checkbox" name="delete_ohistory" value="${vo.orderId}" /></td>
 				</tr>
@@ -137,7 +178,167 @@
 			}
 		}
 		
-		//취소하기 function
+		//예약변경 function 팝업띄우기
+		function ohres_submit() {
+			var formh = $(document).find("#formh");
+			var ohres_submit_formh = $('<form>'); //동적 폼 생성(이 폼은 전송 완료 후 사라집니다)
+			
+			if ($("input[name=reserve_ohistory]:checked").length === 0) { //체크된박스의 여부를 문자열길이를 체크해서 0이라면 경고창
+				alert("변경할 예약주문을 선택해주세요.")
+			
+			} else {
+				$("input[name=reserve_ohistory]:checked").each(function() {
+					var ohres = $(this).val(); //체크박스여부를 체크해서 체크된 값을 ohcan에 담는다.
+					var o_id = orderId[ohres]; //o_id에는 위에서 생성한 배열인 orderId[]에 ohcan을 담는다.
+					var o_reser = reservation[ohres];
+
+					//이건 order_id를 담기위함이다.
+					var input_ohres_orderId = $('<input name="orderId">'); //변수 선언
+					input_ohres_orderId.val(o_id) //선언한 변수의값으로 o_id를 담는다.
+					ohres_submit_formh.append(input_ohres_orderId); //동적으로 생성된 폼에 자식으로 o_id를 담은 변수를 더한다.
+					
+					//이건 위와 동일하지만 reservation의 값을 담고있다.
+					var input_ohres_reservation = $('<input name="reservation">'); //변수 선언
+					input_ohres_reservation.val(o_reser) //선언한 변수에 o_cancel을 담는다
+					ohres_submit_formh.append(input_ohres_reservation); //동적으로 생성된 폼에 자식으로 o_cancel을 담은 변수를 더한다.
+
+					//1)조건=예약여부가 Y인 경우(현재 N값인 경우) (넘어가는 맵핑값이 다르므로)
+					if (o_reser === "N") {
+						$('#orderIdRN').val(o_id)
+						alert("취소 사유를 작성해주십시오")
+						$("#reserN_modal").modal("show");
+						
+					//2)조건=예약여부가 N인 경우(현재 Y값인 경우) (넘어가는 맵핑값이 다르므로)
+					} else { 
+						$('#orderIdRY').val(o_id)
+						alert("정말 취소한 주문을 되돌리시겠습니까?")
+						$("#reserY_modal").modal("show");
+					}
+				})
+			}
+		}
+		
+		//예약변경N 전에 확인칸 추가
+		function cancelRN_item_add() {
+
+			var RNselect_item_formh = $(document).find("#RNselect_item_formh");
+			var RNhorder_item = {};
+			RNhorder_item.reservation = Nselect_item_formh.find("select[name='reservation'] option:selected").val();
+
+			console.log(RNhorder_item)
+
+			var RNhorder_item_reservation = $("<input type='hidden' name='reservation'>");
+			RNhorder_item_reservation.val(RNhorder_item.reservation)
+
+			var RNhorder_item_div = $("<div class='RNhorder_item_div'>");
+
+			RNhorder_item_div.append(RNhorder_item_reservation);
+			RNhorder_item.orderId =$(document).find("#cancelRN_form").find("input[name='orderId']").val();
+			RNhorder_item.reserver =$(document).find("#cancelRN_form").find("input[name='reserver']").val();
+			RNhorder_item.receipter =$(document).find("#cancelRN_form").find("input[name='receipter']").val();
+			RNhorder_item.receiptDate =$(document).find("#cancelRN_form").find("input[name='receiptDate']").val();
+
+			var RNhorder_item_table = $(document).find("table.RNhorder_item_table tbody");
+			var RNhorder_item_tr = $("<tr>");
+			RNhorder_item_tr.append($("<td>" + RNhorder_item.orderId + " </td>"))
+			RNhorder_item_tr.append($("<td>" + RNhorder_item.reserver + " </td>"))
+			RNhorder_item_tr.append($("<td>" + RNhorder_item.receipter+ " </td>"))
+			RNhorder_item_tr.append($("<td>" + RNhorder_item.receiptDate + " </td>"))
+			RNhorder_item_tr.append($("<td>" + RNhorder_item.reservation + " </td>"))
+			RNhorder_item_tr.append($("<td>"+ "<button onclick='deleteRN_cancel_item(this)' class='btn btn-danger cancelRN_item_delete'>x</button>"+ " </td>"));
+			RNhorder_item_table.append(RNhorder_item_tr);
+			$(document).find('#cancelRN_form').append(RNhorder_item_div);
+		}
+
+		//예약변경N 확인칸에서 삭제
+		function deleteRN_cancel_item(obj) {
+
+			var RNhorder_item_div = $(document).find('#cancelRN_form .RNhorder_item_div');
+
+			var index = $(".cancelRN_item_delete").index(this);
+
+			var remove_obj = $(obj).closest('tr');
+
+			remove_obj.remove();
+			RNhorder_item_div.eq(index).remove();
+
+		}
+
+		//예약변경N modal 등록
+		function cancelRN_form_submit() {
+
+			var RNhorder_item_div = $(document).find('#cancelRN_form .RNhorder_item_div');
+
+			var RNhorder_length = RNhorder_item_div.length;
+
+			if (RNhorder_length > 0) {
+				$(document).find('#cancelRN_form').submit();
+			} else {
+				alert("정보를 입력해주세요")
+			}
+		}
+		
+		
+		//예약변경Y 전에 확인칸 추가
+		function cancelRY_item_add() {
+
+			var RYselect_item_formh = $(document).find("#RYselect_item_formh");
+			var RYhorder_item = {};
+			RYhorder_item.reservation = RYselect_item_formh.find("select[name='reservation'] option:selected").val();
+
+			console.log(RYhorder_item)
+
+			var RYhorder_item_reservation = $("<input type='hidden' name='reservation'>");
+			RYhorder_item_reservation.val(RYhorder_item.reservation)
+
+			var RYhorder_item_div = $("<div class='RYhorder_item_div'>");
+
+			RYhorder_item_div.append(RYhorder_item_reservation);
+			RYhorder_item.orderId =$(document).find("#cancelRY_form").find("input[name='orderId']").val();
+			
+			var RYhorder_item_table = $(document).find("table.RYhorder_item_table tbody");
+			var RYhorder_item_tr = $("<tr>");
+			RYhorder_item_tr.append($("<td>" + RYhorder_item.orderId+ " </td>"))
+			RYhorder_item_tr.append($("<td>" + RYhorder_item.reservation + " </td>"))
+			RYhorder_item_tr.append($("<td>"+ "<button onclick='deleteRY_cancel_item(this)' class='btn btn-danger cancelRY_item_delete'>x</button>"+ " </td>"));
+			RYhorder_item_table.append(RYhorder_item_tr);
+			$(document).find('#cancelRY_form').append(RYhorder_item_div);
+		}
+
+		//예약변경Y 확인칸에서 삭제
+		function deleteRY_cancel_item(obj) {
+
+			var RYhorder_item_div = $(document).find('#cancelRY_form .RYhorder_item_div');
+
+			var index = $(".cancelRY_item_delete").index(this);
+
+			var remove_obj = $(obj).closest('tr');
+
+			remove_obj.remove();
+			RYhorder_item_div.eq(index).remove();
+
+		}
+
+		//예약변경Y modal 등록
+		function cancelRY_form_submit() {
+
+			var RYhorder_item_div = $(document).find('#cancelRY_form .RYhorder_item_div');
+
+			var RYhorder_length = RYhorder_item_div.length;
+
+			if (RYhorder_length > 0) {
+				$(document).find('#cancelRY_form').submit();
+			} else {
+				alert("정보를 입력해주세요")
+			}
+		}
+		
+		
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		
+		
+		//취소하기 function 팝업띄우기
 		function ohcan_submit() {
 			var formh = $(document).find("#formh");
 			var ohcan_submit_formh = $('<form>'); //동적 폼 생성(이 폼은 전송 완료 후 사라집니다)
@@ -156,7 +357,8 @@
 					var input_ohcan_orderId = $('<input name="orderId">'); //변수 선언
 					input_ohcan_orderId.val(o_id) //선언한 변수의값으로 o_id를 담는다.
 					ohcan_submit_formh.append(input_ohcan_orderId); //동적으로 생성된 폼에 자식으로 o_id를 담은 변수를 더한다.
-
+					
+					
 					//이건 위와 동일하지만 canceled_order의 값을 담고있다.
 					var input_ohcan_canceledOrder = $('<input name="canceledOrder">'); //변수 선언
 					input_ohcan_canceledOrder.val(o_cancel) //선언한 변수에 o_cancel을 담는다
@@ -165,132 +367,186 @@
 					var input_ohcan_orderDate = $('<input name="orderDate">');
 					input_ohcan_orderDate.val(o_date)
 					ohcan_submit_formh.append(input_ohcan_orderDate);
+					
 
 					//1)조건=취소여부가 Y인 경우(현재 N값인 경우) (넘어가는 맵핑값이 다르므로)
 					if (o_cancel === "N") {
-					ohcan_submit_formh.attr('action', "/kanu/cinsert"); //취소여부를 N으로 바꾸고 canceled_order에서 delete문 실행
-					
+						$('#orderIdY').val(o_id)
+						$('#orderDate').val(o_date)
+						
+						alert("취소 사유를 작성해주십시오")
+						$("#cancelN_modal").modal("show");
+						
 					//2)조건=취소여부가 N인 경우(현재 Y값인 경우) (넘어가는 맵핑값이 다르므로)
 					} else { 
-					ohcan_submit_formh.attr('action', "/kanu/cupdate"); //취소여부를 Y로 바꾸고 canceled_order에서 insert문 실행
+						$('#orderIdN').val(o_id)
+						alert("정말 취소한 주문을 되돌리시겠습니까?")
+						$("#cancelY_modal").modal("show");
 					}
-						ohcan_submit_formh.attr('method', 'post'); //전송방법은 post이며 공통이므로 밖으로 빼내었다
 				})
-					$(document).find("body").append(ohcan_submit_formh)
-					ohcan_submit_formh.submit();
 			}
 		}
-
-		//취소여부 N인 값을 Y로 바꾸려고 할때 뜰 Modal 팝업
-		function modal_popup() {
-			$("input[name=canceled_ohistory]:checked").each(function() {
-				var pop = $(this).val();	//체크된 값을 pop에 담고
-				var pop_cancel = canceledOrder[pop];	//pop_cancel에 체크된 취소여부 값을 담는다
-				
-				if (pop_cancel === "N") {					
-						alert("취소 사유를 입력해주세요");
-						$("#cancel_modal").modal("show");	//shown은 액션의 완료 후에 이루어진다
-				} else {
-					alert("취소내역에서 정상적으로 복구되었습니다")
-				}
-				})
-		}
 		
 		
-		//취소하기 전에 확인칸 추가
-		function cancel_item_add() {
+		//취소하기N 전에 확인칸 추가
+		function cancelN_item_add() {
 
-			var select_item_formh = $(document).find("#select_item_formh");
-			var horder_item = {};
-			horder_item.cancelReason = select_item_formh.find("select[name='cancelReason'] option:selected").val();
-			horder_item.orderId = select_item_formh.find("input[name='orderId']").val();
+			var Nselect_item_formh = $(document).find("#Nselect_item_formh");
+			var Nhorder_item = {};
+			Nhorder_item.cancelReason = Nselect_item_formh.find("select[name='cancelReason'] option:selected").val();
+			Nhorder_item.canceledOrder = Nselect_item_formh.find("select[name='canceledOrder'] option:selected").val();
 
-			console.log(horder_item)
+			console.log(Nhorder_item)
 
-			var horder_item_cancelReason = $("<input type='hidden' name='cancelReason'>");
-			horder_item_cancelReason.val(horder_item.cancelReason)
+			var Nhorder_item_cancelReason = $("<input type='hidden' name='cancelReason'>");
+			Nhorder_item_cancelReason.val(Nhorder_item.cancelReason)
 
-			var horder_item_orderId = $("<input type='hidden' name='orderId'>");
-			horder_item_orderId.val(horder_item.orderId)
+			var Nhorder_item_canceledOrder = $("<input type='hidden' name='canceledOrder'>");
+			Nhorder_item_canceledOrder.val(Nhorder_item.canceledOrder)
+			
+			var Nhorder_item_div = $("<div class='Nhorder_item_div'>");
 
-			var horder_item_div = $("<div class='horder_item_div'>");
+			Nhorder_item_div.append(Nhorder_item_cancelReason);
+			Nhorder_item_div.append(Nhorder_item_canceledOrder);
+			Nhorder_item.orderId =$(document).find("#cancelN_form").find("input[name='orderId']").val();
+			Nhorder_item.orderDate =$(document).find("#cancelN_form").find("input[name='orderDate']").val();
 
-			horder_item_div.append(horder_item_cancelReason);
-			horder_item_div.append(horder_item_orderId);
-
-			var horder_item_table = $(document).find("table.horder_item_table tbody");
-			var horder_item_tr = $("<tr>");
-			horder_item_tr.append($("<td>" + horder_item.cancelReason+ " </td>"))
-			horder_item_tr.append($("<td>" + horder_item.orderId + " </td>"))
-			horder_item_tr.append($("<td>"+ "<button onclick='delect_cancel_item(this)' class='btn btn-danger cancel_item_delete'>x</button>"+ " </td>"));
-			horder_item_table.append(horder_item_tr);
-			$(document).find('#cancel_form').append(horder_item_div);
+			var Nhorder_item_table = $(document).find("table.Nhorder_item_table tbody");
+			var Nhorder_item_tr = $("<tr>");
+			Nhorder_item_tr.append($("<td>" + Nhorder_item.orderId + " </td>"))
+			Nhorder_item_tr.append($("<td>" + Nhorder_item.orderDate + " </td>"))
+			Nhorder_item_tr.append($("<td>" + Nhorder_item.cancelReason+ " </td>"))
+			Nhorder_item_tr.append($("<td>" + Nhorder_item.canceledOrder + " </td>"))
+			Nhorder_item_tr.append($("<td>"+ "<button onclick='deleteN_cancel_item(this)' class='btn btn-danger cancelN_item_delete'>x</button>"+ " </td>"));
+			Nhorder_item_table.append(Nhorder_item_tr);
+			$(document).find('#cancelN_form').append(Nhorder_item_div);
 		}
 
-		//취소 확인칸에서 삭제
-		function delect_cancel_item(obj) {
+		//취소N 확인칸에서 삭제
+		function deleteN_cancel_item(obj) {
 
-			var horder_item_div = $(document).find('#cancel_form .horder_item_div');
+			var Nhorder_item_div = $(document).find('#cancelN_form .Nhorder_item_div');
 
-			var index = $(".cancel_item_delete").index(this);
+			var index = $(".cancelN_item_delete").index(this);
 
 			var remove_obj = $(obj).closest('tr');
 
 			remove_obj.remove();
-			horder_item_div.eq(index).remove();
+			Nhorder_item_div.eq(index).remove();
 
 		}
 
-		//취소 modal 등록
-		function cancel_form_submit() {
+		//취소N modal 등록
+		function cancelN_form_submit() {
 
-			var horder_item_div = $(document).find('#cancel_form .horder_item_div');
+			var Nhorder_item_div = $(document).find('#cancelN_form .Nhorder_item_div');
 
-			var horder_length = horder_item_div.length;
+			var Nhorder_length = Nhorder_item_div.length;
 
-			if (horder_length > 0) {
-				$(document).find('#cancel_form').submit();
+			if (Nhorder_length > 0) {
+				$(document).find('#cancelN_form').submit();
+			} else {
+				alert("정보를 입력해주세요")
+			}
+		}
+		
+		
+		//취소하기Y 전에 확인칸 추가
+		function cancelY_item_add() {
+
+			var Yselect_item_formh = $(document).find("#Yselect_item_formh");
+			var Yhorder_item = {};
+			Yhorder_item.canceledOrder = Yselect_item_formh.find("select[name='canceledOrder'] option:selected").val();
+
+			console.log(Yhorder_item)
+
+			var Yhorder_item_canceledOrder = $("<input type='hidden' name='canceledOrder'>");
+			Yhorder_item_canceledOrder.val(Yhorder_item.canceledOrder)
+
+			var Yhorder_item_div = $("<div class='Yhorder_item_div'>");
+
+			Yhorder_item_div.append(Yhorder_item_canceledOrder);
+			Yhorder_item.orderId =$(document).find("#cancelY_form").find("input[name='orderId']").val();
+			
+			var Yhorder_item_table = $(document).find("table.Yhorder_item_table tbody");
+			var Yhorder_item_tr = $("<tr>");
+			Yhorder_item_tr.append($("<td>" + Yhorder_item.orderId+ " </td>"))
+			Yhorder_item_tr.append($("<td>" + Yhorder_item.canceledOrder + " </td>"))
+			Yhorder_item_tr.append($("<td>"+ "<button onclick='deleteY_cancel_item(this)' class='btn btn-danger cancelY_item_delete'>x</button>"+ " </td>"));
+			Yhorder_item_table.append(Yhorder_item_tr);
+			$(document).find('#cancelY_form').append(Yhorder_item_div);
+		}
+
+		//취소Y 확인칸에서 삭제
+		function deleteY_cancel_item(obj) {
+
+			var Yhorder_item_div = $(document).find('#cancelY_form .Yhorder_item_div');
+
+			var index = $(".cancelY_item_delete").index(this);
+
+			var remove_obj = $(obj).closest('tr');
+
+			remove_obj.remove();
+			Yhorder_item_div.eq(index).remove();
+
+		}
+
+		//취소Y modal 등록
+		function cancelY_form_submit() {
+
+			var Yhorder_item_div = $(document).find('#cancelY_form .Yhorder_item_div');
+
+			var Yhorder_length = Yhorder_item_div.length;
+
+			if (Yhorder_length > 0) {
+				$(document).find('#cancelY_form').submit();
 			} else {
 				alert("정보를 입력해주세요")
 			}
 		}
 	</script>
 
-<!-- 취소 Modal -->
-<div id="cancel_modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+<!-- 취소N Modal -->
+<div id="cancelN_modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog modal-lg">
 	
 	<!-- Modal content-->
-	<div id="cancel-content" class="modal-content">
+	<div id="cancelN-content" class="modal-content">
 		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">&times;</button>
 			<h4 class="modal-title">취소 사유</h4>
 		</div>
 	<div class="modal-body">
 	<div class="row">
 	<div class="col-xs-7">
-	<form align="center" name="cancel_form" id="cancel_form" style="border: 1 solid gray" action="${pageContext.request.contextPath}/updateA">
-		<label>주문번호 :</label><input type="text" class="formh-control" name="orderId" value="${vo.orderId}"><br>
+	<form align="center" name="cancelN_form" id="cancelN_form" style="border: 1 solid gray" action="${pageContext.request.contextPath}/cinsert">
+		<label>주문번호 :</label><input type="text" class="Nformh-control" id="orderIdY" name="orderId" value=""><br>
+		<label>주문시간 :</label><input type="text" class="Nformh-control" id="orderDate" name="orderDate" value="orderDate"><br>
 	</form>
 	
-	<form align="center" action="" id="select_item_formh">
+	<form align="center" action="" id="Nselect_item_formh">
 		<label>취소사유 :</label> 
-		<select class="formh-control" name="cancelReason">
+		<select class="Nformh-control" name="cancelReason">
 			<option value="MENU CHANGE">메뉴 변경</option>
 			<option value="NO REASON">단순 변심</option>
 			<option value="QUANTITY CHANGE">수량 변경</option>
 			<option value="EMPLOYEER MISS">직원 실수</option>
 			<option value="ETC">기타</option>
 		</select><br>
+		<label>취소여부 :</label> 
+		<select class="Nformh-control" name="canceledOrder">
+			<option value="Y">Y</option>
+		</select><br>
 	</form>
 	</div>
 	<div class="col-xs-5 reserve_view">
 	
-	<table class="table order_item_table">
+	<table class="table Nhorder_item_table">
   	<thead>
   	<tr>
 		<th>주문번호</th>
+		<th>주문시간</th>
 		<th>취소사유</th>
+		<th>취소여부</th>
 		<th>삭제</th>
 	</tr>
   	
@@ -306,8 +562,177 @@
 	</div>
 		
 	<div class="modal-footer">
-		<button onclick="cancel_form_submit()" type="button" class="btn btn-danger">등록</button>
-		<button onclick="cancel_item_add()" type="button" class="btn btn-primary">확인하기</button>
+		<button onclick="cancelN_form_submit()" type="button" class="btn btn-danger">등록</button>
+		<button onclick="cancelN_item_add()" type="button" class="btn btn-primary">확인하기</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+
+<!-- 취소Y Modal -->
+<div id="cancelY_modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog modal-lg">
+	
+	<!-- Modal content-->
+	<div id="cancelY-content" class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title">복구 내역</h4>
+		</div>
+	<div class="modal-body">
+	<div class="row">
+	<div class="col-xs-7">
+	<form align="center" name="cancelY_form" id="cancelY_form" style="border: 1 solid gray" action="${pageContext.request.contextPath}/cupdate">
+		<label>주문번호 :</label><input type="text" class="Yformh-control" id="orderIdN" name="orderId" value=""><br>
+	</form>
+	
+	<form align="center" action="" id="Yselect_item_formh">
+		<label>취소여부 :</label> 
+		<select class="Yformh-control" name="canceledOrder">
+			<option value="N">N</option>
+		</select><br>
+	</form>
+	</div>
+	<div class="col-xs-5 reserve_view">
+	
+	<table class="table Yhorder_item_table">
+  	<thead>
+  	<tr>
+		<th>주문번호</th>
+		<th>취소여부</th>
+		<th>삭제</th>
+	</tr>
+  	
+  	</thead>
+  	
+  	<tbody>
+  	
+  	</tbody>
+  
+	</table>
+	</div>
+	</div>
+	</div>
+		
+	<div class="modal-footer">
+		<button onclick="cancelY_form_submit()" type="button" class="btn btn-danger">등록</button>
+		<button onclick="cancelY_item_add()" type="button" class="btn btn-primary">확인하기</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+<!-- 여기서부터 예약입니다. --><!-- 여기서부터 예약입니다. --><!-- 여기서부터 예약입니다. --><!-- 여기서부터 예약입니다. --><!-- 여기서부터 예약입니다. -->
+
+
+<!-- 예약N Modal -->
+<div id="cancelRN_modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog modal-lg">
+	
+	<!-- Modal content-->
+	<div id="cancelRN-content" class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title">예약 상세 정보</h4>
+		</div>
+	<div class="modal-body">
+	<div class="row">
+	<div class="col-xs-7">
+	<form align="center" name="cancelRN_form" id="cancelRN_form" style="border: 1 solid gray" action="${pageContext.request.contextPath}/rinsert">
+		<label>주문번호 :</label><input type="text" class="RNformh-control" id="orderIdRY" name="orderId" value=""><br>
+		<label>예약자 명 :</label><input type="text" class="RNformh-control" id="reserver" name="reserver" value=""><br>
+		<label>수령인 명 :</label><input type="text" class="RNformh-control" id="receipter" name="receipter" value=""><br>
+		<label>예약일자 :</label><input type="date" class="RNformh-control" id="receiptDate" name="receiptDate" value=""><br>
+	</form>
+	<form align="center" action="" id="RNselect_item_formh">
+		<label>예약여부 :</label> 
+		<select class="RNformh-control" name="reservation">
+			<option value="Y">Y</option>
+		</select><br>
+	</form>
+	</div>
+	<div class="col-xs-5 reserve_view">
+	
+	<table class="table RNhorder_item_table">
+  	<thead>
+  	<tr>
+		<th>주문번호</th>
+		<th>예약자 명</th>
+		<th>수령인 명</th>
+		<th>예약일자</th>
+		<th>예약여부</th>
+		<th>삭제</th>
+	</tr>
+  	
+  	</thead>
+  	
+  	<tbody>
+  	
+  	</tbody>
+  
+	</table>
+	</div>
+	</div>
+	</div>
+		
+	<div class="modal-footer">
+		<button onclick="cancelRN_form_submit()" type="button" class="btn btn-danger">등록</button>
+		<button onclick="cancelRN_item_add()" type="button" class="btn btn-primary">확인하기</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+	</div>
+	</div>
+	</div>
+</div>
+
+
+<!-- 예약Y Modal -->
+<div id="cancelRY_modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog modal-lg">
+	
+	<!-- Modal content-->
+	<div id="cancelRY-content" class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title">예약주문 취소하기</h4>
+		</div>
+	<div class="modal-body">
+	<div class="row">
+	<div class="col-xs-7">
+	<form align="center" name="cancelRY_form" id="cancelRY_form" style="border: 1 solid gray" action="${pageContext.request.contextPath}/rupdate">
+		<label>주문번호 :</label><input type="text" class="RYformh-control" id="orderIdRN" name="orderId" value=""><br>
+	</form>
+	
+	<form align="center" action="" id="RYselect_item_formh">
+		<label>예약여부 :</label> 
+		<select class="RYformh-control" name="reservation">
+			<option value="N">N</option>
+		</select><br>
+	</form>
+	</div>
+	<div class="col-xs-5 reserve_view">
+	
+	<table class="table RYhorder_item_table">
+  	<thead>
+  	<tr>
+		<th>주문번호</th>
+		<th>예약여부</th>
+		<th>삭제</th>
+	</tr>
+  	
+  	</thead>
+  	
+  	<tbody>
+  	
+  	</tbody>
+  
+	</table>
+	</div>
+	</div>
+	</div>
+		
+	<div class="modal-footer">
+		<button onclick="cancelRY_form_submit()" type="button" class="btn btn-danger">등록</button>
+		<button onclick="cancelRY_item_add()" type="button" class="btn btn-primary">확인하기</button>
 		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 	</div>
 	</div>
