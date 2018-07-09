@@ -106,6 +106,7 @@
 							<th>메뉴번호</th>
 							<th>메뉴명</th>
 							<th>가격</th>
+							<th>레시피 갯수</th>
 							<th>삭제</th>
 
 						</tr>
@@ -133,8 +134,10 @@
 
 								<td align="center">${menu.menuName}</td>
 								<td align="center">${menu.price}</td>
-								<td><input type="button" value="삭제"
-									onClick="delcheck('${menu.menuId}')"></td>
+								<td align="center">${menu.recipe}</td>
+								<td><input type="button" value="삭제"	onClick="delcheck('${menu.menuId}')" 
+								<c:if test="${menu.recipe==0}"> disabled="disabled"</c:if>
+								    > </td>
 							</tr>
 						</c:forEach>
 
