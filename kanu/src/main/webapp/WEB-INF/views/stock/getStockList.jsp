@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 
 <style>
-#content1 {
+/* #content1 {
 	margin: auto;
 	text-align: center;
-}
+} */
 
 * 
 #insertfrm {
@@ -25,7 +26,7 @@ margin: auto;
     text-align : center; 
 }  */
 </style>
-<title></title>
+<title>재고현황</title>
 <%--삭제 function 추가 --%>
 <script type="text/javascript">
 	function delcheck() {
@@ -49,6 +50,9 @@ margin: auto;
 	<div id="content1">
 		<h3>재고 현황</h3>
 		<hr>
+		
+		
+		<!-- 조회 폼 -->
 		<form id="stockForm" action="getStockList" method="get">
 			<br> <input type="hidden" name="p" value="1"> 제품분류<input
 				type="text" name="productId" />
@@ -56,9 +60,10 @@ margin: auto;
 			상품위치<input type="text" name="product_location" />  -->
 			<input type="submit" value="조회" /> <br> <br>
 			<!-- <input type="button" name="minjaego" value="위험재고검색"><br><br> -->
-
 		</form>
-
+		<!-- /조회 폼 -->
+		
+		
 		<hr>
 		<br> <br> 
 		<div class="container">
@@ -68,14 +73,11 @@ margin: auto;
 					<table border="2"  id="detail" class="table table-hover" >
 					<thead align="center">
 						<tr>
-
 							<th>제품분류</th>
 							<th>상품위치</th>
 							<th>재고수량</th>
 							<th>최소수량</th>
 							<th>공급사ID</th>
-
-
 						</tr>
 						</thead>
 						<!-- StockDAO dao = new StockDAO(); -->
@@ -168,19 +170,13 @@ margin: auto;
 											'<td align="right">'+data.minimumQuantity+'</td>'+
 											'<td align="right">'+data.supplierId+'</td>'+
 										'</tr>';
-										$("#"+data.productId).replaceWith(append);
-										
-										
-										
-										
-									},
-									error : function(data) {
-										alert("Error!");
-									}
-								})
+										$("#"+data.productId).replaceWith(append);},
+											error : function(data) {
+											alert("Error!");}
+										})
 
-							})
-						});
+									})
+							});
 					</script>
 
 				</div>
