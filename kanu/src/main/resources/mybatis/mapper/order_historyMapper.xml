@@ -9,27 +9,40 @@
 	</select>
 	
 	<!-- 전체 및 단건 조회 -->
+		<!-- if문을 사용하면 단건조회시 조건도 추가할 수 있다. -->		
 	<select id="getOrder_historyList" parameterType="String" resultType="com.kanu.web.orders.Order_historyVO">
 		SELECT A.ORDER_ID, B.MENU_NAME, B.PRICE, C.ORDER_QUANTITY, A.ORDER_TOTALSUM, A.ORDER_DATE, A.RESERVATION, A.CANCELED_ORDER, A.EMPLOYEE_ID
 		FROM ORDER_HISTORY A, MENU B, ORDERS C
 		WHERE B.MENU_ID = C.MENU_ID AND A.ORDER_ID = C.ORDER_ID
-		<if test="orderId != null and orderId !='' ">	<!-- if문을 사용하면 단건조회시 조건도 추가할 수 있다. -->
+		<if test="orderId != null and orderId !='' ">	
 			AND A.ORDER_ID = #{orderId}
 		</if>
 		ORDER BY A.ORDER_ID
 	</select>
+	<!-- 예약여부가 Y인경우(Y로 바뀌는경우) reserve_history에 insert -->
+	<insert id="insertReserve_historyY" parameterType="com.kanu.web.orders.Order_historyVO">
+		INSERT INTO RESERVE_HISTORY (ORDER_ID, RESERVER, RECEIPTER, RECEIPT_DATE)
+		VALUES (#{orderId}, #{reserver}, #{receipter}, #{receiptDate})
+	</insert>
 	
-	<!-- 취소여부 Modal 폼 -->
-	<update id="updateCanceled_orderY" parameterType="com.kanu.web.orders.Order_historyVO">
-		UPDATE CANCELED_ORDER
-		SET CANCEL_REASON = #{cancelReason}
+	<!-- 예약여부가 Y인경우 (Y로 바뀌는경우) order_history에 update -->
+	<update id="updateOrder_historyRY" parameterType="com.kanu.web.orders.Order_historyVO">
+		UPDATE ORDER_HISTORY
+		SET RESERVATION='Y'
 		WHERE ORDER_ID = #{orderId}
 	</update>
 	
-	<!-- 취소여부가 Y인 경우(Y로 바뀌는경우) canceled_order에 insert(가짜값) -->
+	<!-- 예약여부가 N인경우 (N으로 바뀌는경우) order_history에 update -->
+	<update id="updateOrder_historyRN" parameterType="com.kanu.web.orders.Order_historyVO">
+		UPDATE ORDER_HISTORY
+		SET RESERVATION='N'
+		WHERE ORDER_ID = #{orderId}
+	</update>
+	
+	<!-- 취소여부가 Y인 경우(Y로 바뀌는경우) canceled_order에 insert -->
 	<insert id="insertCanceled_orderY" parameterType="com.kanu.web.orders.Order_historyVO">
 		INSERT INTO CANCELED_ORDER (ORDER_ID, ORDER_DATE, CANCEL_TIME, CANCEL_REASON)
-		VALUES (#{orderId}, TO_TIMESTAMP(#{orderDate}, 'YYYY-MM-DD HH24:MI:SS'), SYSTIMESTAMP, 'Not Yet')
+		VALUES (#{orderId}, TO_TIMESTAMP(#{orderDate}, 'YYYY-MM-DD HH24:MI:SS'), SYSTIMESTAMP, #{cancelReason})
 	</insert>
 	
 	<!-- 취소여부가 Y인 경우(Y로 바뀌는경우) order_history에 update -->

@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.SessionAttributes; 
 
 import com.kanu.web.orders.MenuService;
 import com.kanu.web.orders.MenuVO;
 
 @Controller
-@SessionAttributes("menu")
+/*@SessionAttributes("menu")*/
 
 public class MenuController {
 	
@@ -42,8 +42,9 @@ public class MenuController {
 	//수정 업데이트 처리
 	@RequestMapping(value="/updateMenu", method=RequestMethod.POST)
 	public String updateMenu(@ModelAttribute("menu")MenuVO vo) {
+		menuService.updateMenu(vo);
 		System.out.println(vo);
-		return "orders/getMenu";
+		return "redirect:/getMenuList";
 	}
 	//등록폼
 	@RequestMapping(value="/insertMenu", method=RequestMethod.GET)
