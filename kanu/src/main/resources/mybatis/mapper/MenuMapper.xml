@@ -22,7 +22,7 @@
 		(SELECT COUNT(*) FROM RECIPE
 		WHERE MENU.MENU_ID=RECIPE.MENU_ID ) AS "recipe"
 		FROM MENU
-		ORDER BY MENU_NAME
+		ORDER BY MENU_ID
 	</select>
 	
 	<!-- 단건 조회  -->

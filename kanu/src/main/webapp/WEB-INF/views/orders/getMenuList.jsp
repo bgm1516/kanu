@@ -136,7 +136,7 @@
 								<td align="center">${menu.price}</td>
 								<td align="center">${menu.recipe}</td>
 								<td><input type="button" value="삭제"	onClick="delcheck('${menu.menuId}')" 
-								<c:if test="${menu.recipe==0}"> disabled="disabled"</c:if>
+								<c:if test="${menu.recipe>0}"> disabled="disabled"</c:if>
 								    > </td>
 							</tr>
 						</c:forEach>
