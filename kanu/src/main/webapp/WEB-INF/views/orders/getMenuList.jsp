@@ -8,7 +8,7 @@
 <style>
 .c1 {
 	margin: auto;
-	width: 40%;
+	width: 50%;
 	/* border: 0.5px solid #000000; */
 	padding: 10px;
 	text-align: center;
@@ -135,7 +135,7 @@
 								<td align="center">${menu.menuName}</td>
 								<td align="center">${menu.price}</td>
 								<td align="center">${menu.recipe}</td>
-								<td><input type="button" value="삭제"	onClick="delcheck('${menu.menuId}')" 
+								<td align="center"><input type="button" value="삭제"	onClick="delcheck('${menu.menuId}')" 
 								<c:if test="${menu.recipe>0}"> disabled="disabled"</c:if>
 								    > </td>
 							</tr>
