@@ -33,6 +33,11 @@ public class Emp_manageController {
 		request.setAttribute("empMan", empManageService.getEmpList());
 		return "emp_manage/getEmpList";
 	}
+	@RequestMapping("/getEmpList2")
+	public String getEmpList2(HttpServletRequest request) {
+		request.setAttribute("empMan", empManageService.getEmpList2());
+		return "popup/emp_manage/getEmpList2";
+	}
 	
 	
 	@RequestMapping("/getEmp")
