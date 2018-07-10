@@ -88,8 +88,8 @@
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="/kanu/getOrdersList">주문관리</a>
               <a class="dropdown-item" href="/kanu/getOrder_historyList">주문내역</a>
-              <a class="dropdown-item" href="#">메뉴관리</a>
-              <a class="dropdown-item" href="">레시피관리</a>
+              <a class="dropdown-item" href="/kanu/getMenuList">메뉴관리</a>
+              <a class="dropdown-item" href="/kanu/getMenuList">레시피관리</a>
               <a class="dropdown-item" href="/kanu/getReserve_historyList">예약내역</a>
               <a class="dropdown-item" href="/kanu/getCanceled_orderList">취소관리</a>
             </div>
@@ -109,10 +109,10 @@
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" 
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Employee</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">직원관리</a>
-              <a class="dropdown-item" href="#">급여내역</a>
-              <a class="dropdown-item" href="#">급여관리</a>
-              <a class="dropdown-item" href="#">근무관리</a>
+              <a class="dropdown-item" href="/kanu/EmpList">직원관리</a>
+              <a class="dropdown-item" href="/kanu/getSalaryList2">급여내역</a>
+              <a class="dropdown-item" href="/kanu/getSalaryList">급여관리</a>
+              <a class="dropdown-item" href="/kanu/getWorkList">근무관리</a>
             </div>
           </li>
           
