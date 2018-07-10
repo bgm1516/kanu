@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +32,11 @@ public class Emp_manageController {
 		request.setAttribute("date", transFormat.format(date.getTime()));
 		request.setAttribute("empMan", empManageService.getEmpList());
 		return "emp_manage/getEmpList";
+	}
+	@RequestMapping("/getEmpList2")
+	public String getEmpList2(HttpServletRequest request) {
+		request.setAttribute("empMan", empManageService.getEmpList2());
+		return "popup/emp_manage/getEmpList2";
 	}
 	
 	
