@@ -9,12 +9,11 @@
 <script src="./resources/scripts/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="./resources/scripts/jquery-ui.css">
 <script src="./resources/scripts/jquery-ui.js"></script>
-<!-- <style>
-#content1 {
-	margin: auto;
-	text-align: center;
-}
-</style> -->
+<style>
+
+
+</style>
+
 <title>입고내역</title>
 </head>
 <body>
@@ -28,7 +27,7 @@
 	공급사ID :  
 		<select name="supplierId">
 			<c:forEach items="${supplierList}" var="vo">
-			<option value="${vo.supplierId}">${vo.supplierId}</option>
+			<option value="${vo.supplierId}">${vo.supplierName}</option>
 			</c:forEach>
 		</select>
 	제품분류 :	
@@ -116,7 +115,7 @@
 				<td align="center">${vo.cost}</td>
 				<td align="center">${fn:substring(vo.expireDate,0,10)}</td>
 				<td align="center">${vo.productId}</td>
-				<td align="center">${vo.supplierId}</td>
+				<td align="center">${vo.supplierName}(${vo.supplierId})</td>
 				<td align="center">${vo.inputDate}</td>
 			</tr> 
 		</c:forEach>

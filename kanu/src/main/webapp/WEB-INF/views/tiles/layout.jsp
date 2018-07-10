@@ -67,7 +67,7 @@
   <body>
 	<div id="content1">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="/kanu">KANU</a>
+      <a class="navbar-brand" href="/kanu/mainpage">KANU</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -75,7 +75,11 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
+<<<<<<< HEAD
             <a class="nav-link" href="/kanu/main">Home <span class="sr-only">(current)</span></a>
+=======
+            <a class="nav-link" href="/kanu/mainpage">Home <span class="sr-only">(current)</span></a>
+>>>>>>> branch 'B' of https://github.com/bgm1516/kanu
           </li>
           
           
@@ -125,11 +129,11 @@
           </li>
           <c:if test="${empty sessionScope.empName}">
           <li class="nav-item">
-            <a class="nav-link" href="#">LogIn</a>
+            <a class="nav-link" href="/kanu/getLoginForm">LogIn</a>
           </li></c:if>
                <c:if test="${!empty sessionScope.empName}">
           <li class="nav-item">
-            <a class="nav-link" href="./getlogout">LogOut</a>
+            <a class="nav-link" href="/kanu/getlogout">LogOut</a>
           </li></c:if>
         </ul>
         <c:if test="${!empty empName}"><span> 
