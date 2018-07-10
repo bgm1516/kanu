@@ -60,7 +60,7 @@ margin:0 auto;
 }
 
 </style>
-</head>
+</head> 
  
 
 <body>

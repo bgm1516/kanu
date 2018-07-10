@@ -9,7 +9,7 @@
  
 <body>
 <form action="./insertSalary" method="post">
-<div align="right">
+<div align="right"> 
 <br>
 월급수령월<input type="date" name="salaryDate" />
 <button class="btn btn-primary" role="button" aria-pressed="true">월급등록</button>
