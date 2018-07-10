@@ -144,11 +144,10 @@ body{
       </div>
 
     </main><!-- /.container -->
+    <c:if test="${empty sessionScope.empId}">
 	<div class="button" align="center">
 	<a href="/kanu/getLoginForm"><img src="./resources/img/bg/LOGIN2.png"></a>
-	
-	
-	</div>
+	</div></c:if>
 <!-- 	<div id="footer">
  	 <p>footer</p>
 	</div> -->

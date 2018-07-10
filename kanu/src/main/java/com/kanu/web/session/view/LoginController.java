@@ -44,7 +44,7 @@ public class LoginController {
 		if(!staff.getEmployeeId().equals("") && staff.getEmployeeId()!=null) {
 			session.setAttribute("empId", staff.getEmployeeId());
 			session.setAttribute("empName", staff.getEmployeeName());
-			return "redirect:/";
+			return "layout/mainpage";
 		}else if(staff.getEmployeeId().equals("") && staff.getEmployeeId()==null){
 			
 		PrintWriter out = response.getWriter(); 
@@ -57,5 +57,10 @@ public class LoginController {
 	public String getlogout( HttpSession session ) {
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	@RequestMapping("/main")
+	public String main() {
+		return "layout/mainpage";
 	}
 }

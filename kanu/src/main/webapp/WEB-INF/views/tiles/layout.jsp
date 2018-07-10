@@ -75,7 +75,7 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/kanu">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/kanu/main">Home <span class="sr-only">(current)</span></a>
           </li>
           
           
@@ -86,12 +86,13 @@
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" 
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Order</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <c:if test="${!empty empId}">
               <a class="dropdown-item" href="/kanu/getOrdersList">주문관리</a>
               <a class="dropdown-item" href="/kanu/getOrder_historyList">주문내역</a>
               <a class="dropdown-item" href="/kanu/getMenuList">메뉴관리</a>
               <a class="dropdown-item" href="/kanu/getMenuList">레시피관리</a>
               <a class="dropdown-item" href="/kanu/getReserve_historyList">예약내역</a>
-              <a class="dropdown-item" href="/kanu/getCanceled_orderList">취소관리</a>
+              <a class="dropdown-item" href="/kanu/getCanceled_orderList">취소관리</a></c:if>
             </div>
           </li>
           
@@ -99,8 +100,9 @@
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" 
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Stock</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
+           <c:if test="${!empty empId}">
                <a class="dropdown-item" href="/kanu/getInputList">입고내역</a>
-              <a class="dropdown-item" href="/kanu/getStockList">재고관리</a>
+              <a class="dropdown-item" href="/kanu/getStockList">재고관리</a></c:if>
               <a class="dropdown-item" href="/kanu/getSupplierList">공급사관리</a>
             </div>
           </li>
@@ -109,21 +111,23 @@
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" 
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Employee</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <c:if test="${sessionScope.masterId==sessionScope.empId}">
               <a class="dropdown-item" href="/kanu/getEmpList">직원관리</a>
               <a class="dropdown-item" href="/kanu/getSalaryList2">급여내역</a>
-              <a class="dropdown-item" href="/kanu/getSalaryList">급여관리</a>
-              <a class="dropdown-item" href="/kanu/getWorkList">근무관리</a>
+              <a class="dropdown-item" href="/kanu/getSalaryList">급여관리</a></c:if>
+              <c:if test="${!empty empId}">
+              <a class="dropdown-item" href="/kanu/getWorkList">근무관리</a></c:if>
             </div>
           </li>
           
            <li class="nav-item">
             <a class="nav-link" href="/kanu/getQnAList">QnA</a>
           </li>
-          <c:if test="${empty empName}">
+          <c:if test="${empty sessionScope.empName}">
           <li class="nav-item">
             <a class="nav-link" href="#">LogIn</a>
           </li></c:if>
-               <c:if test="${!empty empName}">
+               <c:if test="${!empty sessionScope.empName}">
           <li class="nav-item">
             <a class="nav-link" href="./getlogout">LogOut</a>
           </li></c:if>
