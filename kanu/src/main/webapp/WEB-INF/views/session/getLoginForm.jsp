@@ -129,7 +129,7 @@ input[type="checkbox"] {
 		<div class="login">
 
 
-			<form action="./mainpage" method="post">
+			<form action="./getlogin" method="post">
 				 <div class="form">
     			 <div class="form2">
 					<input type="hidden" name="action" value="login"> 
