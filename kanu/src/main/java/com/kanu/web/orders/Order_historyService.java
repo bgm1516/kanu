@@ -10,15 +10,17 @@ public interface Order_historyService {
 	//목록조회
 	public List<Order_historyVO> getOrder_historyList(Order_historyVO vo);
 	
-	//취소여부 Modal 폼
-	public void updateCanceled_orderY(Order_historyVO vo);	
-	
 	//취소여부가 Y인 경우
 	public void insertCanceled_orderY(Order_historyVO vo);
 	
-	
 	//취소여부가 N인 경우
 	public void updateOrder_historyN(Order_historyVO vo);
+	
+	//예약여부가 Y인 경우
+	public void insertReserve_historyY(Order_historyVO vo);
+	
+	//예약여부가 N인경우
+	public void updateReserve_historyN(Order_historyVO vo);
 	
 	
 	//1)delete <공통>

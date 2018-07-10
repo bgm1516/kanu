@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kanu.web.orders.Canceled_orderDAO">
+	
+	<!-- 전체 및 단건 조회 -->
+	<select id="getCanceled_orderList" parameterType="String" resultType="com.kanu.web.orders.Canceled_orderVO">
+		SELECT D.ORDER_ID, B.MENU_NAME, B.PRICE, C.ORDER_QUANTITY, A.ORDER_TOTALSUM, A.ORDER_DATE, A.CANCELED_ORDER, A.EMPLOYEE_ID
+		FROM ORDER_HISTORY A, MENU B, ORDERS C, CANCELED_ORDER D
+		WHERE B.MENU_ID = C.MENU_ID AND D.ORDER_ID = A.ORDER_ID AND D.ORDER_ID = C.ORDER_ID
+		<if test="orderId != null and orderId !='' ">	<!-- if문을 사용하면 단건조회시 조건도 추가할 수 있다. -->
+			AND D.ORDER_ID = #{orderId}
+		</if>
+		ORDER BY D.ORDER_ID
+	</select>
+</mapper>

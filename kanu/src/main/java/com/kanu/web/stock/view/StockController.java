@@ -97,12 +97,12 @@ public class StockController {
 		return "redirect:getStockList";
 	}
 	
-	//등록폼
+	/*//등록폼
 	@RequestMapping(value="insertStock", method=RequestMethod.GET)
 	public String insertStockForm() {
 		return "redirect:getStockList";
 	}
-	
+	*/
 	
 	
 	

@@ -28,16 +28,22 @@ body{
 	color: #ffffff;
 	font-size: 16px;
 	font-weight:300; 
-	font-family:'Open Sans', Arial, sans-serif;     
+	font-family:"맑은고딕";     
  /*  background-color: black; */
 
 /*   background-image: url("./resources/img/bg/caca.png"); */
-	background-image: url("./resources/img/bg/CACANU1.png");
+	background-image: url("./resources/img/bg/newbg.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
+.button {
+	
+	margin-top: 300px;
+	
+}
 
-  #footer {
+
+#footer {
    position:fixed;
    left:0px;
    bottom:5px;
@@ -57,7 +63,7 @@ body{
 
   <body>
 	
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <%-- <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
       <a class="navbar-brand" href="/kanu">KANU</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -122,11 +128,11 @@ body{
         </ul>
          <c:if test="${!empty empName}"><span> 
           <li>${empName}님 환영합니다</li></span></c:if>
-        
-        <form class="form-inline my-2 my-lg-0">
+         --%>
+       <!--  <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        </form> -->
       </div>
     </nav>
 
@@ -138,7 +144,11 @@ body{
       </div>
 
     </main><!-- /.container -->
-
+	<div class="button" align="center">
+	<a href="/kanu/getLoginForm"><img src="./resources/img/bg/LOGIN2.png"></a>
+	
+	
+	</div>
 <!-- 	<div id="footer">
  	 <p>footer</p>
 	</div> -->
