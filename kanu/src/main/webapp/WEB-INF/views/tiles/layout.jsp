@@ -75,7 +75,13 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
+<<<<<<< HEAD
             <a class="nav-link" href="/kanu/mainpage">Home <span class="sr-only">(current)</span></a>
+=======
+
+            <a class="nav-link" href="/kanu/main">Home <span class="sr-only">(current)</span></a>
+
+>>>>>>> branch 'B' of https://github.com/bgm1516/kanu
           </li>
           
           

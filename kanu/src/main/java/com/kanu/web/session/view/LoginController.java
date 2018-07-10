@@ -44,7 +44,7 @@ public class LoginController {
 		if(!staff.getEmployeeId().equals("") && staff.getEmployeeId()!=null) {
 			session.setAttribute("empId", staff.getEmployeeId());
 			session.setAttribute("empName", staff.getEmployeeName());
-			return "layout/mainpage";
+			return "redirect:/main";
 		}else if(staff.getEmployeeId().equals("") && staff.getEmployeeId()==null){
 			
 		PrintWriter out = response.getWriter(); 
