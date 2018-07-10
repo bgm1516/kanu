@@ -8,7 +8,7 @@ public class InputVO {
 	private String cost;
 	private String expireDate;
 	private String productId;
-	private String supplierId;
+	private Integer supplierId;
 	private String inputDate;
 	public String getInputNumber() {
 		return inputNumber;
@@ -46,10 +46,10 @@ public class InputVO {
 	public void setProductId(String productId) {
 		this.productId = productId;
 	}
-	public String getSupplierId() {
+	public Integer getSupplierId() {
 		return supplierId;
 	}
-	public void setSupplierId(String supplierId) {
+	public void setSupplierId(Integer supplierId) {
 		this.supplierId = supplierId;
 	}
 	public String getInputDate() {
