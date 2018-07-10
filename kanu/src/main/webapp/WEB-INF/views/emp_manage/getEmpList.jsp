@@ -56,19 +56,27 @@ $(function() {
   	<button type="submit" class="btn btn-primary">조회</button>
 </form>
 	<form>
-		<div align="right">
+	
+		<div align="right">  
+		<a href="./getEmpList" class="btn btn-primary" role="button" aria-pressed="true">직원전체목록</a>
+			<c:if test="${sessionScope.masterId==sessionScope.empId}">	
 			<a href="./insertEmp" class="btn btn-info" role="button" aria-pressed="true" >직원정보등록</a> 
 			<a href="#" class="btn btn-secondary" role="button" aria-pressed="true" id="updateBtn" >직원정보수정</a> 
-			<a href="#" class="btn btn-danger" role="button" aria-pressed="true" id="deleteBtn" >직원정보삭제</a>
+			<a href="#" class="btn btn-danger" role="button" aria-pressed="true" id="deleteBtn" >직원정보삭제</a></c:if>
 		</div>
 		<br><br>
-
+	
 		<table class="table table-striped">
 			<tr>
-				<th>CHK</th>
-				<th>ID</th>
-				<th>NAME</th>
-				<th>E-MAIL</th>
+				<th>목록</th>
+				<th>사원번호</th>
+				<th>이름</th>
+				<th>이메일</th>
+				<th>주소</th>
+				<th>보건증기간</th>
+				<th>출생일자</th>
+				<th>고용날자</th>
+				<th>퇴직날자</th>
 			</tr>
 			<c:forEach items="${empMan}" var="emp">
 				<tr>
@@ -76,6 +84,14 @@ $(function() {
 					<td>${emp.employeeId}</td>
 					<td>${emp.employeeName}</td>
 					<td>${emp.empEmail}</td>
+					<td>${emp.employeeAddress}</td>
+	<c:if test="${date>emp.certificatedExpiredDate}">
+					<td style="color: red">${emp.certificatedExpiredDate}</td></c:if>
+		<c:if test="${date<emp.certificatedExpiredDate}">
+					<td>${emp.certificatedExpiredDate}</td></c:if>				
+					<td>${emp.employeeBirth}</td>
+					<td>${emp.hireDate}</td>
+					<td>${emp.retireDate}</td>
 				</tr>
 
 			</c:forEach>
