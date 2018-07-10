@@ -19,7 +19,7 @@ public class Emp_manageServiceImpl implements Emp_manageService{
 	}
 
 	@Override
-	public Emp_manageVO getEmp(Emp_manageVO empManVO) {
+	public List<Emp_manageVO> getEmp(Emp_manageVO empManVO) {
 		return empManDAO.getEmp(empManVO);
 	}
 
@@ -29,8 +29,8 @@ public class Emp_manageServiceImpl implements Emp_manageService{
 	}
 
 	@Override
-	public void deleteEmp(String employeeId) {
-		empManDAO.deleteEmp(employeeId);
+	public void deleteEmp(Emp_manageVO empManVO) {
+		empManDAO.deleteEmp(empManVO);
 	}
 
 	@Override

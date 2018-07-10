@@ -29,6 +29,51 @@
 	
 </style>
 <title>getMenuList.jsp</title>
+
+<script src="${pageContext.request.contextPath}/resources/scripts/jquery-3.2.1.min.js"></script>
+<script>
+
+$(function() {
+	$("#menuTable tr").click(function(){
+		
+		var tdArr ="";    // 배열 선언
+	        // 현재 클릭된 Row(<tr>)
+	        var tr = $(this);
+	        var td = tr.children();
+	        // tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
+	        console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+	        // 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
+	        tdArr=(td.eq(0).text());
+	        console.log("배열에 담긴 값 : "+tdArr);
+	        
+	        var requestData={ "menuId" : tdArr }
+	        
+	        $.ajax({
+	        	
+	        		url : "./getRecipe",
+	        		data : requestData,
+	        		dataType : 'json',
+	        		success : function(data) {
+	        			$("#recipeTable").empty();
+	        			var html1="";
+	        			for(i=0 ; i<data.length ; i++){
+							var html ='<tr><td>'+ 
+								data[i].productId+'</td><td>'+ 
+								data[i].materialAmount+'</td></tr>';	
+							var html1=html1+html;   
+	        			}
+	        			
+	        			$("#recipeTable").append('<table class="table table-striped" border="1"><tr><td>제품명</td><td>소모량</td></tr>'+html1+'</table>');
+	        		}
+	        	  
+	        });
+	});
+});
+		
+		  
+		
+</script>
+
 <script type="text/javascript">
 
 //모달
@@ -94,7 +139,7 @@ function update_menu(a) {
 		<form>
 		 
 			<div class="c1">
-				<table class="table table-striped" >
+				<table class="table table-striped" id="menuTable" >
 
 					<tr>
 						<th>메뉴번호</th>
@@ -137,7 +182,8 @@ function update_menu(a) {
 
 				</div>
 	</div>
-	<div class="col">
+	
+	<div class="col" id="recipeTable"> 
 	
 	<H2 align="center">레시피</H2>
 	<hr>  
@@ -177,9 +223,6 @@ function update_menu(a) {
   </div>
 </div>
 
-
-
- 
 
 
 </body>
