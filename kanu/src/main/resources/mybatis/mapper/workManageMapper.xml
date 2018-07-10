@@ -29,7 +29,7 @@
 		<if test="dayWorktime!=null and dayWorktime!=''">
 			AND A.DAY_WORKTIME=#{dayWorktime}
 		</if>
-			
+			ORDER BY A.WORK_START DESC
 	</select>
 
 

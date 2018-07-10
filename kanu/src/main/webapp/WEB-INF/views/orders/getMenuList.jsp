@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,7 +7,7 @@
 <style>
 .c1 {
 	margin: auto;
-	width: 50%;
+	width: 80%;
 	/* border: 0.5px solid #000000; */
 	padding: 10px;
 	text-align: center;
@@ -30,6 +29,50 @@
 }
 </style>
 <title>getMenuList.jsp</title>
+<script src="${pageContext.request.contextPath}/resources/scripts/jquery-3.2.1.min.js"></script>
+<script>
+
+$(function() {
+	$("#menuTable tr").click(function(){
+		
+		var tdArr ="";    // 배열 선언
+	        // 현재 클릭된 Row(<tr>)
+	        var tr = $(this);
+	        var td = tr.children();
+	        // tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
+	        console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+	        // 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
+	        tdArr=(td.eq(0).text());
+	        console.log("배열에 담긴 값 : "+tdArr);
+	        
+	        var requestData={ "menuId" : tdArr }
+	        
+	        $.ajax({
+	        	
+	        		url : "./getRecipe",
+	        		data : requestData,
+	        		dataType : 'json',
+	        		success : function(data) {
+	        			$("#recipeTable").empty();
+	        			var html1="";
+	        			for(i=0 ; i<data.length ; i++){
+							var html ='<tr><td>'+ 
+								data[i].productId+'</td><td>'+ 
+								data[i].materialAmount+'</td></tr>';	
+							var html1=html1+html;   
+	        			}
+	        			console.log(html1);  
+	        			$("#recipeTable").append('<table class="table table-striped" width="300"><tr><td>제품명</td><td>소모량</td></tr>'+html1+'</table>');
+	        		}
+	        	  
+	        });  
+	});
+});
+		
+		  
+		
+</script>
+
 <script type="text/javascript">
 	//모달
 
@@ -100,14 +143,14 @@
 			<form>
 
 				<div class="c1">
-					<table class="table table-striped">
+					<table class="table table-striped" id="menuTable">
 
-						<tr>
-							<th>메뉴번호</th>
+						<tr>   
+							<th >메뉴번호</th>
 							<th>메뉴명</th>
 							<th>가격</th>
-							<th>레시피 갯수</th>
-							<th>삭제</th>
+							<th >레시피 갯수</th>
+							<th>삭제</th>  
 
 						</tr>
 						<c:forEach items="${menuList}" var="menu">
@@ -122,8 +165,8 @@
 								<%-- <td><button type="button" class="btn btn-primary btn-lg" 
 						data-toggle="modal" data-target="#myModal" > ${menu.menuId}</button></td> --%>
 
-
-								<td><a href="#" data-toggle="modal"
+								<td hidden="true">${menu.menuId}</td>
+								<td ><a href="#" data-toggle="modal"
 									data-target="#viewModal"
 									onclick="modal_view('${menu.menuId}','${menu.menuName}','${menu.price}');">
 										${menu.menuId}</a></td>
@@ -160,10 +203,14 @@
 
 			</div>
 		</div>
+	
+			
+			
 		<div class="col">
-
-			<H2 align="center">레시피</H2>
-			<hr>
+		<H2 align="center">레시피</H2>
+			<HR>
+			<div  id="recipeTable" style=" width: 80%"></div>
+			
 		</div>
 	</div>
 

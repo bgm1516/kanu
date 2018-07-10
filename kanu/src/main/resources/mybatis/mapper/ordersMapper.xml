@@ -23,12 +23,14 @@
 	<select id="getMenuName" parameterType="String" resultType="string">
 		SELECT MENU_NAME
 		FROM MENU
+		ORDER BY MENU_ID
 	</select>
 	
 	<!-- 드롭다운2 -->
 	<select id="getMenuId" parameterType="String" resultType="string">
 		SELECT MENU_ID
 		FROM MENU
+		ORDER BY MENU_ID
 	</select>
 	
 	<!-- 1)히스토리에 가짜 추가(primary key) <insert/insertR> -->
@@ -101,7 +103,7 @@
 		WHERE ORDER_ID = #{orderId}
 	</delete>
 	
-	<!-- 3)canceled_order에 delete <공통> -->
+	<!-- 4)canceled_order에 delete <공통> -->
 	<delete id="deleteCanceledorder" parameterType="com.kanu.web.orders.OrdersVO">
 		DELETE 
 		FROM CANCELED_ORDER
