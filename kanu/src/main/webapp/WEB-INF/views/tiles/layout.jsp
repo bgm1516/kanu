@@ -13,6 +13,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
   <style>
+  
+
+#content1 {
+	margin: auto;
+	text-align: center;
+}
+
+
   div, article, section, header, footer, nav, li {
 	position:relative;
 }
@@ -30,7 +38,7 @@
 	color: #ffffff;
 	font-size: 15px;
 	font-weight:300; 
-	font-family:'Open Sans', Arial, sans-serif;     
+	font-family:"맑은고딕";     
   background-color: #ffffff; 
 
   background-image: url("${pageContext.request.contextPath}/resources/img/bg/MIDBG.png"); 
@@ -57,7 +65,7 @@
   </head>
 
   <body>
-	
+	<div id="content1">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
       <a class="navbar-brand" href="/kanu">KANU</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,12 +86,12 @@
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" 
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Order</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">주문관리</a>
-              <a class="dropdown-item" href="#">주문내역</a>
-              <a class="dropdown-item" href="#">메뉴관리</a>
-              <a class="dropdown-item" href="	#">레시피관리</a>
-              <a class="dropdown-item" href="#">예약내역</a>
-              <a class="dropdown-item" href="#">취소관리</a>
+              <a class="dropdown-item" href="/kanu/getOrdersList">주문관리</a>
+              <a class="dropdown-item" href="/kanu/getOrder_historyList">주문내역</a>
+              <a class="dropdown-item" href="/kanu/getMenuList">메뉴관리</a>
+              <a class="dropdown-item" href="/kanu/getMenuList">레시피관리</a>
+              <a class="dropdown-item" href="/kanu/getReserve_historyList">예약내역</a>
+              <a class="dropdown-item" href="/kanu/getCanceled_orderList">취소관리</a>
             </div>
           </li>
           
@@ -101,10 +109,10 @@
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" 
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Employee</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">직원관리</a>
-              <a class="dropdown-item" href="#">급여내역</a>
-              <a class="dropdown-item" href="#">급여관리</a>
-              <a class="dropdown-item" href="#">근무관리</a>
+              <a class="dropdown-item" href="/kanu/EmpList">직원관리</a>
+              <a class="dropdown-item" href="/kanu/getSalaryList2">급여내역</a>
+              <a class="dropdown-item" href="/kanu/getSalaryList">급여관리</a>
+              <a class="dropdown-item" href="/kanu/getWorkList">근무관리</a>
             </div>
           </li>
           
@@ -122,10 +130,10 @@
         </ul>
         <c:if test="${!empty empName}"><span> 
           <li>${empName}님 환영합니다</li></span></c:if>
-        <form class="form-inline my-2 my-lg-0">
+       <!--  <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        </form> -->
       </div>
     </nav>
 	<div class="background">
@@ -147,6 +155,6 @@
    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-
+	</div>
   </body>
 </html>

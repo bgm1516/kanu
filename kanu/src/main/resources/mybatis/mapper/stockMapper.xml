@@ -6,11 +6,11 @@
 
 <!-- 전체 조회  -->
    <select id="getStockList" resultType="map">
-      SELECT   PRODUCT_ID         as "productId",
-            PRODUCT_LOCATION   as "productLocation",
-            STOCK_QUANTITY      as "stockQuantity",
-            MINIMUM_QUANTITY   as "minimumQuantity",
-            SUPPLIER_ID         as "supplierId"
+      SELECT  PRODUCT_ID        		as 		"productId",
+          	  PRODUCT_LOCATION   		as 		"productLocation",
+          	  STOCK_QUANTITY      		as 		"stockQuantity",
+          	  MINIMUM_QUANTITY  		as		"minimumQuantity",
+          	  SUPPLIER_ID      		    as 		"supplierId"
       FROM STOCK
       <where>
          <if test="productId != null and productId != ''">

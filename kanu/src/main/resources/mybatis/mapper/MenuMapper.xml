@@ -18,8 +18,11 @@
 		SELECT 
 		MENU_ID as "menuId",
 		MENU_NAME as "menuName",
-		PRICE as "price"
+		PRICE as "price",
+		(SELECT COUNT(*) FROM RECIPE
+		WHERE MENU.MENU_ID=RECIPE.MENU_ID ) AS "recipe"
 		FROM MENU
+		ORDER BY MENU_ID
 	</select>
 	
 	<!-- 단건 조회  -->

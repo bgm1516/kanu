@@ -10,6 +10,7 @@
 
 
 	<typeAliases>
+		<typeAlias alias="supplierVO" type="com.kanu.web.stock.SupplierVO"/>
 		<typeAlias alias="stockVO" type="com.kanu.web.stock.StockVO"/>
 		<typeAlias type="com.kanu.web.orders.MenuVO" alias="MenuVO"/>
 		<typeAlias type="com.kanu.web.orders.RecipeVO" alias="recipeVO"/>
