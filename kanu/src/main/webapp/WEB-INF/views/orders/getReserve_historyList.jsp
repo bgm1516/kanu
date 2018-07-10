@@ -18,50 +18,13 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <style type="text/css">
-#reserve_form input{
-	width: 80%;
-	display: inline-block;
+#formr th {
+	width : auto;
+	text-align : center;
 }
-#reserve_form label{
-	width: 20%;
-	text-align: right;
-	padding-right: 20px;
-	margin-bottom: 30px;
-}
-#reserve_form select{
-	width: 80%;
-	display: inline-block;
-}
-
-#select_item_form input{
-	width: 80%;
-	display: inline-block;
-}
-#select_item_form label{
-	width: 20%;
-	text-align: right;
-	padding-right: 20px;
-	margin-bottom: 20px;
-}
-#select_item_form select{
-	width: 78%;
-	display: inline-block;
-	margin-bottom: 10px;
-}
-#view th{
-	text-align: center;
-}
-#reserve-content{
-	top : 200px;
-}
-#normal-content{
-	top : 200px;
-}
-#reserve_modal select{
-	height : 35px;
-}
-#normal_modal select{
-	height : 35px;
+#formr td {
+	width : auto;
+	text-align : center;
 }
 </style>
 
@@ -88,6 +51,8 @@
 			<th>총 가격</th>
 			<th>주문시간</th>
 			<th>예약여부</th>
+			<th>예약자</th>
+			<th>수령자</th>
 			<th>담당직원</th>
 		</tr>
 		
@@ -101,6 +66,8 @@
 				<td>${reserve_historyList.orderTotalsum}</td>
 				<td>${reserve_historyList.orderDate}</td>
 				<td>${reserve_historyList.reservation}</td>
+				<td>${reserve_historyList.reserver}</td>
+				<td>${reserve_historyList.receipter}</td>
 				<td>${reserve_historyList.employeeId}</td>
 			</tr>
 		</c:forEach>

@@ -7,55 +7,95 @@
 <style>
 .c1 {
 	margin: auto;
-	width: 40%;
+	width: 80%;
 	/* border: 0.5px solid #000000; */
 	padding: 10px;
 	text-align: center;
 }
+
 .c2 {
 	margin: auto;
 	width: 40%;
- 	border: 0.5px solid #000000; 
+	border: 0.5px solid #000000;
 	padding: 10px;
 	text-align: center;
 }
 
 .label {
-	display:block; 
-	width:x; 
-	height:y; 
-	text-align:center;
-	}
-	
+	display: block;
+	width: x;
+	height: y;
+	text-align: center;
+}
 </style>
 <title>getMenuList.jsp</title>
-<script type="text/javascript">
+<script src="${pageContext.request.contextPath}/resources/scripts/jquery-3.2.1.min.js"></script>
+<script>
 
-//모달
-
-$(document).ready(function(){
-    $("#myBtn").click(function(){
-        $("#myModal").modal();
-    });
+$(function() {
+	$("#menuTable tr").click(function(){
+		
+		var tdArr ="";    // 배열 선언
+	        // 현재 클릭된 Row(<tr>)
+	        var tr = $(this);
+	        var td = tr.children();
+	        // tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
+	        console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+	        // 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
+	        tdArr=(td.eq(0).text());
+	        console.log("배열에 담긴 값 : "+tdArr);
+	        
+	        var requestData={ "menuId" : tdArr }
+	        
+	        $.ajax({
+	        	
+	        		url : "./getRecipe",
+	        		data : requestData,
+	        		dataType : 'json',
+	        		success : function(data) {
+	        			$("#recipeTable").empty();
+	        			var html1="";
+	        			for(i=0 ; i<data.length ; i++){
+							var html ='<tr><td>'+ 
+								data[i].productId+'</td><td>'+ 
+								data[i].materialAmount+'</td></tr>';	
+							var html1=html1+html;   
+	        			}
+	        			console.log(html1);  
+	        			$("#recipeTable").append('<table class="table table-striped" width="300"><tr><td>제품명</td><td>소모량</td></tr>'+html1+'</table>');
+	        		}
+	        	  
+	        });  
+	});
 });
+		
+		  
+		
+</script>
 
+<script type="text/javascript">
+	//모달
 
+	/* $(document).ready(function(){
+	 $("#myBtn").click(function(){
+	 $("#myModal").modal();
+	 });
+	 }); */
 
+	//메뉴 수정
+	function update_menu(a) {
+		var check = confirm("메뉴 정보를 수정하시겠습니까?");
+		if (check == true) {
+			window.location.href = "./updateMenu?menuId=" + a
+		}
+	}
 
-//메뉴 수정
-function update_menu(a) {
-    var check = confirm("메뉴 정보를 수정하시겠습니까?");
-    if (check == true) {
-       window.location.href = "./updateMenu?menuId="+a 
-    }
- } 
+	//중복 함수 
 
- //중복 함수 
- 
 	function overlapcheck() {
-		var menuName=document.menuForm.menuName.value;
-		result=$('td:contains('+menuName+')')/* td태그 안의 메뉴 이름 과 동일한 값 */
-		if (result.length>0) {//0보다 크면 중복 된 것
+		var menuName = document.menuForm.menuName.value;
+		result = $('td:contains(' + menuName + ')')/* td태그 안의 메뉴 이름 과 동일한 값 */
+		if (result.length > 0) {//0보다 크면 중복 된 것
 			alert("이미 존재 하는 메뉴입니다 .");
 			return false;
 		} else {
@@ -77,74 +117,104 @@ function update_menu(a) {
 			$(this).val($(this).val().replace(/[^0-9]/g, ""));
 		});
 	}
-	
-	
-	
-	
+
+	//모달 2
+	function modal_view(menuId, menuName, price) {
+
+		console.log(menuId, menuName, price);
+		$('#viewModal').on('show.bs.modal', function(event) {
+
+			$(".modal-body #menuId").val(menuId);
+			$(".modal-body #menuName").val(menuName);
+			$(".modal-body #price").val(price);
+
+		})
+	}
 </script>
 </head>
 <body>
 
-	
-<div class="row">
-<div class="col">
-		<H2 align="center">메뉴</H2>
-		<HR>
-		
-		<form>
-		 
-			<div class="c1">
-				<table class="table table-striped" >
 
-					<tr>
-						<th>메뉴번호</th>
-						<th>메뉴명</th>
-						<th>가격</th>
-						<th>삭제</th>
-
-					</tr>
-					<c:forEach items="${menuList}" var="menu">
-						<tr>
-						<%--  <td><button type="button" class="btn btn-primary"
-						 onclick="update_menu('${menu.menuId}')">${menu.menuId}</button></td> --%>
-						 
-							<%-- <td align="center">${menu.menuId}<br></td> --%>
-							
-							
-						<!-- 모달 버튼 --><td><button type="button" class="btn btn-primary btn-lg" 
-						data-toggle="modal" data-target="#myModal" > ${menu.menuId}</button></td>
-							<td align="center">${menu.menuName}</td>
-							<td align="center">${menu.price}</td>
-							<td><input type="button" value="삭제"
-								onClick="delcheck('${menu.menuId}')"></td>
-						</tr>
-					</c:forEach>
-
-				</table>
-				
-	
-			</div>
+	<div class="row">
+		<div class="col">
+			<H2 align="center">메뉴</H2>
 			<HR>
-		</form>
-		<div class=c2>
-			<form action="./insertMenu" method="post" onsubmit="return overlapcheck()" name="menuForm">
-					<label>메뉴명</label><input type="text" name="menuName"><br>
-					<!-- <label>가격</label><input type="text" name="price"> -->
-					<label>가격</label><input onkeydown="onlyNumber(this)" name="price" placeholder='숫자만 입력하세요'>
-					<label><input type="submit" value="등록"/></label>
-				</form>
-				
+
+			<form>
+
+				<div class="c1">
+					<table class="table table-striped" id="menuTable">
+
+						<tr>   
+							<th >메뉴번호</th>
+							<th>메뉴명</th>
+							<th>가격</th>
+							<th >레시피 갯수</th>
+							<th>삭제</th>  
+
+						</tr>
+						<c:forEach items="${menuList}" var="menu">
+							<tr>
+								<%--  <td><button type="button" class="btn btn-primary"
+						 onclick="update_menu('${menu.menuId}')">${menu.menuId}</button></td> --%>
+
+								<%-- <td align="center">${menu.menuId}<br></td> --%>
+
+
+								<!-- 모달 버튼 -->
+								<%-- <td><button type="button" class="btn btn-primary btn-lg" 
+						data-toggle="modal" data-target="#myModal" > ${menu.menuId}</button></td> --%>
+
+								<td hidden="true">${menu.menuId}</td>
+								<td ><a href="#" data-toggle="modal"
+									data-target="#viewModal"
+									onclick="modal_view('${menu.menuId}','${menu.menuName}','${menu.price}');">
+										${menu.menuId}</a></td>
+
+
+
+
+
+								<td align="center">${menu.menuName}</td>
+								<td align="center">${menu.price}</td>
+								<td align="center">${menu.recipe}</td>
+								<td align="center"><input type="button" value="삭제"	onClick="delcheck('${menu.menuId}')" 
+								<c:if test="${menu.recipe>0}"> disabled="disabled"</c:if>
+								    > </td>
+							</tr>
+						</c:forEach>
+
+					</table>
+
 
 				</div>
-	</div>
-	<div class="col">
+				<HR>
+			</form>
+			<div class=c2>
+				<form action="./insertMenu" method="post"
+					onsubmit="return overlapcheck()" name="menuForm">
+					<label>메뉴명</label><input type="text" name="menuName"><br>
+					<!-- <label>가격</label><input type="text" name="price"> -->
+					<label>가격</label><input onkeydown="onlyNumber(this)" name="price"
+						placeholder='숫자만 입력하세요'> <label><input
+						type="submit" value="등록" /></label>
+				</form>
+
+
+			</div>
+		</div>
 	
-	<H2 align="center">레시피</H2>
-	<hr>  
-</div> 
-</div>
-   
- 
+			
+			
+		<div class="col">
+		<H2 align="center">레시피</H2>
+			<HR>
+			<div  id="recipeTable" style=" width: 80%"></div>
+			
+		</div>
+	</div>
+
+	<%--  
 <!-- Modal 내용 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -177,11 +247,54 @@ function update_menu(a) {
       </div>
     </div>
   </div>
-</div>
+</div> --%>
+
+
+	<!-- 수정 모달 창 -->
+	<div class="modal fade" id="viewModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="exampleModalLabel">메뉴수정</h4>
+				</div>
+				<form name="customer" method="post" action="./updateMenu">
+					<div class="modal-body">
+
+						<input type="hidden" name="menuId" id="menuId"/>
+
+						<div class="form-group">
+							<label for="menuName" class="control-label">메뉴명</label> <input
+								type="text" class="form-control" id="menuName" name="menuName">
+						</div>
+						<div class="form-group">
+							<label for="price" class="control-label">가격</label> <input
+								type="text" class="form-control" id="price" name="price">
+						</div>
+
+
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						<button type="submit" id="insert_customer_btn"
+							class="btn btn-primary">수정</button>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
 
 
 
- 
+
+
+
 
 
 </body>

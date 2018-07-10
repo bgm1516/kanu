@@ -9,11 +9,12 @@
 	</select>
 	
 	<!-- 전체 및 단건 조회 -->
+		<!-- if문을 사용하면 단건조회시 조건도 추가할 수 있다. -->		
 	<select id="getOrder_historyList" parameterType="String" resultType="com.kanu.web.orders.Order_historyVO">
 		SELECT A.ORDER_ID, B.MENU_NAME, B.PRICE, C.ORDER_QUANTITY, A.ORDER_TOTALSUM, A.ORDER_DATE, A.RESERVATION, A.CANCELED_ORDER, A.EMPLOYEE_ID
 		FROM ORDER_HISTORY A, MENU B, ORDERS C
 		WHERE B.MENU_ID = C.MENU_ID AND A.ORDER_ID = C.ORDER_ID
-		<if test="orderId != null and orderId !='' ">	<!-- if문을 사용하면 단건조회시 조건도 추가할 수 있다. -->
+		<if test="orderId != null and orderId !='' ">	
 			AND A.ORDER_ID = #{orderId}
 		</if>
 		ORDER BY A.ORDER_ID

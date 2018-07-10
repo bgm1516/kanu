@@ -345,7 +345,6 @@
 	<form align="left" action="" id="select_item_form">
 	<label>메뉴 :</label>
 	<select class="form-control" name="menuId">
-			<option value="">선택</option>
 		<c:forEach items="${column_List}" var="column" varStatus="status">
    			<option value="${menuId[status.index]}">${column}</option>
 		</c:forEach>
@@ -407,7 +406,6 @@
 	<form align="left" action="" id="select_item_formN">
 	<label>메뉴 :</label>
 	<select class="form-control" name="menuId">
-			<option value="">선택</option>
 		<c:forEach items="${column_List}" var="column" varStatus="status">
    			<option value="${menuId[status.index]}">${column}</option>
 		</c:forEach>

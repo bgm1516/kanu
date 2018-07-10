@@ -34,18 +34,21 @@ body {
  width: 380px;
  min-width: 320px;
  height: 200px;
- margin: 60px auto;
- margin-left:20px;
+ margin: 60px 30px;
+
 }
 
 .form3 {
- float: left;
+  float: left; 
+  margin-left: 35px;
+  margin-top:10px;
  /*   background:#f00;  */
+ 
 }
 
 /* 폼3 옆에 로그인 붙이기 */
 .form3 label {
- width: 100px;
+ width: 50px;
  height: 20px;
  /*  display: block; */
  float: left;
@@ -66,10 +69,13 @@ input[type="submit"] {
  float: left;
  /*  display:block; */
  height: 50px;
- background: #FFBB00;
+ background: #343A40;
  border-radius: 5px;
  border: none;
  font-family: "맑은 고딕";
+ font-color: #000000;
+ margin-left: 10px;
+ margin-top: 10px;
 }
 input[type="button"] {
  height: 30px;
@@ -96,6 +102,10 @@ input[type="checkbox"] {
 	font-family: "맑은 고딕";
 	color: white;
 }
+
+/* #login {
+ font-color: #000000;
+} */
 
  */
 
@@ -124,13 +134,14 @@ input[type="checkbox"] {
     			 <div class="form2">
 					<input type="hidden" name="action" value="login"> 
 					<div class="form3">
-					<label id="label">ID:</label><input id="textfield1" name="employeeId"
-						type="text">
-					<div class="clear"></div>
-					<label id="label">PW:</label><input id="textfield1" name="password"
-						type="password"></div>
 					
-					<input type="submit" value="로그인"><div class="clear"></div>
+					<label> ID :</label> <input id="textfield1" name="employeeId"
+						type="text" size="20">
+					<div class="clear"></div>
+					<label>PW :</label> <input id="textfield1" name="password"
+						type="password" size="20"></div>
+					
+					<input type="submit" value="로그인" style="color:white;"><div class="clear"></div>
 				 </div></div>
 			</form>
 

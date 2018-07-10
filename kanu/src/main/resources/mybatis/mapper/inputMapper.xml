@@ -5,29 +5,33 @@
 <mapper namespace="com.kanu.web.stock.impl.InputDAO">
 
 <!-- 전체 조회  -->
+	
 	<select id="getInputList" resultType="map">
-		SELECT	INPUT_NUMBER			as "inputNumber",
+		SELECT DISTINCT	INPUT_NUMBER			as "inputNumber",
 				INPUT_NAME				as "inputName",
 				INPUT_QUANTITY			as "inputQuantity",
 				COST					as "cost",
-				EXPIRE_DATE				as "expireDate",
+				TO_CHAR(EXPIRE_DATE,'yyyy/mm/dd')	as "expireDate",
 				PRODUCT_ID				as "productId",
 				SUPPLIER_ID				as "supplierId",
-				INPUT_DATE				as "inputDate"
+				TO_CHAR(INPUT_DATE,'yyyy/mm/dd')	as "inputDate",
+				(SELECT SUPPLIER_NAME FROM SUPPLIER 
+	WHERE SUPPLIER.SUPPLIER_ID = INPUT.SUPPLIER_ID)AS "supplierName"
 		FROM INPUT
 		<where>
 			<if test="productId != null and productId != ''">
 				INPUT.PRODUCT_ID = #{productId}
 			</if>
 			<if test="supplierId != null and supplierId != ''">
-				INPUT.SUPPLIER_ID = #{supplierId}
+				AND INPUT.SUPPLIER_ID = #{supplierId}
 			</if>
+			
 		</where>
 		ORDER BY INPUT_DATE DESC
 	</select>	
 <!-- 단건 조회  -->
 	
-	<!-- <select id="getInput" resultType="inputVO" parameterType="string">
+<!-- 	<select id="getInput" resultType="inputVO" parameterType="string">
 		<![CDATA[
 		SELECT 	INPUT_NUMBER,
 				INPUT_NAME,
@@ -42,10 +46,10 @@
 		]]>
 	</select> -->
 <!-- 등록 -->
-	<insert id="insertStock" parameterType="inputVO">
+	<insert id="insertInput" parameterType="inputVO">
 	
-		<selectKey keyProperty="INPUT_NUMBER" resultType="string" order="BEFORE">
-			SELECT MAX(PRODUCT_ID)+1 FROM INPUT
+		<selectKey keyProperty="inputNumber" resultType="string" order="BEFORE">
+			SELECT MAX(INPUT_NUMBER)+1 FROM INPUT
 		</selectKey>
 		
 		INSERT INTO INPUT (
@@ -63,11 +67,12 @@
 					#{inputName},
 					#{inputQuantity},
 					#{cost},
-					#{expireDate},
+					TO_DATE(#{expireDate},'yyyy/mm/dd'),
 					#{productId},
 					#{supplierId},
-					#{inputDate}
+					TO_DATE(#{inputDate},'yyyy/mm/dd')
 				)
+				
 	</insert>
 <!-- 수정 -->
 	<update id="updateInput" parameterType="inputVO">

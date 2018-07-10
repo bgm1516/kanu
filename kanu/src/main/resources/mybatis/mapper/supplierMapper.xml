@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kanu.web.stock.impl.SupplierDAO">
+
+<!-- 전체 조회  -->
+   <select id="getSupplierList" resultType="map">
+      SELECT  	SUPPLIER_ID         	as "supplierId",
+	            SUPPLIER_NAME  			as "supplierName",
+	            PHONE_NUMBER    	 	as "phoneNumber",
+	            MANAGER_NAME   			as "managerName",
+	            MANAGER_PHONE         	as "managerPhone"
+      FROM SUPPLIER
+      ORDER BY SUPPLIER_ID DESC
+   </select>   
+<!-- 단건 조회  -->
+   <select id="getSupplier" resultType="supplierVO">
+      SELECT  	SUPPLIER_ID         	as "supplierId",
+	            SUPPLIER_NAME  			as "supplierName",
+	            PHONE_NUMBER    	 	as "phoneNumber",
+	            MANAGER_NAME   			as "managerName",
+	            MANAGER_PHONE         	as "managerPhone"
+      FROM SUPPLIER
+      WHERE SUPPLIER_ID = #{supplierId}
+      
+   </select>   
+<!-- 등록 -->
+   <insert id="insertSupplier" parameterType="SupplierVO">
+   
+      <selectKey keyProperty="supplierId" resultType="int" order="BEFORE">
+         SELECT MAX(SUPPLIER_ID)+1 FROM Supplier
+      </selectKey> 
+      
+      INSERT INTO SUPPLIER (
+                     SUPPLIER_ID,
+                     SUPPLIER_NAME,
+                     PHONE_NUMBER,
+                     MANAGER_NAME,
+                     MANAGER_PHONE
+                     )
+      VALUES   (
+               #{supplierId},
+               #{supplierName},
+               #{phoneNumber},
+               #{managerName},
+               #{managerPhone}
+            )
+   </insert>
+<!-- 수정 -->
+   <update id="updateSupplier" parameterType="SupplierVO">
+      UPDATE SUPPLIER SET
+               SUPPLIER_ID 		= 	#{supplierId},
+               SUPPLIER_NAME	= 	#{supplierName},
+               PHONE_NUMBER 	= 	#{phoneNumber},
+               MANAGER_NAME 	= 	#{managerName},
+               MANAGER_PHONE 	=	#{managerPhone}
+      WHERE SUPPLIER_ID = #{supplierId}
+      
+   </update>
+<!-- 단건 삭제 -->
+   <delete id="deleteSupplier" parameterType="int">
+      DELETE FROM SUPPLIER
+      WHERE SUPPLIER_ID = #{value}
+   </delete>
+   
+   
+<!-- 다건 삭제 -->   
+   <delete id="deleteSupplierList">
+      DELETE FROM SUPPLIER
+      WHERE SUPPLIER_ID IN
+      <foreach collection="list" item="item" open="(" close=")" separator=",">
+      #{item}
+      </foreach>
+   </delete>
+</mapper>

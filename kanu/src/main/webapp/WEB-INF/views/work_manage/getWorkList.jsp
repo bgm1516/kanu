@@ -22,8 +22,7 @@
   <div class="form-group mx-sm-3" align="right">
     근무시간<input type="text" class="form-control" name="dayWorktime">
   </div>
-  	<button type="submit" class="btn btn-primary">조회</button>
-  <a href="./getWorkList" class="btn btn-secondary" role="button" aria-pressed="true">전체조회</a>
+  	<button type="submit" class="btn btn-primary">조회</button>  
 </form>
 </c:if>
 <c:if test="${sessionScope.masterId!=sessionScope.empId}">
