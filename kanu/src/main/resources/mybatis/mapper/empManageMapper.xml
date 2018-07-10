@@ -7,11 +7,11 @@
 	<select id="getEmpList" resultType="empManVO">
 		SELECT EMPLOYEE_ID  				as "employeeId"
 		      ,EMPLOYEE_NAME   				as "employeeName"
-		      ,CERTIFICATED_EXPIRED_DATE    as "certificatedExpiredDate"
-		      ,EMPLOYEE_BIRTH       		as "employeeBirth"
+		      ,to_char(CERTIFICATED_EXPIRED_DATE,'yyyy-mm-dd')    as "certificatedExpiredDate"
+		      ,to_char(EMPLOYEE_BIRTH,'yyyy-mm-dd')       		as "employeeBirth"
 		      ,EMPLOYEE_ADDRESS 			as "employeeAddress"
-		      ,HIRE_DATE 					as "hireDate"
-		      ,RETIRE_DATE 				    as "retireDate"
+		      ,to_char(HIRE_DATE,'yyyy-mm-dd') 					as "hireDate"
+		      ,to_char(RETIRE_DATE,'yyyy-mm-dd') 				    as "retireDate"
 		      ,EMP_EMAIL					as "empEmail"
 			  ,PASSWORD 					as "password"
 		FROM EMP_MANAGE
@@ -49,7 +49,8 @@
 			EMPLOYEE_ID=#{empEmail}
 		</if>
 		<if test=" selector!=null and selector=='empEmail'">
-			EMP_EMAIL=#{empEmail}
+			EMP_EMAIL like '%'||#{empEmail}||'%' 
+			
 		</if>
 	
 	<!-- <if test="employeeName!=null and employeeName!=''">
@@ -135,7 +136,7 @@
 	
 </update>
 
-<delete id="deleteEmp" parameterType="string">
+<delete id="deleteEmp" parameterType="empManVO">
 
 		DELETE FROM EMP_MANAGE 
 		<where>

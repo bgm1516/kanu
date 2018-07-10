@@ -24,16 +24,16 @@ public class Emp_manageDAO {
 			return mybatis.selectList("com.kanu.web.emp.Emp_manageDAO.getEmpList2");
 		}
 	//단건조회
-	public Emp_manageVO getEmp(Emp_manageVO vo){
-		return mybatis.selectOne("com.kanu.web.emp.Emp_manageDAO.getEmp",vo);
+	public List<Emp_manageVO> getEmp(Emp_manageVO vo){
+		return mybatis.selectList("com.kanu.web.emp.Emp_manageDAO.getEmp",vo);
 	}
 	//직원등록
 	public void insertEmp(Emp_manageVO vo) {
 		mybatis.insert("com.kanu.web.emp.Emp_manageDAO.insertEmp", vo);
 	}
 	//직원삭제
-	public void deleteEmp(String employeeId) {
-		mybatis.delete("com.kanu.web.emp.Emp_manageDAO.deleteEmp", employeeId);
+	public void deleteEmp(Emp_manageVO vo) {
+		mybatis.delete("com.kanu.web.emp.Emp_manageDAO.deleteEmp", vo);
 	}
 	public void updateEmp(Emp_manageVO vo) {
 		mybatis.update("com.kanu.web.emp.Emp_manageDAO.updateEmp", vo);

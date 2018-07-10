@@ -28,7 +28,7 @@ $(function() {
 
 <body>
 <div align="right">
-<a href="./getEmpList" class="btn btn-primary" role="button" aria-pressed="true">직원전체목록</a>
+
 <a href="#" class="btn btn-secondary" role="button" aria-pressed="true" id="updateBtn">직원정보수정</a>
 <a href="#" class="btn btn-danger" role="button" aria-pressed="true" id="deleteBtn">직원정보삭제</a>
 </div>

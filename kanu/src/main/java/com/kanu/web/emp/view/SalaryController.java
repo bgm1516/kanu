@@ -33,7 +33,7 @@ public class SalaryController {
 	@RequestMapping("/getSalaryList")
 	public String getSalaryList(HttpServletRequest request, SalaryVO vo) {
 		request.setAttribute("salaryList", salaryService.getSalaryList());
-		return "emp/getSalaryList";
+		return "emp/getSalaryList"; 
 	}
 	//목록 이력 조회
 		@RequestMapping("/getSalaryList2")

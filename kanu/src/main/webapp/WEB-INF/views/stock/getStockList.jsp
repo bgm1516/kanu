@@ -26,7 +26,7 @@ margin: auto;
     text-align : center; 
 }  */
 </style>
-<title>재고현황</title>
+<title>재고관리</title>
 <%--삭제 function 추가 --%>
 <script type="text/javascript">
 	function delcheck() {
