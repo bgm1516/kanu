@@ -1,10 +1,13 @@
 package com.kanu.web.orders.view;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kanu.web.orders.MenuVO;
@@ -22,11 +25,12 @@ public class RecipeController {
 		return "recipe/getRecipeList";
 	}
 	
-	@RequestMapping("getRecipe")
-	public String getRecipe(MenuVO vo, Model model ) {
-		model.addAttribute("recipeOne", Rservice.getRecipe(vo));
-		return "recipe/getRecipe";
+	@RequestMapping("/getRecipe")
+	@ResponseBody
+	public List<RecipeVO> getRecipe(MenuVO vo) {
+		return Rservice.getRecipe(vo);
 	}
+	
 	
 	@RequestMapping(value="insertRecipe", method=RequestMethod.GET)
 	public String insertRecipe() {

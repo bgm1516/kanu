@@ -109,7 +109,7 @@
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" 
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Employee</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="/kanu/EmpList">직원관리</a>
+              <a class="dropdown-item" href="/kanu/getEmpList">직원관리</a>
               <a class="dropdown-item" href="/kanu/getSalaryList2">급여내역</a>
               <a class="dropdown-item" href="/kanu/getSalaryList">급여관리</a>
               <a class="dropdown-item" href="/kanu/getWorkList">근무관리</a>
