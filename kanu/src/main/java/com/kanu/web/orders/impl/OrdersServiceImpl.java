@@ -83,7 +83,7 @@ public class OrdersServiceImpl implements OrdersService{
 		dao.deleteOrders(vo);
 		dao.deleteReserveHistory(vo);
 		dao.deleteCanceledorder(vo);
-		dao.deleteOrderHistory(vo);
+		dao.deleteOrderHistory(vo); 
 	}
 
 	//봉인--------------------------------------
