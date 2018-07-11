@@ -149,7 +149,7 @@
 		</where>
 </delete>
 
-<delete id="deleteEmpList" parameterType="list">
+<delete id="deleteEmpList" parameterType="list"> 
 
 		DELETE FROM EMP_MANAGE 
 		WHERE EMPLOYEE_ID=#{employeeId}

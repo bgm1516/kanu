@@ -113,10 +113,10 @@
 				<td align="center">${vo.inputName}</td>
 				<td align="center">${vo.inputQuantity}</td>
 				<td align="center">${vo.cost}</td>
-				<td align="center">${fn:substring(vo.expireDate,0,10)}</td>
+				<td align="center">${fn:substring(vo.expireDate,2,10)}</td>
 				<td align="center">${vo.productId}</td>
 				<td align="center">${vo.supplierName}(${vo.supplierId})</td>
-				<td align="center">${vo.inputDate}</td>
+				<td align="center">${fn:substring(vo.inputDate,2,10)}</td>
 			</tr> 
 		</c:forEach>
 		</tbody>

@@ -67,10 +67,10 @@
 					#{inputName},
 					#{inputQuantity},
 					#{cost},
-					TO_DATE(#{expireDate},'yyyy/mm/dd'),
+					TO_DATE(#{expireDate},'yyyy-mm-dd'),
 					#{productId},
 					#{supplierId},
-					TO_DATE(#{inputDate},'yyyy/mm/dd')
+					TO_DATE(#{inputDate},'yyyy-mm-dd')
 				)
 				
 	</insert>
