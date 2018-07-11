@@ -45,12 +45,15 @@
 		FROM EMP_MANAGE
 	
 		<where>
-		<if test=" selector!=null and selector=='employeeId'">
-			EMPLOYEE_ID=#{empEmail}
+		<if test=" selector!=null and selector=='employeeName'">
+			EMPLOYEE_Name like '%' ||#{empEmail}|| '%'
 		</if>
 		<if test=" selector!=null and selector=='empEmail'">
 			EMP_EMAIL like '%'||#{empEmail}||'%' 
 			
+		</if>
+		<if test="employeeId!=null and employeeId!=''">
+			EMPLOYEE_ID = #{employeeId}
 		</if>
 	
 	<!-- <if test="employeeName!=null and employeeName!=''">
@@ -140,8 +143,8 @@
 
 		DELETE FROM EMP_MANAGE 
 		<where>
-		<if test=" selector!=null and selector=='employeeId'">
-			EMPLOYEE_ID=#{empEmail}
+		<if test="employeeId!=null and employeeId!=''">
+			EMPLOYEE_ID=#{employeeId}
 		</if>
 		</where>
 </delete>
