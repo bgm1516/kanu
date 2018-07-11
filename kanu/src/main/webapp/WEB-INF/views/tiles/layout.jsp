@@ -115,7 +115,7 @@
               <a class="dropdown-item" href="/kanu/getSalaryList2">급여내역</a>
               <a class="dropdown-item" href="/kanu/getSalaryList">급여관리</a></c:if>
               <c:if test="${!empty empId}">
-               <a class="dropdown-item" href="/kanu/getEmpList">근무내역</a>
+               <!-- <a class="dropdown-item" href="/kanu/getEmpList">근무내역</a> -->
               <a class="dropdown-item" href="/kanu/getWorkList">근무관리</a></c:if>
             </div>
           </li>
