@@ -149,6 +149,7 @@ margin: auto;
 							//sendWhere함수 (insert || update)
 							$("#sendWhere").click(function() {
 								var requestValue = $("#form1").serialize();
+								var style="";
 								$.ajax({
 									type : "post",
 									url : "./insertStock",
@@ -163,19 +164,24 @@ margin: auto;
 										else if (parseInt(data.stockQuantity) > parseInt(data.minimumQuantity)) {
 											style="color:black;" 
 										}
-										var append = '<tr id="'+data.productId+ '"'+style +'">'+
+										var append = '<tr id="'+data.productId+style +'">'+
 											'<td align="center">'+data.productId+'</td>'+                              
 											'<td align="center">'+data.productLocation+'</td>'+
 											'<td align="right">'+data.stockQuantity+'</td>'+
 											'<td align="right">'+data.minimumQuantity+'</td>'+
 											'<td align="right">'+data.supplierId+'</td>'+
 										'</tr>';
-										$("#"+data.productId).replaceWith(append);},
-											error : function(data) {
+										if( $("#mode")=="update")
+											$("#"+data.productId).replaceWith(append);
+										else 
+											$("#updatedlist").append(append);
+									},
+									error : function(data) {
 											alert("Error!");}
-										})
+										
+										});
 
-									})
+									});
 							});
 					</script>
 

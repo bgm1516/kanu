@@ -83,7 +83,7 @@
 		<script>
 	$(function() {
 		$("#expireDate").datepicker({
-			dateFormat : 'yyyy-mm-dd',
+			dateFormat : 'yy-mm-dd',
 			defaultDate : 3,
 			//minDate : "+1w",
 			//maxDate : new Date(2018, 6 - 1, 20),
