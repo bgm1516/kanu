@@ -32,7 +32,7 @@
             MINIMUM_QUANTITY,
             SUPPLIER_ID
       FROM   STOCK
-      WHERE   PRODUCT_ID = #{value}
+      WHERE   UPPER(PRODUCT_ID) = #{value}
       ]]>
    </select>
 <!-- 등록 -->
