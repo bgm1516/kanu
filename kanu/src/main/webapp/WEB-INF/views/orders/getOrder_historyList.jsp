@@ -217,13 +217,13 @@
 					//1)조건=예약여부가 Y인 경우(현재 N값인 경우) (넘어가는 맵핑값이 다르므로)
 					if (o_reser === "N") {
 						$('#orderIdRN').val(o_id)
-						alert("취소 사유를 작성해주십시오")
+						alert("예약 상세정보를 작성해주십시오")
 						$("#cancelRN_modal").modal("show");
 						
 					//2)조건=예약여부가 N인 경우(현재 Y값인 경우) (넘어가는 맵핑값이 다르므로)
 					} else { 
 						$('#orderIdRY').val(o_id)
-						alert("정말 취소한 주문을 되돌리시겠습니까?")
+						alert("정말 예약한 주문을 취소하시겠습니까?")
 						$("#cancelRY_modal").modal("show");
 					}
 				})
