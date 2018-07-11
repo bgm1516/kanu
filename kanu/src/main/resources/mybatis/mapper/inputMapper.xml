@@ -16,7 +16,7 @@
 				SUPPLIER_ID				as "supplierId",
 				TO_CHAR(INPUT_DATE,'yyyy/mm/dd')	as "inputDate",
 				(SELECT SUPPLIER_NAME FROM SUPPLIER 
-	WHERE SUPPLIER.SUPPLIER_ID = INPUT.SUPPLIER_ID)AS "supplierName"
+		WHERE SUPPLIER.SUPPLIER_ID = INPUT.SUPPLIER_ID)AS "supplierName"
 		FROM INPUT
 		<where>
 			<if test="productId != null and productId != ''">
@@ -27,7 +27,7 @@
 			</if>
 			
 		</where>
-		ORDER BY INPUT_DATE DESC
+		ORDER BY INPUT_NUMBER DESC
 	</select>	
 <!-- 단건 조회  -->
 	
