@@ -89,8 +89,7 @@
             <c:if test="${!empty empId}">
               <a class="dropdown-item" href="/kanu/getOrdersList">주문관리</a>
               <a class="dropdown-item" href="/kanu/getOrder_historyList">주문내역</a>
-              <a class="dropdown-item" href="/kanu/getMenuList">메뉴관리</a>
-              <a class="dropdown-item" href="/kanu/getMenuList">레시피관리</a>
+              <a class="dropdown-item" href="/kanu/getMenuList">메뉴/레시피관리</a>
               <a class="dropdown-item" href="/kanu/getReserve_historyList">예약내역</a>
               <a class="dropdown-item" href="/kanu/getCanceled_orderList">취소관리</a></c:if>
             </div>

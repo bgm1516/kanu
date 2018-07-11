@@ -13,22 +13,22 @@
 
 $(function() {
 	 $("#updateBtn").click(function(){  
-	var checklist= $("input[name=check]:checked")
+	var checklist= $("input[name=employeeId]:checked")
 	if (checklist.length==0){
 		alert("수정 할 사원을 선택하세요")
 		return ;
 	}
-    window.location.href="updateEmp?selector=employeeId&empEmail="+$("input[name=check]:checked").val();
+    window.location.href="updateEmp?employeeId="+$("input[name=employeeId]:checked").val();
 	 });
     
 
  $("#deleteBtn").click(function(){  
-			var checklist= $("input[name=check]:checked")
+			var checklist= $("input[name=employeeId]:checked")
 			if (checklist.length==0){
 				alert("삭제 할 사원을 선택하세요")
 				return ;
 			}
-    window.location.href="deleteEmp?selector=employeeId&empEmail="+$("input[name=check]:checked").val();
+    window.location.href="deleteEmp?employeeId="+$("input[name=employeeId]:checked").val();
 				 
 	}); 
  
@@ -45,7 +45,7 @@ $(function() {
 	
 <form class="form-inline" action="./getEmp">
   <select name="selector"   >
-  		<option selected="selected" value="employeeId">사원번호</option>
+  		<option selected="selected" value="employeeName">사원이름</option>
   		<option value="empEmail">이메일주소</option>
   </select>
   
@@ -55,7 +55,7 @@ $(function() {
   </div>
   	<button type="submit" class="btn btn-primary">조회</button>
 </form>
-	<form>
+	<form name="form2">
 	
 		<div align="right">  
 		<a href="./getEmpList" class="btn btn-primary" role="button" aria-pressed="true">직원전체목록</a>
@@ -80,7 +80,7 @@ $(function() {
 			</tr>
 			<c:forEach items="${empMan}" var="emp">
 				<tr>
-					<td width="5"><input type="checkbox" name="check" value="${emp.employeeId}" /></td>
+					<td width="5"><input type="checkbox" name="employeeId" value="${emp.employeeId}" /></td>
 					<td>${emp.employeeId}</td>
 					<td>${emp.employeeName}</td>
 					<td>${emp.empEmail}</td>
