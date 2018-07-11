@@ -75,9 +75,7 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-
             <a class="nav-link" href="/kanu/main">Home <span class="sr-only">(current)</span></a>
-
           </li>
           
           
@@ -118,6 +116,7 @@
               <a class="dropdown-item" href="/kanu/getSalaryList2">급여내역</a>
               <a class="dropdown-item" href="/kanu/getSalaryList">급여관리</a></c:if>
               <c:if test="${!empty empId}">
+               <a class="dropdown-item" href="/kanu/getEmpList">직원관리</a>
               <a class="dropdown-item" href="/kanu/getWorkList">근무관리</a></c:if>
             </div>
           </li>
