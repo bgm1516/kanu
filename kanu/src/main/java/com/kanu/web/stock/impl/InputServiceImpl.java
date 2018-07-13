@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kanu.web.stock.InputService;
 import com.kanu.web.stock.InputVO;
-
+ 
 @Service("inputService")
 public class InputServiceImpl implements InputService {
 	@Autowired InputDAO dao;
